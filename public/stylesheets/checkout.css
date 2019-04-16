@@ -1,0 +1,194 @@
+.row{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+}
+
+.inner-row{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto
+}
+
+.bild{
+    text-align: center
+}
+
+h1{
+    font-size: 2em;
+    color: white;
+    margin: auto auto;
+    padding: auto;
+    text-shadow: 2px 1px 0px black;
+    padding-top: 150px
+}
+
+.form-group,
+.expirat-group{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    margin-top: 20px
+}
+
+.row1{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
+.form-control{
+    margin-top: 10px;
+    margin-bottom: 30px;
+    width: 400px;
+        margin: 0px 0px 0px 0px;
+    border: 2px solid #c9c9c9;
+    border-radius: 5px;
+    font-size: 1.05em;
+    padding: 0px 0px
+}
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+label{
+    margin-bottom: 10px
+}
+
+h2{
+    text-decoration: underline;
+    margin-top: 20px
+}
+
+h4{
+    margin-top: 10px
+}
+
+button{
+    margin-top: 40px
+}
+
+.maenu{
+         background-image: url(../images/Brotritter%20logo%202.png);  
+    background-size: cover;
+    height: 108px;
+    width: 290px;
+    color: #FF9900;
+    background-color: #4c0200;
+    border-left: 3px solid #FF9900;
+    border-bottom: 3px solid #FF9900;
+    border-right:3px solid #FF9900;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+    cursor: pointer;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.viereck{
+    height: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -webkit-transition: all 0s;
+    -o-transition: all 0s;
+    transition: all 0s;
+    position: relative;
+    align-items: center;
+    float: right;
+}
+
+.brotritter{
+    width: 100%;
+    position: absolute;
+    margin: 0px auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center
+}
+
+input{
+    text-align: center
+}
+
+.inner-row{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.row1 label{
+    margin-top: 20px
+}
+
+.expiry-control{
+    margin-top: 10px;
+    width: 
+}
+
+@media only screen and (max-width: 980px) {
+    .konto{
+        display: none
+    }
+    .mobile-konto{
+        display: block
+    }
+    .brotritter{
+        display: none
+    }
+    .viereck{
+        justify-content: space-between
+    }
+}
+
+@media only screen and (min-width: 980px) {
+    .konto{
+        display: flex
+    }
+    .mobile-konto{
+        display: none
+    }
+}
+
+@media only screen and (max-device-width: 520px) {    
+    .bild{
+        border-bottom: 7px solid #ff9900;
+        height: 500px;
+    }
+    .row{
+        margin: auto;
+        font-size: 1.7em
+    }
+    .form-group{
+        width: 80%;
+        max-width: 80%
+    }
+    .form-control{
+        width: 100%;
+        max-width: 100%
+    }
+    h1{
+        padding-top: 200px;
+        font-size: 4em
+    }
+}

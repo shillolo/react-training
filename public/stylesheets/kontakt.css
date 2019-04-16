@@ -1,0 +1,218 @@
+html, body{
+    height: 100%
+}
+
+.bild{
+    height: auto
+}
+
+.kontaktformular{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
+.label-message{
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center
+}
+
+.kontaktMain{
+    margin: 25px 0px
+}
+
+.maindiv{
+    height: auto;
+    min-height: 100%
+}
+
+.label-email{
+    margin-top: 40px
+}
+
+.label-email input{
+    width: 80%;
+    max-width: 80%;
+    height: 40px;
+    margin: 0
+}
+
+.maindiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url(../images/BrotritterBakery1.jpg);
+    background-size: cover
+}
+
+.kontaktText{
+    margin: 25px 0;
+    text-align: center;
+    color: #777777;
+    background-color: rgba( 216, 216, 216, 0.806 );
+}
+
+.loginbutton{
+    width: 100%;
+    max-width: 100%;
+    margin-top: 20px;
+}
+
+.kontaktMenu{
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+}
+
+.kontaktMenu .buyer,
+.kontaktMenu .bakery{
+    width: 50%;
+    padding: 25px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: solid 2px #b5b5b5;
+    cursor: pointer;
+    transition: 0.3s
+}
+
+.kontaktMenu div:hover{
+    border-bottom: 2px #ff9900 solid;
+}
+
+/*
+.label-message{
+    display: flex;
+    flex-direction: column
+}
+*/
+
+.buyerclick{
+    border-bottom: 2px solid #ff9900;
+    border-right: 2px solid #ff9900;
+    border-radius: 10px
+}
+
+.bakeryclick{
+    border-bottom: 2px solid #ff9900;
+    border-left: 2px solid #ff9900;
+    border-radius: 10px
+}
+
+
+.label-message textarea{
+    height: 200px;
+    width: 80%;
+    max-width: 80%;
+    padding: 10px;
+    font-family: Helvetica
+}
+
+.kontaktdiv{
+    background-color: rgba( 216, 216, 216, 0.806 )
+}
+
+.kontaktMain{
+    height: auto;
+    margin: auto 0px;
+    padding: 0px;
+    margin: auto
+} 
+
+.kontaktHead{
+    margin: 10px 0px 25px 0px;
+    padding: 10px 0px;
+    background-color: rgba( 216, 216, 216, 0.806 );
+    color: #727272;
+    text-align: center;
+    width: 100%
+}
+
+.kontaktheader h1{
+    color: #727272;
+    text-shadow: 0px 0px 0px #727272
+}
+
+.kontaktMain .loginbutton{
+    margin: 15px 0px
+}
+
+.impress{
+    margin-top: 0px
+}
+
+.impress-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    flex-direction: column;
+    height: 100%
+}
+
+.impress-container a{
+    font-weight: 300;
+    color: #ff9900
+}
+
+.impress-container h1{
+    color: #727272;
+    text-shadow: 0px 0px 0px #727272
+}
+
+.impress-container div{
+    margin-top: 10px;
+}
+
+.impress-container div p{
+    font-size: 0.8em
+}
+
+@media only screen and (max-width: 980px) {
+    .viereck{
+        justify-content: flex-start
+    }
+}
+
+@media only screen and (max-device-width: 980px) {
+}
+
+@media only screen and (max-device-width: 520px) {  
+    h3{
+        font-size:  1.5em
+    }
+    .bild{
+        border-bottom: 7px solid #ff9900;
+        height: 500px;
+    }
+    .bild h1{
+        font-size: 4em
+    }
+    .row{
+        margin: auto;
+        font-size: 2.1em
+    }
+    .f-btn{
+        font-size: 1em;
+        padding: 22px 20px
+    }
+    .data, h2{
+        font-size: 1.4em
+    }
+    .kontaktSec{
+        font-size: 1.4em;
+        border: 0px;
+        background-color: white
+    }
+    .kontaktSec{
+        font-size: 1.4em;
+        border: 0px;
+        background-color: white
+    }
+}

@@ -1,0 +1,57 @@
+<link rel="stylesheet" href="/stylesheets/mybakery.css" />
+<div class="bild f-bild">
+        <div class="brotritter">
+            <div class="maenu" title="Brotritter" OnClick="location.href='/'"></div>
+        </div>
+        <div class="viereck">
+            <div class="comp-logo" OnClick="location.href='/'"></div>
+            <div class="konto-container">
+                <div class="hilfe">
+                    <a class="kontakt" title="Kontakt"> KONTAKT </a>
+                </div>
+            </div>
+        </div>
+        <h1 class="f-pass">Aktuelle Bestellungen</h1>
+</div>
+        
+<div class="balken"><div class="errors">{{errors}}</div><div class="success">{{success}}</div></div>
+
+<div class="orders">
+    <a class="section" name="Weizenbrötchen"><p>HEUTIGE BESTELLUNGEN</p><i class="fas fa-angle-down"></i></a>
+    {{#each order}}
+    <div class="order">
+        <div class="order-container">
+            <p>Betellung:</p>
+            <div class="order-holder">
+                <div class="buns">
+                {{#each this.order.cart}}
+                    {{this}}
+                {{/each}}
+                </div>
+                <div class="bun-amount">
+                {{#each this.order.amount}}
+                    {{this}}
+                {{/each}}
+                </div>
+            </div>
+            <div class="code-holder">
+                {{#each this.order.code}}
+                    {{this}}
+                {{/each}}
+            </div>
+        </div>
+        <div class="chip-nr-container">
+            <p>Chip Nr:</p>
+            <div class="position">{{this.position}}</div>
+        </div>
+    </div>
+    {{/each}}
+</div>
+
+<div class="impress">
+        <div class="impresscon">
+            <div class="sideopt "OnClick="location.href='/newsletter'">Newsletter bekommen</div>
+            <div OnClick="location.href='/impressum'">Impressum</div>
+            <div class="sideopt" OnClick="location.href='/mitgliedschaft'">Jetzt Partner werden</div>
+        </div>
+    </div>

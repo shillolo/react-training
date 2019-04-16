@@ -1,0 +1,524 @@
+<meta name="viewport" content=" user-scalable=no">
+    <link rel="stylesheet" href="/stylesheets/bakery.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" crossorigin="anonymous">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <div class="extra" id="extra">
+        {{# each products}}
+        {{# each this}}
+        <div class="ingredient-container" id="{{this.id}}">
+            <i class="fas fa-times close closeing"></i>
+            <div class="ingredient-content">
+                <div class="ingredient-header">
+                    <h1>{{this.title}}:</h1>
+                    <img src="{{this.imagePath}}" class="productpic-pop" alt="Brötchenbild"/>
+                </div>
+                <div class="ingredients"> 
+                {{# each this.ingredients}}
+                    {{this}},
+                {{/each}}
+                </div>
+            </div>
+        </div>
+        {{/each}}
+        {{/each}}
+    </div>
+    {{# if login}}
+    <div class="mobile-popup" id="mobile-popup">
+        <div class="mobile-header">
+            <div class="comp-logo" OnClick="location.href='/'"></div>
+            <h2>{{useracc}} </h2>
+            <i class="fas fa-times close" id="mobile-close"></i>
+        </div>
+        <div class="mobile-menu">
+            <div class="break-top"></div>
+            <a class="drop drop1" href="/user/aufladen">Guthaben aufladen&nbsp;<i class="fas fa-bolt"></i></a>
+            <div class="mobile-break"></div>
+            <a class="drop" href="/user/profile">Profil&nbsp;<i class="fas fa-user-circle"></i></a>
+            <div class="mobile-break"></div>
+            <a class="drop" href="/user/logout">Logout&nbsp;<i class="fas fa-sign-out-alt"></i></a>
+        </div>
+        <div class="mobile-credit-break"></div>
+        <div class="mobile-credit"><p>Guthaben: </p>{{credit}}&#8364;</div>
+    </div>
+    {{else}}
+    <div class="loginpop" id="loginpop">  
+        <div class="containerl">
+        <i class="fas fa-times close"></i>
+        <form class="form-signin" action="/user/signin" method="post">
+          <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+          <input type="email" name="email" class="form-control" placeholder="Email" required autofocus>
+          <input type="password" name="password" class="form-control" placeholder="Passwort" required>
+          <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+          <button class="btn btn-default btn-primary  loginbutton" type="submit">Einloggen</button>
+          <a class="forgot" href="/forgot">Passwort vergessen?</a>
+        </form>
+        </div>
+    </div>
+    <div class="registerpop" id="registerpop">  
+        <div class="containerl">
+        <i class="fas fa-times close"></i>
+        <form class="form-signup" action="/user/signup" method="post">
+          <h1 class="h3 mb-3 font-weight-normal">Registrieren</h1>
+          <input type="email" name="email" class="form-control" placeholder="Email" required autofocus/>
+          <input type="password" name="password" class="form-control" placeholder="Passwort" required/>
+          <input type="password" name="password2" id="password2" class="form-control" placeholder="Passwort bestätigen" required>
+          <input type="hidden" name="_csrf" value="{{ csrfToken }}"/> 
+          <button type="submit" class="btn btn-default btn-primary loginbutton">Los Geht's</button>
+        </form>
+        </div>
+    </div>
+    {{/if}}
+    <div class="infopop" id="infopop">
+        {{#if login}}
+        {{else}}
+        <div id="emailpop" class="datepop">
+            <i class="fas fa-times close popclose" id="popclose1"></i>
+            <div>
+                <h4>Ihre Privatspähre ist uns wichtig.</h4>
+                <br><p>Wir versuchen so wenig personenbezogene Daten, wie möglich zu sammeln.</p>
+                <br><p>Deshalb benötigen wir nur die Email-Adresse und fragen nicht nach Namen oder Adresse.</p>
+            </div>
+        </div>
+        {{/if}}
+        <div id="timepop" class="datepop">
+            <i class="fas fa-times close popclose" id="popclose3"></i>
+            <div>
+                <h4>Abholzeit angeben</h4>
+                <br>
+                <p>Ihre Brötchen werden ab der gewählten Uhrzeit in der Bäckerei ausliegen. Je früher sie ihre Brötchen abhloen, desto frischer sind diese.</p>
+            </div>
+        </div>
+        <div id="datepop" class="datepop">
+            <i class="fas fa-times close popclose" id="popclose2"></i>
+            <div>
+                <h4>Abholdatum</h4>
+                <br>
+                <p>Bestellungen müssen leider einen Tag im vorraus getätigt werden.</p>
+            </div>
+        </div>
+</div>
+<div class="credit-popup" id="credit-popup">
+        <form class="credit-form" id="credit-checkout" method="post" action="/bakery">
+            <i class="fas fa-times close" id="credit-close"></i>
+            <div class="credentials credit-creds" id="credentials">
+                <h1 id="header-price"></h1>
+                <input type="text" id="card-name" class="form-control" placeholder="Karteninhaber">
+                <input type="text" id="card-number" placeholder="Kartennummer" class="form-control">
+                <div class="expires">
+                    <input type="text" id="card-expiry-month" class="form-control" placeholder="Monat">
+                    <input type="text" id="card-expiry-year" class="form-control expiry-control" placeholder="Jahr">
+                </div>
+                <input type="text" id="card-cvc" class="form-control" placeholder="CVC/CVV/CID">
+                <button type="submit" id="credbtn" class="btn btn-success">Vorbestellen & Bezahlen</button>
+                <input type="hidden" name="guthaben" id="guthaben-cred"/>
+                <input type="hidden" name="payways" value="Creditcard"/>
+            </div>
+        </form>
+    </div>
+
+    {{#if login}}
+        <form action="/bakery" method="post" id="checkout-logged">
+        <div class="submitpop submitlogged" id="submitpop">
+            <div class="scontainer">
+                <i class="fas fa-times close closesub"></i>
+                <div class="sconHead">
+                    <div class="head1 loggedhead" id="head1">1. Überprüfen</div>
+                    <div class="head2 loggedhead" id="head2">2. Eckdaten</div>
+                </div>
+                <div class="scontainer-box box1" id="box1">
+                    <h1 class="sheader" id="sheader">Bestellung bestätigen</h1>
+                    <div class="sorder-container">
+                        <div class="sorder" name="sorder" id="sorder"></div>
+                        <hr>
+                        <div class="total-price">
+                            <p>Gesamtsumme:</p>
+                            <div>
+                                <p id="total-price"></p>&nbsp;&#8364;
+                            </div>
+                        </div>
+                        <div class="sprice" id="sprice"></div>
+                        <input type="hidden" id="getnumber" name="getnumber" value="">
+                        <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+                    </div>
+                    <button type="button" id="button1" class="loginbutton btn continuebtn">Bestätigen</button>
+                </div>
+                <div class="scontainer-box box2" id="box2">
+                    <h1 class="sheader" id="sheader">Bitte Abholdatum angeben</h1>
+                    <div class="buyers-info-logged">
+                        <div class="date-container date-container-logged">
+                            <h4>Abholdatum:</h4>
+                            <div>
+                                <input id="datepicker" class="datepicker e-reader" name="datepicker" size="8" autocomplete="off" readonly required/><i class="far fa-question-circle" id="question2"></i>
+                            </div>
+                        </div>
+                        <div class="date-container time-container">
+                            <h4>Abholen ab:</h4>
+                            <div>
+                                <div>
+                                <select id="timepicker" class="timepicker e-reader" name="timepicker" required><option value="7:00">7:00</option><option value="8:00">8:00</option><option value="9:00">9:00</option><option value="10:00">10:00</option><option value="11:00">11:00</option><option value="12:00">12:00</option><option value="13:00">13:00</option><option value="14:00">14:00</option></select>
+                                </div>
+                                <i class="far fa-question-circle question" id="question3"></i>
+                            </div>
+                        </div>
+                    </div> 
+                    <button type="submit" class="btn btn-default btn-primary order-btn" name="checkout" id="order-btn-logged" value="Bestellen">Vorbestellen & Bezahlen</button>
+                    <button type="button" id="goBack1" class="goBack btn">Zurück</button>
+                </div>
+            </div>
+        </div>
+        </form>
+    {{else}}
+        <form action="/bakery" method="post" id="checkout-form">
+        <div class="submitpop" id="submitpop">
+            <div class="scontainer" id="scontainer">
+                <i class="fas fa-times close closesub"></i>
+                <div class="sconHead">
+                    <div class="head1" id="head1">1. Überprüfen</div>
+                    <div class="head2" id="head2">2. Eckdaten</div>
+                    <div class="head3" id="head3">3. Bezahlen</div>
+                </div>
+                <div class="scontainer-box box1" id="box1">
+                    <h1 class="sheader" id="sheader">Bestellung bestätigen</h1>
+                    <div class="sorder-container">
+                        <div class="sorder" name="sorder" id="sorder"></div>
+                        <hr>
+                        <div class="total-price">
+                            <p>Gesamtsumme:</p>
+                            <div>
+                                <p id="total-price"></p>&nbsp;&#8364;
+                            </div>
+                        </div>
+                        <div class="sprice" id="sprice"></div>
+                        <input type="hidden" id="getnumber" name="getnumber" value="">
+                        <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+                    </div>
+                    <button type="button" id="button1" class="loginbutton btn continuebtn">Bestätigen</button>
+                </div>
+                <div class="scontainer-box box2" id="box2">
+                    <h1 class="sheader" id="sheader">Bitte Email und Abholdatum angeben</h1>
+                    <div class="buyers-info">
+                        <div class="email-container">
+                            <h4>Email:</h4>
+                            <div>
+                                <input type="email" id="e-reader" class="e-reader mail-reader" name="email_reader" oninvalid="invalid()" required/><i class="far fa-question-circle" id="question1"></i>
+                            </div>
+                        </div>
+                        <div class="date-container">
+                            <h4>Abholdatum:</h4>
+                            <div>
+                                <input id="datepicker" class="datepicker e-reader" name="datepicker" size="8" autocomplete="off" readonly required oninvalid="invalid()"/><i class="far fa-question-circle" id="question2"></i>
+                            </div>
+                        </div>
+                        <div class="date-container time-container">
+                            <h4>Abholen ab:</h4>
+                            <div>
+                                <div>
+                                <select oninvalid="invalid()" id="timepicker" class="timepicker e-reader" name="timepicker" required><option value="7:00">7:00</option><option value="8:00">8:00</option><option value="9:00">9:00</option><option value="10:00">10:00</option><option value="11:00">11:00</option><option value="12:00">12:00</option><option value="13:00">13:00</option><option value="14:00">14:00</option></select>
+                                </div>
+                                <i class="far fa-question-circle question" id="question3"></i>
+                            </div>
+                        </div>
+                    </div> 
+                    <button type="button" id="button2" class="loginbutton btn continuebtn">Bestätigen</button>
+                    <button type="button" id="goBack1" class="goBack btn">Zurück</button>
+                </div>
+                <div class="scontainer-box box3" id="box3">
+                    <h1 class="sheader" id="sheader">Zahlungsart wählen</h1>
+                    <div class="payways" id="method">
+                       <div class="p-method method-one" id="paypal-method">
+                                    <div class="paypal">
+                                        <input class="with-gap" name="payways" type="radio" id="paypal" value="Paypal"/>
+                                        <label for="paypal" class="label">Paypal</label>
+                                    </div>
+                                    <div class="paypal-img"><!-- PayPal Logo --><table border="0"  cellspacing="0" ><tbody><tr><td align="center"></td></tr><tr><td><img src="https://www.paypalobjects.com/webstatic/de_DE/i/de-pp-logo-100px.png" border="0" alt="PayPal Logo" /></td></tr></tbody></table><!-- PayPal Logo --></div>
+                                </div>
+                                <div class="p-method" id="sofort-method">
+                                    <div class="sofort">
+                                        <input class="with-gap" name="payways" type="radio" id="sofort" value="Sofort"/>
+                                        <label for="sofort" class="label">Sofort</label>
+                                    </div>
+                                    <div class="sofort-img"><!-- Sofort Logo --><table border="0"  cellspacing="0" align="center"><tbody><tr><td align="center"></td></tr><tr><td align="center"><img src="https://cdn.klarna.com/1.0/shared/image/generic/badge/xx_XX/pay_now/standard/pink.svg" border="0" alt="Sofort Logo" /></td></tr></tbody></table><!-- Sofort Logo --></div>
+                                </div>
+                                <div class="p-method" id="credit-method">
+                                    <div class="creditcard-class" id="creditcard-class">
+                                        <input class="with-gap" name="payways" type="radio" id="creditcard" value="Creditcard" required/>
+                                        <label for="creditcard" class="label">Kreditkarte</label>
+                                    </div>
+                                    <div class="creditcard-images">
+                                        <div class="visa"></div>
+                                        <div class="mastercard"></div>
+                                        <div class="ami-express"></div>
+                                    </div>
+                                </div>
+                    </div>
+                    <hr>
+                    <p id="payinfo">*Sie werden auf Paypal weitergeleitet</p>
+                    <p id="klarinfo">*Sie werden auf Klarna weitergeleitet</p>  
+                    <button type="submit" class="btn btn-default btn-primary order-btn" name="checkout" id="order-btn" value="Bestellen">Vorbestellen & Bezahlen</button>
+                    <button type="button" id="goBack2" class="goBack btn">Zurück</button>
+                </div>
+            </div>
+        </div>
+        </form>
+    {{/if}}
+<table class="bakeryCon" id="bakeryCon">
+    <div class="bild">
+        <div class="bild2">
+            <div class="container">
+                <div class="firma" OnClick="location.href='/'" title="Brotritter"></div>
+                <div class="viereck">
+                <div class="comp-logo" OnClick="location.href='/'"></div>
+                <div class="konto-container">
+                    {{# if login}}
+                    <li class="konto">
+                        <div class="kholder">
+                            <div class="k-container"><div class="konto1" id="credit">{{useracc}} &nbsp;&nbsp;</div><i class="fas fa-angle-up"></i></div>
+                            <div class="k-container"><div class="konto1" id="header"> KONTO &nbsp;</div><i class="fas fa-angle-down"></i></div>
+                        </div>
+                        <div class="dholder">
+                        <div class="hrbr"></div>
+                        <a class="drop drop1" href="/user/aufladen">Guthaben aufladen&nbsp;<i class="fas fa-credit-card"></i></a>
+                        
+                        <a class="drop" href="/user/profile">Profil&nbsp;<i class="fas fa-user-circle"></i></a>
+                        
+                        <a class="drop" href="/user/logout">Logout&nbsp;<i class="fas fa-sign-out-alt"></i></a>
+                        <div class="hrbr"></div>
+                            <div class="credit"><p>Guthaben: </p><div><div id="creditAmount">{{credit}}</div>  &#8364;</div></div>
+                        </div>
+                    </li>
+                    <div class="mobile-konto" id="mobile-konto">
+                        KONTO
+                    </div>
+                    {{else}}
+                    <div class="login" id="login" title="Einloggen">
+                        <a class="konto1"> Login </a>
+                    </div>
+                    <div class="register" id="register" title="Registrieren">
+                        <a class="konto1"> Registrieren </a>
+                    </div>
+                    {{/if}}
+                    <div class="hilfe">
+                        <a class="kontakt" title="Kontakt" href="/kontakt"> KONTAKT </a>
+                    </div>
+                </div>
+            </div>
+            </div>
+            </div>
+            <div class="nummer2">
+                <div class="nummer3">
+                </div>
+            </div>
+    </div>
+        
+    <div class="balken" id="balken">{{messages}}</div>
+    <div class="shopping-cart-container" id="shopping-cart-container">
+        <div class="shopping-cart" id="shopping-cart">
+            <div class="dropdown">
+                <i class="fas fa-trash-alt" id="trashcan"></i>      
+            </div>
+            <div class="shopping-cart-header" id="shopping-cart-header"><h3>Warenkorb&nbsp;</h3><i class="fas fa-shopping-cart"><span class="badge" id="cart-badge">0</span></i></div>
+            <div class="cart-price" id="cart-price">0.00 &#8364;</div>
+        </div>
+    </div>
+    
+<div class="top-content" id="top-content">
+    <div class="content" id="content">
+        <div class="products" id="bakeryProducts">
+            <div>
+            <a class="section" name="Weizenbroetchen" id="Weizenbroetchen"><p>WEIZENBRÖTCHEN</p><i class="fas fa-angle-down"></i></a>
+            <div class="sec sec1">
+            {{# each products}}
+            {{# each this }}
+                <div class="productholder" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" 
+ unselectable="on"
+ onselectstart="return false;" 
+ onmousedown="return false;">
+                    <div class="signholder">
+                        <i class="fas fa-info-circle infocircle" title="Zutatenliste" id="{{this.id}}"></i>
+                    </div>
+                    <div class="product" id="{{this.title}}">
+                        <img src="{{this.imagePath}}" class="productpic" alt="Kein Internet">
+                        <div class="productinfo">
+                            <div class="iname">{{this.title}}</div>
+                            <div class="iprice">
+                                <div class="tprice">{{this.price}}</div>&#8364;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+            {{/each}}
+            </div>
+            </div>
+            <div>
+            <a class="section" name="Roggenbroetchen" id="Roggenbroetchen"><p>ROGGENBRÖTCHEN</p><i class="fas fa-angle-left"></i></a>
+            <div class="sec">
+            {{# each products}}
+            {{# each this }}
+                <div class="productholder" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" 
+ unselectable="on"
+ onselectstart="return false;" 
+ onmousedown="return false;">
+                    <div class="signholder">
+                        <i class="fas fa-info-circle infocircle" title="Zutatenliste" id="{{this.id}}"></i>
+                    </div>
+                    <div class="product" id="{{this.title}}">
+                        <img src="{{this.imagePath}}" class="productpic" alt="Kein Internet">
+                        <div class="productinfo">
+                            <div class="iname">{{this.title}}</div>
+                            <div class="iprice">
+                                <div class="tprice">{{this.price}}</div>&#8364;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+            {{/each}}
+            </div>
+            </div>
+            <div>
+            <a class="section" name="Mehrkornbroetchen" id="Mehrkornbroetchen"><p>MEHRKORNBRÖTCHEN</p><i class="fas fa-angle-left"></i></a>
+            <div class="sec">
+            {{# each products}}
+            {{# each this }}
+                <div class="productholder" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" 
+ unselectable="on"
+ onselectstart="return false;" 
+ onmousedown="return false;">
+                    <div class="signholder">
+                        <i class="fas fa-info-circle infocircle" title="Zutatenliste" id="{{this.id}}"></i>
+                    </div>
+                    <div class="product" id="{{this.title}}">
+                        <img src="{{this.imagePath}}" class="productpic" alt="Kein Internet">
+                        <div class="productinfo">
+                            <div class="iname">{{this.title}}</div>
+                            <div class="iprice">
+                                <div class="tprice">{{this.price}}</div>&#8364;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+            {{/each}}
+            </div>
+            </div>
+            <div>
+            <a class="section" name="Sueßes" id="Sueßes"><p>SÜßE BRÖTCHEN UND KLEINGEBÄCK</p><i class="fas fa-angle-left"></i></a>
+            <div class="sec">
+            {{# each products}}
+            {{# each this }}
+                <div class="productholder" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" 
+ unselectable="on"
+ onselectstart="return false;" 
+ onmousedown="return false;">
+                    <div class="signholder">
+                        <i class="fas fa-info-circle infocircle" title="Zutatenliste" id="{{this.id}}"></i>
+                    </div>
+                    <div class="product" id="{{this.title}}">
+                        <img src="{{this.imagePath}}" class="productpic" alt="Kein Internet">
+                        <div class="productinfo">
+                            <div class="iname">{{this.title}}</div>
+                            <div class="iprice">
+                                <div class="tprice">{{this.price}}</div>&#8364;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+            {{/each}}
+            </div>
+            </div>
+            <div>
+            <a class="section" name="Laugengebaeck" id="Laugengebaeck"><p>LAUGENGEBÄCK</p><i class="fas fa-angle-left"></i></a>
+            <div class="sec">
+            {{# each products}}
+            {{# each this }}
+                <div class="productholder" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" 
+ unselectable="on"
+ onselectstart="return false;" 
+ onmousedown="return false;">
+                    <div class="signholder">
+                        <i class="fas fa-info-circle infocircle" title="Zutatenliste" id="{{this.id}}"></i>
+                    </div>
+                    <div class="product" id="{{this.title}}">
+                        <img src="{{this.imagePath}}" class="productpic" alt="Kein Internet">
+                        <div class="productinfo">
+                            <div class="iname">{{this.title}}</div>
+                            <div class="iprice">
+                                <div class="tprice">{{this.price}}</div>&#8364;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+            {{/each}}
+            </div>
+            </div>    
+        </div>
+        
+        <div class="connectorfake"></div>
+
+        <div class="connector" id="connector" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" 
+ unselectable="on"
+ onselectstart="return false;" 
+ onmousedown="return false;">
+            <div class="positioner">
+                <div class="wrapper">
+                    <div class="kasse">
+                        <div>
+                            <div class="header">
+                                <i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;
+                                <h2>Warenkorb</h2>
+                            </div>
+                            <div class="break"></div>
+                            <div class="warenkorb" id="warenkorb">
+                            </div>
+                        </div>
+                        <div class="sum">
+                        <p class="schrift">Gesamtsumme:</p>
+                        <div class="price"><div class="number" id="number">0.00</div>Euro</div>
+                        </div>
+                    </div>
+                    <div class="delete" id="delete"><i class="fas fa-trash-alt" id="trashbag"></i></div>
+                </div>
+                <button class="submit btn" id="orderit" title="Bestellen">Bestellen</button>
+            </div>
+        </div>
+    </div>
+</div>
+</table>
+
+<div class="impress">
+    <div class="impresscon">
+        <div class="sideopt "OnClick="location.href='/newsletter'">Newsletter bekommen</div>
+        <div><a href="/impressum">Impressum</a>&nbsp;/&nbsp;<a href="/datenschutz">Datenschutz</a></div>
+        <div class="sideopt" OnClick="location.href='/mitgliedschaft'">Jetzt Partner werden</div>
+    </div>
+</div>
+
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#000000"
+    },
+    "button": {
+      "background": "#ff9900"
+    }
+  }
+  "content": {
+    "message": "Unsere Website verwendet Cookies, um die bestmögliche Nutzung unserer Website zu gewährleisten.",
+    "dismiss": "Alles klar!",
+    "link": "Mehr erfahren",
+    "href": "https://www.brotritter.de/datenschutz"
+  }
+})});
+</script>
+
+<script type="text/javascript" src="https://js.stripe.com/v2/" id="creditCheck"></script>
+<script type="text/javascript" src="javascripts/checkout.js" id="checkoutId"></script>
+<script type="text/javascript" src="javascripts/bakery.js"></script>

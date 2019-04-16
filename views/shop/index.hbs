@@ -1,0 +1,232 @@
+
+    <link rel="stylesheet" href="/stylesheets/homepage.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    {{# if login}}
+    <div class="mobile-popup" id="mobile-popup">
+        <div class="mobile-header">
+            <div class="comp-logo" OnClick="location.href='/'"></div>
+            <h2>{{useracc}} </h2>
+            <i class="fas fa-times close" id="mobile-close"></i>
+        </div>
+        <div class="mobile-content">
+            <div class="mobile-menu">
+                <div class="break-top"></div>
+                <a class="drop drop1" href="/user/aufladen">Guthaben aufladen&nbsp;<i class="fas fa-bolt"></i></a>
+                <div class="mobile-break"></div>
+                <a class="drop" href="/user/profile">Profil&nbsp;<i class="fas fa-user-circle"></i></a>
+                <div class="mobile-break"></div>
+                <a class="drop" href="/user/logout">Logout&nbsp;<i class="fas fa-sign-out-alt"></i></a>
+            </div>
+            <div class="mobile-credit-break"></div>
+            <div class="mobile-credit"><p>Guthaben: </p>{{credit}}&#8364;</div>
+        </div>
+    </div>
+    {{else}}
+    <div class="loginpop" id="loginpop">  
+        <div class="containerl">
+        <i class="fas fa-times close"></i>
+        <form class="form-signin" action="/user/signin" method="post">
+          <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+          <input type="email" name="email" id="email" class="form-control" placeholder="Email" required autofocus>
+          <input type="password" name="password" id="password" class="form-control" placeholder="Passwort" required>
+          <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+          <button class="btn btn-default btn-primary  loginbutton" type="submit">Einloggen</button>
+          <a class="forgot" href="/forgot">Passwort vergessen?</a>
+        </form>
+        </div>
+    </div>
+    <div class="registerpop" id="registerpop">  
+        <div class="containerl">
+        <i class="fas fa-times close"></i>
+        <form class="form-signup" action="/user/signup" method="post">
+          <h1 class="h3 mb-3 font-weight-normal">Registrieren</h1>
+          <input type="email" name="email" id="email" class="form-control control2" placeholder="Email" required autofocus>
+          <input type="password" name="password" id="password" class="form-control" placeholder="Passwort" required>
+          <input type="password" name="password2" id="password2" class="form-control" placeholder="Passwort bestätigen" required>
+          <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+          <button type="submit" class="btn btn-default btn-primary loginbutton">Los Geht's</button>
+        </form>
+        </div>
+    </div>
+    {{/if}}
+    <div class="bild">
+            <div class="brotheld">
+                <div class="maenu" title="Brotritter" OnClick="location.href='/'"></div>
+            </div>
+            <div class="viereck">
+                    <div class="comp-logo" OnClick="location.href='/'" title="Brotritter"></div>
+                    <div class="konto-container">
+                        {{# if login}}
+                        <li class="konto">
+                            <div class="kholder">
+                                <div class="k-container"><div class="konto1" id="credit">{{useracc}} &nbsp;&nbsp;</div><i class="fas fa-angle-up"></i></div>
+                                <div class="k-container"><div class="konto1" id="header"> KONTO &nbsp;</div><i class="fas fa-angle-down"></i></div>
+                            </div>
+                            <div class="dholder">
+                            <div class="hrbr"></div>
+                            <a class="drop drop1" href="/user/aufladen">Guthaben aufladen&nbsp;<i class="fas fa-credit-card"></i></a>
+                            
+                            <a class="drop" href="/user/profile">Profil&nbsp;<i class="fas fa-user-circle"></i></a>
+                            
+                            <a class="drop" href="/user/logout">Logout&nbsp;<i class="fas fa-sign-out-alt"></i></a>
+                            <div class="hrbr"></div>
+                            <div class="credit"><p>Guthaben: </p>{{credit}}  &#8364; </div>
+                            </div>
+                        </li>
+                        <div class="mobile-konto" id="mobile-konto">
+                            KONTO
+                        </div>
+                        {{else}}
+                        <div class="login" id="login" title="Einloggen">
+                            <a class="konto1"> Login </a>
+                        </div>
+                        <div class="register" id="register" title="Registrieren">
+                            <a class="konto1"> Registrieren </a>
+                        </div>
+                        {{/if}}
+                        <div class="hilfe">
+                            <a class="kontakt" title="Kontakt" href="/kontakt"> KONTAKT </a>
+                        </div>
+                    </div>
+            </div>
+        <div class="text-wrapper">
+            <div class="text">Jetzt Brötchen online vorbestellen.</div>
+            <form class="wrap" id="searchform" method="post" action="/">
+                <div class="search">
+                    <input type="text" id="searchTerm" class="searchTerm" name="address" placeholder="Wo wohnst du? (Plz)" autofocus required>
+                    <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+                    <button type="submit" id="searchButton" class="searchButton" title="Bäckerei finden">
+                        <i class="fa fa-search"></i><p id="b-button"> BÄCKEREI FINDEN </p>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="balken"><div class="errors">{{messages}}</div><div class="success">{{success}}</div></div>
+
+    <div class="slideHeader">
+        <h1>So funktioniert Brotritter</h1>
+    </div>
+
+    <div class="dotSlides" style="text-align:center">
+      <span class="dot" onclick="currentSlide(1)"></span> 
+      <span class="dot" onclick="currentSlide(2)"></span> 
+      <span class="dot" onclick="currentSlide(3)"></span> 
+    </div>
+
+    <div class="slideshow-container">
+
+    <div class="mySlides fade">
+      <img src="../images/bakery1.png">
+      <div class="textSlider">1. Bäckerei und Brötchen auswählen</div>
+    </div>
+
+    <div class="mySlides fade">
+      <img src="../images/bakery2.jpg">
+      <div class="textSlider">2. Bezahlen und Code erhalten</div>
+    </div>
+
+    <div class="mySlides fade">
+      <img src="../images/bakery3.jpg">
+      <div class="textSlider">3. Code in gewählter Bäckerei eingeben und Brötchen genießen</div>
+    </div>
+
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+    </div>
+    <br>
+
+    <div class="wrapper"> 
+        <div class="aligner">
+            <div class="align1">
+                <i class="fas fa-check"></i>
+                <h1>Vorteile</h1>
+                <p><b> Immer alle Brötchen bekommen </b><br>Da Sie vorbestellen, werden Sie immer Ihre gewünschten Brötchen bekommen.</p>
+                <p><b> Guthaben aufladbar</b><br> So sparen sie noch mehr Zeit und können mit 4 Klicks Ihre Vorbestellung aufgeben.</p>
+            </div>
+            <div class="hiddenalign"></div>
+            <div class="align3">
+                <i class="fas fa-chart-line"></i>
+                <h1>Nutzen</h1>
+                <p><b> Kein Schlange stehen mehr </b><br> Sie gehen einfach an der Schlange vorbei und geben den Code am Regalsystem ein.</p>
+                <p><b> Zeit sparen </b><br>So haben Sie mehr Zeit für sich oder andere schöne Dinge.</p>
+            </div>
+        </div>
+        <div class="aligner2">
+            <div class="align2">
+                <i class="fas fa-stamp"></i>
+                <h1>Garantie</h1>
+                <p><b> Kein Preisaufschlag </b><br>Sie bezahlen genauso viel, wie in der Bäckerei vor Ort.</p>
+                <p><b> Sicheres bezahlen </b><br>Wir verschlüsseln Ihre Daten und tun alles um Zahlungssicherheit zu gewährleisten.</p>
+        </div>
+        </div>
+    </div>
+
+<div class="miniHead">
+    <h1>"Damit mehr Zeit für das Wesentliche bleibt"</h1>
+</div>
+<div class="aboutCon">
+    <div class="aboutPara">
+        <br>
+        <h2 class="thicker m1">Wir alle lieben das Frühstück. Frische Brötchen vom Bäcker sind einfach genüsslich. Dafür waren wir bereit uns an langen Warteschlangen anzustellen, auch wenn manche Brötchen schon ausverkauft waren. Seit Generationen war dies bereits so. 
+        </h2>
+        <br>
+        <code><br/></code>
+        <h1>
+        <b>Warum sollte es dafür in der heutigen digitalen Welt keine Lösung geben?</b>
+        </h1>
+        <br>
+        <code><br/></code>
+        <h2 class="thinner">
+        Können wir nicht mehr Zeit mit unserer Familie oder für uns selber nutzen? Genau diese Gedanken legten den Grundstein von Brotritter. Schon zu Kindheitszeiten haben wir uns über die fehlende Lösung gewundert. Unser Service löst genau diese Fragen und ermöglicht es Ihnen sich wieder auf das Wesentliche zu konzentrieren… das Genießen. 
+        </h2>
+        <code><br/></code>
+        <code><br/></code>
+        <br>
+        <br>
+        <br>
+        <h2 class="thinner">
+        Unser Service ist für EUCH und kann durch SIE weiter entwickelt werden. Schreiben Sie uns Feedback oder geben Sie Empfehlungen für Bäckereien ab, die dieses System dringend benötigen. Nur so können wir einen Service aufbauen, das uns allen, aber vor allem euch zu Gute kommt.
+        </h2>
+        <br>
+    </div>
+    <div class="aboutHead"><h1>"Für eine Welt in der Tradition und Digitalisierung die Menschheit entlasten"</h1></div>
+    <div class="filler"></div>
+</div>
+
+    <div class="impress">
+        <div class="impresscon">
+            <div class="sideopt "OnClick="location.href='/newsletter'">Newsletter bekommen</div>
+            <div><a href="/impressum">Impressum</a>&nbsp;/&nbsp;<a href="/datenschutz">Datenschutz</a></div>
+            <div class="sideopt" OnClick="location.href='/mitgliedschaft'">Jetzt Partner werden</div>
+        </div>
+    </div>
+
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#000000"
+    },
+    "button": {
+      "background": "#ff9900"
+    }
+  }
+  "content": {
+    "message": "Unsere Website verwendet Cookies, um die bestmögliche Nutzung unserer Website zu gewährleisten.",
+    "dismiss": "Alles klar!",
+    "link": "Mehr erfahren",
+    "href": "https://www.brotritter.de/datenschutz"
+  }
+})});
+</script>
+
+<script type="text/javascript" src="javascripts/homepage.js"></script>

@@ -1,0 +1,30 @@
+.dsvg-container{
+    width: 80%;
+    text-align: left;
+    margin: 0 auto
+}
+
+.dsvg-container h1{
+    color: black;
+    text-shadow: none
+}
+
+.dsvg-container h1,
+.dsvg-container h2{
+    padding: 20px;
+    text-decoration: underline
+}
+
+.dsvg-container h3{
+    padding-top: 20px
+}
+
+.overdiv{
+    height: auto;
+    min-height: 100%;
+    margin-bottom: 0px
+}
+
+.impress{
+    margin-top: 100px
+}

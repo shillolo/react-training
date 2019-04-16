@@ -1,0 +1,191 @@
+    <link rel="stylesheet" href="/stylesheets/aufladen.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" crossorigin="anonymous">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
+    
+    <div class="mobile-popup" id="mobile-popup">
+        <div class="mobile-header">
+            <div class="comp-logo" OnClick="location.href='/'"></div>
+            <h2>{{useracc}} </h2>
+            <i class="fas fa-times close" id="mobile-close"></i>
+        </div>
+        <div class="mobile-menu">
+            <div class="break-top"></div>
+            <a class="drop drop1" href="/user/aufladen">Guthaben aufladen&nbsp;<i class="fas fa-bolt"></i></a>
+            <div class="mobile-break"></div>
+            <a class="drop" href="/user/profile">Profil&nbsp;<i class="fas fa-user-circle"></i></a>
+            <div class="mobile-break"></div>
+            <a class="drop" href="/user/logout">Logout&nbsp;<i class="fas fa-sign-out-alt"></i></a>
+        </div>
+        <div class="mobile-credit-break"></div>
+        <div class="mobile-credit"><p>Guthaben: </p>{{credit}}&#8364;</div>
+    </div>
+
+    <div class="credit-popup" id="credit-popup">
+        <form class="credit-form" id="credit-form" action="/user/aufladen" method="post">
+            <i class="fas fa-times close" id="credit-close"></i>
+            <div class="credentials credit-creds" id="credentials">
+                <h1 id="total-price"></h1>
+                <input type="text" id="card-name" class="form-control" placeholder="Karteninhaber">
+                <input type="text" id="card-number" placeholder="Kartennummer" class="form-control">
+                <div class="expires">
+                    <input type="text" id="card-expiry-month" class="form-control" placeholder="Monat">
+                    <input type="text" id="card-expiry-year" class="form-control expiry-control" placeholder="Jahr">
+                </div>
+                <input type="text" id="card-cvc" class="form-control" placeholder="CVC/CVV/CID">
+                <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+                <button type="submit" id="credbtn" class="btn btn-success">Guthaben aufladen</button>
+                <input type="hidden" name="guthaben" id="guthaben-cred"/>
+                <input type="hidden" name="payways" value="Creditcard"/>
+            </div>
+        </form>
+    </div>
+
+<div class="chargediv">
+    <div class="bild">
+            <div class="viereck">
+                <div class="comp-logo" OnClick="location.href='/'"></div>
+                <div class="konto-container">
+                    {{# if login}}
+                    <li class="konto">
+                        <div class="kholder">
+                            <div class="k-container"><div class="konto1" id="credit">{{useracc}} &nbsp;&nbsp;</div><i class="fas fa-angle-up"></i></div>
+                            <div class="k-container"><div class="konto1" id="header"> KONTO &nbsp;</div><i class="fas fa-angle-down"></i></div>
+                        </div>
+                        <div class="dholder">
+                        <div class="hrbr"></div>
+                        <a class="drop drop1" href="/user/aufladen">Guthaben aufladen&nbsp;<i class="fas fa-credit-card"></i></a>
+                        
+                        <a class="drop" href="/user/profile">Profil&nbsp;<i class="fas fa-user-circle"></i></a>
+                        
+                        <a class="drop" href="/user/logout">Logout&nbsp;<i class="fas fa-sign-out-alt"></i></a>
+                        <div class="hrbr"></div>
+                        <div class="credit"><p>Guthaben: </p>{{credit}}  &#8364; </div>
+                        </div>
+                    </li>
+                    <div class="mobile-konto" id="mobile-konto">
+                        KONTO
+                    </div>
+                    {{/if}}
+                    <div class="hilfe">
+                        <a class="kontakt" title="Kontakt" href="/kontakt"> KONTAKT </a>
+                    </div>
+                </div>
+            </div>
+            <div class="brotritter">
+                <div class="maenu" title="Brotritter" OnClick="location.href='/'"></div>
+            </div>
+        <div class="icon">
+            <i class="far fa-credit-card"></i>
+            <div class="hrbr"></div>
+            <h2>Guthaben aufladen</h2>
+        </div>
+    </div>
+    
+    <div class="balken">{{errMsg}}</div>
+    
+    <div class="row">
+        <div class="col1">
+            <form action="/user/aufladen" method="post" id="aufladen-form" class="aufladen-form">
+                <div class="form-container">
+                    <div class="form-holder">
+                        <div class="form-group">
+                            <div class="payways">
+                                <div class="pay-header">
+                                    <h2>Gewünschten Betrag eingeben</h2>
+                                </div>
+                                <div class="inputreader">
+                                    <input type="text" id="guthaben" class="form-control" required name="guthaben" placeholder="Guthaben (in Euro z.B. 15.50)">
+                                    <p id="validateinfo">Bitte einen Betrag zwischen 5&#8364; und 200&#8364; eingeben</p>
+                                </div>
+
+                                <div class="p-method method-one" id="paypal-method">
+                                    <div class="paypal">
+                                        <input class="with-gap" name="payways" type="radio" id="paypal" value="Paypal"/>
+                                        <label for="paypal" class="label">Paypal</label>
+                                    </div>
+                                    <div class="paypal-img"><!-- PayPal Logo --><table border="0"  cellspacing="0" ><tbody><tr><td align="center"></td></tr><tr><td><img src="https://www.paypalobjects.com/webstatic/de_DE/i/de-pp-logo-100px.png" border="0" alt="PayPal Logo" /></td></tr></tbody></table><!-- PayPal Logo --></div>
+                                </div>
+                                <div class="p-method" id="sofort-method">
+                                    <div class="sofort">
+                                        <input class="with-gap" name="payways" type="radio" id="sofort" value="Sofort"/>
+                                        <label for="sofort" class="label">Sofort</label>
+                                    </div>
+                                    <div class="sofort-img"><!-- Sofort Logo --><table border="0"  cellspacing="0" align="center"><tbody><tr><td align="center"></td></tr><tr><td align="center"><img src="https://cdn.klarna.com/1.0/shared/image/generic/badge/xx_XX/pay_now/standard/pink.svg" border="0" alt="Sofort Logo" /></td></tr></tbody></table><!-- Sofort Logo --></div>
+                                </div>
+                                <div class="p-method" id="credit-method">
+                                    <div class="creditcard-class" id="creditcard-class">
+                                        <input class="with-gap" name="payways" type="radio" id="creditcard" value="Creditcard" required/>
+                                        <label for="creditcard" class="label">Kreditkarte</label>
+                                    </div>
+                                    <div class="creditcard-images">
+                                        <div class="visa"></div>
+                                        <div class="mastercard"></div>
+                                        <div class="ami-express"></div>
+                                    </div>
+                                </div>
+                                <div class="p-method" id="überweisung-method">
+                                    <div class="überweisung-class" id="überweisung-class">
+                                        <input class="with-gap" name="payways" type="radio" id="überweisung" value="Überweisung" required/>
+                                        <label for="überweisung" class="label">Überweisung</label>
+                                    </div>
+                                    <div class="transferfont">
+                                        <i class="fas fa-exchange-alt"></i>
+                                    </div>
+                                </div>
+                                <div class="über-info" id="über-info">
+                                    <h2>Ihre Überweisungsdaten</h2>
+                                    <div class="übercon"><b>Empfänger</b>Brotritter</div>
+                                    <div class="übercon"><b>Verwendungszweck</b>{{knumber}}</div>
+                                    <div class="übercon"><b>Kontonummer</b>fr</div>
+                                    <div class="übercon"><b>Bankleitzahl</b></div>
+                                    <div class="übercon"><b>Betrag:</b>Bis zu 200 &#8364;</div>
+                                </div>
+                            <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+                            <button type="button" id="chargebtn" class="btn btn-success">Guthaben aufladen</button>
+                            <p id="payinfo">*Sie werden auf Paypal weitergeleitet</p>
+                            <p id="klarinfo">*Sie werden auf Klarna weitergeleitet</p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#000000"
+    },
+    "button": {
+      "background": "#ff9900"
+    }
+  }
+  "content": {
+    "message": "Unsere Website verwendet Cookies, um die bestmögliche Nutzung unserer Website zu gewährleisten.",
+    "dismiss": "Alles klar!",
+    "link": "Mehr erfahren",
+    "href": "https://www.brotritter.de/datenschutz"
+  }
+})});
+</script>
+    
+<div class="impress">
+    <div class="impresscon">
+        <div class="sideopt "OnClick="location.href='/newsletter'">Newsletter bekommen</div>
+        <div><a href="/impressum">Impressum</a>&nbsp;/&nbsp;<a href="/datenschutz">Datenschutz</a></div>
+        <div class="sideopt" OnClick="location.href='/mitgliedschaft'">Jetzt Partner werden</div>
+    </div>
+</div>
+
+    <script type="text/javascript" src="/javascripts/charge.js" id="insertAfter"></script>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script type="text/javascript" src="/javascripts/checkout-user.js"></script>

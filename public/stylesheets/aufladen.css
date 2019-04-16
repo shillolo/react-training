@@ -1,0 +1,762 @@
+@import
+url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+html, body{
+    height: 100%
+}
+
+.chargediv{
+    height: auto;
+    min-height: 100%
+}
+
+*{
+    margin: 0;    
+}
+
+.payways{
+    text-align: center;
+}
+
+body{
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+}
+
+#klarinfo, #payinfo, validateinfo{
+    display: none
+} 
+
+.credentials{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:space-around;
+    display: none
+}
+
+.credit-form .close{
+    position: absolute;
+    padding-top: 10px;
+    padding-right: 10px;
+}
+
+.credit-form{
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    width: 90%;
+    max-width: 500px;
+    background-color: white;
+    height: auto;
+    border: 4px solid #FF9900;
+    border-radius: 15px;
+    display: flex;
+    justify-content: flex-end
+}
+
+.credit-creds{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:space-around;
+    text-align: center;
+    padding: 40px;
+    width: auto;
+    margin: 0 auto
+}
+
+.credit-popup .credentials{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:space-around;
+    display: block
+}
+
+.über-info{
+    width: 65%;
+    margin: 0 auto;
+    text-align: center;
+    color: #636363;
+    font-size: 1.1em;
+    display: none
+}
+
+.über-info div{
+    padding: 20px 0px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px #aaaaaa solid
+}
+
+.expires{
+    display: flex;
+    justify-content: center
+}
+
+.credentials input{
+    margin: 5px auto;
+    text-align: center;
+}
+
+.expires input{
+    width: 20%;
+    margin: 5px 10px;
+}
+
+
+.close{
+    float: right;
+    padding: 0px
+}
+
+.überpop{
+    @import ("https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css");
+    position: fixed;
+    z-index: 200;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow-y: hidden;
+    background-color: rgba(0,0,0,0.4);
+    display: none
+}
+
+.bild{  
+    background-image: url(../images/BrotritterMobil.jpeg);
+    background-size: cover;
+    
+    height: 665px;
+    width: 100%;
+    border-bottom: solid 3px #FF9900;        
+}
+
+.transferfont{
+    font-size: 2.2em;
+    color: white;
+    padding: 5px 10px;
+    background-color: #059fff;
+    border-radius: 50%
+}
+
+.viereck{
+    height: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -webkit-transition: all 0s;
+    -o-transition: all 0s;
+    transition: all 0s;
+    position: relative;
+    float: right
+}
+
+
+.konto1{
+    cursor: pointer;
+    color: white;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5;
+}
+
+
+.kontakt{
+    padding-top: 11px;
+}
+
+.kontakt:hover{
+    text-decoration: underline;
+    cursor: pointer
+}
+
+.konto2{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-line-pack: center;
+        align-content: center;
+    align-content: center;
+    display: none
+}
+
+.maenu{
+    background-image: url(../images/Brotritter%20logo%202.png);  
+    background-size: cover;
+    border-bottom:color: #FF9900;
+    background-color: #4c0200;
+    border-left: 3px solid #FF9900;
+    border-bottom: 3px solid #FF9900;
+    border-right:3px solid #FF9900;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+    cursor: pointer;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.bild{  
+    background: url(../images/BrotritterMobil.jpeg);
+    background-size: cover;
+    
+    height: 335px;
+}
+
+.brotritter{
+    position: absolute;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+
+
+
+.orders{
+    width: 100%;
+    height: 500px;
+    background-color: white;
+    border: 1px solid #ababab;
+    margin: 30px auto;
+    border-radius: 10px;
+    overflow-y: scroll
+}
+
+.order{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column
+}
+
+.order a{
+    cursor: pointer;
+    font-size: 1.5em;
+    text-decoration: underline
+}
+
+.order p{
+    font-size: 1.2em
+}
+
+.products{
+    font-weight: 900
+}
+
+.total{
+    margin-top: 20px
+}
+
+.icon{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    margin-top: 160px
+}
+
+.icon i{
+    font-size: 6em;
+    color: #ff9900
+}
+
+.icon hr{
+    height: 2px;
+    background-color: white;
+    width: 75%;
+    margin-top: 10px
+}
+
+.icon h2{
+    color: white
+}
+
+.überweisung-pic{
+    background-image: url(../images/Uberweisung.png);
+    background-size: cover;
+    width: 170px;
+    height: 120px
+}
+
+.überweisung{
+    display: flex;
+    width: 100%;
+    justify-content: center
+}
+
+.col1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
+}
+
+.aufladen-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%
+}
+
+.form-holder,
+.aufladen-form{
+    width: 100%
+}
+.form-container{
+    width: 80%;
+    max-width: 500px
+}
+
+.form-control{
+    margin: 5px 0 0 0;
+    width: 100%
+}
+
+.form-group label{
+    margin-top: 30px;
+    font-weight: 900
+}
+
+.payways{
+    width: 100%;
+    padding: 40px;
+    margin-top: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 10px;
+    border: 2px solid #ff9900;
+    background-color: white;
+    margin-bottom: 20px
+}
+
+.payways h2{
+    text-decoration: underline;
+}
+
+.payways p{
+    font-size: 0.8em;
+}
+
+.payways .with-gap{display: none;}
+input+label{
+  font-size: 1em;
+  cursor: pointer;
+  padding-left: 28px;
+  position: relative;
+}
+.payways .with-gap:checked+label{
+  color: #ff9900;
+  font-weight: bolder;
+}
+
+.payways .label:before{
+  content: "";
+  left: 0;
+  top: 4.5px;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  background: white;
+  border-radius: 100%;
+  transition: all 0.3s ease;
+  border: 2px solid #ff9900;
+}
+.payways .with-gap:checked + .label:before{
+  border: 2px solid #ff9900;
+background-color: #ff9900;
+  box-shadow: inset 0 0 0 4px transparent;
+}
+
+.p-method{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 75px;
+    width: 90%;
+    max-width: 330px;
+    margin: 0 auto
+}
+
+.pay-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    text-align: center
+}
+
+.creditcard-images{
+    display: flex;
+    align-items: flex-end
+}
+
+.visa{
+    width: 60px;
+    height: 20px;
+    background-image: url(https://resources.mynewsdesk.com/image/upload/t_next_gen_article_large_480/vnwmpvi3h5b592u4wj76.jpg);
+    background-size: cover;
+    border: 1px solid;
+    border-radius: 3px
+}
+
+.mastercard{
+    width: 30px;
+    height: 20px;
+    background-image: url(https://www.designtagebuch.de/wp-content/uploads/mediathek//2016/07/mastercard_logo-700x490.png);
+    background-size: cover;
+    border: 1px solid;
+    border-radius: 3px
+}
+
+.ami-express{
+        width: 30px;
+    height: 20px;
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg);
+    background-size: cover;
+    border: 1px solid;
+    border-radius: 3px
+}
+
+.order-btn{
+    width: 80%;
+    height: 50px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    font-size: 1.1em
+}
+
+.sub-close{
+    float: right;
+    margin-left: 100%;
+}
+
+.scontainer{
+    position: absolute;
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    width: 100%;
+    background-color: white;
+    border: 4px solid #FF9900;
+    border-radius: 15px;
+    position: relative;
+    flex-direction:column;
+    justify-content: space-around;
+    align-items: center;
+    height:540px;
+    overflow-y: scroll;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 30px
+}
+
+.col1 h1{
+    text-decoration: underline
+}
+
+.inputreader{
+        display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.credentials{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:space-around;
+    display: none
+}
+
+.credit-form .close{
+    position: absolute;
+    padding-top: 10px;
+    padding-right: 10px;
+}
+
+.credit-form{
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    width: 90%;
+    max-width: 500px;
+    background-color: white;
+    height: auto;
+    border: 4px solid #FF9900;
+    border-radius: 15px;
+    display: flex;
+    justify-content: flex-end
+}
+
+.credit-creds{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:space-around;
+    text-align: center;
+    padding: 40px;
+    width: auto;
+    margin: 0 auto
+}
+
+.credit-popup .credentials{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:space-around;
+    display: block
+}
+
+#total-price{
+    padding-bottom: 30px;
+    font-weight: 300
+}
+
+#total-price b{
+    text-decoration: underline
+}
+
+#chargebtn, #credbtn{
+    color: white;
+    width: 70%;
+    margin: 0 auto;
+
+    background-color: #0069ed;
+    border: solid #0069ed;
+    border-radius: 10;
+    transition: 0.25s;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 1.1em
+}
+
+#credbtn{
+    margin-top: 40px
+}
+
+#chargebtn:hover,  #credbtn:hover{
+    background-color: #0053ba;
+    border: solid #0053ba
+}
+
+.credit-form button{
+    width: auto;
+    height: 50px;
+}
+
+.disabled2{
+    background-color: gainsboro;
+}
+
+@media only screen and (max-width: 980px) {
+    .konto{
+        display: none
+    }
+    .mobile-konto{
+        display: block
+    }
+    .brotritter{
+        display: none
+    }
+}
+
+@media only screen and (min-width: 981px) {
+    .konto{
+        display: flex
+    }
+    .mobile-konto{
+        display: none
+    }
+}
+
+@media only screen and (max-device-width: 980px) {
+    .konto{
+        display: none
+    }
+    .mobile-konto{
+        display: block
+    }
+    }
+    .bild{
+        border-bottom: 5px solid #ff9900
+    }
+}   
+
+@media only screen and (max-device-width: 480px) {
+    .transferfont{
+        font-size: 1.8em;
+        color: white;
+        padding: 5px 15px;
+        background-color: #059fff;
+        border-radius: 50%
+    }
+    .visa{
+        width: 100px;
+        height: 33px;
+    }
+    .paypal-img{
+       font-size: 2em
+    }
+    .mastercard{
+        width: 50px;
+        height: 35px;
+    }
+
+    .ami-express{
+        width: 50px;
+        height: 35px;
+
+    }
+    .chargediv, body{
+        background-color: white;
+    }
+    .inputreader .form-control{
+        height: 100px;
+        font-size: 0.9em
+    }
+    .inputreader{
+        margin-top: 80px;
+        margin-bottom: 50px;
+    }
+    .mobile-konto{
+        display: block
+    }
+    .konto{
+        display: none
+    }   
+    .row h2{
+        margin-top: 30px;
+        font-size: 1.2em
+    }
+    .datechanger, .content-box{
+        flex-direction: column
+    }
+    .bild{
+        height: 600px;
+        border-bottom: 7px solid #ff9900
+    }
+    .bild .icon{
+        font-size: 2em;
+        margin-top: 230px
+    }
+    .balken{
+        -webkit-box-shadow: 0px 0px 0px black;
+            box-shadow: 0px 0px 0px black;
+    }
+    .form-container{
+        width: 100%;
+        max-width: 100%
+    }
+    .orders{
+        height: 500px;
+        background-color: white;
+        border: 1px solid #ababab;
+        margin: 0px auto;
+        border-radius: 0px;
+    }
+    .payways{
+        padding: 0px;
+        margin-top: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        border-radius: 0px;
+        border: 0px solid #ff9900;
+        height: auto;
+        font-size: 2.5em;
+        margin-bottom: 0px
+    }
+    .payways .with-gap{display: none;}
+    input+label{
+      padding-left: 57px;
+    }
+
+    .payways .label:before{
+      left: 5px;
+      top: 10px;
+      width: 22px;
+      height: 22px;
+      border: 5px solid #ff9900;
+    }
+    .payways .with-gap:checked + .label:before{
+      border: 5px solid #ff9900;
+    }
+    .p-method{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 75px;
+        width: 90%;
+        max-width: 80%;
+        margin: 20px auto
+    }
+    .btn-success{
+        font-size: 0.9em;
+        border-radius: 15px;
+        width: 50%;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+    .überweisung-pic{
+        background-image: url(../images/Uberweisung.png);
+        background-size: cover;
+        width: 30%;
+        height: auto
+    }
+    .kontakt{
+        padding-top: 0px;
+    }
+}

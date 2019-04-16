@@ -1,0 +1,577 @@
+<link rel="stylesheet" href="/stylesheets/kontakt.css" />
+<link rel="stylesheet" href="/stylesheets/forgot.css" />
+<link rel="stylesheet" href="/stylesheets/datenschutz.css" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+{{# if login}}
+    <div class="mobile-popup" id="mobile-popup">
+        <div class="mobile-header">
+            <div class="comp-logo" OnClick="location.href='/'"></div>
+            <h2>{{useracc}} </h2>
+            <i class="fas fa-times close" id="mobile-close"></i>
+        </div>
+        <div class="mobile-menu">
+            <div class="break-top"></div>
+            <a class="drop drop1" href="/user/aufladen">Guthaben aufladen&nbsp;<i class="fas fa-bolt"></i></a>
+            <div class="mobile-break"></div>
+            <a class="drop" href="/user/profile">Profil&nbsp;<i class="fas fa-user-circle"></i></a>
+            <div class="mobile-break"></div>
+            <a class="drop" href="/user/logout">Logout&nbsp;<i class="fas fa-sign-out-alt"></i></a>
+        </div>
+        <div class="mobile-credit-break"></div>
+        <div class="mobile-credit"><p>Guthaben: </p>{{credit}}&#8364;</div>
+    </div>
+    {{else}}
+    <div class="loginpop" id="loginpop">  
+        <div class="containerl">
+        <i class="fas fa-times close"></i>
+        <form class="form-signin" action="/user/signin" method="post">
+          <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+          <input type="email" name="email" id="email" class="form-control" placeholder="Email" required autofocus>
+          <input type="password" name="password" id="password" class="form-control" placeholder="Passwort" required>
+          <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+          <button class="btn btn-default btn-primary  loginbutton" type="submit">Einloggen</button>
+          <a class="forgot" href="/forgot">Passwort vergessen?</a>
+        </form>
+        </div>
+    </div>
+    <div class="registerpop" id="registerpop">  
+        <div class="containerl">
+        <i class="fas fa-times close"></i>
+        <form class="form-signup" action="/user/signup" method="post">
+          <h1 class="h3 mb-3 font-weight-normal">Registrieren</h1>
+          <input type="email" name="email" id="email" class="form-control" placeholder="Email" required autofocus>
+          <input type="password" name="password" id="password" class="form-control" placeholder="Passwort" required>
+          <input type="password" name="password2" id="password2" class="form-control" placeholder="Passwort bestätigen" required>
+          <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+          <button type="submit" class="btn btn-default btn-primary loginbutton">Los Geht's</button>
+        </form>
+        </div>
+    </div>
+    {{/if}}
+
+<div class="overdiv">
+<div class="bild f-bild">
+    <div class="brotritter">
+        <div class="maenu" title="Brotritter" OnClick="location.href='/'"></div>
+    </div>
+    <div class="viereck">
+        <div class="comp-logo" OnClick="location.href='/'"></div>
+        <div class="konto-container">
+            {{# if login}}
+            <li class="konto">
+                <div class="kholder">
+                    <div class="k-container"><div class="konto1" id="credit">{{useracc}} &nbsp;&nbsp;</div><i class="fas fa-angle-up"></i></div>
+                    <div class="k-container"><div class="konto1" id="header"> KONTO &nbsp;</div><i class="fas fa-angle-down"></i></div>
+                </div>
+                <div class="dholder">
+                <div class="hrbr"></div>
+                <a class="drop drop1" href="/user/aufladen">Guthaben aufladen&nbsp;<i class="fas fa-credit-card"></i></a>
+                <a class="drop" href="/user/profile">Profil&nbsp;<i class="fas fa-user-circle"></i></a>
+                <a class="drop" href="/user/logout">Logout&nbsp;<i class="fas fa-sign-out-alt"></i></a>
+                <div class="hrbr"></div>
+                <div class="credit"><p>Guthaben: </p>{{credit}}  &#8364; </div>
+                </div>
+            </li>
+            <div class="mobile-konto" id="mobile-konto">
+                KONTO
+            </div>
+            {{else}}
+            <div class="login" id="login" title="Einloggen">
+                <a class="konto1"> Login </a>
+            </div>
+            <div class="register" id="register" title="Registrieren">
+                <a class="konto1"> Registrieren </a>
+            </div>
+            {{/if}}
+            <div class="hilfe">
+                <a class="kontakt" title="Kontakt" href="/kontakt"> KONTAKT </a>
+            </div>
+        </div>
+    </div>
+    <div class="conholder">
+            <i class="fas fa-info"></i>
+            <div class="borderline"></div>
+            <h1>Impressum</h1>
+    </div>
+</div>
+
+<div class="balken"><div class="errors">{{messages}}</div><div class="success">{{success}}</div></div>
+
+<div class="dsvg-container">
+
+<h1>Datenschutzerklärung</h1>
+<p>Verantwortliche Stelle im Sinne der Datenschutzgesetze, insbesondere der EUDatenschutzgrundverordnung (DSGVO), ist:</p>
+<p>Leon Fischer
+<br>Emmastraße 199
+<br>28213 Bremen
+<br>E-Mail: service@brotritter.de
+<br>Telefon: +49 0421 40898206
+<br>Umsatzsteuer-Identifikationsnummer gem. § 27a UStG: DE 314585126
+<br>Inhaltlich Verantwortlicher gem. § 55 II RStV: Leon Fischer (Anschrift s.o.)(1)</p>
+<h2>Ihre Betroffenenrechte</h2>
+<p>Unter den angegebenen Kontaktdaten unseres Datenschutzbeauftragten können Sie jederzeit
+folgende Rechte ausüben:</p>
+<ul>
+<li>Auskunft über Ihre bei uns gespeicherten Daten und deren Verarbeitung (Art. 15 DSGVO),</li>
+<li>Berichtigung unrichtiger personenbezogener Daten (Art. 16 DSGVO),</li>
+<li>Löschung Ihrer bei uns gespeicherten Daten (Art. 17 DSGVO),</li>
+<li>Einschränkung der Datenverarbeitung, sofern wir Ihre Daten aufgrund gesetzlicher Pflichten
+noch nicht löschen dürfen (Art. 18 DSGVO),</li>
+<li>Widerspruch gegen die Verarbeitung Ihrer Daten bei uns (Art. 21 DSGVO) und</li>
+<li>Datenübertragbarkeit, sofern Sie in die Datenverarbeitung eingewilligt haben oder einen
+Vertrag mit uns abgeschlossen haben (Art. 20 DSGVO).</li>
+</ul>
+<p>Sofern Sie uns eine Einwilligung erteilt haben, können Sie diese jederzeit mit Wirkung für die
+Zukunft widerrufen.</p>
+<p>Sie können sich jederzeit mit einer Beschwerde an eine Aufsichtsbehörde wenden, z. B. an
+die zuständige Aufsichtsbehörde des Bundeslands Ihres Wohnsitzes oder an die für uns als
+verantwortliche Stelle zuständige Behörde.</p>
+<p>Eine Liste der Aufsichtsbehörden (für den nichtöffentlichen Bereich) mit Anschrift finden Sie
+unter: <a href="https://www.bfdi.bund.de/DE/Infothek/Anschriften_Links/anschriften_linksnode.html" target="_blank" rel="nofollow noopener">https://www.bfdi.bund.de/DE/Infothek/
+Anschriften_Links/anschriften_links-node.html</a>.</p>
+<p></p><h2>Erfassung allgemeiner Informationen beim Besuch unserer Website</h2>
+<h3>Art und Zweck der Verarbeitung:</h3>
+<p>Wenn Sie auf unsere Website zugreifen, d.h., wenn Sie sich nicht registrieren oder anderweitig
+Informationen übermitteln, werden automatisch Informationen allgemeiner Natur erfasst. Diese
+Informationen (Server-Logfiles) beinhalten etwa die Art des Webbrowsers, das verwendete
+Betriebssystem, den Domainnamen Ihres Internet-Service-Providers, Ihre IP-Adresse und
+ähnliches. </p>
+<p>Sie werden insbesondere zu folgenden Zwecken verarbeitet:</p>
+<ul>
+<li>Sicherstellung eines problemlosen Verbindungsaufbaus der Website,</li>
+<li>Sicherstellung einer reibungslosen Nutzung unserer Website,</li>
+<li>Auswertung der Systemsicherheit und -stabilität sowie</li>
+<li>zu weiteren administrativen Zwecken.</li>
+</ul>
+<p>Wir verwenden Ihre Daten nicht, um Rückschlüsse auf Ihre Person zu ziehen. Informationen
+dieser Art werden von uns ggfs. statistisch ausgewertet, um unseren Internetauftritt und die
+dahinterstehende Technik zu optimieren.</p>
+<h3>Rechtsgrundlage:</h3>
+<p>Die Verarbeitung erfolgt gemäß Art. 6 Abs. 1 lit. f DSGVO auf Basis unseres berechtigten
+Interesses an der Verbesserung der Stabilität und Funktionalität unserer Website.</p>
+<h3>Empfänger:</h3>
+<p>Empfänger der Daten sind ggf. technische Dienstleister, die für den Betrieb und die Wartung
+unserer Webseite als Auftragsverarbeiter tätig werden.</p>
+<h3>Speicherdauer:</h3>
+<p>Die Daten werden gelöscht, sobald diese für den Zweck der Erhebung nicht mehr erforderlich
+sind. Dies ist für die Daten, die der Bereitstellung der Webseite dienen, grundsätzlich der Fall,
+wenn die jeweilige Sitzung beendet ist.</p>
+<h3>Bereitstellung vorgeschrieben oder erforderlich:</h3>
+<p>Die Bereitstellung der vorgenannten personenbezogenen Daten ist weder gesetzlich noch
+vertraglich vorgeschrieben. Ohne die IP-Adresse ist jedoch der Dienst und die Funktionsfähigkeit
+unserer Website nicht gewährleistet. Zudem können einzelne Dienste und Services nicht verfügbar
+oder eingeschränkt sein. Aus diesem Grund ist ein Widerspruch ausgeschlossen. </p>
+<p></p><h2>Cookies</h2>
+<h3>Art und Zweck der Verarbeitung:</h3>
+<p>Wie viele andere Webseiten verwenden wir auch so genannte „Cookies“. Bei Cookies handelt
+es sich um kleine Textdateien, die auf Ihrem Endgerät (Laptop, Tablet, Smartphone o.ä.)
+gespeichert werden, wenn Sie unsere Webseite besuchen. </p>
+<p>Hierdurch erhalten wir bestimmte Daten wie z. B. IP-Adresse, verwendeter Browser und
+Betriebssystem.</p>
+<p>Cookies können nicht verwendet werden, um Programme zu starten oder Viren auf einen
+Computer zu übertragen. Anhand der in Cookies enthaltenen Informationen können wir Ihnen die
+Navigation erleichtern und die korrekte Anzeige unserer Webseiten ermöglichen.</p>
+<p>In keinem Fall werden die von uns erfassten Daten an Dritte weitergegeben oder ohne Ihre
+Einwilligung eine Verknüpfung mit personenbezogenen Daten hergestellt.</p>
+<p>Natürlich können Sie unsere Website grundsätzlich auch ohne Cookies betrachten. InternetBrowser sind regelmäßig so eingestellt, dass sie Cookies akzeptieren. Im Allgemeinen können Sie
+die Verwendung von Cookies jederzeit über die Einstellungen Ihres Browsers deaktivieren. Bitte
+verwenden Sie die Hilfefunktionen Ihres Internetbrowsers, um zu erfahren, wie Sie diese
+Einstellungen ändern können. Bitte beachten Sie, dass einzelne Funktionen unserer Website
+möglicherweise nicht funktionieren, wenn Sie die Verwendung von Cookies deaktiviert haben.</p>
+<h3>Speicherdauer und eingesetzte Cookies:</h3>
+<p>Soweit Sie uns durch Ihre Browsereinstellungen oder Zustimmung die Verwendung von
+Cookies erlauben, können folgende Cookies auf unseren Webseiten zum Einsatz kommen:</p>
+<p></p><p>Soweit diese Cookies (auch) personenbezogene Daten betreffen können, informieren
+wir Sie darüber in den folgenden Abschnitten.</p>
+<p>Sie können über Ihre Browsereinstellungen einzelne Cookies oder den gesamten CookieBestand löschen. Darüber hinaus erhalten Sie Informationen und Anleitungen, wie diese Cookies
+gelöscht oder deren Speicherung vorab blockiert werden können. Je nach Anbieter Ihres
+Browsers finden Sie die notwendigen Informationen unter den nachfolgenden Links:</p>
+<ul>
+<li>Mozilla Firefox: <a href="https://support.mozilla.org/de/kb/cookies-loeschen-daten-vonwebsites-entfernen" target="_blank" rel="nofollow noopener">https://support.mozilla.org/de/kb/
+cookies-loeschen-daten-von-websites-entfernen</a></li>
+<li>Internet Explorer: <a href="https://support.microsoft.com/de-de/help/17442/windowsinternet-explorer-delete-manage-cookies" target="_blank" rel="nofollow noopener">https://
+support.microsoft.com/de-de/help/17442/windows-internet-explorer-delete-manage-cookies</
+a></li>
+<li>Google Chrome: <a href="https://support.google.com/accounts/answer/61416?hl=de"
+target="_blank" rel="nofollow noopener">https://support.google.com/accounts/answer/61416?
+hl=de</a></li>
+<li>Opera: <a href="http://www.opera.com/de/help" target="_blank" rel="nofollow
+noopener">http://www.opera.com/de/help</a></li>
+<li>Safari: <a href="https://support.apple.com/kb/PH17191?locale=de_DE&viewlocale=de_DE"
+target="_blank" rel="nofollow noopener">https://support.apple.com/kb/PH17191?
+locale=de_DE&viewlocale=de_DE</a></li>
+</ul>
+<p></p><h2>Registrierung auf unserer Website</h2>
+<h3>Art und Zweck der Verarbeitung:</h3>
+<p>Bei der Registrierung für die Nutzung unserer personalisierten Leistungen werden einige
+personenbezogene Daten erhoben, wie Name, Anschrift, Kontakt- und Kommunikationsdaten (z.
+B. Telefonnummer und E-Mail-Adresse). Sind Sie bei uns registriert, können Sie auf Inhalte und
+Leistungen zugreifen, die wir nur registrierten Nutzern anbieten. Angemeldete Nutzer haben
+zudem die Möglichkeit, bei Bedarf die bei Registrierung angegebenen Daten jederzeit zu ändern
+oder zu löschen. Selbstverständlich erteilen wir Ihnen darüber hinaus jederzeit Auskunft über die
+von uns über Sie gespeicherten personenbezogenen Daten.</p>
+<h3>Rechtsgrundlage:</h3>
+<p>Die Verarbeitung der bei der Registrierung eingegebenen Daten erfolgt auf Grundlage einer
+Einwilligung des Nutzers (Art. 6 Abs. 1 lit. a DSGVO).</p>
+<p>Dient die Registrierung der Erfüllung eines Vertrages, dessen Vertragspartei die betroffene
+Person ist oder der Durchführung vorvertraglicher Maßnahmen, so ist zusätzliche
+Rechtsgrundlage für die Verarbeitung der Daten Art. 6 Abs. 1 lit. b DSGVO.</p>
+<h3>Empfänger:</h3>
+<p>Empfänger der Daten sind ggf. technische Dienstleister, die für den Betrieb und die Wartung
+unserer Website als Auftragsverarbeiter tätig werden.</p>
+<h3>Speicherdauer:</h3>
+<p>Daten werden in diesem Zusammenhang nur verarbeitet, solange die entsprechende
+Einwilligung vorliegt. Danach werden sie gelöscht, soweit keine gesetzlichen
+Aufbewahrungspflichten entgegenstehen. Zur Kontaktaufnahme in diesem Zusammenhang
+nutzen Sie bitte die am Ende dieser Datenschutzerklärung angegebenen Kontaktdaten.</p>
+<h3>Bereitstellung vorgeschrieben oder erforderlich:</h3>
+<p>Die Bereitstellung Ihrer personenbezogenen Daten erfolgt freiwillig, allein auf Basis Ihrer
+Einwilligung. Ohne die Bereitstellung Ihrer personenbezogenen Daten können wir Ihnen keinen
+Zugang auf unsere angebotenen Inhalte und Leistungen gewähren.</p>
+<p></p><h2>Erbringung kostenpflichtiger Leistungen</h2>
+<h3>Art und Zweck der Verarbeitung:</h3>
+<p>Zur Erbringung kostenpflichtiger Leistungen werden von uns zusätzliche Daten erfragt, wie
+z.B. Zahlungsangaben, um Ihre Bestellung ausführen zu können.</p>
+<h3>Rechtsgrundlage:</h3>
+<p>Die Verarbeitung der Daten, die für den Abschluss des Vertrages erforderlich ist, basiert auf
+Art. 6 Abs. 1 lit. b DSGVO.</p>
+<h3>Empfänger:</h3>
+<p>Empfänger der Daten sind die Zahlungsanbieter, die Sie ausgewählt haben. Genauere
+Informationen erhalten Sie bei der jeweiligen „Zahlungsart“ weiter unten.<p>
+<p> Die Bäckereien bekommen nach Abschluss der Vorbestellung einen anonymisierten Auftrag,
+mit dessen Hilfe die jeweilige Bestellung bearbeitet werden kann. Es werden nur die Daten der
+Vorbestellung weiter gegeben, also die Brötchen, die Sie als Kunde ausgewählt haben. ggf.
+Auftragsverarbeiter.</p>
+<h3>Speicherdauer:</h3>
+<p>Wir speichern diese Daten in unseren Systemen bis die gesetzlichen Aufbewahrungsfristen
+abgelaufen sind. Diese betragen grundsätzlich 6 oder 10 Jahre aus Gründen der
+ordnungsmäßigen Buchführung und steuerrechtlichen Anforderungen.</p>
+<h3>Bereitstellung vorgeschrieben oder erforderlich:</h3>
+<p>Die Bereitstellung Ihrer personenbezogenen Daten erfolgt freiwillig. Ohne die Bereitstellung
+Ihrer personenbezogenen Daten können wir Ihnen keinen Zugang auf unsere angebotenen Inhalte
+und Leistungen gewähren.</p>
+<h4>13. Zahlungsart: Datenschutzbestimmungen zu Klarna als Zahlungsart</h4>
+<p>Der für die Verarbeitung Verantwortliche hat auf dieser Internetseite Komponenten von Klarna
+integriert. Klarna ist ein Online-Zahlungsdienstleister, der den Kauf auf Rechnung oder eine flexible
+Ratenzahlung ermöglicht. Ferner werden von Klarna weitere Services, wie beispielsweise ein
+Käuferschutz oder eine Identitäts- und Bonitätsprüfung, angeboten.</p>
+<p>Betreibergesellschaft von Klarna ist die Klarna Bank AB, Sveavägen 46, 111 34 Stockholm,
+Schweden.</p>
+<p>Wählt die betroffene Person während des Bestellvorgangs in unserem Online-Shop als
+Zahlungsmöglichkeit entweder den „Kauf auf Rechnung“ oder „Ratenkauf“ aus, werden
+automatisiert Daten der betroffenen Person an Klarna übermittelt. Mit der Auswahl einer dieser
+Zahlungsoptionen willigt die betroffene Person in diese, zur Abwicklung des Rechnungs- oder
+Ratenkaufes oder zur Identitäts- und Bonitätsprüfung erforderliche, Übermittlung
+personenbezogener Daten ein. </p>
+<p>Bei den an Klarna übermittelten personenbezogenen Daten handelt es sich in der Regel um
+Vorname, Nachname, Adresse, Geburtsdatum, Geschlecht, Email-Adresse, IP-Adresse,
+Telefonnummer, Mobiltelefonnummer sowie um andere Daten, die zur Abwicklung eines
+Rechnungs- oder Ratenkaufs notwendig sind. Zur Abwicklung des Kaufvertrages notwendig sind
+auch solche personenbezogenen Daten, die im Zusammenhang mit der jeweiligen Bestellung
+stehen. Insbesondere kann es zum wechselseitigen Austausch von Zahlungsinformationen, wie
+Bankverbindung, Kartennummer, Gültigkeitsdatum und CVC-Code, Artikelanzahl, Artikelnummer,
+Daten zu Waren und Dienstleistungen, Preise und steuerliche Abgaben, Angaben zum früheren
+Kaufverhalten oder sonstige Angaben zur finanziellen Situation der betroffenen Person, kommen. </
+p>
+<p>Die Übermittlung der Daten bezweckt insbesondere die Identitätsüberprüfung, die
+Zahlungsadministration und die Betrugsprävention. Der für die Verarbeitung Verantwortliche wird
+Klarna personenbezogene Daten insbesondere dann übermitteln, wenn ein berechtigtes Interesse für
+die Übermittlung gegeben ist. Die zwischen Klarna und dem für die Verarbeitung Verantwortlichen
+ausgetauschten personenbezogenen Daten werden von Klarna an Wirtschaftsauskunfteien
+übermittelt. Diese Übermittlung bezweckt die Identitäts- und Bonitätsprüfung.</p>
+<p>Klarna gibt die personenbezogenen Daten auch an verbundene Unternehmen (Klarna Gruppe)
+und Leistungserbringer oder Subunternehmer weiter, soweit dies zur Erfüllung der vertraglichen
+Verpflichtungen erforderlich ist oder die Daten im Auftrag verarbeitet werden sollen.</p>
+<p>Zur Entscheidung über die Begründung, Durchführung oder Beendigung einer
+Vertragsbeziehung erhebt und nutzt Klarna Daten und Informationen über das bisherige
+Zahlungsverhalten der betroffenen Person sowie Wahrscheinlichkeitswerte für deren Verhalten in
+der Zukunft (sogenanntes Scoring). Die Berechnung des Scorings wird auf der Basis
+wissenschaftlich anerkannter mathematisch-statistischer Verfahren durchgeführt. </p>
+<p>Die betroffene Person hat die Möglichkeit, die Einwilligung zum Umgang mit
+personenbezogenen Daten jederzeit gegenüber Klarna zu widerrufen. Ein Widerruf wirkt sich nicht
+auf personenbezogene Daten aus, die zwingend zur (vertragsgemäßen) Zahlungsabwicklung
+verarbeitet, genutzt oder übermittelt werden müssen. </p>
+<p>Die geltenden Datenschutzbestimmungen von Klarna können unter https://cdn.klarna.com/1.0/
+shared/content/policy/data/de_de/data_protection.pdf abgerufen werden.</p>
+<h4>14. Zahlungsart: Datenschutzbestimmungen zu PayPal als Zahlungsart</h4>
+<p>Der für die Verarbeitung Verantwortliche hat auf dieser Internetseite Komponenten von PayPal
+integriert. PayPal ist ein Online-Zahlungsdienstleister. Zahlungen werden über sogenannte PayPal-
+Konten abgewickelt, die virtuelle Privat- oder Geschäftskonten darstellen. Zudem besteht bei
+PayPal die Möglichkeit, virtuelle Zahlungen über Kreditkarten abzuwickeln, wenn ein Nutzer kein
+PayPal-Konto unterhält. Ein PayPal-Konto wird über eine E-Mail-Adresse geführt, weshalb es
+keine klassische Kontonummer gibt. PayPal ermöglicht es, Online-Zahlungen an Dritte auszulösen
+oder auch Zahlungen zu empfangen. PayPal übernimmt ferner Treuhänderfunktionen und bietet
+Käuferschutzdienste an.</p>
+<p>Die Europäische Betreibergesellschaft von PayPal ist die PayPal (Europe) S.à.r.l. et Cie, S.C.A.,
+22-24 Boulevard Royal L-2449, Luxemburg.</p>
+<p>Wählt die betroffene Person während des Bestellvorgangs in unserem Online-Shop als
+Zahlungsmöglichkeit „PayPal“ aus, werden automatisiert Daten der betroffenen Person an PayPal
+übermittelt. Mit der Auswahl dieser Zahlungsoption willigt die betroffene Person in die zur
+Zahlungsabwicklung erforderliche Übermittlung personenbezogener Daten ein.</p>
+<p>Bei den an PayPal übermittelten personenbezogenen Daten handelt es sich in der Regel um
+Vorname, Nachname, Adresse, Email-Adresse, IP-Adresse, Telefonnummer, Mobiltelefonnummer
+oder andere Daten, die zur Zahlungsabwicklung notwendig sind. Zur Abwicklung des
+Kaufvertrages notwendig sind auch solche personenbezogenen Daten, die im Zusammenhang mit
+der jeweiligen Bestellung stehen.</p>
+<p>Die Übermittlung der Daten bezweckt die Zahlungsabwicklung und die Betrugsprävention. Der
+für die Verarbeitung Verantwortliche wird PayPal personenbezogene Daten insbesondere dann
+übermitteln, wenn ein berechtigtes Interesse für die Übermittlung gegeben ist. Die zwischen PayPal
+und dem für die Verarbeitung Verantwortlichen ausgetauschten personenbezogenen Daten werden
+von PayPal unter Umständen an Wirtschaftsauskunfteien übermittelt. Diese Übermittlung bezweckt
+die Identitäts- und Bonitätsprüfung.</p>
+<p>PayPal gibt die personenbezogenen Daten gegebenenfalls an verbundene Unternehmen und
+Leistungserbringer oder Subunternehmer weiter, soweit dies zur Erfüllung der vertraglichen
+Verpflichtungen erforderlich ist oder die Daten im Auftrag verarbeitet werden sollen.</p>
+<p>Die betroffene Person hat die Möglichkeit, die Einwilligung zum Umgang mit
+personenbezogenen Daten jederzeit gegenüber PayPal zu widerrufen. Ein Widerruf wirkt sich nicht
+auf personenbezogene Daten aus, die zwingend zur (vertragsgemäßen) Zahlungsabwicklung
+verarbeitet, genutzt oder übermittelt werden müssen. </p>
+<p>Die geltenden Datenschutzbestimmungen von PayPal können unter https://www.paypal.com/de/
+webapps/mpp/ua/privacy-full abgerufen werden.</p>
+<h4>15. Zahlungsart: Datenschutzbestimmungen zu Sofortüberweisung als Zahlungsart</h4>
+<p>Der für die Verarbeitung Verantwortliche hat auf dieser Internetseite Komponenten von
+Sofortüberweisung integriert. Sofortüberweisung ist ein Zahlungsdienst, der eine bargeldlose
+Zahlung von Produkten und Dienstleistungen im Internet ermöglicht. Sofortüberweisung bildet ein
+technisches Verfahren ab, durch welches der Online-Händler unverzüglich eine
+Zahlungsbestätigung erhält. So wird ein Händler in die Lage versetzt, Waren, Dienstleistungen oder
+Downloads sofort nach der Bestellung an den Kunden auszuliefern.</p>
+<p>Betreibergesellschaft von Sofortüberweisung ist die Klarna Bank AB, Sveavägen 46, 111 34
+Stockholm, Schweden.</p>
+<p>Wählt die betroffene Person während des Bestellvorgangs in unserem Online-Shop als
+Zahlungsmöglichkeit „Sofortüberweisung“ aus, werden automatisiert Daten der betroffenen Person
+an Sofortüberweisung übermittelt. Mit einer Auswahl dieser Zahlungsoption willigt die betroffene
+Person in eine zur Zahlungsabwicklung erforderliche Übermittlung personenbezogener Daten ein.</
+p>
+<p>Bei der Kaufabwicklung über Sofortüberweisung übermittelt der Käufer die PIN und die TAN
+an die Sofort GmbH. Sofortüberweisung führt sodann nach technischer Überprüfung des
+Kontostandes und Abruf weiterer Daten zur Prüfung der Kontodeckung eine Überweisung an den
+Online-Händler aus. Die Durchführung der Finanztransaktion wird dem Online-Händler sodann
+automatisiert mitgeteilt.</p>
+<p>Bei den mit Sofortüberweisung ausgetauschten personenbezogenen Daten handelt es sich um
+Vorname, Nachname, Adresse, Email-Adresse, IP-Adresse, Telefonnummer, Mobiltelefonnummer
+oder andere Daten, die zur Zahlungsabwicklung notwendig sind. Die Übermittlung der Daten
+bezweckt die Zahlungsabwicklung und die Betrugsprävention. Der für die Verarbeitung
+Verantwortliche wird Sofortüberweisung andere personenbezogene Daten auch dann übermitteln,
+wenn ein berechtigtes Interesse für die Übermittlung gegeben ist. Die zwischen Sofortüberweisung
+und dem für die Verarbeitung Verantwortlichen ausgetauschten personenbezogenen Daten werden
+von Sofortüberweisung unter Umständen an Wirtschaftsauskunfteien übermittelt. Diese
+Übermittlung bezweckt die Identitäts- und Bonitätsprüfung.</p>
+<p>Sofortüberweisung gibt die personenbezogenen Daten gegebenenfalls an verbundene
+Unternehmen und Leistungserbringer oder Subunternehmer weiter, soweit dies zur Erfüllung der
+vertraglichen Verpflichtungen erforderlich ist oder die Daten im Auftrag verarbeitet werden
+sollen.</p>
+<p>Die betroffene Person hat die Möglichkeit, die Einwilligung zum Umgang mit
+personenbezogenen Daten jederzeit gegenüber Sofortüberweisung zu widerrufen. Ein Widerruf
+wirkt sich nicht auf personenbezogene Daten aus, die zwingend zur (vertragsgemäßen)
+Zahlungsabwicklung verarbeitet, genutzt oder übermittelt werden müssen.</p>
+<p>Die geltenden Datenschutzbestimmungen von Sofortüberweisung können unter https://
+www.klarna.com/sofort/datenschutz/ abgerufen werden.</p>
+<p></p><h2>Newsletter</h2>
+<h3>Art und Zweck der Verarbeitung:</h3>
+<p>Ihre Daten werden ausschließlich dazu verwendet, Ihnen den abonnierten Newsletter per EMail zuzustellen. Die Angabe Ihres Namens erfolgt, um Sie im Newsletter persönlich ansprechen
+zu können und ggf. zu identifizieren, falls Sie von Ihren Rechten als Betroffener Gebrauch machen
+wollen. Die Angabe der Postleitzahl ist freiwillig und wird nicht an Dritte weiter gegeben. </p>
+<p>Für den Empfang des Newsletters ist die Angabe Ihrer E-Mail-Adresse ausreichend. Bei der
+Anmeldung zum Bezug unseres Newsletters werden die von Ihnen angegebenen Daten
+ausschließlich für diesen Zweck verwendet. Abonnenten können auch über Umstände per E-Mail
+informiert werden, die für den Dienst oder die Registrierung relevant sind (bspw. Änderungen des
+Newsletterangebots oder technische Gegebenheiten).</p>
+<p>Für eine wirksame Registrierung benötigen wir eine valide E-Mail-Adresse. Um zu überprüfen,
+dass eine Anmeldung tatsächlich durch den Inhaber einer E-Mail-Adresse erfolgt, setzen wir das
+„Double-opt-in“-Verfahren ein. Hierzu protokollieren wir die Bestellung des Newsletters, den
+Versand einer Bestätigungsmail und den Eingang der hiermit angeforderten Antwort. Weitere
+Daten werden nicht erhoben. Die Daten werden ausschließlich für den Newsletterversand
+verwendet und nicht an Dritte weitergegeben.</p>
+<h3>Rechtsgrundlage:</h3>
+<p>Auf Grundlage Ihrer ausdrücklich erteilten Einwilligung (Art. 6 Abs. 1 lit. a DSGVO),
+übersenden wir Ihnen regelmäßig unseren Newsletter bzw. vergleichbare Informationen per E-Mail
+an Ihre angegebene E-Mail-Adresse. </p>
+<p>Die Einwilligung zur Speicherung Ihrer persönlichen Daten und ihrer Nutzung für den
+Newsletterversand können Sie jederzeit mit Wirkung für die Zukunft widerrufen. In jedem
+Newsletter findet sich dazu ein entsprechender Link. Außerdem können Sie sich jederzeit auch
+direkt auf dieser Website abmelden oder uns Ihren Widerruf über die am Ende dieser
+Datenschutzhinweise angegebene Kontaktmöglichkeit mitteilen.</p>
+<h3>Empfänger:</h3>
+<p>Empfänger der Daten sind ggf. Auftragsverarbeiter.</p>
+<h3>Speicherdauer:</h3>
+<p>Die Daten werden in diesem Zusammenhang nur verarbeitet, solange die entsprechende
+Einwilligung vorliegt. Danach werden sie gelöscht.</p>
+<h3>Bereitstellung vorgeschrieben oder erforderlich:</h3>
+<p>Die Bereitstellung Ihrer personenbezogenen Daten erfolgt freiwillig, allein auf Basis Ihrer
+Einwilligung. Ohne bestehende Einwilligung können wir Ihnen unseren Newsletter leider nicht
+zusenden.</p>
+<p></p><h2>Kontaktformular</h2>
+<h3>Art und Zweck der Verarbeitung:</h3>
+<p>Die von Ihnen eingegebenen Daten werden zum Zweck der individuellen Kommunikation mit
+Ihnen gespeichert. Hierfür ist die Angabe einer validen E-Mail-Adresse sowie Ihres Namens
+erforderlich. Diese dient der Zuordnung der Anfrage und der anschließenden Beantwortung
+derselben. Die Angabe weiterer Daten ist optional.</p>
+<p>Unter https://brotritter.de/mitgliedschaft werden weitere Daten für die Kontaktaufnahme
+gesammelt. Sie ermöglichen eine einfache Kommunikation. Die Person (Bäckerei) hat aber
+genauso die Möglichkeit uns über das normale Kontaktformular unter https://brotritter.de/kontakt
+zu kontaktieren.<p>
+<h3>Rechtsgrundlage:</h3>
+<p>Die Verarbeitung der in das Kontaktformular eingegebenen Daten erfolgt auf der Grundlage
+eines berechtigten Interesses (Art. 6 Abs. 1 lit. f DSGVO).</p>
+<p>Durch Bereitstellung des Kontaktformulars möchten wir Ihnen eine unkomplizierte
+Kontaktaufnahme ermöglichen. Ihre gemachten Angaben werden zum Zwecke der Bearbeitung
+der Anfrage sowie für mögliche Anschlussfragen gespeichert.</p>
+<p>Sofern Sie mit uns Kontakt aufnehmen, um ein Angebot zu erfragen, erfolgt die Verarbeitung
+der in das Kontaktformular eingegebenen Daten zur Durchführung vorvertraglicher Maßnahmen
+(Art. 6 Abs. 1 lit. b DSGVO).</p>
+<h3>Empfänger:</h3>
+<p>Empfänger der Daten sind ggf. Auftragsverarbeiter.</p>
+<h3>Speicherdauer:</h3>
+<p>Daten werden spätestens 6 Monate nach Bearbeitung der Anfrage gelöscht.</p>
+<p>Sofern es zu einem Vertragsverhältnis kommt, unterliegen wir den gesetzlichen
+Aufbewahrungsfristen nach HGB und löschen Ihre Daten nach Ablauf dieser Fristen. </p>
+<h3>Bereitstellung vorgeschrieben oder erforderlich:</h3>
+<p>Die Bereitstellung Ihrer personenbezogenen Daten erfolgt freiwillig. Wir können Ihre Anfrage
+jedoch nur bearbeiten, sofern Sie uns Ihren Namen, Ihre E-Mail-Adresse und den Grund der
+Anfrage mitteilen.</p>
+<p></p><h2>Verwendung von Google Analytics</h2>
+<h3>Art und Zweck der Verarbeitung:</h3>
+<p>Diese Website benutzt Google Analytics, einen Webanalysedienst der Google LLC, 1600
+Amphitheatre Parkway, Mountain View, CA 94043 USA (nachfolgend: „Google“). Google Analytics
+verwendet sog. „Cookies“, also Textdateien, die auf Ihrem Computer gespeichert werden und die
+eine Analyse der Benutzung der Webseite durch Sie ermöglichen. Die durch das Cookie erzeugten
+Informationen über Ihre Benutzung dieser Webseite werden in der Regel an einen Server von
+Google in den USA übertragen und dort gespeichert. Aufgrund der Aktivierung der IPAnonymisierung auf diesen Webseiten, wird Ihre IP-Adresse von Google jedoch innerhalb von
+Mitgliedstaaten der Europäischen Union oder in anderen Vertragsstaaten des Abkommens über
+den Europäischen Wirtschaftsraum zuvor gekürzt. Nur in Ausnahmefällen wird die volle IPAdresse an einen Server von Google in den USA übertragen und dort gekürzt. Im Auftrag des
+Betreibers dieser Website wird Google diese Informationen benutzen, um Ihre Nutzung der
+Webseite auszuwerten, um Reports über die Webseitenaktivitäten zusammenzustellen und um
+weitere mit der Websitenutzung und der Internetnutzung verbundene Dienstleistungen gegenüber
+dem Webseitenbetreiber zu erbringen. Die im Rahmen von Google Analytics von Ihrem Browser
+übermittelte IP-Adresse wird nicht mit anderen Daten von Google zusammengeführt.</p>
+<p>Die Zwecke der Datenverarbeitung liegen in der Auswertung der Nutzung der Website und in
+der Zusammenstellung von Reports über Aktivitäten auf der Website. Auf Grundlage der Nutzung
+der Website und des Internets sollen dann weitere verbundene Dienstleistungen erbracht
+werden.</p>
+<h3>Rechtsgrundlage:</h3>
+<p>Die Verarbeitung der Daten erfolgt auf Grundlage einer Einwilligung des Nutzers (Art. 6 Abs. 1
+lit. a DSGVO).</p>
+<h3>Empfänger:</h3>
+<p>Empfänger der Daten ist Google als Auftragsverarbeiter. Hierfür haben wir mit Google den
+entsprechenden Auftragsverarbeitungsvertrag abgeschlossen.</p>
+<h3>Speicherdauer:</h3>
+<p>Die Löschung der Daten erfolgt, sobald diese für unsere Aufzeichnungszwecke nicht mehr
+erforderlich sind.</p>
+<h3>Drittlandtransfer:</h3>
+<p>Google verarbeitet Ihre Daten in den USA und hat sich dem EU_US Privacy Shield
+unterworfen <a href="https://www.privacyshield.gov/EU-US-Framework">https://
+www.privacyshield.gov/EU-US-Framework</a>. </p>
+<h3>Bereitstellung vorgeschrieben oder erforderlich:</h3>
+<p>Die Bereitstellung Ihrer personenbezogenen Daten erfolgt freiwillig, allein auf Basis Ihrer
+Einwilligung. Sofern Sie den Zugriff unterbinden, kann es hierdurch zu Funktionseinschränkungen
+auf der Website kommen.</p>
+<h3>Widerruf der Einwilligung:</h3>
+<p>Sie können die Speicherung der Cookies durch eine entsprechende Einstellung Ihrer BrowserSoftware verhindern; wir weisen Sie jedoch darauf hin, dass Sie in diesem Fall gegebenenfalls 
+nicht sämtliche Funktionen dieser Website vollumfänglich werden nutzen können. Sie können
+darüber hinaus die Erfassung der durch das Cookie erzeugten und auf Ihre Nutzung der Webseite
+bezogenen Daten (inkl. Ihrer IP-Adresse) an Google sowie die Verarbeitung dieser Daten durch
+Google verhindern, indem sie das unter dem folgenden Link verfügbare Browser-Plugin
+herunterladen und installieren: <a href="http://tools.google.com/dlpage/gaoptout?
+hl=de">Browser Add On zur Deaktivierung von Google Analytics</a>.</p>
+<p>Zusätzlich oder als Alternative zum Browser-Add-On können Sie das Tracking durch Google
+Analytics auf unseren Seiten unterbinden, indem Sie <a title="Google Analytics Opt-Out-Cookie
+setzen" onClick="gaOptout();alert('Google Analytics wurde deaktiviert');" href="#">diesen Link
+anklicken</a>. Dabei wird ein Opt-out-Cookie auf Ihrem Gerät installiert. Damit wird die Erfassung
+durch Google Analytics für diese Website und für diesen Browser zukünftig verhindert, so lange
+das Cookie in Ihrem Browser installiert bleibt.</p>
+<h3>Profiling:</h3>
+<p>Mit Hilfe des Tracking-Tools Google Analytics kann das Verhalten der Besucher der Webseite
+bewertet und die Interessen analysiert werden. Hierzu erstellen wir ein pseudonymes
+Nutzerprofil.</p>
+<p></p><h2>Verwendung von Google Maps</h2>
+<h3>Art und Zweck der Verarbeitung:</h3>
+<p>Auf dieser Webseite nutzen wir das Angebot von Google Maps. Google Maps wird von
+Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA (nachfolgend „Google“)
+betrieben. Dadurch können wir Ihnen interaktive Karten direkt in der Webseite anzeigen und
+ermöglichen Ihnen die komfortable Nutzung der Karten-Funktion.</p>
+<p>Nähere Informationen über die Datenverarbeitung durch Google können Sie <a href="http://
+www.google.com/privacypolicy.html">den Google-Datenschutzhinweisen</a> entnehmen. Dort
+können Sie im Datenschutzcenter auch Ihre persönlichen Datenschutz-Einstellungen verändern.</
+p>
+<p>Ausführliche Anleitungen zur Verwaltung der eigenen Daten im Zusammenhang mit GoogleProdukten<a href="http://www.dataliberation.org/"> finden Sie hier</a>.</p>
+<h3>Rechtsgrundlage:</h3>
+<p>Rechtsgrundlage für die Einbindung von Google Maps und dem damit verbundenen
+Datentransfer zu Google ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a DSGVO).</p>
+<h3>Empfänger:</h3>
+<p>Durch den Besuch der Webseite erhält Google Informationen, dass Sie die entsprechende
+Unterseite unserer Webseite aufgerufen haben. Dies erfolgt unabhängig davon, ob Google ein
+Nutzerkonto bereitstellt, über das Sie eingeloggt sind, oder ob keine Nutzerkonto besteht. Wenn
+Sie bei Google eingeloggt sind, werden Ihre Daten direkt Ihrem Konto zugeordnet.</p>
+<p>Wenn Sie die Zuordnung in Ihrem Profil bei Google nicht wünschen, müssen Sie sich vor
+Aktivierung des Buttons bei Google ausloggen. Google speichert Ihre Daten als Nutzungsprofile
+und nutzt sie für Zwecke der Werbung, Marktforschung und/oder bedarfsgerechter Gestaltung
+seiner Webseite. Eine solche Auswertung erfolgt insbesondere (selbst für nicht eingeloggte
+Nutzer) zur Erbringung bedarfsgerechter Werbung und um andere Nutzer des sozialen Netzwerks
+über Ihre Aktivitäten auf unserer Webseite zu informieren. Ihnen steht ein Widerspruchsrecht zu
+gegen die Bildung dieser Nutzerprofile, wobei Sie sich zur Ausübung dessen an Google richten
+müssen.</p>
+<h3>Speicherdauer:</h3>
+<p>Wir erheben keine personenbezogenen Daten, durch die Einbindung von Google Maps.</p>
+<h3>Drittlandtransfer:</h3>
+<p>Google verarbeitet Ihre Daten in den USA und hat sich dem EU_US Privacy Shield
+unterworfen <a href="https://www.privacyshield.gov/EU-US-Framework">https://
+www.privacyshield.gov/EU-US-Framework</a>.</p>
+<h3>Widerruf der Einwilligung:</h3>
+<p>Wenn Sie nicht möchten, dass Google über unseren Internetauftritt Daten über Sie erhebt,
+verarbeitet oder nutzt, können Sie in Ihrem Browsereinstellungen JavaScript deaktivieren. In
+diesem Fall können Sie unsere Webseite jedoch nicht oder nur eingeschränkt nutzen.</p>
+<h3>Bereitstellung vorgeschrieben oder erforderlich:</h3>
+<p>Die Bereitstellung Ihrer personenbezogenen Daten erfolgt freiwillig, allein auf Basis Ihrer
+Einwilligung. Sofern Sie den Zugriff unterbinden, kann es hierdurch zu Funktionseinschränkungen
+auf der Website kommen.</p>
+<p></p><h2>SSL-Verschlüsselung</h2>
+<p>Um die Sicherheit Ihrer Daten bei der Übertragung zu schützen, verwenden wir dem aktuellen
+Stand der Technik entsprechende Verschlüsselungsverfahren (z. B. SSL) über HTTPS.</p>
+<p></p><h2>Änderung unserer Datenschutzbestimmungen</h2>
+<p>Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie stets den aktuellen
+rechtlichen Anforderungen entspricht oder um Änderungen unserer Leistungen in der
+Datenschutzerklärung umzusetzen, z.B. bei der Einführung neuer Services. Für Ihren erneuten
+Besuch gilt dann die neue Datenschutzerklärung.</p>
+<h2>Fragen an den Datenschutzbeauftragten</h2>
+<p>Wenn Sie Fragen zum Datenschutz haben, schreiben Sie uns bitte eine E-Mail oder wenden
+Sie sich direkt an die für den Datenschutz verantwortliche Person in unserer Organisation:</p>
+<p></p><p><em>Die Datenschutzerklärung wurde mit dem </em><em><a href="https://
+www.activemind.de/datenschutz/datenschutzhinweis-generator/" target="_blank"
+rel="noopener">Datenschutzerklärungs-Generator der activeMind AG erstellt</a> (Version
+2018-09-24).</em></p>
+<p>Diese Muster Datenschutzerklärung wurde durch den DS-GVO DatenschutzerklärungsGenerator der Deutschen Gesellschaft für Datenschutz, in Kooperation mit den Medienrecht
+Anwälten WILDE BEUGER SOLMECKE | Rechtsanwälte aus Köln erstellt. (Die Textausschnitte
+sind lediglich die genannten „Zahlungsarten“, der Rest stammt von erst genannter Quelle)</p>
+    
+</div>
+    
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#000000"
+    },
+    "button": {
+      "background": "#ff9900"
+    }
+  }
+  "content": {
+    "message": "Unsere Website verwendet Cookies, um die bestmögliche Nutzung unserer Website zu gewährleisten.",
+    "dismiss": "Alles klar!",
+    "link": "Mehr erfahren",
+    "href": "https://www.brotritter.de/datenschutz"
+  }
+})});
+</script>
+
+<div class="impress">
+    <div class="impresscon">
+        <div class="sideopt "OnClick="location.href='/newsletter'">Newsletter bekommen</div>
+        <div><a href="/impressum">Impressum</a>&nbsp;/&nbsp;<a href="/datenschutz">Datenschutz</a></div>
+        <div class="sideopt" OnClick="location.href='/mitgliedschaft'">Jetzt Partner werden</div>
+    </div>
+</div>
