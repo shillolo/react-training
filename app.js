@@ -23,22 +23,6 @@ var server = app.listen(3000, function(){
     console.log("Listening on Websockets")
 });
 
-var io = socket(server);
-
-io.on("connection", function(socket){
-    socket.on("increase", function(data){
-        Bun.findOne({title: data.name}).exec(function(err, data) {
-            console.log("increased")
-            io.sockets.emit("increase", data)
-        })
-    })
-    socket.on("decrease", function(data){
-        Bun.findOne({title: data.name}).exec(function(err, data) {
-            io.sockets.emit("decrease", data)
-        })
-    })
-})
-
 require('./config/passport');
 
 // view engine setup

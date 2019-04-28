@@ -106,14 +106,14 @@
                     </div>
                     {{/if}}
                     <div class="hilfe">
-                        <a class="kontakt" title="Kontakt" href="/kontakt"> KONTAKT </a>
+                        <a class="kontakt" title="Kontakt" href="/kontakt"> FEEDBACK </a>
                     </div>
                 </div>
             </div>
             <h2>Bäckereien in ihrer Umgebung:</h2>
             <h1>{{location}}</h1>
             <form class="searchDiv" action="/mapsSearch" method="post">
-                <input type="text" name="address" class="form-control" placeholder="{{location}}" required autofocus>
+                <input id="address" type="text" name="address" class="form-control" placeholder="{{location}}" required>
                 <input type="hidden" name="_csrf" value="{{ csrfToken }}">
                 <button class="searchButton">Suchen</button>
         </form>

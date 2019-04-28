@@ -137,7 +137,7 @@ body{
 }
 
 .bild{  
-    background-image: url(../images/BrotritterMobil.jpeg);
+    background-image: url(../images/BrotritterMobil.JPG);
     background-size: cover;
     
     height: 665px;
@@ -203,7 +203,7 @@ body{
 .maenu{
     background-image: url(../images/Brotritter%20logo%202.png);  
     background-size: cover;
-    border-bottom:color: #FF9900;
+    border-bottom: #FF9900;
     background-color: #4c0200;
     border-left: 3px solid #FF9900;
     border-bottom: 3px solid #FF9900;
@@ -224,7 +224,7 @@ body{
 }
 
 .bild{  
-    background: url(../images/BrotritterMobil.jpeg);
+    background-image: url(../images/BrotritterMain.JPG);
     background-size: cover;
     
     height: 335px;
@@ -264,7 +264,6 @@ body{
 .order a{
     cursor: pointer;
     font-size: 1.5em;
-    text-decoration: underline
 }
 
 .order p{
@@ -373,6 +372,10 @@ body{
 
 .payways h2{
     text-decoration: underline;
+}
+
+.über-info h2{
+    text-decoration: none;
 }
 
 .payways p{
@@ -491,10 +494,6 @@ background-color: #ff9900;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     padding: 30px
-}
-
-.col1 h1{
-    text-decoration: underline
 }
 
 .inputreader{

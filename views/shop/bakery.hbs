@@ -44,7 +44,7 @@
     {{else}}
     <div class="loginpop" id="loginpop">  
         <div class="containerl">
-        <i class="fas fa-times close"></i>
+        <i class="fas fa-times close closelog" id="closelog"></i>
         <form class="form-signin" action="/user/signin" method="post">
           <h1 class="h3 mb-3 font-weight-normal">Login</h1>
           <input type="email" name="email" class="form-control" placeholder="Email" required autofocus>
@@ -57,7 +57,7 @@
     </div>
     <div class="registerpop" id="registerpop">  
         <div class="containerl">
-        <i class="fas fa-times close"></i>
+        <i class="fas fa-times close closereg" id="closereg"></i>
         <form class="form-signup" action="/user/signup" method="post">
           <h1 class="h3 mb-3 font-weight-normal">Registrieren</h1>
           <input type="email" name="email" class="form-control" placeholder="Email" required autofocus/>
@@ -173,6 +173,7 @@
         <div class="submitpop" id="submitpop">
             <div class="scontainer" id="scontainer">
                 <i class="fas fa-times close closesub"></i>
+                <div class="inner-scontainer">
                 <div class="sconHead">
                     <div class="head1" id="head1">1. Überprüfen</div>
                     <div class="head2" id="head2">2. Eckdaten</div>
@@ -260,6 +261,7 @@
                 </div>
             </div>
         </div>
+        </div>
         </form>
     {{/if}}
 <table class="bakeryCon" id="bakeryCon">
@@ -299,7 +301,7 @@
                     </div>
                     {{/if}}
                     <div class="hilfe">
-                        <a class="kontakt" title="Kontakt" href="/kontakt"> KONTAKT </a>
+                        <a class="kontakt" title="Kontakt" href="/kontakt"> FEEDBACK </a>
                     </div>
                 </div>
             </div>

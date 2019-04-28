@@ -69,7 +69,7 @@ body{
 }
 
 .bild{  
-    background-image: url(../images/BrotritterMain.jpeg);
+    background-image: url(../images/BrotritterMain.JPG);
     background-size: cover;
     
     min-height: 300px;
@@ -168,7 +168,7 @@ h1{
     background-size: cover;
     height: 108px;
     width: 290px;
-    border-bottom:color: #FF9900;
+    border-bottom: #FF9900;
     background-color: #4c0200;
     border-left: 3px solid #FF9900;
     border-bottom: 3px solid #FF9900;

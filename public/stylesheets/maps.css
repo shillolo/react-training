@@ -26,6 +26,7 @@ html, body{
 
 .bild{
     text-align: center;
+    background-image: url(../images/BrotritterMain.JPG);
 }
 
 .searchButton {  
@@ -203,10 +204,9 @@ html, body{
         width: 100%;
         border: 0px;
         border-radius: 0px;
-        border-bottom: solid 4px #ff9900;
         margin-top: 0px;
         height: 100%;
-        font-size: 2em
+        font-size: 3em
     }
     .bakebtn{
         border-radius: 10px;
@@ -215,6 +215,14 @@ html, body{
     .bild h2, .bild h1{
         margin-top: 0px;
         font-size: 3em
+    }
+    #address{
+        font-size: 2em
+    }
+    .searchButton{
+        font-size: 2em;
+        padding: 25px;
+        height: auto;
     }
 }
 

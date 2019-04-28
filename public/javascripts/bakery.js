@@ -1,3 +1,4 @@
+
 var cartBadgeHtml = document.getElementById("cart-badge").innerHTML
 
 var dropDownValue = document.getElementById("dropdown");
@@ -76,17 +77,6 @@ $("#goBack2").click(function(){
     document.getElementById("head2").style.color = "#ff9902";
 })
 
-//var right=document.getElementById('top-content').style.height;
-//var left=document.getElementById('products2').style.height;
-//if(left>right)
-//{
-//    document.getElementById('top-content').style.height= left;
-//}
-//else
-//{
-//    document.getElementById('top-content').style.height=right;
-//}
-
 $(document).ready(function(){
   // Add smooth scrolling to all links
   $("a").on('click', function(event) {
@@ -127,6 +117,7 @@ function orderIt(){
                 <div name="col" class="sname">${a}</div>
                 <div class="snumber-holder">
                     <i class="fas fa-plus"></i>
+                    <input class="hiddenprice" type="hidden" readonly>
                     <input class="snumber" value=${b} readonly>
                     <i class="fas fa-minus"></i>
                 </div>
@@ -197,21 +188,47 @@ $(document).on('click', ".fa-minus-circle", function() {
     document.getElementById("cart-badge").innerHTML = document.getElementById("cart-badge").innerHTML - 1 
 });
 
-var socket = io.connect("http://localhost:3000");
-
 $(document).on('click', ".fa-plus", function() {
     $(this).siblings('.snumber').val( function(i, oldval) {
                 return ++oldval;
     });
     var breadname = $(this).parent().siblings()[0].value;
-    $(this).parent().siblings()[1].value++;
-    socket.emit("increase", {
-        name: breadname
-    })
+    var price = $("#"+breadname).children($(".productinfo")).children($(".iprice")).children($(".iprice")).text();
+    document.getElementById("total-price").innerHTML = parseFloat(Math.round((document.getElementById("total-price").innerHTML -(-price)) * 100) / 100).toFixed(2);
+    document.getElementById("number").innerHTML = document.getElementById("total-price").innerHTML
     $("#input_"+breadname).val( function(i, oldval) {
                 return ++oldval;
     });
     document.getElementById("cart-badge").innerHTML = document.getElementById("cart-badge").innerHTML - -1 
+});
+
+$(document).on('click', ".fa-minus", function() {
+    $(this).siblings('.snumber').val( function(i, oldval) {
+                if (oldval <= 1) {
+                    $(this).parent().parent().parent().remove();
+                } else {
+                    return --oldval;
+                }
+    });
+    var breadname = $(this).parent().siblings()[0].value;
+    $(this).parent().siblings()[1].value--;
+    $("#input_"+breadname).val( function(i, oldval) {
+                return --oldval;
+    });
+    var price = $("#"+breadname).children($(".productinfo")).children($(".iprice")).children($(".iprice")).text();
+    document.getElementById("total-price").innerHTML = parseFloat(Math.round((document.getElementById("total-price").innerHTML - (price)) * 100) / 100).toFixed(2);
+    var t = document.getElementById("number").innerHTML - (price);
+    var e = parseFloat(Math.round(t * 100) / 100).toFixed(2);
+    document.getElementById("number").innerHTML = e;
+    if (document.getElementById("total-price").innerHTML == 0.00){
+    document.getElementById("submitpop").style.display = "none";
+    document.getElementsByTagName("BODY")[0].style.overflowY = "scroll";
+    }
+    if($("#input_"+breadname).val() == 0){
+        $("#input_"+breadname).parent().parent().remove()
+        $("#getnumber").val($("#sorder").children().length);
+    }
+document.getElementById("cart-badge").innerHTML = document.getElementById("cart-badge").innerHTML -1
 });
 
 $(function(){
@@ -239,47 +256,6 @@ $(function(){
                     $('#connector').css({position: 'absolute', bottom: '50'});
             }
     });
-})
-
-$(document).on('click', ".fa-minus", function() {
-    $(this).siblings('.snumber').val( function(i, oldval) {
-                if (oldval <= 1) {
-                    $(this).parent().parent().parent().remove();
-                } else {
-                    return --oldval;
-                }
-    });
-    var breadname = $(this).parent().siblings()[0].value;
-    $(this).parent().siblings()[1].value--;
-    socket.emit("decrease", {
-        name: breadname
-    })
-    $("#input_"+breadname).val( function(i, oldval) {
-                return --oldval;
-    });
-    if($("#input_"+breadname).val() == 0){
-        $("#input_"+breadname).parent().parent().remove()
-        $("#getnumber").val($("#sorder").children().length);
-    }
-    document.getElementById("cart-badge").innerHTML = document.getElementById("cart-badge").innerHTML -1 
-});
-
-socket.on("increase", function(data){
-    document.getElementById("total-price").innerHTML = parseFloat(Math.round((document.getElementById("total-price").innerHTML - (-data.price)) * 100) / 100).toFixed(2);
-    var t = document.getElementById("number").innerHTML - -(data.price);
-    var e = parseFloat(Math.round(t * 100) / 100).toFixed(2);
-    document.getElementById("number").innerHTML = e;
-})
-
-socket.on("decrease", function(data){
-    document.getElementById("total-price").innerHTML = parseFloat(Math.round((document.getElementById("total-price").innerHTML - (data.price)) * 100) / 100).toFixed(2);
-    var t = document.getElementById("number").innerHTML - (data.price);
-    var e = parseFloat(Math.round(t * 100) / 100).toFixed(2);
-    document.getElementById("number").innerHTML = e;
-    if (document.getElementById("total-price").innerHTML == 0.00){
-    document.getElementById("submitpop").style.display = "none";
-    document.getElementsByTagName("BODY")[0].style.overflowY = "scroll";
-    }
 })
 
 $("#trashbag").click(function() {
@@ -346,10 +322,6 @@ function warenkorb() {
         return false
     }
 }
-
-//sspan.onclick = function() {
-//    smodal.style.display = "none";
-//}
 
 window.onclick = function(event) {
     if (event.target == smodal) {
@@ -651,3 +623,21 @@ $("#credit-close").click(function(){
     $('#credit-checkout #box1').remove();
     $('#credit-checkout #box2').remove();
 })
+
+var rmodal = document.getElementById('loginpop');
+
+var lmodal = document.getElementById('registerpop');
+
+// Get the <span> element that closes the modal
+var rspan = document.getElementById("closelog");
+
+var lspan = document.getElementById("closereg");
+
+// When the user clicks on <span> (x), close the modal
+rspan.onclick = function() {
+    $('#loginpop').css({display: "none"})
+}
+
+lspan.onclick = function() {
+    $('#registerpop').css({display: "none"})
+}

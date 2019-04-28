@@ -111,7 +111,7 @@ body{
     background-size: cover;
     height: 108px;
     width: 290px;
-    border-bottom:color: #FF9900;
+    border-bottom: #FF9900;
     background-color: #4c0200;
     border-left: 3px solid #FF9900;
     border-bottom: 3px solid #FF9900;
@@ -132,7 +132,7 @@ body{
 }
 
 .bild{  
-    background: url(../images/BrotritterMain.jpeg);
+    background: url(../images/BrotritterMain.JPG);
     background-size: cover;
     
     height: 335px;

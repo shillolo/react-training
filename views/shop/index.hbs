@@ -88,7 +88,7 @@
                         </div>
                         {{/if}}
                         <div class="hilfe">
-                            <a class="kontakt" title="Kontakt" href="/kontakt"> KONTAKT </a>
+                            <a class="kontakt" title="Kontakt" href="/kontakt"> FEEDBACK </a>
                         </div>
                     </div>
             </div>
@@ -96,7 +96,7 @@
             <div class="text">Jetzt Brötchen online vorbestellen.</div>
             <form class="wrap" id="searchform" method="post" action="/">
                 <div class="search">
-                    <input type="text" id="searchTerm" class="searchTerm" name="address" placeholder="Wo wohnst du? (Plz)" autofocus required>
+                    <input type="text" id="searchTerm" class="searchTerm" name="address" placeholder="Wo wohnst du? (Stadt)" autofocus required>
                     <input type="hidden" name="_csrf" value="{{ csrfToken }}">
                     <button type="submit" id="searchButton" class="searchButton" title="Bäckerei finden">
                         <i class="fa fa-search"></i><p id="b-button"> BÄCKEREI FINDEN </p>
@@ -121,7 +121,7 @@
     <div class="slideshow-container">
 
     <div class="mySlides fade">
-      <img src="../images/bakery1.png">
+      <img src="../images/bakery1.jpg">
       <div class="textSlider">1. Bäckerei und Brötchen auswählen</div>
     </div>
 
@@ -202,8 +202,10 @@
     <div class="impress">
         <div class="impresscon">
             <div class="sideopt "OnClick="location.href='/newsletter'">Newsletter bekommen</div>
+            <div class="sideopt hidopt" OnClick="location.href='/newsletter'">Newsletter </div>
             <div><a href="/impressum">Impressum</a>&nbsp;/&nbsp;<a href="/datenschutz">Datenschutz</a></div>
             <div class="sideopt" OnClick="location.href='/mitgliedschaft'">Jetzt Partner werden</div>
+            <div class="sideopt hidopt" OnClick="location.href='/newsletter'">Partnerschaft</div>
         </div>
     </div>
 

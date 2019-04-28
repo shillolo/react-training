@@ -84,15 +84,13 @@ function addMarker(props){
     var marker = new google.maps.Marker({
         position:props.coords,
         map:map,
-        icon:{url: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
-    scaledSize: new google.maps.Size(75, 75)}
+    scaledSize: new google.maps.Size(75, 75)
     })
     }else{
         var marker = new google.maps.Marker({
         position:props.coords,
         map:map,
-        icon:{url: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
-    scaledSize: new google.maps.Size(45, 45)}
+    scaledSize: new google.maps.Size(45, 45)
     })
     }
 

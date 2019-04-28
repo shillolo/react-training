@@ -1,10 +1,9 @@
 .bild h1{
     margin-top: 0px;
-    text-decoration: underline
 }
 
 .bild{
-    background-image: url(../images/BrotriterBakery3.jpeg);
+    background-image: url(../images/BrotriterBakery3.JPG);
     height: auto;
     width: 100%
 }

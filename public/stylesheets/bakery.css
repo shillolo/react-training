@@ -248,11 +248,6 @@ select::-ms-expand {
     transition: 0.3s;
 }
 
-
-
-.section:hover .fa-angle-down{
-}
-
 .test{
     width: 100%;
     border-bottom: 1px solid #c4c4c4
@@ -315,7 +310,6 @@ select::-ms-expand {
 
 .iname{
     font-weight:700;
-    text-decoration: underline;
     font-size: 1.2em;
 }
 
@@ -641,7 +635,6 @@ select::-ms-expand {
 
 .info-text a{
     color: #0545d0;
-    text-decoration: underline;
     cursor: pointer
 }
 
@@ -1062,6 +1055,20 @@ background-color: #ff9900;
     overflow-y: auto
 }
 
+.inner-scontainer{
+    width: 700px;
+    -webkit-box-orient:vertical;
+    -webkit-box-direction:normal;
+        -ms-flex-direction:column;
+            flex-direction:column;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin: 0 auto
+}
+
 .infopop{
     display: none;
     -webkit-box-pack: center;
@@ -1213,7 +1220,6 @@ background-color: #ff9900;
 }
 
 .ingredient-container h1{
-    text-decoration: underline;
 }
 
 .ingredients{
@@ -1530,10 +1536,6 @@ question-con{
     font-weight: 300
 }
 
-#header-price b{
-    text-decoration: underline
-}
-
 .credit-popup{
     z-index: 4000
 }
@@ -1696,7 +1698,7 @@ question-con{
     }
     .closesub{
         position: absolute;
-        margin-left: 95%;
+        margin-left: 44%;
     }
     .shopping-cart{
         height: 55px;
@@ -1839,7 +1841,8 @@ question-con{
         margin-top: 100px
     }
     .sheader{
-        margin-top: 10px
+        margin-top: 10px;
+        width: 200%;
     }
     .shopping-cart .badge{
         padding: 5px 10px 5px;
@@ -1901,6 +1904,13 @@ question-con{
         height: 2em;
     }
     .scontainer{
+        text-align: center;
+        padding: 20px;
+        height: auto;
+        min-height: 900px;
+        width: 90%
+    }
+    .inner-scontainer{
         text-align: center;
         padding: 20px;
         height: auto;

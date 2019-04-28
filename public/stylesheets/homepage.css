@@ -101,7 +101,7 @@ body{
 }
 
 .bild{  
-    background: url(../images/BrotritterMain.jpeg);
+    background: url(../images/BrotritterMain.JPG);
     background-size: cover;
     
     height: 665px;
@@ -603,13 +603,6 @@ ul{
     margin: 0 auto
 }
 
-.im{
-    width: 100px;
-    height: 100px;
-    background-image: url(holzerner-hintergrund-mit-backerei-abzeichen_23-2147558949.jpg);
-    background-size: cover
-}
-
 .instruction{
     display: -webkit-box;
     display: -ms-flexbox;
@@ -683,7 +676,7 @@ ul{
 }
 
 .instbild1{
-    background-image: url(../images/11e2128c-4b6e-434f-bb1b-a2f5088e303f.jpg);
+    background-image: url(../images/BrotritterMain.JPG);
     background-size: cover
 }
 
@@ -851,7 +844,6 @@ img{
   text-align: center;
     display: block;
     margin-top: 20px;
-    text-decoration: underline
 }
 
 .dotSlides{
