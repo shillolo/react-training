@@ -1,3 +1,5 @@
+console.log(window.screen.width)
+
 function initMap(){
 var location = document.getElementById("location").value;
  console.log(document.getElementById("location").value);

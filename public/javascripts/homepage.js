@@ -12,7 +12,7 @@ function currentSlide(n) {
 function showSlides(n) {
   var i;
   var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
+  var dots = document.getElementsByClassName("dotSlide");
   if (n > slides.length) {slideIndex = 1}    
   if (n < 1) {slideIndex = slides.length}
   for (i = 0; i < slides.length; i++) {
@@ -23,6 +23,37 @@ function showSlides(n) {
   }
   slides[slideIndex-1].style.display = "block";  
   dots[slideIndex-1].className += " active";
+}
+
+console.log(window.screen.width);
+console.log("hi")
+
+var AlignersIndex = 1;
+showAligners(AlignersIndex);
+
+function plusAligners(n) {
+  showAligners(AlignersIndex += n);
+}
+
+function currentAligners(n) {
+  showAligners(AlignersIndex = n);
+}
+
+function showAligners(n) {
+  var i;
+  var slides = document.getElementsByClassName("align");
+  var dots = document.getElementsByClassName("dotAlign");
+  console.log(slides.length)
+  if (n > slides.length) {AlignersIndex = 1}    
+  if (n < 1) {AlignersIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[AlignersIndex-1].style.display = "flex";  
+  dots[AlignersIndex-1].className += " active";
 }
 
 $(function(){
@@ -36,4 +67,16 @@ $(function(){
                     $('#searchform').css({position: 'relative', top: '0px', marginTop: "100px", backgroundColor: "transparent"});
             }
     });
+})
+
+document.querySelector('p').addEventListener('touchstart', f);
+        document.querySelector('p').addEventListener('touchend', f);
+        document.querySelector('p').addEventListener('touchmove', f);
+        
+        function f(ev){
+            console.log( ev.touches, ev.type );
+        }
+
+$('.wrapper').parallax({
+  speed: 0.4
 })

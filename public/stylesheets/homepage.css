@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Baloo+Bhai|Roboto|Ubuntu&display=swap');
+
 *{
     margin: 0;    
 }
@@ -5,8 +7,10 @@
 body{
   font-family: 'Open Sans', sans-serif;
   margin: 0;
-    background-color: #5e5e5e;
-    color: white
+    background-color: #f7f7f7;
+    color: white;
+    min-height: 100%;
+    height: auto;
 }
 
 .loginpop, .registerpop{
@@ -74,6 +78,30 @@ body{
     display: none
 }
 
+.info-con{
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    color: #000;
+}
+
+.conslide{
+    width: 350px;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1.2em
+}
+
+.conslide h3{
+    padding-top: 20px
+}
+
+.info-con img{
+    width: 350px;
+    height: auto;
+}
+
 .maenu{
          background-image: url(../images/Brotritter%20logo%202.png);  
     background-size: cover;
@@ -121,7 +149,7 @@ body{
 .text{
     color: white;
     
-    font-family: helvetica, sans-serif;
+    font-family: 'Crete Round', serif;
     font-size: 3em;
     font-weight: 900;
     text-shadow: 1px 1px 1px black ;
@@ -202,7 +230,7 @@ body{
 }
 
 .searchButton p{
-    font-family: Helvetica;
+    font-family: 'Ubuntu', sans-serif;
     font-size: 0.59em;
     font-weight: 750;
     text-shadow: 1px 1px 1px black ;
@@ -219,58 +247,59 @@ body{
 }
 
 .wrapper{
+    width: 100%;
+    height: 300px; 
+    background: transparent;
+}
+
+
+.wrapper2{
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    width: 100%;
-    height: auto; 
-    background-image: url(../images/Home-Webseite-2.jpg);
-    background-size: cover;
-    height: auto
+    width: 100%; 
+    margin: 0 auto;
+    max-width: 1320px;
+    padding: 60px 0;
 }
 
-.aligner,
-.aligner2{
+
+.aligner{
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-pack: distribute;
         justify-content: space-around;
     width: 100%;
-    margin: 360px 0px 50px 0px
-}
-
-.aligner2{
-    position: absolute;
-    margin-top: 400px
-}
-
-.aligner .align1,
-.aligner2 .align2,
-.aligner .align3{
-    width: 25%;
-    max-width: 240px;
-    background-color: rgba( 211, 211, 211, 1 );
-    border-radius: 10px;
-    padding: 10px;
-    margin: 25px 0px;
-    text-align: center;
-    min-height: 420px;
+    margin: auto 0px auto 0px;
+    width: 300%;
+    overflow: hidden;
+    transition: margin-left .5s ease-in-out;
     height: auto;
-    display: -webkit-box;
-    display: -ms-flexbox;
+    position: relative;
+    margin-left: 0;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-            justify-content: space-around;
-    color: #6b6b6b;
-    -webkit-box-shadow: 13px 10px 10px rgba( 0, 0, 0, 0.211 );
-            box-shadow: 13px 10px 10px rgba( 0, 0, 0, 0.211 )
+    padding: 45px 0 20px;
+    margin-top: 200px
+}
+
+.align1,
+.align2,
+.align3{
+    border: 1px solid #f8f5f2;
+    background: #fff;
+    width: 27.3333%;
+    margin-left: 5%;
+    margin-right: 5%;
+    position: relative;
+    min-height: 300px;
+    height: auto;
+    padding: 26px;
+    box-shadow: 2px 2px 10px 0 hsla(0,0%,50%,.4);
+    align-self: flex-start;
 }
 
 .aligner b,
@@ -281,13 +310,37 @@ body{
     font-weight: 700;
 }
 
-.aligner .align1 p,
-.aligner2 .align2 p,
-.aligner .align3 p{
+.align1 p,
+.align2 p,
+.align3 p{
     padding: 5px
 }
 
+.aligner h1, .align h1{
+    padding: 60px 0 20px;
+    margin: 8px 0 16px;
+    color: #0a3847;
+    font-size: 28px;
+    font-weight: 600;
+    text-align: center;
+}
 
+.aligner i, .align i{
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: #ff8000;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: -45px;
+    box-shadow: 2px 2px 10px 0 hsla(0,0%,50%,.4);
+}
 
 .miniHead{
     text-align: center;
@@ -295,9 +348,20 @@ body{
     font-size: 1.3em
 }
 
-.aligner p{
-    margin: 10px 0
+.aligner b, .align b{
+    margin: 10px 0;
+    color:black;
+    text-align: center;
 }
+
+.aligner p, .align p{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color:  black;
+    font-size: 15px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
 
 .pmain{
     margin: auto 0px;
@@ -309,13 +373,9 @@ body{
     margin: auto
 }
 
-.align2{
-    padding-top: 15px
-}
-
-.aligner i,
+.aligner i, .align i,
 .aligner2 i{
-    font-size: 3.5em;
+    font-size: 2.5em;
 }
 
 ul{
@@ -401,9 +461,21 @@ ul{
 }
 
 .aboutCon{
+    width: 90%;
     height: auto;
-    background-image: url(../images/brotritter-korn.jpg);
-    background-size: cover
+    max-width: 1320px;
+    margin: 0 auto;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1.05em
+}
+
+.brd{
+    height: 1px;
+    width: 80%;
+    margin: 0 auto;
+    background-color: #000;
+    margin-bottom: 200px;
+    margin-top: 200px
 }
 
 .aboutCon .aboutHead{
@@ -421,19 +493,59 @@ ul{
 }
 
 .aboutCon .aboutPara{
-    width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
+    margin-right: 0;
+    margin-left: 0;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    padding: 25px 0px;
-    height: auto
+    flex-wrap: wrap;
+    box-sizing: inherit;
+    align-items: center;
+    padding: 24px;
+    box-sizing: inherit;
+    color: #000;
+    margin-bottom: 200px
+}
+
+.innerPara{
+    flex: 0 0 50%;
+    max-width: 50%;
+    position: relative;
+    min-height: 1px;
+    width: 100%;
+}
+
+.paraImg{
+    background-image: url(https://res.cloudinary.com/grubhub-assets/image/upload/fl_lossy,f_auto,q_80/v1533845150/static-homepage/women-eating-burgers-delivery-v3.png);
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: relative;
+    min-height: 1px;
+    width: 100%;
+    flex: 0 0 50%;
+    max-width: 50%;
+    box-sizing: inherit;
+}
+
+.paraImg img{
+    visibility: hidden;
+    flex: 0 0 100%;
+    position: relative;
+    min-height: 1px;
+    width: 100%;
+    box-sizing: inherit;
+}
+
+.blockPara h3{
+    flex: 0 0 100%;
+    max-width: 100%;
+    position: relative;
+    min-height: 1px;
+    width: 100%;
+    margin-bottom: 16px;
+    font-size: 35.4px;
+    line-height: 1.18253;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
 }
 
 .m1{
@@ -520,7 +632,7 @@ ul{
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    font-family: helvetica;
+            font-family: 'Ubuntu', sans-serif;
     cursor: pointer;
     visibility: hidden
 }
@@ -661,7 +773,7 @@ ul{
             align-items: center;
     background-color: #990000;
     color: white;
-    font-family: Helvetica;
+font-family: 'Ubuntu', sans-serif;
     font-weight: 700;
     -webkit-transition: 0.3s;
     -o-transition: 0.3s;
@@ -754,26 +866,51 @@ ul{
     background-color: #2680aa
 }
 
-.mySlides {
+.mySlides, .align {
     display: none;
-    text-align: center
+    text-align: center;
+    color: #000;
 }
 
-img {
+.mySlides h2{
+    margin: 50px 0px 30px 0
+}
+
+.mySlides img, .align img {
     vertical-align: middle;
 }
 
+.align{
+    width: 100%;
+    margin-top: 100px
+}
+
+.align i{
+    color: white
+}
+
+.alignSlide{
+    margin: 0 auto;
+    width: 70%;
+    max-width: 600px;
+    text-align: left
+}
+
 /* Slideshow container */
-.slideshow-container {
-  max-width: 90%;
+.slideshow-container, .alignshow-container{
+    width: 100%;
+  max-width: 1320px;
   position: relative;
   margin: auto;
 }
 
-img{
+.alignshow-container{
+    margin-top: 100px
+}
+
+.mySlides img, .align img{
     display: block;
     margin: 0 auto;
-    margin-top: 20px
 }
 
 .aboutPara h2{
@@ -788,7 +925,7 @@ img{
   top: 50%;
   width: auto;
   padding: 16px;
-  margin-top: -110px;
+  margin-top: -90px;
   color: white;
   font-weight: bold;
   font-size: 58px;
@@ -807,6 +944,10 @@ img{
   right: 0;
   border-radius: 0px 3px 3px 0px;
   color: #ff9900
+}
+
+.prevalign, .nextalign{
+    margin: auto 0
 }
 
 /* On hover, add a black background color with a little bit see-through */
@@ -835,19 +976,8 @@ img{
     text-align: justify
 }
 
-/* Caption text */
-.textSlider {
-  font-size: 1.8em;
-  padding: 40px 1px;
-  width: 100%;
-    font-weight: 600;
-  text-align: center;
-    display: block;
-    margin-top: 20px;
-}
-
 .dotSlides{
-    margin-top: 10px
+    margin: 20px 0px
 }
 
 /* Number text (1/3 etc) */
@@ -859,10 +989,29 @@ img{
   top: 0;
 }
 
+.number-con{
+    max-width: 1320px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto 
+}
+
+.numb{
+    padding: 12px;
+    width: 18px;
+    margin-right: 360px;
+    text-align: center;
+    background-color:#0072f4;
+    border-radius: 50%
+}
+
 .slideHeader{
     width: 100%;
     text-align: center;
-    margin-top: 20px
+    margin-top: 20px;
+    color: #000;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 /* The dots/bullets/indicators */
@@ -892,7 +1041,16 @@ img{
 }
 
 .mySlides img{
-    width: 30%
+    width: 450px
+}
+
+.info-con{
+    max-width: 1320px;
+    margin-bottom: 200px;
+}
+
+.number-con, .slideHeader{
+    margin-top: 100px;
 }
 
 @-webkit-keyframes fade {
@@ -908,6 +1066,38 @@ img{
 /* On smaller screens, decrease text size */
 @media only screen and (max-width: 300px) {
   .prev, .next,.text {font-size: 11px}
+}
+
+@media only screen and (min-width: 1200px) {
+    .dotSlides, .slideshow-container, .alignshow-container{
+        display: none
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .number-con, .info-con{
+        display: none
+    }
+    .wrapper2{
+        display: none
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .mySlides img{
+        width: 350px
+    }
+    .mySlides{
+        font-size: 1em
+    }
+    .aboutPara{
+        flex-direction: column
+    }
+    .paraImg{
+        width: 100%;
+        max-width: 70%;
+        margin-top: 30px
+    }
 }
 
 @media only screen and (max-width: 980px) {
@@ -929,7 +1119,7 @@ img{
     .textbox p{
          max-width: 95%
      }
-     .slideshow-container, .dotSlides{
+     .slideshow-container, .alignshow-container, .dotSlides{
         display: block
     }
     .instruction{
@@ -969,27 +1159,28 @@ img{
          width: 50%;
          height: auto;
          max-height: 100%;
-     }
-     .dot{
+    }
+    .dot{
           height: 1em;
           width: 1em;
-     }
-     .textSlider{
+    }
+    .textSlider{
          font-size: 1.5em
-     }
-     .slideHeader{
+    }
+    .slideHeader{
          font-size: 1em
-     }
-     .prev, .next {
-         font-size: 3em;
-         margin-top: -100px;
-     }
-     .wrapper, .miniHead{
+    }
+    .prev, .next {
+        font-size: 3em;
+        margin-top: -80px
+    }   
+    .prevalign, .nextalign {
+        font-size: 3em;
+        margin: auto 0
+    }
+    .miniHead{
          display: none;
-     }
-     .textSlider{
-        padding: 8px 0px;
-     }
+    }
     .konto, .login, .register{
         margin: 20px 5px;
         -webkit-transition: all 0s;
@@ -1069,13 +1260,18 @@ img{
          font-size: 1.5em
      }
      .slideHeader{
-         font-size: 1em
+         font-size: 1em;
+         margin-top: 20px
      }
      .prev, .next {
-         font-size: 3em;
-         margin-top: -100px;
-     }
-     .aboutCon, .wrapper, .miniHead{
+        font-size: 5em;
+        margin-top: -100px
+    }
+    .prevalign, .nextalign {
+       font-size: 5em;
+       margin: auto 0
+   }
+     .miniHead{
          display: none;
      }
      .textSlider{
@@ -1123,11 +1319,32 @@ img{
          border: solid 3px white;
          border-radius: 5px
      }
+     .align1 div, .align2 div, .align3 div{
+         font-size: 1.7em
+     }
+     .align1 h1, .align2 h1, .align3 h1{
+         font-size: 2.5em
+     }
+     .align1 p, .align2 p, .align3 p{
+         font-size: 1.1em
+     }
+     .aligner i, .align i{
+        width: 80px;
+        height: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2.5em
+    }
 }
 
  @media only screen and (max-device-width: 480px) {
-     .mySlides img{
-         width: 80%;
+    .slideshow-container{
+        margin-bottom: 100px
+    }
+     .mySlides img, .align1, .align2, .align3{
+         width: 70%;
+         max-width: 100%;
          height: auto;
          max-height: 100%;
      }
@@ -1147,10 +1364,14 @@ img{
          font-size: 1.5em
      }
      .prev, .next {
-         font-size: 5em;
-         margin-top: -120px;
-     }
-     .aboutCon, .wrapper, .miniHead{
+        font-size: 5em;
+        margin-top: -100px
+    }
+    .prevalign, .nextalign {
+       font-size: 5em;
+       margin: auto 0
+    }
+     .miniHead{
          display: none;
      }
      .textSlider{
