@@ -19,9 +19,6 @@ var indexRouter = require('./routes/index');
 var userRoutes = require('./routes/user');
 
 var app = express();
-var server = app.listen(3000, function(){
-    console.log("Listening on Websockets")
-});
 
 require('./config/passport');
 
