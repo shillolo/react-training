@@ -514,9 +514,9 @@ ul{
 }
 
 .paraImg{
-    background-image: url(https:/tic-homepage/wrgers-deomen-eating-bulivery-v3.png);
+    background-image: url('../images/Kellnerbild.png');
     background-position: center center;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     position: relative;
     min-height: 1px;
@@ -530,7 +530,7 @@ ul{
     visibility: hidden;
     flex: 0 0 100%;
     position: relative;
-    min-height: 1px;
+    min-height: 1px; 
     width: 100%;
     box-sizing: inherit;
 }
