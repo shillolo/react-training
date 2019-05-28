@@ -4,6 +4,26 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
+    <div class="whatpop" id="whatpop">
+    <div class="chargepop">
+        <i class="fas fa-times closeinst"></i>
+        <h1>Einfach Brotritterkonto aufladen</h1>
+        <div class="instholder">
+            <div class="innerInstholder">
+                <div class="insthold">
+                <img src="../images/bakery1.png">
+                <h3>Mit Kundennummer zur Kasse gehen und gewünschten Betrag abgeben um Konto aufzuladen</h3>
+                </div>
+            </div>
+            <div class="innerInstholder">
+                <div class="insthold">
+                <img src="../images/bakery1.png">
+                <h3>Konto ganz einfach online aufladen</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     {{# if login}}
     <div class="mobile-popup" id="mobile-popup">
         <div class="mobile-header">
@@ -107,9 +127,13 @@
     </div>
     
     <div class="balken"><div class="errors">{{messages}}</div><div class="success">{{success}}</div></div>
-
+<div class="colorDiv">
     <div class="slideHeader">
         <h1>So funktioniert Brotritter</h1>
+    </div>
+
+    <div class="cooloer">
+        <div id="crownMode" onclick="changeColor()"><i class="fas fa-crown"></i></div>
     </div>
 
     <div class="number-con">
@@ -130,7 +154,7 @@
     </div>
 
     <div class="conslide">
-      <img src="../images/bakery3.png">
+      <img id="bakery3" src="../images/bakery3.png">
       <h3>Code in gewählter Bäckerei eingeben und Brötchen genießen</h3>
     </div>
 
@@ -155,7 +179,7 @@
     </div>
 
     <div class="mySlides fade">
-      <img src="../images/bakery3.png">
+      <img id="bakery3Main" src="../images/bakery3.png">
       <h2 class="textSlider">3. Code in gewählter Bäckerei eingeben und Brötchen genießen</h2>
     </div>
 
@@ -163,7 +187,8 @@
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
     </div>
-    <br>
+    <div class="chargebtn"><div id="chargebtn">Guthaben aufladen</div></div>
+    </div>
 
     <div class="wrapper"data-parallax="scroll" data-image-src="../images/Home-Webseite-2.jpg"></div>
 

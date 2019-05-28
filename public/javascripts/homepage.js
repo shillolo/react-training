@@ -80,3 +80,27 @@ document.querySelector('p').addEventListener('touchstart', f);
 $('.wrapper').parallax({
   speed: 0.4
 })
+
+function changeColor(){
+  var bodys = $(".colorDiv")
+  console.log(bodys.css('background-color'))
+  if (bodys.css('background-color') == "rgb(247, 247, 247)"){
+    bodys.css({backgroundColor: '#e4c48a'})
+    $("#bakery3").attr("src","../images/bakery1.png");
+    $("#bakery3Main").attr("src","../images/bakery1.png");
+  } else {
+    bodys.css({backgroundColor: '#f7f7f7'});
+    $("#bakery3").attr("src","../images/bakery3.png");
+    $("#bakery3Main").attr("src","../images/bakery3.png");
+  }
+}
+
+$("#chargebtn").click(function(){
+  document.getElementById("whatpop").style.display = "flex"
+})
+
+$(".closeinst").click(function(){
+  $(this).parent().parent().css({
+      display: "none"
+  })
+})

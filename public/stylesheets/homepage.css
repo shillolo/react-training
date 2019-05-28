@@ -11,6 +11,149 @@ body{
     color: white;
     min-height: 100%;
     height: auto;
+    transition: 0.5s
+}
+
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+
+.whatpop{
+    position: fixed;
+    z-index: 266600;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    display: none;
+
+}
+
+.closeinst{
+    color: #000
+}
+
+.insthold img{
+    width: 300px
+}
+
+.insthold{
+    margin: 100px 0px;
+    width: 300px;
+}
+
+.chargepop{
+    border: solid #ff9900 4px;
+    border-radius: 10px;
+    background-color: white;
+
+    width: 80%;
+    max-width: 900px;
+    height: auto;
+    position: relative;
+    color: #000;
+    text-align: center;
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+}
+
+.chargepop h1{
+    margin-top: 70px;
+    text-decoration: underline
+}
+
+.instpic{
+    width: 400px;
+    height: 400px;
+    margin: auto;
+    border: solid 3px #ff9900;
+    background-image: url(../images/Konzept-Regalsystem.png);
+    background-size: cover
+}
+
+.insts{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    justify-content: space-around;
+    align-items: stretch
+}
+
+.instnum{
+    padding: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background-color: #ff9900;
+    box-sizing: content-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    font-weight: 700
+}
+
+.instholder{
+    display: flex;
+    justify-content: space-around;
+}
+
+.hold2{
+    margin-bottom: 30%;
+    padding-left: 20%
+}
+
+.instholder h3{
+    color: black
+}
+
+.colorDiv{
+    transition: 0.5s;
+    padding-top: 100px;
+    background-color: #f7f7f7;
+    display: block;
+    width: 100%;
+}
+
+.chargebtn{
+    margin: 50px auto;
+    margin-bottom: 0px;
+    color: white;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 50px
+}
+
+.chargebtn div{
+    padding: 20px 30px;
+    background-color: #b4afa7;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s
+}
+
+.chargebtn div:hover{
+    background-color: #868686
 }
 
 .loginpop, .registerpop{
@@ -19,6 +162,39 @@ body{
 
 .mobile-popup{
     color: black
+}
+
+.cooloer{
+    color: #000;
+    float: right;
+    width: 100%;
+    margin-top: 20px;
+    position: absolute;
+    display: flex;
+    justify-content: flex-end
+}
+
+.cooloer div{
+    background-color: #FF9900;
+    padding: 18px 27px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    font-size: 1.4em;
+    border-top: solid #ff9900 4px;
+    border-bottom: solid #ff9900 4px;
+    border-left: solid #ff9900 4px;
+    color: white;
+    position: absolute;
+    z-index: 2;
+    transition: 0.3s;
+    cursor: pointer;
+
+}
+
+.cooloer div:hover{
+    background-color: white;
+    color:#ff9900;
+    cursor: pointer
 }
 
 .bild{  
@@ -323,6 +499,16 @@ body{
     font-size: 28px;
     font-weight: 600;
     text-align: center;
+}
+
+.closeinst{
+    font-size: 1.2em;
+    cursor: pointer;
+    height: 7px;
+    float: right;
+    padding-top: 7px;
+    padding-right: 7px;
+    float: right
 }
 
 .aligner i, .align i{
@@ -873,7 +1059,7 @@ font-family: 'Ubuntu', sans-serif;
 }
 
 .mySlides h2{
-    margin: 50px 0px 30px 0
+    margin: 50px 0px 0px 0
 }
 
 .mySlides img, .align img {
@@ -991,7 +1177,7 @@ font-family: 'Ubuntu', sans-serif;
 
 .number-con{
     max-width: 1520px;
-    width: 100%;
+    width: 90%;
     display: flex;
     justify-content: space-around;
     margin: 0 auto 
@@ -1000,7 +1186,7 @@ font-family: 'Ubuntu', sans-serif;
 .numb{
     padding: 12px;
     width: 18px;
-    margin-right: 360px;
+    margin-right: 260px;
     text-align: center;
     background-color:#0072f4;
     border-radius: 50%
@@ -1045,11 +1231,12 @@ font-family: 'Ubuntu', sans-serif;
 }
 
 .info-con{
+    width: 90%;
     max-width: 1520px;
-    margin-bottom: 200px;
+
 }
 
-.number-con, .slideHeader{
+.number-con{
     margin-top: 100px;
 }
 
@@ -1068,13 +1255,13 @@ font-family: 'Ubuntu', sans-serif;
   .prev, .next,.text {font-size: 11px}
 }
 
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 1300px) {
     .dotSlides, .slideshow-container, .alignshow-container{
         display: none
     }
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1300px) {
     .number-con, .info-con{
         display: none
     }

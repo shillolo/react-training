@@ -31,7 +31,7 @@ var Sofort = new (require('node-sofort'))({
 });
 
 var mailer = nodemailer.createTransport({
-    host: 'mail.brotritter.de',
+    host: 'az1-ss7.a2hosting.com',
     port: 465,
     auth: {
         user: 'service@brotritter.de',
@@ -103,10 +103,11 @@ router.get('/testo', function(req, res, next) {
     mailer.sendMail({
         from: 'service@brotritter.de',
         to: 'darren.igb@web.de',
-        subject: "Anfrage:" + req.body.name,
+        subject: "Anfrage:",
         template: 'membermail'
     },function (err, response){
         if(err){
+            console.log(err)
             req.flash("error", "Ihre Anfrage konnte nicht verarbeitet werden. Bitte versuchen sie es erneut");
             res.redirect("/")
         } else {
@@ -506,23 +507,23 @@ router.post('/kontakt', function(req, res, next) {
     var messages = req.flash('error');
     var successMsg = req.flash('success')[0];
     var nachricht = req.body.nachricht;
-    var smtpTransport = nodemailer.createTransport({
-        service: 'Gmail',
-        auth: {
-            user: 'brotritter.test@gmail.com',
-            pass: 'ffhvdrtu6'
+    mailer.sendMail({
+        from: 'service@brotritter.de',
+        to: 'darren.igb@web.de',
+        subject: "Anfrage:" + req.body.name,
+        template: 'membermail',
+        context: {
+            nachricht: req.body.nachricht
         }
-    });
-    var mailOptions = {
-            to: 'shilloke@gmail.com',
-            from: 'brotritter.test@gmail.com',
-            subject: 'Brotritter: Nachricht',
-            text: "nachricht",
-        };
-    smtpTransport.sendMail(mailOptions, function(err) {
-        console.log("lit?")
-            res.redirect('back');
-        })
+    },function (err, response){
+        if(err){
+            req.flash("error", "Ihre Anfrage konnte nicht verarbeitet werden. Bitte versuchen sie es erneut");
+            res.redirect("/")
+        } else {
+            req.flash("success", "Ihre Anfrage wird verarbeitet und wir werden uns in Kürze bei ihnen melden");
+            res.redirect("/");
+        }
+    })
 })
 
 router.get('/bakery', isAuth, function(req, res, next) {
@@ -549,7 +550,6 @@ router.get('/bakery', isAuth, function(req, res, next) {
 router.post("/bakery", function(req, res, next) {
     console.log("yey");
     var bakePost = req.body.payways;
-//    console.log(bakePost)
     function code_error(){
         req.flash("error", "Am besten nicht am Code rumspielen ;)");
         res.redirect("/")
@@ -643,7 +643,7 @@ router.post("/bakery", function(req, res, next) {
                                             req.session.date = date;
                                             req.session.time = time;
                                                 mailer.sendMail({
-                                                    from: 'brotritter.test@gmail.com',
+                                                    from: 'service@brotritter.de',
                                                     to: req.user.email,
                                                     subject: "Bestellung Brotritter",
                                                     template: 'success',
@@ -769,7 +769,7 @@ router.post("/bakery", function(req, res, next) {
                                                                     req.session.var7 = false;
                                                                     req.flash("success", 'Die Bestellung wurde erfolgreich abgeschlossen');
                                                                     mailer.sendMail({
-                                                                        from: 'brotritter.test@gmail.com',
+                                                                        from: 'service@brotritter.de',
                                                                         to:  req.session.user_email,
                                                                         subject: "Bestellung Brotritter",
                                                                         template: 'success',
@@ -885,7 +885,7 @@ router.post("/bakery", function(req, res, next) {
                                                         req.session.date = date;
                                                         req.session.time = time;
                                                         mailer.sendMail({
-                                                            from: 'brotritter.test@gmail.com',
+                                                            from: 'service@brotritter.de',
                                                             to: req.user.email,
                                                             subject: "Bestellung Brotritter",
                                                             template: 'success',
@@ -1011,7 +1011,7 @@ router.post("/bakery", function(req, res, next) {
                                                                     req.session.var7 = false;
                                                                     req.flash("success", 'Die Bestellung wurde erfolgreich abgeschlossen');
                                                                     mailer.sendMail({
-                                                                        from: 'brotritter.test@gmail.com',
+                                                                        from: 'service@brotritter.de',
                                                                         to:  req.session.user_email,
                                                                         subject: "Bestellung Brotritter",
                                                                         template: 'success',
@@ -1118,7 +1118,7 @@ router.post('/checkout', function(req, res, next) {
                 req.session.var6 = false;
                 req.flash("success", 'Die Bestellung wurde erfolgreich abgeschlossen');
                 mailer.sendMail({
-                    from: 'brotritter.test@gmail.com',
+                    from: 'service@brotritter.de',
                     to:  req.session.user_email,
                     subject: "Bestellung Brotritter",
                     template: 'success',
@@ -1184,7 +1184,7 @@ router.get('/success', isAuth, function(req, res, next) {
                 req.session.var6 = false;
                 req.flash("success", 'Die Bestellung wurde erfolgreich abgeschlossen');
                 mailer.sendMail({
-                    from: 'brotritter.test@gmail.com',
+                    from: 'service@brotritter.de',
                     to:  req.session.user_email,
                     subject: "Bestellung Brotritter",
                     template: 'success',

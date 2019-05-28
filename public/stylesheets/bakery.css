@@ -1625,6 +1625,12 @@ question-con{
 }
 
 @media only screen and (max-device-width: 980px) {
+    .payways label:before{
+        top: 9px; 
+      }
+    .hilfe{
+        margin-top: 3px
+    }
     .extra{
         font-size: 1.3em
     }
@@ -1744,6 +1750,9 @@ question-con{
 }
 
 @media only screen and (max-device-width: 460px) {
+    .hilfe{
+        margin-top: 23px
+    }
     .konto, .login, .register{
         margin: 20px 5px;
         -webkit-transition: all 0s;
@@ -1772,7 +1781,7 @@ question-con{
     }
 }
 
-@media only screen and (max-device-width: 520px) { 
+@media only screen and (max-device-width: 520px) {
     .mobile-konto{
         display: block
     }

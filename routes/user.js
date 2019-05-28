@@ -71,12 +71,16 @@ router.get('/sofort/success2/:transaction', function(req, res) {
 });
 
 var mailer = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'az1-ss7.a2hosting.com',
+    port: 465,
     auth: {
-            user: 'brotritter.test@gmail.com',
-            pass: 'ffhvdrtu6'
+        user: 'service@brotritter.de',
+        pass: 'aWhcJ5S'
+    },
+    tls:{
+        rejectUnauthorized:false
     }
-})
+});
 
 mailer.use('compile',hbs({
     viewPath: 'views/email',
@@ -381,7 +385,7 @@ router.post('/changemail', isLoggedIn, function(req, res, next) {
                 userdata.email = req.body.email;
                 userdata.save(function(){
                     mailer.sendMail({
-                        from: 'brotritter.test@gmail.com',
+                        from: 'service@brotritter.de',
                         to: req.user.email,
                         subject: "E-Mail geändert Brotritter",
                         template: 'changed',
@@ -619,7 +623,7 @@ router.post('/signup', passport.authenticate('local.signup', {
        res.redirect(oldUrl);
     } else {
         mailer.sendMail({
-            from: 'brotritter.test@gmail.com',
+            from: 'service@brotritter.de',
             to: req.user.email,
             subject: "Erfolgreich registriert Brotritter",
             template: 'register',

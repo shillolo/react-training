@@ -155,12 +155,12 @@ html, body{
 }
 
 .mappic{
-    background-image: url(../images/HaferkampSmall.jpg);
+    background-image: url(../images/HaferkampSmall.png);
     background-size: cover;
-    height: 64px;
-    width: 280px;
+    height: 360px;
+    width: auto;
     border-top-left-radius: 5px;
-    border-top-RIGHT-radius: 5px
+    border-top-right-radius: 5px
 }
 
 .mapcontent h3{
@@ -216,9 +216,6 @@ html, body{
         margin-top: 0px;
         font-size: 3em
     }
-    #address{
-        font-size: 2em
-    }
     .searchButton{
         font-size: 2em;
         padding: 25px;
@@ -245,5 +242,8 @@ html, body{
      .bakebtn{
         border-radius: 10px;
         font-size: 2em
+    }
+    .hilfe{
+        margin-top: 3px
     }
 }   
