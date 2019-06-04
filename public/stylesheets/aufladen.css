@@ -591,7 +591,7 @@ background-color: #ff9900;
 
 .credit-form button{
     width: auto;
-    height: 50px;
+    height: auto;
 }
 
 .disabled2{
@@ -626,47 +626,51 @@ background-color: #ff9900;
     .mobile-konto{
         display: block
     }
-    }
     .bild{
         border-bottom: 5px solid #ff9900
     }
 }   
 
 @media only screen and (max-device-width: 480px) {
-    .transferfont{
-        font-size: 1.8em;
-        color: white;
-        padding: 5px 15px;
-        background-color: #059fff;
-        border-radius: 50%
+    .payways .with-gap{display: none;}
+    input+label{
+    font-size: 1em;
+    cursor: pointer;
+    padding-left: 28px;
+    position: relative;
     }
-    .visa{
-        width: 100px;
-        height: 33px;
+    .payways .with-gap:checked+label{
+    color: #ff9900;
+    font-weight: bolder;
     }
-    .paypal-img{
-       font-size: 2em
+    .payways .label:before{
+    content: "";
+    top: 2.5px;
+    right: 50px;
+    top: 7px;
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    background: white;
+    border-radius: 100%;
+    transition: all 0.3s ease;
+    border: 2px solid #ff9900;
     }
-    .mastercard{
-        width: 50px;
-        height: 35px;
+    .payways .with-gap:checked + .label:before{
+    border: 3px solid #ff9900;
+    background-color: #ff9900;
+    box-shadow: inset 0 0 0 4px transparent;
     }
-
-    .ami-express{
-        width: 50px;
-        height: 35px;
-
+    .p-method{
+        max-width: 530px;
+        margin: 30px auto
     }
-    .chargediv, body{
-        background-color: white;
+    .form-container{
+        width: 80%;
+        max-width: 700px
     }
-    .inputreader .form-control{
-        height: 100px;
-        font-size: 0.9em
-    }
-    .inputreader{
-        margin-top: 80px;
-        margin-bottom: 50px;
+    .row{
+        font-size: 2em
     }
     .mobile-konto{
         display: block
@@ -693,69 +697,14 @@ background-color: #ff9900;
         -webkit-box-shadow: 0px 0px 0px black;
             box-shadow: 0px 0px 0px black;
     }
-    .form-container{
-        width: 100%;
-        max-width: 100%
-    }
-    .orders{
-        height: 500px;
-        background-color: white;
-        border: 1px solid #ababab;
-        margin: 0px auto;
-        border-radius: 0px;
-    }
-    .payways{
-        padding: 0px;
-        margin-top: 0px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        border-radius: 0px;
-        border: 0px solid #ff9900;
-        height: auto;
-        font-size: 2.5em;
-        margin-bottom: 0px
-    }
-    .payways .with-gap{display: none;}
-    input+label{
-      padding-left: 57px;
-    }
 
-    .payways .label:before{
-      left: 5px;
-      top: 10px;
-      width: 22px;
-      height: 22px;
-      border: 5px solid #ff9900;
-    }
-    .payways .with-gap:checked + .label:before{
-      border: 5px solid #ff9900;
-    }
-    .p-method{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 75px;
-        width: 90%;
-        max-width: 80%;
-        margin: 20px auto
-    }
-    .btn-success{
-        font-size: 0.9em;
-        border-radius: 15px;
-        width: 50%;
-        padding-top: 20px;
-        padding-bottom: 20px;
-        margin-top: 50px;
-        margin-bottom: 50px;
-    }
-    .überweisung-pic{
-        background-image: url(../images/Uberweisung.png);
-        background-size: cover;
-        width: 30%;
-        height: auto
-    }
     .kontakt{
         padding-top: 0px;
+    }
+    .credit-form{
+        width: 90%;
+        max-width: 700px;
+        font-size: 2em;
+        height: auto
     }
 }

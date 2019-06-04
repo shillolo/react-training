@@ -10,25 +10,25 @@
             <h2>{{useracc}} </h2>
             <i class="fas fa-times close" id="mobile-close"></i>
         </div>
-        <div class="mobile-menu">
-            <div class="break-top"></div>
-            <a class="drop drop1" href="/user/aufladen">Guthaben aufladen&nbsp;<i class="fas fa-bolt"></i></a>
-            <div class="mobile-break"></div>
-            <a class="drop" href="/user/profile">Profil&nbsp;<i class="fas fa-user-circle"></i></a>
-            <div class="mobile-break"></div>
-            <a class="drop" href="/user/logout">Logout&nbsp;<i class="fas fa-sign-out-alt"></i></a>
+        <div class="mobile-content">
+            <div class="mobile-menu">
+                <div class="break-top"></div>
+                <a class="drop drop1" href="/user/aufladen">Guthaben aufladen&nbsp;<i class="fas fa-bolt"></i></a>
+                <a class="drop" href="/user/profile">Profil&nbsp;<i class="fas fa-user-circle"></i></a>
+                <a class="drop" href="/user/logout">Logout&nbsp;<i class="fas fa-sign-out-alt"></i></a>
+            </div>
+            <div class="mobile-credit-break"></div>
+            <div class="mobile-credit"><p>Guthaben: </p>{{credit}}&#8364;</div>
         </div>
-        <div class="mobile-credit-break"></div>
-        <div class="mobile-credit"><p>Guthaben: </p>{{credit}}&#8364;</div>
     </div>
     {{else}}
     <div class="loginpop" id="loginpop">  
         <div class="containerl">
-        <i class="fas fa-times close"></i>
+        <i class="fas fa-times close closelog" id="closelog"></i>
         <form class="form-signin" action="/user/signin" method="post">
           <h1 class="h3 mb-3 font-weight-normal">Login</h1>
-          <input type="email" name="email" id="email" class="form-control" placeholder="Email" required autofocus>
-          <input type="password" name="password" id="password" class="form-control" placeholder="Passwort" required>
+          <input type="email" name="email" class="form-control" placeholder="Email" required autofocus>
+          <input type="password" name="password" class="form-control" placeholder="Passwort" required>
           <input type="hidden" name="_csrf" value="{{ csrfToken }}">
           <button class="btn btn-default btn-primary  loginbutton" type="submit">Einloggen</button>
           <a class="forgot" href="/forgot">Passwort vergessen?</a>
@@ -37,13 +37,13 @@
     </div>
     <div class="registerpop" id="registerpop">  
         <div class="containerl">
-        <i class="fas fa-times close"></i>
+        <i class="fas fa-times close closereg" id="closereg"></i>
         <form class="form-signup" action="/user/signup" method="post">
           <h1 class="h3 mb-3 font-weight-normal">Registrieren</h1>
-          <input type="email" name="email" id="email" class="form-control" placeholder="Email" required autofocus>
-          <input type="password" name="password" id="password" class="form-control" placeholder="Passwort" required>
+          <input type="email" name="email" class="form-control" placeholder="Email" required autofocus/>
+          <input type="password" name="password" class="form-control" placeholder="Passwort" required/>
           <input type="password" name="password2" id="password2" class="form-control" placeholder="Passwort bestätigen" required>
-          <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+          <input type="hidden" name="_csrf" value="{{ csrfToken }}"/> 
           <button type="submit" class="btn btn-default btn-primary loginbutton">Los Geht's</button>
         </form>
         </div>
@@ -67,9 +67,11 @@
                 <div class="dholder">
                 <div class="hrbr"></div>
                 <a class="drop drop1" href="/user/aufladen">Guthaben aufladen&nbsp;<i class="fas fa-credit-card"></i></a>
+                
                 <a class="drop" href="/user/profile">Profil&nbsp;<i class="fas fa-user-circle"></i></a>
-                <a class="drop" href="/user/logout">Logout&nbsp;<i class="fas fa-sign-out-alt"></i></a>
-                <div class="hrbr"></div>
+                
+                <a class="drop drop3" href="/user/logout">Logout&nbsp;<i class="fas fa-sign-out-alt"></i></a>
+                <div class="hrbr br1"></div>
                 <div class="credit"><p>Guthaben: </p>{{credit}}  &#8364; </div>
                 </div>
             </li>
@@ -90,7 +92,7 @@
         </div>
     </div>
     <div class="conholder">
-            <i class="fas fa-info"></i>
+            <i class="fas fa-database"></i>
             <div class="borderline"></div>
             <h1>Datenschutz</h1>
     </div>
@@ -569,11 +571,11 @@ window.cookieconsent.initialise({
 </script>
 
 <div class="impress">
-        <div class="impresscon">
-            <div class="sideopt "OnClick="location.href='/newsletter'">Newsletter bekommen</div>
-            <div class="sideopt hidopt" OnClick="location.href='/newsletter'">Newsletter </div>
-            <div><a href="/impressum">Impressum</a>&nbsp;/&nbsp;<a href="/datenschutz">Datenschutz</a></div>
-            <div class="sideopt" OnClick="location.href='/mitgliedschaft'">Jetzt Partner werden</div>
-            <div class="sideopt hidopt" OnClick="location.href='/newsletter'">Partnerschaft</div>
-        </div>
-    </div>
+  <div class="impresscon">
+    <div class="sideopt "OnClick="location.href='/newsletter'">Newsletter bekommen</div>
+    <div class="sideopt hidopt" OnClick="location.href='/newsletter'">Newsletter </div>
+    <div><a href="/impressum">Impressum</a>&nbsp;/&nbsp;<a href="/datenschutz">Datenschutz</a></div>
+    <div class="sideopt" OnClick="location.href='/mitgliedschaft'">Jetzt Partner werden</div>
+    <div class="sideopt hidopt" OnClick="location.href='/mitgliedschaft'">Partnerschaft</div>
+  </div>
+</div>

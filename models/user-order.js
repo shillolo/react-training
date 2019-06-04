@@ -13,6 +13,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 var schema = new Schema({
     user: Schema.Types.ObjectId,
+    email: String,
     cart: Array,
     amount: Array,
     total: Number,
@@ -20,7 +21,8 @@ var schema = new Schema({
     time: String,
     parsedDate: String,
     today: Date,
-    code: Number
+    code: Number,
+    packed: Boolean
 });
 
 module.exports = mongoose.model('User_Order', schema);

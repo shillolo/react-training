@@ -20,7 +20,8 @@ var schema = new Schema({
     date: String,
     time: String,
     parsedDate: String,
-    today: Date
+    today: Date,
+    packed: Boolean
 });
 
 module.exports = mongoose.model('Order', schema);

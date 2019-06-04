@@ -47,6 +47,191 @@ mailer.use('compile',hbs({
     extName: '.hbs'
 }))
 
+router.get("/mybakery", isAuth, function(req, res, next){
+    function parseDate(input) {
+          var parts = input.match(/(\d+)/g);
+          if(parts === null || parts[0] > 31) {
+             return false
+             } else {
+          return new Date(parts[2], parts[1]-1, parts[0])
+             }
+    };
+    function today(e)
+    {
+        var today = new Date(e);
+        var dd = today.getDate();
+        var mm = today.getMonth()+1;
+        var yyyy = today.getFullYear();
+
+        today = dd+'/'+mm+'/'+yyyy;
+
+        return today;   
+    }
+    function tomorrow(e)
+    {
+        var today = new Date(e);
+        var dd = today.getDate()+1;
+        var mm = today.getMonth()+1;
+        var yyyy = today.getFullYear();
+
+        today = dd+'/'+mm+'/'+yyyy;
+
+        return today;   
+    }
+    var fullArray = [];
+    var counter = 0;
+    User_Order.find(function(err, order) {
+        if (err) {
+        } else {
+            for(var i = 0; i < order.length; i++){
+                var thisday = new Date(new Date().setDate(new Date().getDate() + 1)).setHours(0,0,0,0)
+                var newday = new Date(order[i].date).setHours(0,0,0,0)
+                if(thisday == newday){
+                    counter++
+                    var thisOrder = ({
+                        position: counter,
+                        order: order[i]
+                    })
+                    fullArray.push(thisOrder)
+                } 
+            }
+        }
+        Order.find(function(err, norder) {
+            if (err) {
+                console.log("error")
+            } else {
+                for(var i = 0; i < norder.length; i++){
+                    var thisday = new Date(new Date().setDate(new Date().getDate() + 1)).setHours(0,0,0,0)
+                    var newday = new Date(norder[i].date).setHours(0,0,0,0)
+                    if(newday == thisday){
+                        counter++
+                    var thisOrder = ({
+                        position: counter,
+                        order: norder[i]
+                    })
+                    fullArray.push(thisOrder)
+                    } 
+                }
+            }
+            console.log(fullArray)
+            res.render('shop/bakeryPage', { order: fullArray, })
+        });
+    })
+})
+
+router.post("/mybakery", function(req, res, next){
+    console.log(req.body.confirmer)
+    if (req.body.confirmer == "failure"){
+    var orderId = req.body.userid;
+    User_Order.findOne({_id: orderId}).exec(function(err, order)   {
+        if (!order){
+            Order.findOne({_id:orderId}).exec(function(err, thisorder){
+                thisorder.remove();
+                thisorder.save(function(err, success){
+                    mailer.sendMail({
+                        from: 'service@brotritter.de',
+                        to: req.body.requser,
+                        subject: "Anfrage:",
+                        template: 'membermail'
+                    },function (err, response){
+                        if(err){
+                            console.log(err)
+                            req.flash("error", "Ihre Anfrage konnte nicht verarbeitet werden. Bitte versuchen sie es erneut");
+                            res.redirect("back")
+                        } else {
+                            req.flash("success", "Ihre Anfrage wird verarbeitet und wir werden uns in Kürze bei ihnen melden");
+                            res.redirect("back");
+                        }
+                    })
+                })
+            })
+        } else {
+        var ourUser = req.body.user;
+        order.remove();
+        order.save(function(err, done){
+            console.log(ourUser)
+            Credit.findOne({user: ourUser}).sort({"_id": -1}).exec(function(err, data)   {
+                console.log(data)
+                data.credit = data.credit - (-order.total);
+                data.save(function(wrong, go){
+                    mailer.sendMail({
+                        from: 'service@brotritter.de',
+                        to: req.body.userMail,
+                        subject: "Anfrage:",
+                        template: 'membermail'
+                    },function (err, response){
+                        if(err){
+                            console.log(err)
+                            req.flash("error", "Ihre Anfrage konnte nicht verarbeitet werden. Bitte versuchen sie es erneut");
+                            res.redirect("/")
+                        } else {
+                            req.flash("success", "Ihre Anfrage wird verarbeitet und wir werden uns in Kürze bei ihnen melden");
+                            res.redirect("/");
+                        }
+                    })
+                    req.session.code = false;
+                    req.session.cart = false;
+                    req.session.amount = false;
+                    req.session.total = false;
+                    req.session.date = false;
+                    req.session.time = false;
+                    res.redirect("back")
+                })
+            })
+        })
+    }
+    })
+} else if (req.body.confirmer == "confirm"){
+    console.log("ee")
+    var orderId = req.body.userid;
+    User_Order.findOne({_id: orderId}).exec(function(err, order)   {
+        if (!order){
+            console.log("ee")
+            Order.findOne({_id:orderId}).exec(function(err, thisorder){
+                thisorder.packed = true;
+                thisorder.save(function(err, success){
+                    mailer.sendMail({
+                        from: 'service@brotritter.de',
+                        to: req.body.requser,
+                        subject: "Anfrage:",
+                        template: 'membermail'
+                    },function (err, response){
+                        if(err){
+                            console.log(err)
+                            req.flash("error", "Ihre Anfrage konnte nicht verarbeitet werden. Bitte versuchen sie es erneut");
+                            res.redirect("back")
+                        } else {
+                            req.flash("success", "Ihre Anfrage wird verarbeitet und wir werden uns in Kürze bei ihnen melden");
+                            res.redirect("back");
+                        }
+                    })
+                })
+            })
+        } else {
+        var ourUser = req.body.user;
+        order.packed = true;
+        order.save(function(err, done){
+                    mailer.sendMail({
+                        from: 'service@brotritter.de',
+                        to: req.body.userMail,
+                        subject: "Anfrage:",
+                        template: 'membermail'
+                    },function (err, response){
+                        if(err){
+                            console.log(err)
+                            req.flash("error", "Ihre Anfrage konnte nicht verarbeitet werden. Bitte versuchen sie es erneut");
+                            res.redirect("back")
+                        } else {
+                            req.flash("success", "Ihre Anfrage wird verarbeitet und wir werden uns in Kürze bei ihnen melden");
+                            res.redirect("back");
+                        }
+                    })
+                })
+            }
+            })
+}
+})
+
 var csrfProtection = csrf();
 router.use(csrfProtection);
 
@@ -405,51 +590,6 @@ router.get('/getcodes', function(req, res, next){
     })
 })
 
-router.get("/mybakery", isAuth, function(req, res, next){
-    function parseDate(input) {
-          var parts = input.match(/(\d+)/g);
-          if(parts === null || parts[0] > 31) {
-             return false
-             } else {
-          return new Date(parts[2], parts[1]-1, parts[0])
-             }
-    };
-    var fullArray = [];
-    var counter = 0;
-    User_Order.find(function(err, order) {
-        if (err) {
-        } else {
-            for(var i = 0; i < order.length; i++){
-                if(new Date(order[i].date).setHours(0,0,0,0) == new Date().setHours(0,0,0,0)){
-                    counter++
-                    var thisOrder = ({
-                        position: counter,
-                        order: order[i]
-                    })
-                    fullArray.push(thisOrder)
-                } 
-            }
-        }
-        Order.find(function(err, order) {
-            if (err) {
-                console.log("error")
-            } else {
-                for(var i = 0; i < order.length; i++){
-                    if(new Date(order[i].date).setHours(0,0,0,0) == new Date().setHours(0,0,0,0)){
-                        counter++
-                    var thisOrder = ({
-                        position: counter,
-                        order: order[i]
-                    })
-                    fullArray.push(thisOrder)
-                    } 
-                }
-            }
-            console.log(fullArray)
-            res.render('shop/bakeryPage', { order: fullArray, csrfToken: req.csrfToken()})
-        });
-    })
-})
 
 router.get("/getcodes", isAuth, function(req, res, next){
     function parseDate(input) {
@@ -626,6 +766,7 @@ router.post("/bakery", function(req, res, next) {
                                             })
                                             var user_order = new User_Order({
                                                 user: req.user,
+                                                email: req.user.email,
                                                 cart: productorder,
                                                 amount: number,
                                                 total: total,
@@ -868,6 +1009,7 @@ router.post("/bakery", function(req, res, next) {
                                                         })
                                                         var user_order = new User_Order({
                                                             user: req.user,
+                                                            email: req.user.email,
                                                             cart: productorder,
                                                             amount: number,
                                                             total: parseFloat(Math.round(total * 100) / 100).toFixed(2),

@@ -17,41 +17,73 @@
 <div class="balken"><div class="errors">{{errors}}</div><div class="success">{{success}}</div></div>
 
 <div class="orders">
-    <a class="section" name="Weizenbrötchen"><p>HEUTIGE BESTELLUNGEN</p><i class="fas fa-angle-down"></i></a>
+    <div class="section"><p>HEUTIGE BESTELLUNGEN</p><i class="fas fa-angle-down"></i></div>
     {{#each order}}
-    <div class="order">
-        <div class="order-container">
-            <p>Betellung:</p>
+    <form class="order" action="/mybakery" method="post">
+    <div class="deleter">
+        <h3>Sind sie sich sicher, dass Sie die Bestellung löschen wollen?</h3>
+        <div class="delete-holder">
+            <div class="delete">Ja</div>
+            <div class="goback">Kein Fehler!</div>
+        </div>
+    </div>
+    <input type="hidden" name="userid"  value="{{this.order._id}}">
+    <input type="hidden" name="user"  value="{{this.order.user}}">
+    <input type="hidden" name="userMail"  value="{{this.order.email}}">
+    <input type="hidden" name="requser"  value="{{this.order.requser}}">
+    <div class="order-container">
+        <div class="inner-container-one">
+            <h3 id="h3">Bestellung:</h3>
             <div class="order-holder">
                 <div class="buns">
                 {{#each this.order.cart}}
+                <div>
+                    <p>
                     {{this}}
+                    </p>
+                </div>
                 {{/each}}
                 </div>
                 <div class="bun-amount">
                 {{#each this.order.amount}}
+                <div>
+                    <p>
                     {{this}}
+                    </p>
+                </div>
                 {{/each}}
                 </div>
             </div>
             <div class="code-holder">
-                {{#each this.order.code}}
-                    {{this}}
-                {{/each}}
+                <h3>Code:</h3>
+                <p>
+                {{this.order.code}}
+                </p>
             </div>
-        </div>
         <div class="chip-nr-container">
-            <p>Chip Nr:</p>
-            <div class="position">{{this.position}}</div>
+            <h3>Regal Nr:</h3>
+            <p>{{this.position}}</p>
         </div>
+        </div>
+        <div class="inner-container-two">
+            {{#if this.order.packed}}
+            {{else}}
+            <div class="confirm" id="confirm">Verpackt <i class="fas fa-check"></i></div>
+            <div class="failure" id="failure">Es ist ein Fehler unterlaufen</div>
+            {{/if}}
+        </div>
+        <input name="confirmer" class="confirmer" type="hidden" value=""/>
     </div>
+    </form>
     {{/each}}
 </div>
 
 <div class="impress">
-        <div class="impresscon">
-            <div class="sideopt "OnClick="location.href='/newsletter'">Newsletter bekommen</div>
-            <div OnClick="location.href='/impressum'">Impressum</div>
-            <div class="sideopt" OnClick="location.href='/mitgliedschaft'">Jetzt Partner werden</div>
-        </div>
+    <div class="impresscon">
+        <div class="sideopt "OnClick="location.href='/newsletter'">Newsletter bekommen</div>
+        <div OnClick="location.href='/impressum'">Impressum</div>
+        <div class="sideopt" OnClick="location.href='/mitgliedschaft'">Jetzt Partner werden</div>
     </div>
+</div>      
+
+<script type="text/javascript" src="/javascripts/mybakery.js"></script>

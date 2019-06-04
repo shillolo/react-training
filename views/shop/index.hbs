@@ -35,9 +35,7 @@
             <div class="mobile-menu">
                 <div class="break-top"></div>
                 <a class="drop drop1" href="/user/aufladen">Guthaben aufladen&nbsp;<i class="fas fa-bolt"></i></a>
-                <div class="mobile-break"></div>
                 <a class="drop" href="/user/profile">Profil&nbsp;<i class="fas fa-user-circle"></i></a>
-                <div class="mobile-break"></div>
                 <a class="drop" href="/user/logout">Logout&nbsp;<i class="fas fa-sign-out-alt"></i></a>
             </div>
             <div class="mobile-credit-break"></div>
@@ -91,8 +89,8 @@
                             
                             <a class="drop" href="/user/profile">Profil&nbsp;<i class="fas fa-user-circle"></i></a>
                             
-                            <a class="drop" href="/user/logout">Logout&nbsp;<i class="fas fa-sign-out-alt"></i></a>
-                            <div class="hrbr"></div>
+                            <a class="drop drop3" href="/user/logout">Logout&nbsp;<i class="fas fa-sign-out-alt"></i></a>
+                            <div class="hrbr br1"></div>
                             <div class="credit"><p>Guthaben: </p>{{credit}}  &#8364; </div>
                             </div>
                         </li>
@@ -128,6 +126,7 @@
     
     <div class="balken"><div class="errors">{{messages}}</div><div class="success">{{success}}</div></div>
 <div class="colorDiv">
+        <div class="premium">Premium</div>
     <div class="slideHeader">
         <h1>So funktioniert Brotritter</h1>
     </div>
@@ -187,10 +186,10 @@
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
     </div>
-    <div class="chargebtn"><div id="chargebtn">Guthaben aufladen</div></div>
+    <div class="chargebtn"><div id="chargebtn">Guthaben aufladen?</div></div>
     </div>
 
-    <div class="wrapper"data-parallax="scroll" data-image-src="../images/Home-Webseite-2.jpg"></div>
+    <div class="wrapper"data-parallax="scroll" data-image-src="../images/Home-Webseite-2.jpg"><h1 data-aos="fadeInUp" data-aos="zoom-in" data-aos-duration="500">Brötchen jetzt einfacher mit dem Brotritterkonto bestellen</h1></div>
 
 <div class="wrapper2" data-parallax="scroll">
         <div class="aligner">
@@ -274,15 +273,15 @@
     </div>
 </div>
 
-    <div class="impress">
-        <div class="impresscon">
-            <div class="sideopt "OnClick="location.href='/newsletter'">Newsletter bekommen</div>
-            <div class="sideopt hidopt" OnClick="location.href='/newsletter'">Newsletter </div>
-            <div><a href="/impressum">Impressum</a>&nbsp;/&nbsp;<a href="/datenschutz">Datenschutz</a></div>
-            <div class="sideopt" OnClick="location.href='/mitgliedschaft'">Jetzt Partner werden</div>
-            <div class="sideopt hidopt" OnClick="location.href='/newsletter'">Partnerschaft</div>
-        </div>
-    </div>
+<div class="impress">
+  <div class="impresscon">
+    <div class="sideopt "OnClick="location.href='/newsletter'">Newsletter bekommen</div>
+    <div class="sideopt hidopt" OnClick="location.href='/newsletter'">Newsletter </div>
+    <div><a href="/impressum">Impressum</a>&nbsp;/&nbsp;<a href="/datenschutz">Datenschutz</a></div>
+    <div class="sideopt" OnClick="location.href='/mitgliedschaft'">Jetzt Partner werden</div>
+    <div class="sideopt hidopt" OnClick="location.href='/mitgliedschaft'">Partnerschaft</div>
+  </div>
+</div>
 
 <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
 <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
@@ -305,5 +304,9 @@ window.cookieconsent.initialise({
   }
 })});
 </script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="https://cdn.jsdelivr.net/parallax.js/1.4.2/parallax.min.js"></script>
 <script type="text/javascript" src="javascripts/homepage.js"></script>
+<script>
+    AOS.init();
+  </script>

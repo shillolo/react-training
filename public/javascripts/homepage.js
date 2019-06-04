@@ -83,15 +83,24 @@ $('.wrapper').parallax({
 
 function changeColor(){
   var bodys = $(".colorDiv")
-  console.log(bodys.css('background-color'))
-  if (bodys.css('background-color') == "rgb(247, 247, 247)"){
-    bodys.css({backgroundColor: '#e4c48a'})
+  console.log(bodys.css('border'))
+  if (bodys.css('border-left') == "0px solid rgb(255, 153, 0)"){
+    bodys.css("border-left", "50px solid #ff9900");
+    bodys.css("border-right", "50px solid #ff9900");
     $("#bakery3").attr("src","../images/bakery1.png");
     $("#bakery3Main").attr("src","../images/bakery1.png");
+    $("#crownMode").css({backgroundColor: "white"});
+    $("#crownMode").css("color", "#ff9900");
+    $(".premium").css("display", "inline-block");
+    // $(".wrapper").css("margin-top", "500px");
   } else {
-    bodys.css({backgroundColor: '#f7f7f7'});
+    bodys.css("border-left", "0px solid #ff9900");
+    bodys.css("border-right", "0px solid #ff9900");
     $("#bakery3").attr("src","../images/bakery3.png");
     $("#bakery3Main").attr("src","../images/bakery3.png");
+    $("#crownMode").css({backgroundColor: "#ff9900"});
+    $("#crownMode").css("color", "white");
+    $(".premium").css("display", "none")
   }
 }
 
@@ -104,3 +113,5 @@ $(".closeinst").click(function(){
       display: "none"
   })
 })
+
+ScrollReveal({ reset: true }).reveal('.coool', { delay: 2100 });

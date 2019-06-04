@@ -11,12 +11,20 @@
 
 .dsvg-container h1,
 .dsvg-container h2{
-    padding: 20px;
-    text-decoration: underline
+    text-decoration: underline;
+}
+
+.dsvg-container h1{
+    margin-top: 120px;
+    margin-bottom: 20px
+}
+
+.dsvg-container h2{
+    margin-top: 40px
 }
 
 .dsvg-container h3{
-    padding-top: 20px
+    padding-top: 10px
 }
 
 .overdiv{
@@ -27,4 +35,12 @@
 
 .impress{
     margin-top: 100px
+}
+
+@media only screen and (max-device-width: 480px) {
+    .bild{
+        border-bottom: 7px solid #ff9900;
+        height: 700px;
+        max-height: 700px
+    }
 }

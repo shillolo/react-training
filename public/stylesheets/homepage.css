@@ -126,22 +126,38 @@ body{
     color: black
 }
 
+.premium{
+    padding: 10px 20px;
+    background-color: #ff9900;
+    /* display: inline-block;
+    clear:both; */
+    margin-left: 30px;
+    border-radius: 10px;
+    font-size: 1em;
+    display: none;
+    position: absolute;
+    margin-bottom: 30px;
+}
+
 .colorDiv{
+    position: relative;
     transition: 0.5s;
     padding-top: 100px;
     background-color: #f7f7f7;
     display: block;
     width: 100%;
+    border-left: 0px solid rgb(255, 153, 0);
+    box-sizing: border-box;
 }
 
 .chargebtn{
-    margin: 50px auto;
+    margin: 100px auto;
     margin-bottom: 0px;
     color: white;
     width: 100%;
     display: flex;
     justify-content: center;
-    padding-bottom: 50px
+    padding-bottom: 100px
 }
 
 .chargebtn div{
@@ -376,7 +392,8 @@ body{
     max-width: 400px;
       border: 1px solid black;
       padding: 5px;
-      height: 32px;
+      min-height: 32px;
+      height: auto;
       border-radius: 3px;
       outline: none;
     font-size: 1.2em;
@@ -390,7 +407,8 @@ body{
 .searchButton {  
         min-width: 136px;
         width: auto;
-        height: 44.8px;
+        min-height: 44.8px;
+        height: auto;
         border: 1px solid white;
         background: rgba( 12, 212, 98, 0.01 );
         text-align: center;
@@ -426,8 +444,18 @@ body{
     width: 100%;
     height: 300px; 
     background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.2em;
+    text-shadow: 1px 1px 1px rgb(116, 116, 116);
 }
 
+.wrapper[data-aos-duration='4000'] [data-aos],
+[data-aos][data-aos][data-aos-duration='4000']{
+    transition-duration: 8000ms;
+}
 
 .wrapper2{
     display: -webkit-box;
@@ -459,7 +487,7 @@ body{
     margin-left: 0;
     display: flex;
     padding: 45px 0 20px;
-    margin-top: 200px
+    margin-top: 100px
 }
 
 .align1,
@@ -544,8 +572,9 @@ body{
     margin-top: 10px;
     margin-bottom: 10px;
     color:  black;
-    font-size: 15px;
+    font-size: 13px;
     font-family: 'Ubuntu', sans-serif;
+    font-weight: 100
 }
 
 
@@ -660,8 +689,8 @@ ul{
     width: 80%;
     margin: 0 auto;
     background-color: #000;
-    margin-bottom: 200px;
-    margin-top: 200px
+    margin-bottom: 100px;
+    margin-top: 100px
 }
 
 .aboutCon .aboutHead{
@@ -697,6 +726,8 @@ ul{
     position: relative;
     min-height: 1px;
     width: 100%;
+    align-self: flex-start; 
+    margin-top: 40px
 }
 
 .paraImg{
@@ -731,7 +762,11 @@ ul{
     font-size: 35.4px;
     line-height: 1.18253;
     font-family: 'Roboto', sans-serif;
-    font-weight: 400;
+    font-weight: 700;
+}
+
+.blockPara div{
+    font-size: 0.9em
 }
 
 .m1{
@@ -1185,7 +1220,7 @@ font-family: 'Ubuntu', sans-serif;
 
 .numb{
     padding: 12px;
-    width: 18px;
+    width: 24px;
     margin-right: 260px;
     text-align: center;
     background-color:#0072f4;
@@ -1282,7 +1317,6 @@ font-family: 'Ubuntu', sans-serif;
     }
     .paraImg{
         width: 100%;
-        max-width: 70%;
         margin-top: 30px
     }
 }
@@ -1311,6 +1345,16 @@ font-family: 'Ubuntu', sans-serif;
     }
     .instruction{
         display: none
+    }
+    .innerPara{
+        align-self: center;
+        margin-top: 0px;
+        max-width: 90%;
+    }
+    .paraImg{
+        width: 100%;
+        max-width: 90%;
+        margin-top: 30px
     }
 /*
     .wrapper, .instruction{
@@ -1398,14 +1442,16 @@ font-family: 'Ubuntu', sans-serif;
       max-width: 60%;
       border: 1px solid black;
       padding: 5px;
-      height: 50px;
+      min-height: 50px;
+      height: auto;
       border-radius: 5px;
       outline: none;
         font-size: 1.5em;
         padding: 5px 23px
     }
      .searchButton{
-         height: 60px;
+         height: auto;
+         min-height: 60px;
          font-size: 1.5em;
          border: solid 3px white;
          border-radius: 5px
@@ -1526,6 +1572,12 @@ font-family: 'Ubuntu', sans-serif;
 }
 
  @media only screen and (max-device-width: 480px) {
+     .chargebtn{
+         font-size: 1.2em
+     }
+     .chargepop{
+         font-size: 1.2em
+     }
     .slideshow-container{
         margin-bottom: 100px
     }

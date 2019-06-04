@@ -10,7 +10,9 @@ html, body{
 }
 
 .overdiv{
-    margin-bottom: 40px
+    margin-bottom: 40px;
+    height: 100%;
+    max-height: 100%
 }
 
 .kontaktformular{
@@ -328,9 +330,6 @@ h1{
 }
 
 @media only screen and (min-width: 980px) {
-    .konto{
-        display: flex
-    }
     .mobile-konto{
         display: none
     }
@@ -360,7 +359,10 @@ h1{
     }
 }
 
-@media only screen and (max-device-width: 980px) {   
+@media only screen and (max-device-width: 980px) {
+    .hilfe{
+        margin-top: 2px
+    }   
     #f-bild{
         min-height: 400px;
         height: 400px
@@ -422,6 +424,9 @@ h1{
 
 
 @media only screen and (max-device-width: 480px) {
+    .hilfe{
+        margin-top: 7px
+    } 
     #in1, #in2{
         font-size: 1.7em
     }

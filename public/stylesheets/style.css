@@ -2,6 +2,8 @@
 *{
     margin: 0;
     font-family: 'Ubuntu', sans-serif;
+    line-height: 1.5em;
+    letter-spacing: 1px
 }
 
 
@@ -539,6 +541,10 @@ body{
     to {top:0; opacity:1}
 }
 
+.mobile-container{
+    margin: auto 0
+}
+
 .btn {
   display: inline-block;
   padding: 6px 12px;
@@ -655,9 +661,13 @@ fieldset[disabled] .btn-default.active {
 
 .drop{
     font-weight: 400;
-    height: 20px;
     cursor: pointer;
-    padding: 7px 0px
+    padding: 10px 0px;
+    border-bottom: solid 2px black
+}
+
+.drop3{
+    border-bottom: solid 0px black
 }
 
 .konto:hover .konto1,
@@ -711,6 +721,7 @@ fieldset[disabled] .btn-default.active {
 
 .hrbr{
     margin: 10px auto;
+    margin-top: 10px;
     height: 3px;
     background-color: black;
     width: 100%
@@ -1176,69 +1187,6 @@ label{
     margin-top: 10px
 }
 
-input[type="radio"] {
-	{
-		color: white;
-		font-weight: bold;
-		font-size: 1rem;
-		cursor: pointer;
-		-webkit-user-select: none;
-		   -moz-user-select: none;
-		    -ms-user-select: none;
-		        user-select: none;
-		padding-left: 20px;
-		padding-right: 20px;
-		&::before {
-			-webkit-transition: all 250ms cubic-bezier(.4,.25,.3,1);
-			-o-transition: all 250ms cubic-bezier(.4,.25,.3,1);
-			transition: all 250ms cubic-bezier(.4,.25,.3,1);
-			content: "";
-			width: 30px;
-			height: 30px;
-			border-radius: 50%;
-			background-color: white;
-			border: 0px solid white;
-			font-size: 06;
-			position: absolute;
-			bottom: 275%;
-			left: 50%;
-			-webkit-transform: translate(-50%, 50%);
-			    -ms-transform: translate(-50%, 50%);
-			        transform: translate(-50%, 50%);
-		}
-		
-		&::after {
-			-webkit-transition: all 250ms cubic-bezier(.4,.25,.3,1);
-			-o-transition: all 250ms cubic-bezier(.4,.25,.3,1);
-			transition: all 250ms cubic-bezier(.4,.25,.3,1);
-			content: "";
-			width: 0;
-			height: 0;
-			border-radius: 50%;
-			background-color: white;
-			position: absolute;
-			bottom: 275%;
-			left: 50%;
-			-webkit-transform: translate(-50%, 50%);
-			    -ms-transform: translate(-50%, 50%);
-			        transform: translate(-50%, 50%);
-		}
-	}
-	&:checked + label{
-		&::before {
-			background-color: transparent;
-			width: 40px;
-			height: 40px;
-			border-width: 2px;
-		}
-		
-		&::after {
-			width: 30px;
-			height: 30px;
-		}
-	}
-}
-
 .mobile-popup{
     display: none
 }
@@ -1262,7 +1210,7 @@ input[type="radio"] {
     font-size: 1rem;
     cursor: pointer;
     text-align: center;
-    transition: background 250ms ease-in-out, 
+    transition: 250ms ease-in-out, 
                 transform 150ms ease;
     font-weight: 500;
     border-radius: 5px
@@ -1334,6 +1282,9 @@ input[type="radio"] {
 }
 
 @media only screen and (max-width: 980px) {
+    #mobile-popup .drop{
+        padding: 40px;
+    }
     .sideopt{
         display: none
     }

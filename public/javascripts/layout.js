@@ -20,13 +20,15 @@ var mobileKonto = document.getElementById("mobile-konto");
 
 if (mobileClose){
     mobileClose.onclick = function() {
-        mobilePop.style.display = "none"
+        mobilePop.style.display = "none";
+        $("body").css({"overflow-y": "auto"})
     }
 }
 
 if (mobileKonto){
     mobileKonto.onclick = function() {
-        mobilePop.style.display = "block"
+        mobilePop.style.display = "block";
+        $("body").css({"overflow-y": "hidden"})
     }
 }
 
