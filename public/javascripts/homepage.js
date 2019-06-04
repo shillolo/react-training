@@ -87,8 +87,8 @@ function changeColor(){
   if (bodys.css('border-left') == "0px solid rgb(255, 153, 0)"){
     bodys.css("border-left", "50px solid #ff9900");
     bodys.css("border-right", "50px solid #ff9900");
-    $("#bakery3").attr("src","../images/bakery1.png");
-    $("#bakery3Main").attr("src","../images/bakery1.png");
+    $("#bakery3").attr("src","../images/bakery3King.png");
+    $("#bakery3Main").attr("src","../images/bakery3King.png");
     $("#crownMode").css({backgroundColor: "white"});
     $("#crownMode").css("color", "#ff9900");
     $(".premium").css("display", "inline-block");

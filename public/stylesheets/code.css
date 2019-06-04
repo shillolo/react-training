@@ -41,9 +41,8 @@ html, body{
 }
 
 .bakerypic{
-    width: 500px;
-    height: 116px;
-    background-image: url(../images/cropped-B%C3%A4ckermeister-Haferkamp-3-gestaucht.png);
+    width: auto;
+    height: 216px;
     background-size: cover
 }
 
@@ -564,6 +563,10 @@ body{
     justify-content: center;
     align-items: center;
     height: auto;
+}
+
+.receive-border{
+    width: 500px;
 }
 
 .order-border{

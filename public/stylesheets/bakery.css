@@ -11,7 +11,7 @@ html, body{
 }
 
 .bild{
-    height: 370px;
+    height: auto;
     background-image: url(../images/BrotritterBakery1.jpg);
     width: 100%
 }
@@ -73,13 +73,17 @@ select::-ms-expand {
     cursor: pointer
 }
 
-.nummer3{
-    background-image: url(../images/cropped-B%C3%A4ckermeister-Haferkamp-3-gestaucht.png);
-    width: 413px;
-    height: 97px;
+.nummer2{
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+.nummer2 img{
+    width: 100%;
+    height: auto;
     background-size: cover;
-    -webkit-box-shadow: 1px 3px 7px black;
-            box-shadow: 1px 3px 7px black
+
 }
 
 .content{
