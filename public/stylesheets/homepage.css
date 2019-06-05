@@ -7,7 +7,7 @@
 body{
   font-family: 'Open Sans', sans-serif;
   margin: 0;
-    background-color: #f7f7f7;
+    background-color: #f8f8f8;
     color: white;
     min-height: 100%;
     height: auto;
@@ -126,23 +126,23 @@ body{
     color: black
 }
 
-.premium{
+/* .premium{
     padding: 10px 20px;
     background-color: #ff9900;
     /* display: inline-block;
-    clear:both; */
+    clear:both; 
     margin-left: 30px;
     border-radius: 10px;
     font-size: 1em;
     display: none;
     position: absolute;
     margin-bottom: 30px;
-}
+} */
 
 .colorDiv{
     position: relative;
     transition: 0.5s;
-    padding-top: 100px;
+    padding-top: 50px;
     background-color: #f7f7f7;
     display: block;
     width: 100%;
@@ -442,14 +442,16 @@ body{
 
 .wrapper{
     width: 100%;
-    height: 300px; 
+    height: 600px; 
     background: transparent;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: 1.2em;
-    text-shadow: 1px 1px 1px rgb(116, 116, 116);
+    font-size: 1.3em;
+    text-shadow: 1px 1px 1px rgb(223, 223, 223);
+    color: #ffffff38;
+
 }
 
 .wrapper[data-aos-duration='4000'] [data-aos],
@@ -527,6 +529,7 @@ body{
     font-size: 28px;
     font-weight: 600;
     text-align: center;
+    padding-top: 20px
 }
 
 .closeinst{
@@ -572,8 +575,8 @@ body{
     margin-top: 10px;
     margin-bottom: 10px;
     color:  black;
-    font-size: 13px;
-    font-family: 'Ubuntu', sans-serif;
+    font-size: 0.9em;
+    font-family: 'Open Sans', sans-serif;
     font-weight: 100
 }
 
@@ -1149,11 +1152,11 @@ font-family: 'Ubuntu', sans-serif;
   margin-top: -90px;
   color: white;
   font-weight: bold;
-  font-size: 58px;
+  font-size: 48px;
   -webkit-transition: 0.6s ease;
   -o-transition: 0.6s ease;
   transition: 0.6s ease;
-  border-radius: 3px 0px 0px 3px;
+  border-radius: 2px 0px 0px 2px;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -1198,7 +1201,8 @@ font-family: 'Ubuntu', sans-serif;
 }
 
 .dotSlides{
-    margin: 20px 0px
+    margin: 20px 0px;
+    margin-top: 50px
 }
 
 /* Number text (1/3 etc) */
@@ -1233,6 +1237,19 @@ font-family: 'Ubuntu', sans-serif;
     margin-top: 20px;
     color: #000;
     font-family: 'Ubuntu', sans-serif;
+    display: flex;
+}
+
+.highEnd{
+    color: #ff9900;
+    display: none
+}
+
+.slideHeader div{
+    /* display: flex; */
+    margin: 0 auto;
+    font-weight: 600;
+    font-size: 2em
 }
 
 /* The dots/bullets/indicators */
@@ -1297,10 +1314,33 @@ font-family: 'Ubuntu', sans-serif;
 }
 
 @media only screen and (max-width: 1300px) {
+    .conslide img{
+        width: 280px
+    }
+    .conslide{
+        font-size: 0.9em
+    }
+    .numb{
+        padding: 9px;
+        width: 24px;
+        margin-right: 260px;
+        text-align: center;
+        background-color:#0072f4;
+        border-radius: 50%
+    }
+}
+
+@media only screen and (max-width: 1050px) {
     .number-con, .info-con{
         display: none
     }
     .wrapper2{
+        display: none
+    }
+}
+
+@media only screen and (min-width: 1050px) {
+    .dotSlides, .slideshow-container, .alignshow-container{
         display: none
     }
 }
@@ -1490,7 +1530,7 @@ font-family: 'Ubuntu', sans-serif;
           width: 1em;
      }
      .textSlider{
-         font-size: 1.5em
+         font-size: 1.25em
      }
      .slideHeader{
          font-size: 1em;
@@ -1552,14 +1592,12 @@ font-family: 'Ubuntu', sans-serif;
          border: solid 3px white;
          border-radius: 5px
      }
-     .align1 div, .align2 div, .align3 div{
-         font-size: 1.7em
-     }
      .align1 h1, .align2 h1, .align3 h1{
          font-size: 2.5em
      }
-     .align1 p, .align2 p, .align3 p{
-         font-size: 1.1em
+     .align1 p, .align2 p, .align3 p,
+     .align1 b, .align2 b, .align3 b{
+         font-size: 1.2em
      }
      .aligner i, .align i{
         width: 80px;
@@ -1569,11 +1607,14 @@ font-family: 'Ubuntu', sans-serif;
         align-items: center;
         font-size: 2.5em
     }
+    .aboutPara{
+        font-size: 1.3em
+    }
 }
 
  @media only screen and (max-device-width: 480px) {
      .chargebtn{
-         font-size: 1.2em
+         font-size: 1.4em
      }
      .chargepop{
          font-size: 1.2em
@@ -1688,4 +1729,18 @@ font-family: 'Ubuntu', sans-serif;
      .impress{
          margin-top: 0px
      }
+     .align1 p, .align2 p, .align3 p,
+     .align1 b, .align2 b, .align3 b{
+         font-size: 1.4em
+     }
+
+    .aboutPara{
+        font-size: 1.5em
+    }
+    .wrapper{
+        font-size: 1.6em
+    }
+    .slideHeader{
+        font-size: 1.7em
+    }
 }   

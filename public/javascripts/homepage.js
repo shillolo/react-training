@@ -82,20 +82,19 @@ $('.wrapper').parallax({
 })
 
 function changeColor(){
-  var bodys = $(".colorDiv")
-  console.log(bodys.css('border'))
-  if (bodys.css('border-left') == "0px solid rgb(255, 153, 0)"){
-    bodys.css("border-left", "50px solid #ff9900");
-    bodys.css("border-right", "50px solid #ff9900");
+  var bodys = $(".highEnd")
+  console.log(bodys.css('color'))
+  if (bodys.css('display') == "none"){
+    bodys.css('display', "inline");
+    bodys.css('color', "#ff9900");
     $("#bakery3").attr("src","../images/bakery3King.png");
     $("#bakery3Main").attr("src","../images/bakery3King.png");
     $("#crownMode").css({backgroundColor: "white"});
     $("#crownMode").css("color", "#ff9900");
-    $(".premium").css("display", "inline-block");
     // $(".wrapper").css("margin-top", "500px");
   } else {
-    bodys.css("border-left", "0px solid #ff9900");
-    bodys.css("border-right", "0px solid #ff9900");
+    bodys.css('display', "none");
+    bodys.css('color', "black");
     $("#bakery3").attr("src","../images/bakery3.png");
     $("#bakery3Main").attr("src","../images/bakery3.png");
     $("#crownMode").css({backgroundColor: "#ff9900"});
@@ -114,4 +113,4 @@ $(".closeinst").click(function(){
   })
 })
 
-ScrollReveal({ reset: true }).reveal('.coool', { delay: 2100 });
+ScrollReveal({ reset: true }).reveal('.coool', { delay: 22100 });
