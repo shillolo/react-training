@@ -43,7 +43,7 @@ var mailer = nodemailer.createTransport({
 });
 
 mailer.use('compile',hbs({
-    viewPath: './views/email',
+    viewPath: 'views/email',
     extName: '.hbs'
 }))
 
@@ -255,30 +255,7 @@ router.post('/newsletter', function(req, res, next) {
         address: req.body.postleitzahl
     })
     newsletter.save(function(err, result) {
-    mailer.sendMail({
-        from: 'service@brotritter.de',
-        to: req.body.email,
-        subject: "Brotritter Newsletter",
-        template: 'newsletter',
-        context: {
-            postleitzahl: req.body.postleitzahl,
-            email: req.body.email,
-        },
-        attachments: [{
-            filename: 'bakery1.png',
-            path: './public/images/bakery1.png',
-            cid: "bakery"
-        }],
-    },function (err, response){
-        if(err){
-            console.log(err)
-            req.flash("error", "Ihre Anfrage konnte nicht verarbeitet werden. Bitte versuchen sie es erneut");
-            res.redirect("/")
-        } else {
-            req.flash("success", "Ihre Anfrage wird verarbeitet und wir werden uns in Kürze bei ihnen melden");
-            res.redirect("/");
-        }
-    })
+     res.redirect("/")
     })
 })
 
