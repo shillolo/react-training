@@ -31,11 +31,11 @@ var Sofort = new (require('node-sofort'))({
 });
 
 var mailer = nodemailer.createTransport({
-    host: 'az1-ss7.a2hosting.com',
+    host: 'smtp.fastmail.com',
     port: 465,
     auth: {
         user: 'service@brotritter.de',
-        pass: 'aWhcJ5S'
+        pass: 'b4zs6mcmgjxhu9le'
     },
     tls:{
         rejectUnauthorized:false
