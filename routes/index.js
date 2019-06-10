@@ -257,7 +257,7 @@ router.post('/newsletter', function(req, res, next) {
     newsletter.save(function(err, result) {
     mailer.sendMail({
         from: 'service@brotritter.de',
-        to: "req.body.email",
+        to: "darren.igb@web.de",
         subject: "Brotritter Newsletter",
         template: 'newsletter',
     },function (err, response){
