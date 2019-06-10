@@ -43,7 +43,7 @@ var mailer = nodemailer.createTransport({
 });
 
 mailer.use('compile',hbs({
-    viewPath: '/views/email',
+    viewPath: './views/email',
     extName: '.hbs'
 }))
 
