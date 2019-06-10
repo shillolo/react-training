@@ -255,7 +255,21 @@ router.post('/newsletter', function(req, res, next) {
         address: req.body.postleitzahl
     })
     newsletter.save(function(err, result) {
-     res.redirect("/")
+    mailer.sendMail({
+        from: 'service@brotritter.de',
+        to: "req.body.email",
+        subject: "Brotritter Newsletter",
+        template: 'newsletter',
+    },function (err, response){
+        if(err){
+            console.log(err)
+            req.flash("error", "Ihre Anfrage konnte nicht verarbeitet werden. Bitte versuchen sie es erneut");
+            res.redirect("/")
+        } else {
+            req.flash("success", "Ihre Anfrage wird verarbeitet und wir werden uns in Kürze bei ihnen melden");
+            res.redirect("/");
+        }
+    })
     })
 })
 
