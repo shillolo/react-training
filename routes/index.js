@@ -43,7 +43,7 @@ var mailer = nodemailer.createTransport({
 });
 
 mailer.use('compile',hbs({
-    viewPath: 'views/email',
+    viewPath: '/views/email',
     extName: '.hbs'
 }))
 
@@ -1228,71 +1228,71 @@ router.post("/bakery", function(req, res, next) {
     }
 })
 
-router.post('/checkout', function(req, res, next) {
-    if(!req.session.var1) {
-        return res.redirect('/');
-    }
+// router.post('/checkout', function(req, res, next) {
+//     if(!req.session.var1) {
+//         return res.redirect('/');
+//     }
         
-    var stripe = require("stripe")(
-        "sk_live_IO6Ha8nD2fBrJDZDji9g2PwW"
-    );
+//     var stripe = require("stripe")(
+//         "sk_live_IO6Ha8nD2fBrJDZDji9g2PwW"
+//     );
 
-    stripe.charges.create({
-      amount: Math.round(req.session.var4*100),
-      currency: "eur",
-      source: req.body.stripeToken, // obtained with Stripe.js
-      description: "Charge for jenny.rosen@example.com"
-    }, function(err, charge) {
-      if (err) {
-          req.flash('error', err.message);
-          return res.redirect('checkout');
-      } else {
-            console.log(req.session.user_email)
-            var order = new Order({
-                                requser: req.session.user_email,
-                                cart: req.session.var2,
-                                amount: req.session.var3,
-                                total: req.session.var4,
-                                code: req.session.var1,
-                                date: req.session.var5,
-                                parsedDate: req.session.var6,
-                                today: new Date()
-                            })
-            order.save(function(err, result) {
-                req.session.code = req.session.var1;
-                req.session.cart = req.session.var2;
-                req.session.amount = req.session.var3;
-                req.session.total = parseFloat(Math.round(req.session.var4 * 100) / 100).toFixed(2);
-                req.session.date = req.session.var5;
-                req.session.parsedDate = req.session.var6;
-                req.session.var1 = false;
-                req.session.var2 = false;
-                req.session.var3 = false;
-                req.session.var4 = false;
-                req.session.var5 = false;
-                req.session.var6 = false;
-                req.flash("success", 'Die Bestellung wurde erfolgreich abgeschlossen');
-                mailer.sendMail({
-                    from: 'service@brotritter.de',
-                    to:  req.session.user_email,
-                    subject: "Bestellung Brotritter",
-                    template: 'success',
-                    context: {
-                        code: req.session.code,
-                        date: req.session.parsedDate
-                    }
-                },function (err, response){
-                    if(err){
-                        res.send("bad email");
-                        console.log(err)
-                    } else {
-                        res.redirect("code")
-                    }
-                })
-            });
-        }
-    });
-})
+//     stripe.charges.create({
+//       amount: Math.round(req.session.var4*100),
+//       currency: "eur",
+//       source: req.body.stripeToken, // obtained with Stripe.js
+//       description: "Charge for jenny.rosen@example.com"
+//     }, function(err, charge) {
+//       if (err) {
+//           req.flash('error', err.message);
+//           return res.redirect('checkout');
+//       } else {
+//             console.log(req.session.user_email)
+//             var order = new Order({
+//                                 requser: req.session.user_email,
+//                                 cart: req.session.var2,
+//                                 amount: req.session.var3,
+//                                 total: req.session.var4,
+//                                 code: req.session.var1,
+//                                 date: req.session.var5,
+//                                 parsedDate: req.session.var6,
+//                                 today: new Date()
+//                             })
+//             order.save(function(err, result) {
+//                 req.session.code = req.session.var1;
+//                 req.session.cart = req.session.var2;
+//                 req.session.amount = req.session.var3;
+//                 req.session.total = parseFloat(Math.round(req.session.var4 * 100) / 100).toFixed(2);
+//                 req.session.date = req.session.var5;
+//                 req.session.parsedDate = req.session.var6;
+//                 req.session.var1 = false;
+//                 req.session.var2 = false;
+//                 req.session.var3 = false;
+//                 req.session.var4 = false;
+//                 req.session.var5 = false;
+//                 req.session.var6 = false;
+//                 req.flash("success", 'Die Bestellung wurde erfolgreich abgeschlossen');
+//                 mailer.sendMail({
+//                     from: 'service@brotritter.de',
+//                     to:  req.session.user_email,
+//                     subject: "Bestellung Brotritter",
+//                     template: 'success',
+//                     context: {
+//                         code: req.session.code,
+//                         date: req.session.parsedDate
+//                     }
+//                 },function (err, response){
+//                     if(err){
+//                         res.send("bad email");
+//                         console.log(err)
+//                     } else {
+//                         res.redirect("code")
+//                     }
+//                 })
+//             });
+//         }
+//     });
+// })
 
 router.get('/success', isAuth, function(req, res, next) {
     var payerId = req.query.PayerID;
