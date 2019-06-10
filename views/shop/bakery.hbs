@@ -86,10 +86,18 @@
             <div>
                 <h4>Abholzeit angeben</h4>
                 <br>
-                <p>Ihre Brötchen werden ab der gewählten Uhrzeit in der Bäckerei ausliegen. Je früher sie ihre Brötchen abhloen, desto frischer sind diese.</p>
+                <p>I hre Brötchen werden ab der gewählten Uhrzeit in der Bäckerei ausliegen. Je früher sie ihre Brötchen abhloen, desto frischer sind diese.</p>
             </div>
         </div>
         <div id="datepop" class="datepop">
+            <i class="fas fa-times close popclose" id="popclose2"></i>
+            <div>
+                <h4>Abholdatum</h4>
+                <br>
+                <p>Bestellungen müssen leider einen Tag im vorraus getätigt werden.</p>
+            </div>
+        </div>
+        <div id="feepop" class="datepop">
             <i class="fas fa-times close popclose" id="popclose2"></i>
             <div>
                 <h4>Abholdatum</h4>
@@ -134,7 +142,8 @@
                         <div class="total-price">
                             <p>Gesamtsumme:</p>
                             <div>
-                                <p id="total-price"></p>&nbsp;&#8364;
+                                <p id="unreal-total"></p>
+                                <p id="total-price" style="display: none"></p>&nbsp;&#8364;
                             </div>
                         </div>
                         <div class="sprice" id="sprice"></div>
@@ -184,16 +193,19 @@
                     <div class="sorder-container">
                         <div class="sorder" name="sorder" id="sorder"></div>
                         <hr>
+                        <div class="service">Servicekosten<p>+ 0,46&nbsp;&#8364;</p></div>
                         <div class="total-price">
                             <p>Gesamtsumme:</p>
                             <div>
-                                <p id="total-price"></p>&nbsp;&#8364;
+                                <p id="unreal-total"></p>
+                                <p id="total-price" style="display: none"></p>&nbsp;&#8364;
                             </div>
                         </div>
                         <div class="sprice" id="sprice"></div>
                         <input type="hidden" id="getnumber" name="getnumber" value="">
                         <input type="hidden" name="_csrf" value="{{ csrfToken }}">
                     </div>
+                    <div class="noCost" id="nocost" title="Ohne Servicekosten?">Schneller ohne Servicekosten bezahlen?</div>
                     <button type="button" id="button1" class="loginbutton btn continuebtn">Bestätigen</button>
                 </div>
                 <div class="scontainer-box box2" id="box2">
@@ -319,7 +331,7 @@
                 <i class="fas fa-trash-alt" id="trashcan"></i>      
             </div>
             <div class="shopping-cart-header" id="shopping-cart-header"><h3>Warenkorb&nbsp;</h3><i class="fas fa-shopping-cart"><span class="badge" id="cart-badge">0</span></i></div>
-            <div class="cart-price" id="cart-price">0.00 &#8364;</div>
+            <div class="cart-price" id="cart-price">0,00 &#8364;</div>
         </div>
     </div>
     
@@ -343,7 +355,8 @@
                         <div class="productinfo">
                             <div class="iname">{{this.title}}</div>
                             <div class="iprice">
-                                <div class="tprice">{{this.price}}</div>&#8364;
+                                <div class="tprice">{{this.ofprice}}</div>&nbsp;&#8364;
+                                <div class="realprice" style="display: none">{{this.price}}</div>
                             </div>
                         </div>
                     </div>
@@ -369,7 +382,8 @@
                         <div class="productinfo">
                             <div class="iname">{{this.title}}</div>
                             <div class="iprice">
-                                <div class="tprice">{{this.price}}</div>&#8364;
+                                <div class="tprice">{{this.ofprice}}</div>&nbsp;&#8364;
+                                <div class="realprice" style="display: none">{{this.price}}</div>
                             </div>
                         </div>
                     </div>
@@ -395,7 +409,8 @@
                         <div class="productinfo">
                             <div class="iname">{{this.title}}</div>
                             <div class="iprice">
-                                <div class="tprice">{{this.price}}</div>&#8364;
+                                <div class="tprice">{{this.ofprice}}</div>&nbsp;&#8364;
+                                <div class="realprice" style="display: none">{{this.price}}</div>
                             </div>
                         </div>
                     </div>
@@ -421,7 +436,8 @@
                         <div class="productinfo">
                             <div class="iname">{{this.title}}</div>
                             <div class="iprice">
-                                <div class="tprice">{{this.price}}</div>&#8364;
+                                <div class="tprice">{{this.ofprice}}</div>&nbsp;&#8364;
+                                <div class="realprice" style="display: none">{{this.price}}</div>
                             </div>
                         </div>
                     </div>
@@ -447,7 +463,8 @@
                         <div class="productinfo">
                             <div class="iname">{{this.title}}</div>
                             <div class="iprice">
-                                <div class="tprice">{{this.price}}</div>&#8364;
+                                <div class="tprice">{{this.ofprice}}</div>&nbsp;&#8364;
+                                <div class="realprice" style="display: none">{{this.price}}</div>
                             </div>
                         </div>
                     </div>
@@ -478,7 +495,7 @@
                         </div>
                         <div class="sum">
                         <p class="schrift">Gesamtsumme:</p>
-                        <div class="price"><div class="number" id="number">0.00</div>Euro</div>
+                        <div class="price"><div id="number" style="display: none">0.00</div><div class="number" id="realnumber">0,00</div>Euro</div>
                         </div>
                     </div>
                     <div class="delete" id="delete"><i class="fas fa-trash-alt" id="trashbag"></i></div>

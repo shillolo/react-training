@@ -79,6 +79,13 @@ select::-ms-expand {
     margin: 0 auto;
 }
 
+.service{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 0.9em
+}
+
 .nummer2 img{
     width: 100%;
     height: auto;
@@ -602,9 +609,9 @@ select::-ms-expand {
     width: 70%;
     max-width: 300px;
     padding: 20px 10%;
-    margin-top: 80px;
+    margin-top: 50px;
     border: 2px solid #ff9900;
-    margin-bottom: 30px
+    margin-bottom: 40px
 }
 
 .total-price p{
@@ -670,11 +677,15 @@ select::-ms-expand {
     display: none
 }
 
+#button1{
+    margin-top: 60px
+}
+
 .total-price{
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    margin-top: 10px;
+    margin-top: 0px;
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between
@@ -684,6 +695,17 @@ select::-ms-expand {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex
+}
+
+.noCost{
+    color: black;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: 0.3s
+}
+
+.noCost:hover{
+    color: #ff9900
 }
 
 .sorder-container hr{
@@ -1779,6 +1801,15 @@ question-con{
 }
 
 @media only screen and (max-device-width: 520px) {
+    #button1{
+        margin-top: 60px
+    }
+    .noCost{
+        font-size: 0.9em
+    }
+    .service{
+        font-size: 0.8em
+    }
     .hilfe{
         margin-top: 15px
     }
@@ -1880,7 +1911,7 @@ question-con{
     }
     .sorder-container{
         border-radius: 20px;
-        width: 100%;
+        width: 80%;
         max-width: 100%;
         padding: 40px 10%;
         border: 4px solid #ff9900;

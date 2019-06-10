@@ -15,6 +15,7 @@ var schema = new Schema({
     imagePath: String,
     title: String,
     price: Number,
+    ofprice: String,
     ingredients: Object
 });
 

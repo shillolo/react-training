@@ -18,17 +18,20 @@ var bakerys = [,
     buns: [{
             imagePath: '../images/weltmeister.jpg',
             title: "Weltmeister",
-            price: 0.32
+            price: 0.32,
+            ofprice: "0,32"
             },
             {
             imagePath: '../images/weltmeister.jpg',
             title: "Normales",
-            price: 0.52
+            price: 0.52,
+            oprice: "0,52"
             },
             {
             imagePath: '../images/weltmeister.jpg',
             title: "Croissant",
-            price: 0.82
+            price: 0.82,
+            oprice: "0,82"
           }],
     address: "Ulru"
     }),
@@ -38,18 +41,21 @@ var bakerys = [,
     buns: [{
             imagePath: '../images/weltmeister.jpg',
             title: "Weltmeister",
-            price: 0.32
+            price: 0.32,
+            ofprice: "0,32"
             },
             {
             imagePath: '../images/weltmeister.jpg',
             title: "Normales",
-            price: 0.52
+            price: 0.52,
+            oprice: "0,52"
             },
             {
             imagePath: '../images/weltmeister.jpg',
             title: "Croissant",
-            price: 0.82
-          }],
+            price: 0.82,
+            oprice: "0,82"
+            }],
     address: "Ulru"
     }),
     new Bakery({
@@ -58,18 +64,21 @@ var bakerys = [,
     buns: [{
             imagePath: '../images/weltmeister.jpg',
             title: "Weltmeister",
-            price: 0.32
+            price: 0.32,
+            ofprice: "0,32"
             },
             {
             imagePath: '../images/weltmeister.jpg',
             title: "Normales",
-            price: 0.52
+            price: 0.52,
+            oprice: "0,52"
             },
             {
             imagePath: '../images/weltmeister.jpg',
             title: "Croissant",
-            price: 0.82
-          }],
+            price: 0.82,
+            oprice: "0,82"
+            }],
     address: "Ulru"
     }),
 ];

@@ -17,7 +17,8 @@
 <div class="balken"><div class="errors">{{errors}}</div><div class="success">{{success}}</div></div>
 
 <div class="orders">
-    <div class="section"><p>HEUTIGE BESTELLUNGEN</p><i class="fas fa-angle-down"></i></div>
+    <div class="section">HEUTIGE BESTELLUNGEN</div>
+    {{#if order}}
     {{#each order}}
     <form class="order" action="/mybakery" method="post">
     <div class="deleter">
@@ -56,13 +57,11 @@
             </div>
             <div class="code-holder">
                 <h3>Code:</h3>
-                <p>
                 {{this.order.code}}
-                </p>
             </div>
         <div class="chip-nr-container">
             <h3>Regal Nr:</h3>
-            <p>{{this.position}}</p>
+            {{this.position}}
         </div>
         </div>
         <div class="inner-container-two">
@@ -76,6 +75,9 @@
     </div>
     </form>
     {{/each}}
+    {{else}}
+    <div class="none">Heute keine Bestellungen</div>
+    {{/if}}
 </div>
 
 <div class="impress">

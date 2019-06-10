@@ -14,10 +14,39 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 var buns = [,
     new Bun({
     imagePath: '../images/weltmeister.jpg',
-    title: 'Normales',
-    price: 0.32,
+    title: 'Weltmeister',
+    price: 0.67,
+    ofprice: "0,67",
     ingredients: ["Weizenmehl", "Wasser", "Salz"]
     }),
+    new Bun({
+    imagePath: '../images/weltmeister.jpg',
+    title: 'Croissant',
+    price: 0.82,
+    ofprice: "0,82",
+    ingredients: ["Weizenmehl", "Wasser", "Salz"]
+    }),
+    new Bun({
+        imagePath: '../images/weltmeister.jpg',
+        title: 'Normales',
+        price: 0.32,
+        ofprice: "0,32",
+        ingredients: ["Weizenmehl", "Wasser", "Salz"]
+        }),
+        new Bun({
+        imagePath: '../images/weltmeister.jpg',
+        title: 'Weltmeister',
+        price: 0.67,
+        ofprice: "0,67",
+        ingredients: ["Weizenmehl", "Wasser", "Salz"]
+        }),
+        new Bun({
+        imagePath: '../images/weltmeister.jpg',
+        title: 'Normales',
+        price: 0.32,
+        ofprice: "0,32",
+        ingredients: ["Weizenmehl", "Wasser", "Salz"]
+        }),
 ];
 
 for (var i = 1; i < buns.length; i++) {

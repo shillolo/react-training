@@ -263,9 +263,15 @@ router.post('/newsletter', function(req, res, next) {
         context: {
             postleitzahl: req.body.postleitzahl,
             email: req.body.email,
-        }
+        },
+        attachments: [{
+            filename: 'bakery1.png',
+            path: './public/images/bakery1.png',
+            cid: "bakery"
+        }],
     },function (err, response){
         if(err){
+            console.log(err)
             req.flash("error", "Ihre Anfrage konnte nicht verarbeitet werden. Bitte versuchen sie es erneut");
             res.redirect("/")
         } else {
@@ -682,7 +688,7 @@ router.get('/bakery', isAuth, function(req, res, next) {
     } else {
         var credit = parseFloat(Math.round((data.credit) * 100) / 100).toFixed(2)
     }
-    res.render('shop/bakery', {csrfToken: req.csrfToken(), messages: messages, credit: credit, hasErrors: messages.lenght > 0, products: productChunks, hey: "hey", successMsg: successMsg, noMessages: !successMsg})
+    res.render('shop/bakery', {csrfToken: req.csrfToken(), messages: messages, credit: credit, hasErrors: messages.lenght > 0, products: productChunks, successMsg: successMsg, noMessages: !successMsg})
     })
     })
 })
@@ -741,6 +747,7 @@ router.post("/bakery", function(req, res, next) {
                     var parsedDate = datepicker;
                     }  
                 // Mon May 31 2010 00:00:00
+                console.log(req.body.getnumber)
                     if (req.body.getnumber == 1) {
                         Bun.findOne({title: req.body.getname}).exec(function(err, data) {
                             if (!data) {
@@ -805,6 +812,7 @@ router.post("/bakery", function(req, res, next) {
                                         }
                                     });
                                 } else {
+                                    var total = parseFloat(Math.round((total -(-0.46)) * 100) / 100).toFixed(2);
                                     if (bakePost === "Paypal"){
                                         console.log(bakePost)
                                         var create_payment_json = {
@@ -987,6 +995,8 @@ router.post("/bakery", function(req, res, next) {
                                                 code_error()
                                            }
                                         } else {
+                                            console.log(broname)
+                                            console.log(req.body[broname])
                                             total -= -data.price * req.body[broname]
                                             counter++;
                                             productorder.push(broname);
@@ -1048,6 +1058,9 @@ router.post("/bakery", function(req, res, next) {
                                                       }
                                                     });
                                                 } else {
+                                                    console.log(total)
+                                                    var totalPrice =  parseFloat(Math.round((total -(-0.46)) * 100) / 100).toFixed(2);
+                                                    console.log(totalPrice)
                                                     if (bakePost === "Paypal"){
                                                         console.log(bakePost)
                                                         var create_payment_json = {
@@ -1064,14 +1077,14 @@ router.post("/bakery", function(req, res, next) {
                                                                     "items": [{
                                                                         "name": "Bestellung",
                                                                         "sku": "001",
-                                                                        "price": parseFloat(Math.round(total * 100) / 100).toFixed(2),
+                                                                        "price": parseFloat(Math.round(totalPrice * 100) / 100).toFixed(2),
                                                                         "currency": "EUR",
                                                                         "quantity": 1
                                                                     }]
                                                                 },
                                                                 "amount": {
                                                                     "currency": "EUR",
-                                                                    "total": parseFloat(Math.round(total * 100) / 100).toFixed(2),
+                                                                    "total": parseFloat(Math.round(totalPrice * 100) / 100).toFixed(2),
                                                                 },
                                                                 "description": "Brottüte der gewählten Bäckerei"
                                                             }]
@@ -1087,7 +1100,7 @@ router.post("/bakery", function(req, res, next) {
                                                                         req.session.var1 = random;
                                                                         req.session.var2 = productorder;
                                                                         req.session.var3 = number;
-                                                                        req.session.var4 = parseFloat(Math.round(total * 100) / 100).toFixed(2);
+                                                                        req.session.var4 = parseFloat(Math.round(totalPrice * 100) / 100).toFixed(2);
                                                                         req.session.var5 = date;
                                                                         req.session.var6 = parsedDate;
                                                                         req.session.var7 = time;
@@ -1101,7 +1114,7 @@ router.post("/bakery", function(req, res, next) {
                                                         req.session.var1 = random;
                                                         req.session.var2 = productorder;
                                                         req.session.var3 = number;
-                                                        req.session.var4 = parseFloat(Math.round(total * 100) / 100).toFixed(2);
+                                                        req.session.var4 = parseFloat(Math.round(totalPrice * 100) / 100).toFixed(2);
                                                         req.session.var5 = date;
                                                         req.session.var6 = parsedDate;
                                                         req.session.var7 = time;
@@ -1177,7 +1190,7 @@ router.post("/bakery", function(req, res, next) {
                                                         req.session.var1 = random;
                                                         req.session.var2 = productorder;
                                                         req.session.var3 = number;
-                                                        req.session.var4 = parseFloat(Math.round(total * 100) / 100).toFixed(2);
+                                                        req.session.var4 = parseFloat(Math.round(totalPrice * 100) / 100).toFixed(2);
                                                         req.session.var5 = date;
                                                         req.session.var6 = parsedDate;
                                                         req.session.var7 = time;

@@ -26,6 +26,11 @@ $("#popclose3").click(function(){
     document.getElementById("infopop").style.display = "none"
 })
 
+$("#nocost").click(function(){
+    document.getElementById("feepop").style.display = "block"
+    document.getElementById("infopop").style.display = "flex"
+})
+
 $("#question1").click(function(){
     document.getElementById("emailpop").style.display = "block"
     document.getElementById("infopop").style.display = "flex"
@@ -77,6 +82,12 @@ $("#goBack2").click(function(){
     document.getElementById("head2").style.color = "#ff9902";
 })
 
+if ($(".loginpop")){
+    var fee = 0.46;
+} else {
+    var fee = 0
+};
+
 $(document).ready(function(){
   // Add smooth scrolling to all links
   $("a").on('click', function(event) {
@@ -103,10 +114,13 @@ $(document).ready(function(){
 });
 
 function orderIt(){
+    console.log($("#warenkorb").children().length)
         for (var i = 0; i < $("#warenkorb").children().length; i++) {
         var order = document.createElement('div');
         var a = $(".order")[i].children[0].innerHTML;
         var b = $(".input")[i].value;
+        console.log(a);
+        console.log(b)
         order.className = 'zettel';
         order.id = 'zettel_'+i
         document.getElementsByClassName('sorder')[0].appendChild(order);
@@ -125,13 +139,14 @@ function orderIt(){
     `      
     }
     $("#getnumber").val($("#sorder").children().length);
-    document.getElementById("total-price").innerHTML = document.getElementById("number").innerHTML;
-}
+    document.getElementById("total-price").innerHTML = parseFloat(Math.round((document.getElementById("number").innerHTML ) * 100) / 100).toFixed(2);
+    document.getElementById("unreal-total").innerHTML = parseFloat(Math.round((document.getElementById("number").innerHTML - (-fee)) * 100) / 100).toFixed(2).replace(".", ",");
+    }
 
 $(".product").click(function() {
     var contentPanelId = jQuery(this).attr("id");
     var warenkorb_length = $("#warenkorb").children().length;
-    var price = $(this).find(".tprice").text();
+    var price = $(this).find(".realprice").text();
     if (document.getElementById('order_'+contentPanelId)) {
             $("#input_"+contentPanelId).val( function(i, oldval) {
                 return ++oldval;
@@ -154,7 +169,8 @@ $(".product").click(function() {
     var t = document.getElementById("number").innerHTML - -price
     var e = parseFloat(Math.round(t * 100) / 100).toFixed(2);
     document.getElementById("number").innerHTML = e;
-    document.getElementById("cart-price").innerHTML = (e+" &#8364;");
+    document.getElementById("realnumber").innerHTML = e.replace(".", ",");
+    document.getElementById("cart-price").innerHTML = (e.replace(".", ",")+" &#8364;");
     document.getElementById("cart-badge").innerHTML = document.getElementById("cart-badge").innerHTML - -1 ;
     document.getElementById("hinput_"+contentPanelId).value = price
 })
@@ -171,6 +187,7 @@ $(document).on('click', ".fa-plus-circle", function() {
     var t = document.getElementById("number").innerHTML - -($(this).siblings('.hinput').val());
     var e = parseFloat(Math.round(t * 100) / 100).toFixed(2);
     document.getElementById("number").innerHTML = e;
+    document.getElementById("realnumber").innerHTML = e.replace(".", ",");
     document.getElementById("cart-badge").innerHTML = document.getElementById("cart-badge").innerHTML - -1 
 });
 
@@ -185,17 +202,22 @@ $(document).on('click', ".fa-minus-circle", function() {
     var t = document.getElementById("number").innerHTML - $(this).siblings('.hinput').val();
     var e = parseFloat(Math.round(t * 100) / 100).toFixed(2);
     document.getElementById("number").innerHTML = e;
+    document.getElementById("realnumber").innerHTML = e.replace(".", ",");
     document.getElementById("cart-badge").innerHTML = document.getElementById("cart-badge").innerHTML - 1 
+    $(".sorder").empty();
 });
 
 $(document).on('click', ".fa-plus", function() {
     $(this).siblings('.snumber').val( function(i, oldval) {
                 return ++oldval;
     });
+    var total = document.getElementById("total-price").innerHTML;
     var breadname = $(this).parent().siblings()[0].value;
-    var price = $("#"+breadname).children($(".productinfo")).children($(".iprice")).children($(".iprice")).text();
-    document.getElementById("total-price").innerHTML = parseFloat(Math.round((document.getElementById("total-price").innerHTML -(-price)) * 100) / 100).toFixed(2);
-    document.getElementById("number").innerHTML = document.getElementById("total-price").innerHTML
+    var price = $("#"+breadname).children($(".productinfo")).children($(".iprice")).children(".realprice").text();
+    document.getElementById("total-price").innerHTML = parseFloat(Math.round((total -(-price)) * 100) / 100).toFixed(2);
+    document.getElementById("unreal-total").innerHTML = parseFloat(Math.round((total -(-price) - (-0.46)) * 100) / 100).toFixed(2).replace(".", ",");
+    document.getElementById("number").innerHTML = document.getElementById("total-price").innerHTML;
+    document.getElementById("realnumber").innerHTML = document.getElementById("total-price").innerHTML.replace(".", ",");
     $("#input_"+breadname).val( function(i, oldval) {
                 return ++oldval;
     });
@@ -215,11 +237,14 @@ $(document).on('click', ".fa-minus", function() {
     $("#input_"+breadname).val( function(i, oldval) {
                 return --oldval;
     });
-    var price = $("#"+breadname).children($(".productinfo")).children($(".iprice")).children($(".iprice")).text();
-    document.getElementById("total-price").innerHTML = parseFloat(Math.round((document.getElementById("total-price").innerHTML - (price)) * 100) / 100).toFixed(2);
+    var price = $("#"+breadname).children($(".productinfo")).children($(".iprice")).children(".realprice").text();
+    var total = document.getElementById("total-price").innerHTML;
+    document.getElementById("total-price").innerHTML = parseFloat(Math.round((total - (price)) * 100) / 100).toFixed(2);
+    document.getElementById("unreal-total").innerHTML = parseFloat(Math.round(((total - (price)) - (- 0.46)) * 100) / 100).toFixed(2).replace(".", ",");
     var t = document.getElementById("number").innerHTML - (price);
     var e = parseFloat(Math.round(t * 100) / 100).toFixed(2);
     document.getElementById("number").innerHTML = e;
+    document.getElementById("realnumber").innerHTML = e.replace(".", ",");
     if (document.getElementById("total-price").innerHTML == 0.00){
     document.getElementById("submitpop").style.display = "none";
     document.getElementsByTagName("BODY")[0].style.overflowY = "scroll";
@@ -228,7 +253,7 @@ $(document).on('click', ".fa-minus", function() {
         $("#input_"+breadname).parent().parent().remove()
         $("#getnumber").val($("#sorder").children().length);
     }
-document.getElementById("cart-badge").innerHTML = document.getElementById("cart-badge").innerHTML -1
+document.getElementById("cart-badge").innerHTML = (document.getElementById("cart-badge").innerHTML -1)
 });
 
 $(function(){
@@ -263,6 +288,7 @@ $("#trashbag").click(function() {
     $(".zettel").remove();
     var e = parseFloat(Math.round(0 * 100) / 100).toFixed(2);
     document.getElementById("number").innerHTML = e;
+    document.getElementById("realnumber").innerHTML = e.replace(".", ",");
     document.getElementById("cart-badge").innerHTML = 0; 
 })
 
@@ -271,12 +297,13 @@ $("#trashcan").click(function() {
     $(".zettel").remove();
     var e = parseFloat(Math.round(0 * 100) / 100).toFixed(2);
     document.getElementById("number").innerHTML = e;
+    document.getElementById("realnumber").innerHTML = e.replace(".", ",");
     document.getElementById("cart-badge").innerHTML = 0; 
     priceDiv()
 })
 
 function priceDiv(){
-    document.getElementById("cart-price").innerHTML = document.getElementById("number").innerHTML + " &#8364;"
+    document.getElementById("cart-price").innerHTML = document.getElementById("number").innerHTML.replace(".", ",") + " &#8364;"
 }
 
 //run on document load and on window resize
@@ -303,6 +330,8 @@ var epop = document.getElementById("emailpop");
 var dpop = document.getElementById("datepop");
 
 var tpop = document.getElementById("timepop");
+
+var fpop = document.getElementById("feepop");
 
 var smodal = document.getElementById('submitpop');
 
