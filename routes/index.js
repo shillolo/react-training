@@ -47,7 +47,7 @@ mailer.use('compile',hbs({
         extName: '.hbs',
         partialsDir: 'views/email',
         layoutsDir: 'views/email',
-        defaultLayout: 'template',
+        defaultLayout: 'success',
       },
     viewPath: 'views/email',
     extName: '.hbs'
