@@ -794,7 +794,7 @@ router.post("/bakery", function(req, res, next) {
                                                     },
                                                     attachments: [{
                                                         filename: "BrotritterBakery1.JPG",
-                                                        path: "../public/images/BrotritterBakery1.JPG",
+                                                        path: __dirname+"/public/images/BrotritterBakery1.JPG",
                                                         cid: "cross"
                                                     }
                                                 ]
