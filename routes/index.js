@@ -791,7 +791,18 @@ router.post("/bakery", function(req, res, next) {
                                                         time: req.session.time,
                                                         cart: req.session.cart,
                                                         amount: req.session.amount
+                                                    },
+                                                    attachments: [{
+                                                        filename: "BrotritterBakery1.JPG",
+                                                        path: "/public/images/BrotritterBakery1.JPG",
+                                                        cid: "cross"
+                                                    },
+                                                    {
+                                                        filename: "Brotritter logo 2.png",
+                                                        path: "/public/images/Brotritter logo 2.png",
+                                                        cid: "logo"
                                                     }
+                                                ]
                                                 },function (err, response){
                                                     if(err){
                                                         res.send("bad email");
@@ -920,7 +931,11 @@ router.post("/bakery", function(req, res, next) {
                                                                             cart: req.session.cart,
                                                                              amount: req.session.amount,
                                                                             time: req.session.time
-                                                                        }
+                                                                        },attachments: [{
+                                                                            filename: "BrotritterBakery1.JPG",
+                                                                            path: "/public/images/BrotritterBakery1.JPG",
+                                                                            cid: "cross"
+                                                                        }]
                                                                     },function (err, response){
                                                                         if(err){
                                                                             res.send("bad email");
@@ -1042,7 +1057,12 @@ router.post("/bakery", function(req, res, next) {
                                                                 time: req.session.time,
                                                                 cart: req.session.cart,
                                                                 amount: req.session.amount
-                                                            }
+                                                            },
+                                                            attachments: [{
+                                                                filename: "BrotritterBakery1.JPG",
+                                                                path: "./public/images/BrotritterBakery1.JPG",
+                                                                cid: "cross"
+                                                            }],
                                                         },function (err, response){
                                                             if(err){
                                                                 res.send("bad email");
@@ -1174,6 +1194,11 @@ router.post("/bakery", function(req, res, next) {
                                                                             amount: req.session.amount,
                                                                             time: req.session.time
                                                                         },
+                                                                        attachments: [{
+                                                                            filename: "BrotritterBakery1.JPG",
+                                                                            path: "./public/images/BrotritterBakery1.JPG",
+                                                                            cid: "cross"
+                                                                        }],
                                                                     },function (err, response){
                                                                         if(err){
                                                                             res.send("bad email");
