@@ -796,11 +796,6 @@ router.post("/bakery", function(req, res, next) {
                                                         filename: "BrotritterBakery1.JPG",
                                                         path: "../public/images/BrotritterBakery1.JPG",
                                                         cid: "cross"
-                                                    },
-                                                    {
-                                                        filename: "Brotritter logo 2.png",
-                                                        path: "/public/images/Brotritter logo 2.png",
-                                                        cid: "logo"
                                                     }
                                                 ]
                                                 },function (err, response){
