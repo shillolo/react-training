@@ -261,21 +261,14 @@ router.post('/newsletter', function(req, res, next) {
         address: req.body.postleitzahl
     })
     newsletter.save(function(err, result) {
-    mailer.sendMail({
-        from: 'service@brotritter.de',
-        to: "darren.igb@web.de",
-        subject: "Brotritter Newsletter",
-        template: 'newsletter',
-    },function (err, response){
         if(err){
             console.log(err)
             req.flash("error", "Ihre Anfrage konnte nicht verarbeitet werden. Bitte versuchen sie es erneut");
             res.redirect("/")
         } else {
-            req.flash("success", "Ihre Anfrage wird verarbeitet und wir werden uns in Kürze bei ihnen melden");
+            req.flash("success", "Sie haben sich erfolgreich für den Brotritter Newsletter angemeldet");
             res.redirect("/");
         }
-    })
     })
 })
 
@@ -795,8 +788,21 @@ router.post("/bakery", function(req, res, next) {
                                                     context: {
                                                         code: req.session.code,
                                                         date: parsedDate,
-                                                        time: req.session.time
+                                                        time: req.session.time,
+                                                        cart: req.session.cart,
+                                                        amount: req.session.amount
+                                                    },
+                                                    attachments: [{
+                                                        filename: "BrotritterBakery1.JPG",
+                                                        path: "./public/images/BrotritterBakery1.JPG",
+                                                        cid: "cross"
+                                                    },
+                                                    {
+                                                        filename: "Brotritter logo 2.png",
+                                                        path: "./public/images/Brotritter logo 2.png",
+                                                        cid: "logo"
                                                     }
+                                                ]
                                                 },function (err, response){
                                                     if(err){
                                                         res.send("bad email");
@@ -921,8 +927,15 @@ router.post("/bakery", function(req, res, next) {
                                                                         template: 'success',
                                                                         context: {
                                                                             code: req.session.code,
-                                                                            date: req.session.parsedDate
-                                                                        }
+                                                                            date: req.session.parsedDate,
+                                                                            cart: req.session.cart,
+                                                                             amount: req.session.amount,
+                                                                            time: req.session.time
+                                                                        },attachments: [{
+                                                                            filename: "BrotritterBakery1.JPG",
+                                                                            path: "./public/images/BrotritterBakery1.JPG",
+                                                                            cid: "cross"
+                                                                        }]
                                                                     },function (err, response){
                                                                         if(err){
                                                                             res.send("bad email");
@@ -1041,8 +1054,15 @@ router.post("/bakery", function(req, res, next) {
                                                             context: {
                                                                 code: req.session.code,
                                                                 date: parsedDate,
-                                                                time: req.session.time
-                                                            }
+                                                                time: req.session.time,
+                                                                cart: req.session.cart,
+                                                                amount: req.session.amount
+                                                            },
+                                                            attachments: [{
+                                                                filename: "BrotritterBakery1.JPG",
+                                                                path: "./public/images/BrotritterBakery1.JPG",
+                                                                cid: "cross"
+                                                            }],
                                                         },function (err, response){
                                                             if(err){
                                                                 res.send("bad email");
@@ -1169,8 +1189,16 @@ router.post("/bakery", function(req, res, next) {
                                                                         template: 'success',
                                                                         context: {
                                                                             code: req.session.code,
-                                                                            date: req.session.parsedDate
-                                                                        }
+                                                                            date: req.session.parsedDate,
+                                                                            cart: req.session.cart,
+                                                                            amount: req.session.amount,
+                                                                            time: req.session.time
+                                                                        },
+                                                                        attachments: [{
+                                                                            filename: "BrotritterBakery1.JPG",
+                                                                            path: "./public/images/BrotritterBakery1.JPG",
+                                                                            cid: "cross"
+                                                                        }],
                                                                     },function (err, response){
                                                                         if(err){
                                                                             res.send("bad email");

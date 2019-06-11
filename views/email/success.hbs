@@ -9,65 +9,41 @@
                display: flex;
                flex-direction: column;
                align-items: center;
-               font-family: 'Open Sans', sans-serif;">
-  <div style="width: 100%; height: auto; background-color: #680F00"><img src="logo.png" style="height: 100px"></div>
-      <div style="height: 300px; width: 100%; background-image: url(BrotritterBakery1.jpg); background-size: cover">
-      </div>
+               font-family: 'Open Sans', sans-serif;
+               font-size:0.9;
+               background-color: #f7f7f7">
+  <div style="width: 100%; height: auto; background-color: #680F00"><img src="cid:logo" style="height: 100px"/></div>
+      <img style="height: 300px; width: 100%;" src="cid:cross"/>
       <h1 style="text-align: center; margin: 50px">Ihre Bestellübersicht</h1>
         <h3 style="text-align: center; color: #000; margin: 10px">Ihr Code:</h3>
-      <div style="padding: 10px 100px; margin: 0 auto; margin-bottom: 40px; border: 4px solid #ff9900; background-color: #ff9900; border-radius: 50px; display: flex; justify-content: center; align-items: center; width: 100px; color: white"><h2>30000</h2></div>
+      <div style="padding: 10px 70px; margin: 0 auto; margin-bottom: 40px; border: 4px solid #ff9900; background-color: #ff9900; border-radius: 50px; display: flex; justify-content: center; align-items: center; width: 50px; color: white"><h2>{{code}}</h2></div>
       <h3 style="text-align: center; color: #000; margin: 10px">Ihre gewählte Bäckerei:</h3>
-      <div style="padding: 10px 100px; margin: 0 auto; margin-bottom: 40px; border: 4px solid #ff9900; background-color: #ff9900; border-radius: 50px; color: white; display: flex; justify-content: center; align-items: center; width: 100px"><h2>Bergstraße 128, 2931Bremen</h2></div>
+      <div style="padding: 10px 70px; margin: 0 auto; margin-bottom: 40px; border: 4px solid #ff9900; background-color: #ff9900; border-radius: 50px; color: white; display: flex; justify-content: center; align-items: center; width: 50px"><h2>Bergstraße 128, 2931Bremen</h2></div>
       <h3 style="text-align: center; color: #000; margin: 10px">Ihre gewählte Uhrzeit:</h3>
-      <div style="padding: 10px 100px; margin: 0 auto; margin-bottom: 40px; border: 4px solid #ff9900; background-color: #ff9900; border-radius: 50px; color: white; display: flex; justify-content: center; align-items: center; width: 100px"><h2>7:00</h2></div>
+      <div style="padding: 10px 70px; margin: 0 auto; margin-bottom: 40px; border: 4px solid #ff9900; background-color: #ff9900; border-radius: 50px; color: white; display: flex; justify-content: center; align-items: center; width: 50px"><h2>{{time}}</h2></div>
+      <h3 style="text-align: center; color: #000; margin: 10px">Ihre gewähltes Datum:</h3>
+      <div style="padding: 10px 70px; margin: 0 auto; margin-bottom: 40px; border: 4px solid #ff9900; background-color: #ff9900; border-radius: 50px; color: white; display: flex; justify-content: center; align-items: center; width: 50px"><h2>{{date}}</h2></div>
       <h3 style="text-align: center; color: #000; margin: 10px">Ihre Bestellung:</h3>
-      <div style="padding: 10px 50px; margin: 0 auto; margin-bottom: 40px; border: 4px solid #ff9900; background-color: #ff9900; border-radius: 50px; color: white; display: flex; justify-content: space-between; align-items: center; width: 200px">
-<!--
-          <div class="buns">
-                {{#each this.order.cart}}
+      <div style="padding: 10px 12px; margin: 0 auto; margin-bottom: 40px; border: 4px solid #ff9900; background-color: #ff9900; border-radius: 50px; color: white; width: 170px">
+          <div class="buns" style="text-align: left; float: left">
+                 {{#each cart}}
                 <div>
                     <p>
                     {{this}}
                     </p>
                 </div>
                 {{/each}}
-                </div>
-                <div class="bun-amount">
-                {{#each this.order.amount}}
-                <div>
-                    <p>
-                    {{this}}
-                    </p>
-                </div>
-                {{/each}}
-                </div>
-          </div>
--->
-          <div class="buns" style="text-align: left">
-                <div>
-                    <h4>
-                    numbertwo
-                    </h4>
-                </div>
-                <div>
-                    <h4>
-                    btrer
-                    </h4>
-                </div>
             </div>
             <div class="bun-amount" style="text-align: right">
+                {{#each amount}}
                 <div>
-                    <h4>
-                    34
-                    </h4>
+                    <p>
+                    {{this}}
+                    </p>
                 </div>
-                <div>
-                    <h4>
-                    544
-                    </h4>
-                </div>
+                {{/each}}
             </div>
       </div>
-      <div style="display: flex; margin: 0 auto; justify-content: center; align-items: center"><p>2019&nbsp;</p><a href="https://brotritter.de" style="color: black">Brotritter.de</a></div>
+      <div style="display: flex; margin: 0 auto; justify-content: center; align-items: center"><p>2019&nbsp;</p><a href="https://brotritter.de" style="color: #ff9900">Brotritter.de</a></div>
   </body>
   </html>

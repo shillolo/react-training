@@ -631,10 +631,12 @@ router.post('/signup', passport.authenticate('local.signup', {
         },function (err, response){
             if(err){
                 res.send("bad email");
+            } else {
+                req.flash("success", "Erfolgreich Registriert")
+                res.redirect('back')
             }
+            
         })
-        req.flash("success", "Erfolgreich Registriert")
-        res.redirect('back')
     }
 });
 

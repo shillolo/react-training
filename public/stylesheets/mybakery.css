@@ -3,7 +3,8 @@
     max-width: 700px;
     margin: 50px auto;
     min-height: 100%;
-    height: auto
+    height: auto;
+    transition: 0.3s
 }
 
 .section{
@@ -126,7 +127,8 @@
     border: solid 3px #ff9900;
     border-radius: 30px;
     margin-top: 30px;
-    padding: 10px
+    padding: 10px;
+    transition: 0.3s
 }
 
 .order p{
@@ -155,7 +157,11 @@
     margin-left: 15px;
 }
 
-
+.buns div{
+    text-align: left;
+    display: flex;
+    justify-content: flex-start
+}
 
 @media only screen and (max-width: 980px) {
     .viereck{

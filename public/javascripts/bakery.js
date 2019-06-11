@@ -26,6 +26,11 @@ $("#popclose3").click(function(){
     document.getElementById("infopop").style.display = "none"
 })
 
+$("#popclose4").click(function(){
+    document.getElementById("feepop").style.display = "none"
+    document.getElementById("infopop").style.display = "none"
+})
+
 $("#nocost").click(function(){
     document.getElementById("feepop").style.display = "block"
     document.getElementById("infopop").style.display = "flex"

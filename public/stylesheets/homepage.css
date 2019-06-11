@@ -4,6 +4,10 @@
     margin: 0;    
 }
 
+html{
+    height: 100%
+}
+
 body{
   font-family: 'Open Sans', sans-serif;
   margin: 0;
@@ -66,6 +70,7 @@ body{
     width: 80%;
     max-width: 900px;
     height: auto;
+    max-height: 90%;
     position: relative;
     color: #000;
     text-align: center;
@@ -442,7 +447,8 @@ body{
 
 .wrapper{
     width: 100%;
-    height: 600px; 
+    height: 400px;
+    max-height: 30%; 
     background: transparent;
     display: flex;
     justify-content: center;
@@ -1362,6 +1368,13 @@ font-family: 'Ubuntu', sans-serif;
 }
 
 @media only screen and (max-width: 980px) {
+    .insthold img{
+    width: 200px
+}
+.insthold{
+    width: 200px;
+    font-size: 0.9em
+}
     .konto{
         display: none
     }
@@ -1496,6 +1509,13 @@ font-family: 'Ubuntu', sans-serif;
          border: solid 3px white;
          border-radius: 5px
      }
+     .insthold img{
+        width: 300px
+    }
+    .insthold{
+        width: 300px;
+        font-size: 1.1em
+    }
 }
 
 @media only screen and (max-device-width: 980px) {
