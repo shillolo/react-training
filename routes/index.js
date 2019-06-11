@@ -793,8 +793,8 @@ router.post("/bakery", function(req, res, next) {
                                                         amount: req.session.amount
                                                     },
                                                     attachments: [{
-                                                        filename: "BrotritterBakery1.JPG",
-                                                        path: __dirname+"/public/images/BrotritterBakery1.JPG",
+                                                        filename: "BrotritterBakery1.jpg",
+                                                        path: "./public/images/BrotritterBakery1.jpg",
                                                         cid: "cross"
                                                     }
                                                 ]
