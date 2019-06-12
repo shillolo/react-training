@@ -42,17 +42,6 @@ var mailer = nodemailer.createTransport({
     }
 });
 
-mailer.use('compile',hbs({
-    viewEngine: {
-        extName: '.hbs',
-        partialsDir: 'views/email',
-        layoutsDir: 'views/email',
-        defaultLayout: 'success.hbs',
-      },
-    viewPath: 'views/email',
-    extName: '.hbs'
-}))
-
 router.get("/mybakery", isAuth, function(req, res, next){
     function parseDate(input) {
           var parts = input.match(/(\d+)/g);
@@ -126,6 +115,16 @@ router.get("/mybakery", isAuth, function(req, res, next){
 })
 
 router.post("/mybakery", function(req, res, next){
+    mailer.use('compile',hbs({
+        viewEngine: {
+            extName: '.hbs',
+            partialsDir: 'views/email',
+            layoutsDir: 'views/email',
+            defaultLayout: 'bakesuggest.hbs',
+          },
+        viewPath: 'views/email',
+        extName: '.hbs'
+    }))
     console.log(req.body.confirmer)
     if (req.body.confirmer == "failure"){
     var orderId = req.body.userid;
@@ -188,6 +187,16 @@ router.post("/mybakery", function(req, res, next){
     }
     })
 } else if (req.body.confirmer == "confirm"){
+    mailer.use('compile',hbs({
+        viewEngine: {
+            extName: '.hbs',
+            partialsDir: 'views/email',
+            layoutsDir: 'views/email',
+            defaultLayout: 'bakesuggest.hbs',
+          },
+        viewPath: 'views/email',
+        extName: '.hbs'
+    }))
     console.log("ee")
     var orderId = req.body.userid;
     User_Order.findOne({_id: orderId}).exec(function(err, order)   {
@@ -200,14 +209,27 @@ router.post("/mybakery", function(req, res, next){
                         from: 'service@brotritter.de',
                         to: req.body.requser,
                         subject: "Anfrage:",
-                        template: 'membermail'
+                        template: 'bakesuggest',
+                        context: {
+                            code: req.body.code
+                        },
+                        attachments: [{
+                            filename: "BrotritterBakery1.jpg",
+                            path: "./public/images/BrotritterBakery1.JPG",
+                            cid: "cross"
+                        },
+                        {
+                            filename: "MyLogo.png",
+                            path: "./public/images/MyLogo.png",
+                            cid: "logo"
+                        }]
                     },function (err, response){
                         if(err){
                             console.log(err)
                             req.flash("error", "Ihre Anfrage konnte nicht verarbeitet werden. Bitte versuchen sie es erneut");
                             res.redirect("back")
                         } else {
-                            req.flash("success", "Ihre Anfrage wird verarbeitet und wir werden uns in Kürze bei ihnen melden");
+                            req.flash("success", "Bestellung wurde verpackt!");
                             res.redirect("back");
                         }
                     })
@@ -221,14 +243,27 @@ router.post("/mybakery", function(req, res, next){
                         from: 'service@brotritter.de',
                         to: req.body.userMail,
                         subject: "Anfrage:",
-                        template: 'membermail'
+                        template: 'bakesuggest',
+                        context: {
+                            code: req.body.code
+                        },
+                        attachments: [{
+                            filename: "BrotritterBakery1.jpg",
+                            path: "./public/images/BrotritterBakery1.JPG",
+                            cid: "cross"
+                        },
+                        {
+                            filename: "MyLogo.png",
+                            path: "./public/images/MyLogo.png",
+                            cid: "logo"
+                        }]
                     },function (err, response){
                         if(err){
                             console.log(err)
                             req.flash("error", "Ihre Anfrage konnte nicht verarbeitet werden. Bitte versuchen sie es erneut");
                             res.redirect("back")
                         } else {
-                            req.flash("success", "Ihre Anfrage wird verarbeitet und wir werden uns in Kürze bei ihnen melden");
+                            req.flash("success", "Bestellung wurde verpackt!");
                             res.redirect("back");
                         }
                     })
@@ -359,6 +394,16 @@ router.get('/sofort/success1/:transaction', function(req, res) {
                     console.log(req.session.code);
                     console.log(req.session.parsedDate);
                     console.log(req.session.time);
+                    mailer.use('compile',hbs({
+                        viewEngine: {
+                            extName: '.hbs',
+                            partialsDir: 'views/email',
+                            layoutsDir: 'views/email',
+                            defaultLayout: 'success.hbs',
+                          },
+                        viewPath: 'views/email',
+                        extName: '.hbs'
+                    }))
                     mailer.sendMail({
                         from: 'service@brotritter.de',
                         to: req.session.user_email,
@@ -457,6 +502,16 @@ router.post('/mitgliedschaft', function(req, res, next) {
 })
 
 router.post('/maps', function(req, res, next) {
+    mailer.use('compile',hbs({
+        viewEngine: {
+            extName: '.hbs',
+            partialsDir: 'views/email',
+            layoutsDir: 'views/email',
+            defaultLayout: 'membermail.hbs',
+          },
+        viewPath: 'views/email',
+        extName: '.hbs'
+    }))
     mailer.sendMail({
         from: 'service@brotritter.de',
         to: 'service@brotritter.de',
@@ -640,6 +695,16 @@ router.get('/kontakt', isAuth, function(req, res, next) {
 })
 
 router.post('/kontakt', function(req, res, next) {
+    mailer.use('compile',hbs({
+        viewEngine: {
+            extName: '.hbs',
+            partialsDir: 'views/email',
+            layoutsDir: 'views/email',
+            defaultLayout: 'membermail.hbs',
+          },
+        viewPath: 'views/email',
+        extName: '.hbs'
+    }))
     var messages = req.flash('error');
     var successMsg = req.flash('success')[0];
     var nachricht = req.body.nachricht;
@@ -684,6 +749,16 @@ router.get('/bakery', isAuth, function(req, res, next) {
 })
 
 router.post("/bakery", function(req, res, next) {
+    mailer.use('compile',hbs({
+        viewEngine: {
+            extName: '.hbs',
+            partialsDir: 'views/email',
+            layoutsDir: 'views/email',
+            defaultLayout: 'success.hbs',
+          },
+        viewPath: 'views/email',
+        extName: '.hbs'
+    }))
     console.log("yey");
     var bakePost = req.body.payways;
     function code_error(){
@@ -794,10 +869,14 @@ router.post("/bakery", function(req, res, next) {
                                                     },
                                                     attachments: [{
                                                         filename: "BrotritterBakery1.jpg",
-                                                        path: "./public/images/BrotritterBakery1.jpg",
+                                                        path: "./public/images/BrotritterBakery1.JPG",
                                                         cid: "cross"
-                                                    }
-                                                ]
+                                                    },
+                                                    {
+                                                        filename: "MyLogo.png",
+                                                        path: "./public/images/MyLogo.png",
+                                                        cid: "logo"
+                                                    }]
                                                 },function (err, response){
                                                     if(err){
                                                         res.send("bad email");
@@ -927,9 +1006,14 @@ router.post("/bakery", function(req, res, next) {
                                                                              amount: req.session.amount,
                                                                             time: req.session.time
                                                                         },attachments: [{
-                                                                            filename: "BrotritterBakery1.JPG",
-                                                                            path: "/public/images/BrotritterBakery1.JPG",
+                                                                            filename: "BrotritterBakery1.jpg",
+                                                                            path: "./public/images/BrotritterBakery1.JPG",
                                                                             cid: "cross"
+                                                                        },
+                                                                        {
+                                                                            filename: "MyLogo.png",
+                                                                            path: "./public/images/MyLogo.png",
+                                                                            cid: "logo"
                                                                         }]
                                                                     },function (err, response){
                                                                         if(err){
@@ -1054,9 +1138,14 @@ router.post("/bakery", function(req, res, next) {
                                                                 amount: req.session.amount
                                                             },
                                                             attachments: [{
-                                                                filename: "BrotritterBakery1.JPG",
+                                                                filename: "BrotritterBakery1.jpg",
                                                                 path: "./public/images/BrotritterBakery1.JPG",
                                                                 cid: "cross"
+                                                            },
+                                                            {
+                                                                filename: "MyLogo.png",
+                                                                path: "./public/images/MyLogo.png",
+                                                                cid: "logo"
                                                             }],
                                                         },function (err, response){
                                                             if(err){
@@ -1190,9 +1279,14 @@ router.post("/bakery", function(req, res, next) {
                                                                             time: req.session.time
                                                                         },
                                                                         attachments: [{
-                                                                            filename: "BrotritterBakery1.JPG",
+                                                                            filename: "BrotritterBakery1.jpg",
                                                                             path: "./public/images/BrotritterBakery1.JPG",
                                                                             cid: "cross"
+                                                                        },
+                                                                        {
+                                                                            filename: "MyLogo.png",
+                                                                            path: "./public/images/MyLogo.png",
+                                                                            cid: "logo"
                                                                         }],
                                                                     },function (err, response){
                                                                         if(err){
@@ -1327,6 +1421,16 @@ router.get('/success', isAuth, function(req, res, next) {
         }]
     }
     paypal.payment.execute(paymentId, execute_payment_json, function(error, payment) {
+        mailer.use('compile',hbs({
+            viewEngine: {
+                extName: '.hbs',
+                partialsDir: 'views/email',
+                layoutsDir: 'views/email',
+                defaultLayout: 'success.hbs',
+              },
+            viewPath: 'views/email',
+            extName: '.hbs'
+        }))
         if(error){
             console.log(error.response);
             throw error
@@ -1439,6 +1543,16 @@ router.post('/forgot', function(req, res, next) {
             });
         },
         function(token, user, done) {
+            mailer.use('compile',hbs({
+                viewEngine: {
+                    extName: '.hbs',
+                    partialsDir: 'views/email',
+                    layoutsDir: 'views/email',
+                    defaultLayout: 'forgot.hbs',
+                  },
+                viewPath: 'views/email',
+                extName: '.hbs'
+            }))
             mailer.sendMail({
                     from: 'service@brotritter.de',
                     to:  user.email,
@@ -1446,7 +1560,17 @@ router.post('/forgot', function(req, res, next) {
                     template: 'forgot',
                     context: {
                         link: 'http://' + req.headers.host + '/reset/' + token + '\n\n'
-                    }
+                    },
+                    attachments: [{
+                        filename: "BrotritterBakery1.jpg",
+                        path: "./public/images/BrotritterBakery1.JPG",
+                        cid: "cross"
+                    },
+                    {
+                        filename: "MyLogo.png",
+                        path: "./public/images/MyLogo.png",
+                        cid: "logo"
+                    }]
                 },function (err, response){
                     if(err){
                         res.send("bad email");
@@ -1499,6 +1623,16 @@ router.post('/reset/:token', function(req, res) {
             });
         },
         function(user, done) {
+            mailer.use('compile',hbs({
+                viewEngine: {
+                    extName: '.hbs',
+                    partialsDir: 'views/email',
+                    layoutsDir: 'views/email',
+                    defaultLayout: 'reset.hbs',
+                  },
+                viewPath: 'views/email',
+                extName: '.hbs'
+            }))
             mailer.sendMail({
                     from: 'service@brotritter.de',
                     to:  user.email,

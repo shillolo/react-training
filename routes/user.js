@@ -70,22 +70,19 @@ router.get('/sofort/success2/:transaction', function(req, res) {
     })
 });
 
+
 var mailer = nodemailer.createTransport({
-    host: 'az1-ss7.a2hosting.com',
+    host: 'smtp.fastmail.com',
     port: 465,
     auth: {
         user: 'service@brotritter.de',
-        pass: 'aWhcJ5S'
+        pass: 'b4zs6mcmgjxhu9le'
     },
     tls:{
         rejectUnauthorized:false
     }
 });
 
-mailer.use('compile',hbs({
-    viewPath: 'views/email',
-    extName: '.hbs'
-}))
 
 var csrfProtection = csrf();
 router.use(csrfProtection);
@@ -384,6 +381,16 @@ router.post('/changemail', isLoggedIn, function(req, res, next) {
                 if (data == null){
                 userdata.email = req.body.email;
                 userdata.save(function(){
+                    mailer.use('compile',hbs({
+                        viewEngine: {
+                            extName: '.hbs',
+                            partialsDir: 'views/email',
+                            layoutsDir: 'views/email',
+                            defaultLayout: 'changed.hbs',
+                          },
+                        viewPath: 'views/email',
+                        extName: '.hbs'
+                    }));
                     mailer.sendMail({
                         from: 'service@brotritter.de',
                         to: req.user.email,
@@ -617,6 +624,16 @@ router.post('/signup', passport.authenticate('local.signup', {
     failureRedirect: 'back',
     failureFlash: true
 }), function(req, res, next) {
+    mailer.use('compile',hbs({
+        viewEngine: {
+            extName: '.hbs',
+            partialsDir: 'views/email',
+            layoutsDir: 'views/email',
+            defaultLayout: 'register.hbs',
+          },
+        viewPath: 'views/email',
+        extName: '.hbs'
+    }))
     if(req.session.oldUrl) {
        var oldUrl = req.session.oldUrl;
        req.session.oldUrl = null;
@@ -627,7 +644,17 @@ router.post('/signup', passport.authenticate('local.signup', {
             to: req.user.email,
             subject: "Erfolgreich registriert Brotritter",
             template: 'register',
-            context: {}
+            context: {},
+            attachments: [{
+                filename: "BrotritterBakery1.jpg",
+                path: "./public/images/BrotritterBakery1.JPG",
+                cid: "cross"
+            },
+            {
+                filename: "MyLogo.png",
+                path: "./public/images/MyLogo.png",
+                cid: "logo"
+            }]
         },function (err, response){
             if(err){
                 res.send("bad email");

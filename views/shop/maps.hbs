@@ -107,6 +107,7 @@
                         </div>
                     </div>
             </div>
+            <div class="absolute-div">
             <h2>Bäckereien in ihrer Umgebung:</h2>
             <h1>{{location}}</h1>
             <form class="searchDiv" action="/mapsSearch" method="post">
@@ -114,6 +115,7 @@
                 <input type="hidden" name="_csrf" value="{{ csrfToken }}">
                 <button class="searchButton">Suchen</button>
         </form>
+        </div>
     </div>
     
     <div class="balken"><div class="errors">{{errors}}</div><div class="success">{{success}}</div></div>

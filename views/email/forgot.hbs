@@ -2,32 +2,30 @@
 <html>
   <head>
     <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/htmlTest.css' />
-
+    <link rel='stylesheet' href='style.css' />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"> 
   </head>
   <body style="text-align: center;
                display: flex;
                flex-direction: column;
-               align-items: center">
-      <h1 style="color: #ff9900;
-                 margin: 0 auto;
-                 font-size: 4em">Brotritter</h1>
-      <div style="margin-top: 40px;
-                  text-align: left;
-                  width: 70%;
-                  margin: 40px auto;
-                  font-size: 1.3em">
-          <p style="text-decoration: underline;
-                    font-family: Helvetica">Passwort vergessen?</p>
-          <br>
-          <br>
-          <p>Sie bekommen diese E-Mail, weil sie (oder jemand anderes) ihr Passwort zurücksetzen wollen. Bitte drücken sie den folgenden Link, oder kopieren sie ihn in ihren Browser um den Vorgang abzuschließen</p>
-          <div style="display: flex">
-          <a href="{{link}}">{{link}}</a>
-          </div>
-          <p>Wenn sie diese E-Mail fälschlicherweise erhalten haben, bitte ignorieren sie, sie einfach.</p>
-          <br>
-          <p style="font-size: 0.7em">Falls sie irgenwelche Probleme, Verbesserungsvorschläge oder Kritik haben, können sie uns einfach telefonisch oder per Email erreichen. Wir werden versuchen so schnell wie möglich auf sie zurückzukommen.</p>
-      </div>
+               align-items: center;
+               font-family: 'Open Sans', sans-serif;
+               font-size:0.9;
+               background-color: #f7f7f7">
+  <div style="width: 100%; height: auto; background-color: #680F00; max-width: 500px;
+               width: 500px; margin: 0 auto"><img src="cid:logo" style="height: 50px"/></div>
+      <img style="height: 200px; width: 100%;
+               max-width: 500px; margin: 0 auto" src="cid:cross"/>
+      <h1 style="text-align: center; margin: 50px; font-size: 2em">Sie können ein  neues Passwort erstellen!
+      </h1>
+      <div style="text-align: center; background-color: blue; padding: 20px 30px; font-size: 1.5em; color: white; box-shadow: 3px 2px 3px grey; cursor: pointer" OnClick="location.href='{{link}}'">Neues Passwort erstellen</div>
+      <p></p>
+      <p></p>
+      <p></p>
+      <span style="max-width: 500px"><b>Sie haben auf <a style="color: #990000; cursor: pointer;" href="https://brotritter.de">Brotritter.de</a> „Passwort vergessen“ geklickt und möchten nun ein Neues erstellen. Falls dies nicht Ihr Wunsch ist, ignorieren sie diese Email.</b></span>
+      <p></p>
+      <p></p>
+      <p></p>
+      <div style="display: flex; margin: 0 auto; justify-content: center; align-items: center; background-color: #680F00; width: 100%; color: white"><p>2019&nbsp;</p><a href="https://brotritter.de" style="color: white">Brotritter.de</a></div>
   </body>
-</html>
+  </html>

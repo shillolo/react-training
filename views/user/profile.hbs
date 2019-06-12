@@ -14,16 +14,16 @@
             <h2>{{useracc}} </h2>
             <i class="fas fa-times close" id="mobile-close"></i>
         </div>
-        <div class="mobile-menu">
-            <div class="break-top"></div>
-            <a class="drop drop1" href="/user/aufladen">Guthaben aufladen&nbsp;<i class="fas fa-bolt"></i></a>
-            <div class="mobile-break"></div>
-            <a class="drop" href="/user/profile">Profil&nbsp;<i class="fas fa-user-circle"></i></a>
-            <div class="mobile-break"></div>
-            <a class="drop" href="/user/logout">Logout&nbsp;<i class="fas fa-sign-out-alt"></i></a>
+        <div class="mobile-content">
+            <div class="mobile-menu">
+                <div class="break-top"></div>
+                <a class="drop drop1" href="/user/aufladen">Guthaben aufladen&nbsp;<i class="fas fa-bolt"></i></a>
+                <a class="drop" href="/user/profile">Profil&nbsp;<i class="fas fa-user-circle"></i></a>
+                <a class="drop" href="/user/logout">Logout&nbsp;<i class="fas fa-sign-out-alt"></i></a>
+            </div>
+            <div class="mobile-credit-break"></div>
+            <div class="mobile-credit"><p>Guthaben: </p>{{credit}}&#8364;</div>
         </div>
-        <div class="mobile-credit-break"></div>
-        <div class="mobile-credit"><p>Guthaben: </p>{{credit}}&#8364;</div>
     </div>
     {{/if}}
     
@@ -33,20 +33,22 @@
                 <div class="comp-logo" OnClick="location.href='/'"></div>
                 <div class="konto-container">
                     {{# if login}}
-                    <li class="konto">
-                        <div class="kholder">
-                            <div class="k-container"><div class="konto1" id="credit">{{useracc}} &nbsp;&nbsp;</div><i class="fas fa-angle-up"></i></div>
-                            <div class="k-container"><div class="konto1" id="header"> KONTO &nbsp;</div><i class="fas fa-angle-down"></i></div>
-                        </div>
-                        <div class="dholder">
-                        <div class="hrbr"></div>
-                        <a class="drop drop1" href="/user/aufladen">Guthaben aufladen&nbsp;<i class="fas fa-credit-card"></i></a>
-                        <a class="drop" href="/user/profile">Profil&nbsp;<i class="fas fa-user-circle"></i></a>
-                        <a class="drop" href="/user/logout">Logout&nbsp;<i class="fas fa-sign-out-alt"></i></a>
-                        <div class="hrbr"></div>
-                        <div class="credit"><p>Guthaben: </p>{{credit}}  &#8364; </div>
-                        </div>
-                    </li>
+                     <li class="konto">
+                            <div class="kholder">
+                                <div class="k-container"><div class="konto1" id="credit">{{useracc}} &nbsp;&nbsp;</div><i class="fas fa-angle-up"></i></div>
+                                <div class="k-container"><div class="konto1" id="header"> KONTO &nbsp;</div><i class="fas fa-angle-down"></i></div>
+                            </div>
+                            <div class="dholder">
+                            <div class="hrbr"></div>
+                            <a class="drop drop1" href="/user/aufladen">Guthaben aufladen&nbsp;<i class="fas fa-credit-card"></i></a>
+                            
+                            <a class="drop" href="/user/profile">Profil&nbsp;<i class="fas fa-user-circle"></i></a>
+                            
+                            <a class="drop drop3" href="/user/logout">Logout&nbsp;<i class="fas fa-sign-out-alt"></i></a>
+                            <div class="hrbr br1"></div>
+                            <div class="credit"><p>Guthaben: </p>{{credit}}  &#8364; </div>
+                            </div>
+                        </li>
                     <div class="mobile-konto" id="mobile-konto">
                         KONTO
                     </div>
