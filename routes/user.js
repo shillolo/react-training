@@ -647,7 +647,7 @@ router.post('/signup', passport.authenticate('local.signup', {
             context: {},
             attachments: [{
                 filename: "BrotritterBakery1.jpg",
-                path: "./public/images/BrotritterBakery1.JPG",
+                path: "./public/images/BrotritterBakery1.jpg",
                 cid: "cross"
             },
             {

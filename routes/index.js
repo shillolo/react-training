@@ -215,7 +215,7 @@ router.post("/mybakery", function(req, res, next){
                         },
                         attachments: [{
                             filename: "BrotritterBakery1.jpg",
-                            path: "./public/images/BrotritterBakery1.JPG",
+                            path: "./public/images/BrotritterBakery1.jpg",
                             cid: "cross"
                         },
                         {
@@ -869,7 +869,7 @@ router.post("/bakery", function(req, res, next) {
                                                     },
                                                     attachments: [{
                                                         filename: "BrotritterBakery1.jpg",
-                                                        path: "./public/images/BrotritterBakery1.JPG",
+                                                        path: "./public/images/BrotritterBakery1.jpg",
                                                         cid: "cross"
                                                     },
                                                     {
@@ -1007,7 +1007,7 @@ router.post("/bakery", function(req, res, next) {
                                                                             time: req.session.time
                                                                         },attachments: [{
                                                                             filename: "BrotritterBakery1.jpg",
-                                                                            path: "./public/images/BrotritterBakery1.JPG",
+                                                                            path: "./public/images/BrotritterBakery1.jpg",
                                                                             cid: "cross"
                                                                         },
                                                                         {
@@ -1139,7 +1139,7 @@ router.post("/bakery", function(req, res, next) {
                                                             },
                                                             attachments: [{
                                                                 filename: "BrotritterBakery1.jpg",
-                                                                path: "./public/images/BrotritterBakery1.JPG",
+                                                                path: "./public/images/BrotritterBakery1.jpg",
                                                                 cid: "cross"
                                                             },
                                                             {
@@ -1280,7 +1280,7 @@ router.post("/bakery", function(req, res, next) {
                                                                         },
                                                                         attachments: [{
                                                                             filename: "BrotritterBakery1.jpg",
-                                                                            path: "./public/images/BrotritterBakery1.JPG",
+                                                                            path: "./public/images/BrotritterBakery1.jpg",
                                                                             cid: "cross"
                                                                         },
                                                                         {
@@ -1563,7 +1563,7 @@ router.post('/forgot', function(req, res, next) {
                     },
                     attachments: [{
                         filename: "BrotritterBakery1.jpg",
-                        path: "./public/images/BrotritterBakery1.JPG",
+                        path: "./public/images/BrotritterBakery1.jpg",
                         cid: "cross"
                     },
                     {
