@@ -226,22 +226,18 @@ html, body{
         height: 100%;
         font-size: 3em
     }
-    .bakebtn{
-        border-radius: 10px;
-        font-size: em
-    }
     .bild h2, .bild h1{
         margin-top: 0px;
         font-size: 3em
     }
-    .searchButton{
-        font-size: 2em;
-        padding: 25px;
-        height: auto;
-    }
 }
 
  @media only screen and (max-device-width: 480px) {
+        .bild{
+            text-align: center;
+            background-image: url(../images/BrotritterMain.JPG);
+            min-height: 500px
+        }
      .mapsbake{
          font-size: 2em;
         max-width: 800px;
@@ -261,7 +257,11 @@ html, body{
         border-radius: 10px;
         font-size: 2em
     }
-    .hilfe{
-        margin-top: 3px
+    .searchButton{
+        height: auto;
+        font-size: 2em
+    }
+    .searcher{
+        font-size: 2em
     }
 }   

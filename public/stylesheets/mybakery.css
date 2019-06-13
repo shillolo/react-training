@@ -34,6 +34,12 @@
     justify-content: center;
 }
 
+.fa-check{
+    margin: 0 auto;
+    color: #ff9900;
+    font-size: 7em
+}
+
 .deleter{
     display: -webkit-box;
     display: -ms-flexbox;

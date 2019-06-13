@@ -122,7 +122,8 @@ html, body{
     height: auto;
     margin: auto 0px;
     padding: 0px;
-    margin: auto
+    margin: auto;
+    margin-bottom: 100px
 } 
 
 .kontaktHead{
@@ -153,7 +154,6 @@ html, body{
     align-items: center;
     margin-top: 50px;
     flex-direction: column;
-    height: 100%
 }
 
 .impress-container a{

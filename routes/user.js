@@ -59,7 +59,7 @@ router.get('/sofort/success2/:transaction', function(req, res) {
             });
             transfer.save(function(err, result) {
             req.session.credit = false;
-            req.flash('success', 'Konto erfolgreich aufgeladen');
+            req.flash('success', 'Ihr Konto wurde erfolgreich aufgeladen.');
             res.redirect('/');
           });
             })
@@ -113,7 +113,7 @@ router.post('/changetime', isLoggedIn, function(req, res, next) {
             } else if (data){
                 data.time = timeid;
                 data.save(function(){
-                    req.flash("success", "Die Abholzeit wurde erfolgreich geändert");
+                    req.flash("success", "Die Abholzeit wurde erfolgreich geändert.");
                     res.redirect("back")
                 })
             }
@@ -142,7 +142,7 @@ router.post('/changetime', isLoggedIn, function(req, res, next) {
                         data.time = newTime;
                         data.save()
                             if (counter == picker_id.length && errorcounter == 0){
-                                req.flash("success", "Die Abholzeit wurde erfolgreich geändert");
+                                req.flash("success", "Die Abholzeit wurde erfolgreich geändert.");
                                 res.redirect("back")
                             }
                     }
@@ -236,7 +236,7 @@ router.post('/profile', isLoggedIn, function(req, res, next){
                             data.parsedDate = getdate;
                             data.save();
                             if (counter == 1 && errorcounter == 0){
-                                req.flash('success', 'Das Abholdatum ihrer Bestellungen wurde erfolgreich geändert')
+                                req.flash('success', 'Das Abholdatum Ihrer Bestellungen wurde erfolgreich geändert.')
                                 res.redirect("back");
                             }
                         }
@@ -302,7 +302,7 @@ router.post('/profile', isLoggedIn, function(req, res, next){
                                 data.parsedDate = getdate;
                                 data.save();
                                 if (counter == picker_id.length && errorcounter == 0){
-                                    req.flash('success', 'Das Abholdatum ihrer Bestellungen wurde erfolgreich geändert')
+                                    req.flash('success', 'Das Abholdatum Ihrer Bestellungen wurde erfolgreich geändert.')
                                     res.redirect("back");
                                 }
                             }
@@ -344,7 +344,7 @@ router.post("/delete", isLoggedIn, function(req, res, next) {
                     req.session.total = false;
                     req.session.date = false;
                     req.session.time = false;
-                    req.flash("success", "Bestellung wurde erfolgreich gelöscht")
+                    req.flash("success", "Bestellung wurde erfolgreich gelöscht.")
                     res.redirect("back")
                 })
             })
@@ -405,11 +405,11 @@ router.post('/changemail', isLoggedIn, function(req, res, next) {
                             res.send("bad email");
                         }
                     })
-                    req.flash('success', 'Ihre E-Mail Adresse wurde erfolgreich geändert');
+                    req.flash('success', 'Ihre E-Mail Adresse wurde erfolgreich geändert.');
                     res.redirect("profile")
                 })
                 } else {
-                    req.flash('error', 'Diese E-Mail Adresse ist bereits angemeldet');
+                    req.flash('error', 'Diese E-Mail Adresse ist bereits angemeldet.');
                     res.redirect("back")
                 }
             })
@@ -528,7 +528,7 @@ router.post('/aufladen', isLoggedIn, function(req, res, next) {
             });
             transfer.save(function(err, result) {
           req.session.credit = false;
-          req.flash('success', 'Konto erfolgreich aufgeladen');
+          req.flash('success', 'Ihr Konto wurde erfolgreich aufgeladen');
           res.redirect('/');
       });
         }
@@ -597,7 +597,7 @@ router.get('/charged', function(req, res, next) {
        });
       transfer.save(function(err, result) {
           req.session.credit = false;
-          req.flash('success', 'Konto erfolgreich aufgeladen');
+          req.flash('success', 'Ihr Konto wurde erfolgreich aufgeladen.');
           res.redirect('/');
       });
         }

@@ -136,15 +136,15 @@ router.post("/mybakery", function(req, res, next){
                     mailer.sendMail({
                         from: 'service@brotritter.de',
                         to: req.body.requser,
-                        subject: "Anfrage:",
+                        subject: "Bestellung",
                         template: 'membermail'
                     },function (err, response){
                         if(err){
                             console.log(err)
-                            req.flash("error", "Ihre Anfrage konnte nicht verarbeitet werden. Bitte versuchen sie es erneut");
+                            req.flash("success", "Ihre Anfrage wird verarbeitet und wir werden uns in Kürze bei Ihnen melden.");
                             res.redirect("back")
                         } else {
-                            req.flash("success", "Ihre Anfrage wird verarbeitet und wir werden uns in Kürze bei ihnen melden");
+                            req.flash("success", "Ihre Anfrage wird verarbeitet und wir werden uns in Kürze bei Ihnen melden.");
                             res.redirect("back");
                         }
                     })
@@ -162,15 +162,15 @@ router.post("/mybakery", function(req, res, next){
                     mailer.sendMail({
                         from: 'service@brotritter.de',
                         to: req.body.userMail,
-                        subject: "Anfrage:",
+                        subject: "Bestellung",
                         template: 'membermail'
                     },function (err, response){
                         if(err){
                             console.log(err)
-                            req.flash("error", "Ihre Anfrage konnte nicht verarbeitet werden. Bitte versuchen sie es erneut");
+                            req.flash("success", "Ihre Anfrage wird verarbeitet und wir werden uns in Kürze bei Ihnen melden.");
                             res.redirect("/")
                         } else {
-                            req.flash("success", "Ihre Anfrage wird verarbeitet und wir werden uns in Kürze bei ihnen melden");
+                            req.flash("success", "Ihre Anfrage wird verarbeitet und wir werden uns in Kürze bei Ihnen melden.");
                             res.redirect("/");
                         }
                     })
@@ -208,7 +208,7 @@ router.post("/mybakery", function(req, res, next){
                     mailer.sendMail({
                         from: 'service@brotritter.de',
                         to: req.body.requser,
-                        subject: "Anfrage:",
+                        subject: "Bestellung",
                         template: 'bakesuggest',
                         context: {
                             code: req.body.code
@@ -226,11 +226,11 @@ router.post("/mybakery", function(req, res, next){
                     },function (err, response){
                         if(err){
                             console.log(err)
-                            req.flash("error", "Ihre Anfrage konnte nicht verarbeitet werden. Bitte versuchen sie es erneut");
-                            res.redirect("back")
-                        } else {
-                            req.flash("success", "Bestellung wurde verpackt!");
                             res.redirect("back");
+                            req.flash("error", "Ihre Anfrage konnte nicht verarbeitet werden. Bitte versuchen Sie es erneut.");
+                        } else {
+                            res.redirect("back");
+                            req.flash("success", "Bestellung wurde verpackt!");
                         }
                     })
                 })
@@ -242,7 +242,7 @@ router.post("/mybakery", function(req, res, next){
                     mailer.sendMail({
                         from: 'service@brotritter.de',
                         to: req.body.userMail,
-                        subject: "Anfrage:",
+                        subject: "Bestellung",
                         template: 'bakesuggest',
                         context: {
                             code: req.body.code
@@ -260,11 +260,11 @@ router.post("/mybakery", function(req, res, next){
                     },function (err, response){
                         if(err){
                             console.log(err)
-                            req.flash("error", "Ihre Anfrage konnte nicht verarbeitet werden. Bitte versuchen sie es erneut");
-                            res.redirect("back")
-                        } else {
-                            req.flash("success", "Bestellung wurde verpackt!");
                             res.redirect("back");
+                            req.flash("error", "Ihre Anfrage konnte nicht verarbeitet werden. Bitte versuchen Sie es erneut.");
+                        } else {
+                            res.redirect("back");
+                            req.flash("success", "Bestellung wurde verpackt!");
                         }
                     })
                 })
@@ -298,7 +298,7 @@ router.post('/newsletter', function(req, res, next) {
     newsletter.save(function(err, result) {
         if(err){
             console.log(err)
-            req.flash("error", "Ihre Anfrage konnte nicht verarbeitet werden. Bitte versuchen sie es erneut");
+            req.flash("error", "Ihre Anfrage konnte nicht verarbeitet werden. Bitte versuchen Sie es erneut.");
             res.redirect("/")
         } else {
             req.flash("success", "Sie haben sich erfolgreich für den Brotritter Newsletter angemeldet");
@@ -311,10 +311,6 @@ router.get('/mitgliedschaft', function(req, res, next) {
     res.render('shop/membership', {csrfToken: req.csrfToken()})
 })
 
-router.get('/getcodes', function(req, res, next) {
-    res.render('shop/getcodes')
-})
-
 router.get('/testo', function(req, res, next) {
     mailer.sendMail({
         from: 'service@brotritter.de',
@@ -324,10 +320,10 @@ router.get('/testo', function(req, res, next) {
     },function (err, response){
         if(err){
             console.log(err)
-            req.flash("error", "Ihre Anfrage konnte nicht verarbeitet werden. Bitte versuchen sie es erneut");
+            req.flash("error", "Ihre Anfrage konnte nicht verarbeitet werden. Bitte versuchen Sie es erneut.");
             res.redirect("/")
         } else {
-            req.flash("success", "Ihre Anfrage wird verarbeitet und wir werden uns in Kürze bei ihnen melden");
+            req.flash("success", "Ihre Anfrage wird verarbeitet und wir werden uns in Kürze bei Ihnen melden.");
             res.redirect("/");
         }
     })
@@ -341,10 +337,10 @@ router.post('/testo', function(req, res, next) {
         template: 'membermail'
     },function (err, response){
         if(err){
-            req.flash("error", "Ihre Anfrage konnte nicht verarbeitet werden. Bitte versuchen sie es erneut");
+            req.flash("error", "Ihre Anfrage konnte nicht verarbeitet werden. Bitte versuchen Sie es erneut.");
             res.redirect("/")
         } else {
-            req.flash("success", "Ihre Anfrage wird verarbeitet und wir werden uns in Kürze bei ihnen melden");
+            req.flash("success", "Ihre Anfrage wird verarbeitet und wir werden uns in Kürze bei Ihnen melden.");
             res.redirect("/");
         }
     })
@@ -389,7 +385,7 @@ router.get('/sofort/success1/:transaction', function(req, res) {
                     req.session.var5 = false;
                     req.session.var6 = false;
                     req.session.var7 = false;
-                    req.flash("success", 'Die Bestellung wurde erfolgreich abgeschlossen');
+                    req.flash("success", 'Die Bestellung wurde erfolgreich abgeschlossen.');
                     console.log(req.session.user_email);
                     console.log(req.session.code);
                     console.log(req.session.parsedDate);
@@ -492,10 +488,10 @@ router.post('/mitgliedschaft', function(req, res, next) {
         }
     },function (err, response){
         if(err){
-            req.flash("error", "Ihre Anfrage konnte nicht verarbeitet werden. Bitte versuchen sie es erneut");
+            req.flash("error", "Ihre Anfrage konnte nicht verarbeitet werden. Bitte versuchen Sie es erneut.");
             res.redirect("/")
         } else {
-            req.flash("success", "Ihre Anfrage wird verarbeitet und wir werden uns in Kürze bei ihnen melden");
+            req.flash("success", "Ihre Anfrage wird verarbeitet und wir werden uns in Kürze bei Ihnen melden.");
             res.redirect("/");
         }
     })
@@ -523,10 +519,10 @@ router.post('/maps', function(req, res, next) {
         }
     },function (err, response){
         if(err){
-            req.flash("error", "Ihre Anfrage konnte nicht verarbeitet werden. Bitte versuchen sie es erneut");
+            req.flash("error", "Ihre Anfrage konnte nicht verarbeitet werden. Bitte versuchen Sie es erneut.");
             console.log(err)
         } else {
-            req.flash("success", "Ihr Vorschlag wurde in Kenntnis genommen. Vielen Dank für ihre Unterstützung");
+            req.flash("success", "Ihr Vorschlag wurde in Kenntnis genommen. Vielen Dank für Ihre Unterstützung.");
             res.redirect("back");
         }
     })
@@ -596,97 +592,123 @@ router.get('/datenschutz', isAuth, function(req, res, next) {
 })
 
 router.get('/getcodes', function(req, res, next){
-    
-    var CodeArray = [];
-    var orderCounter = 0;
-    var oneOrderCounter = 0;
-    Order.find(function(err, data){
-        if (data.date == undefined){
-        data.forEach(function(order_data){
-            orderCounter++;
-            if (order_data.date.setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0)){   
-                CodeArray.push(order_data.code)
-            }
-        })
-        } else {
-            orderCounter++
-            if (data.date.setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0)){
-                CodeArray.push(data.code)
-            }
-        }
-        if (orderCounter == data.length || orderCounter == 1){
-            User_Order.find(function(err, userdata){
-                if (userdata.date == undefined){
-                userdata.forEach(function(user_data){
-                    orderCounter++;
-                    if (user_data.date.setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0)){
-                        CodeArray.push(user_data.code)
-                    }
-                })
-                } else {
-                    if (userdata.date.setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0)){
-                        CodeArray.push(userdata.code)
-                    }
-                }
-                if (orderCounter == 1){
-                    res.render('shop/getcodes', {code: CodeArray})
-                }
-                else if (orderCounter == data.length -(-userdata.length) || orderCounter == data.length -(-1) || orderCounter == userdata.length -(-1)){
-                    res.render('shop/getcodes', {codes: CodeArray})
-                } else {
-                    res.render('shop/getcodes', {codes: CodeArray})
-                }
-            })
-        }
-    })
-})
-
-
-router.get("/getcodes", isAuth, function(req, res, next){
     function parseDate(input) {
-          var parts = input.match(/(\d+)/g);
-          if(parts === null || parts[0] > 31) {
-             return false
-             } else {
-          return new Date(parts[2], parts[1]-1, parts[0])
-             }
-    };
-    var fullArray = [];
-    var counter = 0;
-    User_Order.find(function(err, order) {
-        if (err) {
-        } else {
-            for(var i = 0; i < order.length; i++){
-                if(new Date(order[i].date).setHours(0,0,0,0) == new Date().setHours(0,0,0,0)){
-                    counter++
-                    var thisOrder = ({
-                        position: counter,
-                        order: order[i]
-                    })
-                    fullArray.push(thisOrder)
-                } 
-            }
-        }
-        Order.find(function(err, order) {
-            if (err) {
-                console.log("error")
-            } else {
-                for(var i = 0; i < order.length; i++){
-                    if(new Date(order[i].date).setHours(0,0,0,0) == new Date().setHours(0,0,0,0)){
-                        counter++
-                    var thisOrder = ({
-                        position: counter,
-                        order: order[i]
-                    })
-                    fullArray.push(thisOrder)
-                    } 
-                }
-            }
-            console.log(fullArray)
-            res.render('shop/getcodes', { order: fullArray, csrfToken: req.csrfToken()})
-        });
-    })
+        var parts = input.match(/(\d+)/g);
+        if(parts === null || parts[0] > 31) {
+           return false
+           } else {
+        return new Date(parts[2], parts[1]-1, parts[0])
+           }
+  };
+  function today(e)
+  {
+      var today = new Date(e);
+      var dd = today.getDate();
+      var mm = today.getMonth()+1;
+      var yyyy = today.getFullYear();
+
+      today = dd+'/'+mm+'/'+yyyy;
+
+      return today;   
+  }
+  function tomorrow(e)
+  {
+      var today = new Date(e);
+      var dd = today.getDate()+1;
+      var mm = today.getMonth()+1;
+      var yyyy = today.getFullYear();
+
+      today = dd+'/'+mm+'/'+yyyy;
+
+      return today;   
+  }
+  var fullArray = [];
+  var counter = 0;
+  User_Order.find(function(err, order) {
+      if (err) {
+      } else {
+          for(var i = 0; i < order.length; i++){
+              var thisday = new Date(new Date().setDate(new Date().getDate() + 1)).setHours(0,0,0,0)
+              var newday = new Date(order[i].date).setHours(0,0,0,0)
+              if(thisday == newday){
+                  counter++
+                  var thisOrder = ({
+                      position: counter,
+                      order: order[i]
+                  })
+                  fullArray.push(thisOrder)
+              } 
+          }
+      }
+      Order.find(function(err, norder) {
+          if (err) {
+              console.log("error")
+          } else {
+              for(var i = 0; i < norder.length; i++){
+                  var thisday = new Date(new Date().setDate(new Date().getDate() + 1)).setHours(0,0,0,0)
+                  var newday = new Date(norder[i].date).setHours(0,0,0,0)
+                  if(newday == thisday){
+                      counter++
+                  var thisOrder = ({
+                      position: counter,
+                      order: norder[i]
+                  })
+                  fullArray.push(thisOrder)
+                  } 
+              }
+          }
+          console.log(fullArray)
+          res.render('shop/getcodes', { order: fullArray })
+      });
+  })
 })
+
+
+// router.get("/getcodes", isAuth, function(req, res, next){
+//     function parseDate(input) {
+//           var parts = input.match(/(\d+)/g);
+//           if(parts === null || parts[0] > 31) {
+//              return false
+//              } else {
+//           return new Date(parts[2], parts[1]-1, parts[0])
+//              }
+//     };
+//     var fullArray = [];
+//     var counter = 0;
+//     User_Order.find(function(err, order) {
+//         if (err) {
+//         } else {
+//             for(var i = 0; i < order.length; i++){
+//                 if(new Date(order[i].date).setHours(0,0,0,0) == new Date().setHours(0,0,0,0)){
+//                     counter++
+//                     var thisOrder = ({
+//                         position: counter,
+//                         order: order[i]
+//                     })
+//                     fullArray.push(thisOrder)
+//                 } 
+//             }
+//         }
+//         Order.find(function(err, order) {
+//             if (err) {
+//                 console.log("error")
+//             } else {
+//                 for(var i = 0; i < order.length; i++){
+//                     if(new Date(order[i].date).setHours(0,0,0,0) == new Date().setHours(0,0,0,0)){
+//                         counter++
+//                     var thisOrder = ({
+//                         position: counter,
+//                         order: order[i]
+//                     })
+//                     fullArray.push(thisOrder)
+//                     } 
+//                 }
+//             }
+//             console.log(fullArray)
+//             res.render('shop/getcodes', { order: fullArray, csrfToken: req.csrfToken()})
+//         });
+//     })
+// })
 
 router.get('/kontakt', isAuth, function(req, res, next) {
     var messages = req.flash('error');
@@ -718,10 +740,10 @@ router.post('/kontakt', function(req, res, next) {
         }
     },function (err, response){
         if(err){
-            req.flash("error", "Ihre Anfrage konnte nicht verarbeitet werden. Bitte versuchen sie es erneut");
+            req.flash("error", "Ihre Anfrage konnte nicht verarbeitet werden. Bitte versuchen Sie es erneut.");
             res.redirect("/")
         } else {
-            req.flash("success", "Ihre Anfrage wird verarbeitet und wir werden uns in Kürze bei ihnen melden");
+            req.flash("success", "Ihre Anfrage wird verarbeitet und wir werden uns in Kürze bei Ihnen melden.");
             res.redirect("/");
         }
     })
@@ -772,7 +794,7 @@ router.post("/bakery", function(req, res, next) {
     };
     
     function date_error(){
-        req.flash("error", "Bitte geben sie ein gültiges Datum an");
+        req.flash("error", "Bitte geben sie ein gültiges Datum an.");
         res.redirect("bakery")
     };
     
@@ -834,7 +856,7 @@ router.post("/bakery", function(req, res, next) {
                                               credit: parseFloat(Math.round((data.credit - total) * 100) / 100).toFixed(2)
                                               });
                                             credit.save(function(err, result) {
-                                                req.flash('success', 'Die Bestellung wurde erfolgreich abgeschlossen')
+                                                req.flash('success', 'Die Bestellung wurde erfolgreich abgeschlossen.')
                                             })
                                             var user_order = new User_Order({
                                                 user: req.user,
@@ -993,7 +1015,7 @@ router.post("/bakery", function(req, res, next) {
                                                                     req.session.var5 = false;
                                                                     req.session.var6 = false;
                                                                     req.session.var7 = false;
-                                                                    req.flash("success", 'Die Bestellung wurde erfolgreich abgeschlossen');
+                                                                    req.flash("success", 'Die Bestellung wurde erfolgreich abgeschlossen.');
                                                                     mailer.sendMail({
                                                                         from: 'service@brotritter.de',
                                                                         to:  req.session.user_email,
@@ -1104,7 +1126,7 @@ router.post("/bakery", function(req, res, next) {
                                                           credit: parseFloat(Math.round((data.credit - total) * 100) / 100).toFixed(2)
                                                           });
                                                         credit.save(function(err, result) {
-                                                        req.flash("success", 'Die Bestellung wurde erfolgreich abgeschlossen')
+                                                        req.flash("success", 'Die Bestellung wurde erfolgreich abgeschlossen.')
                                                         })
                                                         var user_order = new User_Order({
                                                             user: req.user,
@@ -1265,7 +1287,7 @@ router.post("/bakery", function(req, res, next) {
                                                                     req.session.var5 = false;
                                                                     req.session.var6 = false;
                                                                     req.session.var7 = false;
-                                                                    req.flash("success", 'Die Bestellung wurde erfolgreich abgeschlossen');
+                                                                    req.flash("success", 'Die Bestellung wurde erfolgreich abgeschlossen.');
                                                                     mailer.sendMail({
                                                                         from: 'service@brotritter.de',
                                                                         to:  req.session.user_email,
@@ -1461,7 +1483,7 @@ router.get('/success', isAuth, function(req, res, next) {
                 req.session.var4 = false;
                 req.session.var5 = false;
                 req.session.var6 = false;
-                req.flash("success", 'Die Bestellung wurde erfolgreich abgeschlossen');
+                req.flash("success", 'Die Bestellung wurde erfolgreich abgeschlossen.');
                 mailer.sendMail({
                     from: 'service@brotritter.de',
                     to:  req.session.user_email,
@@ -1530,7 +1552,7 @@ router.post('/forgot', function(req, res, next) {
         function(token, done) {
             User.findOne({email: req.body.email}, function(err, user) {
                 if(!user) {
-                    req.flash('error', 'Es gibt keinen Account mit dieser Email');
+                    req.flash('error', 'Es gibt keinen Account mit dieser Email.');
                     return res.redirect('forgot');
                 }
                 
@@ -1604,7 +1626,7 @@ router.post('/reset/:token', function(req, res) {
                 if (!user) {
                     res.redirect('forgot');
                 } else if (req.body.password.length <= 4) {
-                    req.flash("error", "Das Passwort muss mindestens 5 Zeichen haben");
+                    req.flash("error", "Das Passwort muss mindestens 5 Zeichen haben.");
                     res.redirect('back');
                 }
                 else if(req.body.password === req.body.confirm) {
@@ -1617,7 +1639,7 @@ router.post('/reset/:token', function(req, res) {
                             });
                         });
                 } else {
-                    req.flash("error", "Die Passwörter sind nicht gleich");
+                    req.flash("error", "Die Passwörter sind nicht gleich.");
                     res.redirect('back');
                 }
             });
@@ -1646,7 +1668,7 @@ router.post('/reset/:token', function(req, res) {
                         res.send("bad email");
                         console.log(err)
                     } else {
-                        req.flash("success", "Ihr Passwort wurde erfolgreich geändert")
+                        req.flash("success", "Ihr Passwort wurde erfolgreich geändert.")
                         res.redirect("/")
                     }
             })

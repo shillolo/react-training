@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 <link rel="stylesheet" href="/stylesheets/mybakery.css" />
 <div class="bild f-bild">
         <div class="brotritter">
@@ -22,7 +23,7 @@
     {{#each order}}
     <form class="order" action="/mybakery" method="post">
     <div class="deleter">
-        <h3>Sind sie sich sicher, dass Sie die Bestellung löschen wollen?</h3>
+        <h3>Sind sie sich sicher, dass bei der Bestellung ein Fehler unterlaufen ist?</h3>
         <div class="delete-holder">
             <div class="delete">Ja</div>
             <div class="goback">Kein Fehler!</div>
@@ -67,8 +68,9 @@
         </div>
         <div class="inner-container-two">
             {{#if this.order.packed}}
+            <i class="fas fa-check"></i>
             {{else}}
-            <div class="confirm" id="confirm">Verpackt <i class="fas fa-check"></i></div>
+            <div class="confirm" id="confirm">Verpackt<i class="fas fa-check"></i></div>
             <div class="failure" id="failure">Es ist ein Fehler unterlaufen</div>
             {{/if}}
         </div>
