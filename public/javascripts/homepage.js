@@ -91,6 +91,8 @@ function changeColor(){
     $("#bakery3Main").attr("src","../images/bakery3King.png");
     $("#crownMode").css({backgroundColor: "white"});
     $("#crownMode").css("color", "#ff9900");
+    document.getElementById("thirdSlide").innerHTML = "Code in gewählter Bäckerei eingeben und Brötchen genießen"
+    document.getElementById("thirdText").innerHTML = "3. Code in gewählter Bäckerei eingeben und Brötchen genießen"
     // $(".wrapper").css("margin-top", "500px");
   } else {
     bodys.css('display', "none");
@@ -99,7 +101,9 @@ function changeColor(){
     $("#bakery3Main").attr("src","../images/bakery3.png");
     $("#crownMode").css({backgroundColor: "#ff9900"});
     $("#crownMode").css("color", "white");
-    $(".premium").css("display", "none")
+    $(".premium").css("display", "none");
+    document.getElementById("thirdSlide").innerHTML = "Brötchentüte am Brotritterschild in der Bäckerei abholen"
+    document.getElementById("thirdText").innerHTML = "3. Brötchentüte am Brotritterschild in der Bäckerei abholen"
   }
 }
 

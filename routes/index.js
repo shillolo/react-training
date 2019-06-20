@@ -834,6 +834,25 @@ router.post("/bakery", function(req, res, next) {
                     var parsedDate = datepicker;
                     }  
                 // Mon May 31 2010 00:00:00
+                function randomVar(theCode){
+                    User_Order.findOne({code: theCode}).exec(function(err, userorder)   {
+                        if (!userorder){
+                            Order.findOne({code: theCode}).exec(function(err, order)   {
+                                if (!order){
+                                    return random
+                                } else if (order){
+                                    var random = Math.floor(Math.random()*9000) + 1000;
+                                    randomVar(random)
+                                }
+                            })
+                        } else if (userorder){
+                            var random = Math.floor(Math.random()*9000) + 1000;
+                            randomVar(random)
+                        }
+                    })
+                }
+                var random = Math.floor(Math.random()*9000) + 1000;
+                randomVar(random)
                 console.log(req.body.getnumber)
                     if (req.body.getnumber == 1) {
                         Bun.findOne({title: req.body.getname}).exec(function(err, data) {
@@ -843,7 +862,6 @@ router.post("/bakery", function(req, res, next) {
                                 var total = data.price * req.body[req.body.getname];
                                 var productorder = req.body.getname;
                                 var number = 1;
-                                var random = Math.floor(Math.random()*9000) + 1000;
                                 if (req.user){
                 //                  Substract money from user account
                                     Credit.findOne({user: req.user}).sort({"_id": -1}).exec(function(err, data)   {
@@ -1087,7 +1105,6 @@ router.post("/bakery", function(req, res, next) {
                         var error = 0;
                         var Errorloop = 0;
                         var decimal=  /^[-+]?[0-9]+\.[0-9]+$/
-                        var random = Math.floor(Math.random()*9000) + 1000;
                         var bodylegth = req.body.getname.length;
                         for (var i = 0; i < bodylegth; i++){
                             if (req.body[req.body.getname[i]] < 1 || req.body[req.body.getname[i]].match(decimal) || !req.body[req.body.getname[i]] || isNaN(req.body[req.body.getname[i]])){

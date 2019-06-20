@@ -49,8 +49,7 @@
         <form class="form-signin" action="/user/signin" method="post">
           <h1 class="h3 mb-3 font-weight-normal">Login</h1>
           <input type="email" name="email" id="email" class="form-control" placeholder="Email" required autofocus>
-          <input type="password" name="password" id="password" class="form-control" placeholder="Passwort" required>
-          <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+          <input type="password" name="password" id="password" class="form-control" placeholder="Passwort" required>          <input type="hidden" name="_csrf" value="{{ csrfToken }}">
           <button class="btn btn-default btn-primary  loginbutton" type="submit">Einloggen</button>
           <a class="forgot" href="/forgot">Passwort vergessen?</a>
         </form>
@@ -153,7 +152,7 @@
 
     <div class="conslide">
       <img id="bakery3" src="../images/bakery3.png">
-      <h3>Code in gewählter Bäckerei eingeben und Brötchen genießen</h3>
+      <h3 id="thirdSlide">Brötchentüte am Brotritterschild in der Bäckerei abholen</h3>
     </div>
 
     </div>
@@ -178,7 +177,7 @@
 
     <div class="mySlides fade">
       <img id="bakery3Main" src="../images/bakery3.png">
-      <h2 class="textSlider">3. Code in gewählter Bäckerei eingeben und Brötchen genießen</h2>
+      <h2 class="textSlider" id="thirdText">3. Brötchentüte am Brotritterschild in der Bäckerei abholen</h2>
     </div>
 
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
