@@ -21,6 +21,7 @@ var Transfer = require('../models/transfer');
 var TransactionID = require('../models/transactionId');
 var Coordinates = require('../models/coordinates');
 var Bun = require('../models/buns');
+var Bakery = require('../models/bakerys');
 var User_Order = require('../models/user-order');
 var User = require('../models/breaduser');
 var Newsletter = require('../models/newsletter');
@@ -43,6 +44,18 @@ var mailer = nodemailer.createTransport({
 });
 
 router.get("/mybakery", isAuth, function(req, res, next){
+    if (req.session.timepicker){
+        var pickedTime = req.session.timepicker
+    }else{
+        var pickedTime = "12:00"
+    }
+    
+    Bun.find(function(err, docs) {
+        var productChunks = [];
+        var chunkSize = 1;
+        for (var i = 0; i < docs.length; i+= chunkSize) {
+            productChunks.push(docs.slice(i, i + chunkSize));
+    }  
     function parseDate(input) {
           var parts = input.match(/(\d+)/g);
           if(parts === null || parts[0] > 31) {
@@ -80,8 +93,9 @@ router.get("/mybakery", isAuth, function(req, res, next){
         } else {
             for(var i = 0; i < order.length; i++){
                 var thisday = new Date(new Date().setDate(new Date().getDate() + 1)).setHours(0,0,0,0)
-                var newday = new Date(order[i].date).setHours(0,0,0,0)
-                if(thisday == newday){
+                var newday = new Date(order[i].date).setHours(0,0,0,0);
+                var currentDay = new Date().setHours(0,0,0,0)
+                if(thisday == newday || newday == currentDay){
                     counter++
                     var thisOrder = ({
                         position: counter,
@@ -97,8 +111,9 @@ router.get("/mybakery", isAuth, function(req, res, next){
             } else {
                 for(var i = 0; i < norder.length; i++){
                     var thisday = new Date(new Date().setDate(new Date().getDate() + 1)).setHours(0,0,0,0)
-                    var newday = new Date(norder[i].date).setHours(0,0,0,0)
-                    if(newday == thisday){
+                    var newday = new Date(norder[i].date).setHours(0,0,0,0);
+                    var currentDay = new Date().setHours(0,0,0,0)
+                    if(newday == thisday || newday == currentDay){
                         counter++
                     var thisOrder = ({
                         position: counter,
@@ -109,10 +124,10 @@ router.get("/mybakery", isAuth, function(req, res, next){
                 }
             }
             console.log(fullArray)
-            res.render('shop/bakeryPage', { order: fullArray, })
+            res.render('shop/bakeryPage', { order: fullArray, products: productChunks, timepicker: pickedTime})
         });
     })
-})
+})})
 
 router.post("/mybakery", function(req, res, next){
     mailer.use('compile',hbs({
@@ -271,6 +286,39 @@ router.post("/mybakery", function(req, res, next){
             }
             })
 }
+})
+
+router.post('/killallbuns', function(req, res, next) {
+    time = req.body.timepicker;
+    req.session.timepicker = req.body.timepicker;
+    console.log(time)
+    time = time.split(":")
+    console.log(time[0])
+    var today = new Date();
+    var counter = 0
+    today.setHours(time[0], 0 ,0,0);
+    Bun.find(function(err, docs) {
+        for (var i = 0; i < docs.length; i++){
+            docs[i].expdate = today;
+            docs[i].save();
+            counter++
+            if (counter == docs.length){
+                res.redirect("back")
+            }
+        }
+    })
+})
+
+router.post('/killbun', function(req, res, next) {
+    var bunname = req.body.breadname;
+    var today = new Date();
+    Bun.findOne({title: bunname}).exec(function(err, data) {
+        data.expdate = today;
+        data.clicked = true;
+        data.save(function(){
+            res.redirect("back");
+        })
+    })
 })
 
 var csrfProtection = csrf();
@@ -753,12 +801,22 @@ router.get('/bakery', isAuth, function(req, res, next) {
 
     var messages = req.flash('error');
     var successMsg = req.flash('success')[0];
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    today = mm + '/' + dd + '/' + yyyy;
     Bun.find(function(err, docs) {
      var productChunks = [];
      var chunkSize = 1;
      for (var i = 0; i < docs.length; i+= chunkSize) {
+         var then = new Date(docs[i].expdate).getTime()
+         var now = new Date().getTime()
+         if(then <= now){
+            docs[i].unavailable = true;
+         }
          productChunks.push(docs.slice(i, i + chunkSize));
-     }    
+     }  
     Credit.findOne({user: req.user}).sort({"_id": -1}).exec(function(err, data)   {
     if (!data){
         var credit = parseFloat(Math.round((0) * 100) / 100).toFixed(2)
@@ -784,8 +842,7 @@ router.post("/bakery", function(req, res, next) {
     console.log("yey");
     var bakePost = req.body.payways;
     function code_error(){
-        req.flash("error", "Am besten nicht am Code rumspielen ;)");
-        res.redirect("/")
+        res.redirect("bakery")
     };
     
     function charge_error(){
@@ -819,14 +876,12 @@ router.post("/bakery", function(req, res, next) {
 
             var orderday = new Date()
 
-            if (new Date(parseDate(datepicker)) !== false && new Date(parseDate(datepicker)).setHours(0,0,0,0) > orderday && new Date(parseDate(datepicker)).setHours(0,0,0,0) < orderday.setMonth(orderday.getMonth()+2 ) || datepicker == "Morgen") {
+            if (new Date(parseDate(datepicker)) !== false && new Date(parseDate(datepicker)).setHours(0,0,0,0) >= orderday.setHours(0,0,0,0) && new Date(parseDate(datepicker)).setHours(0,0,0,0) < orderday.setMonth(orderday.getMonth()+2 ) || datepicker == "Heute") {
 
-                if(datepicker == "Morgen"){
+                if(datepicker == "Heute"){
                     var day = new Date();
                     var nextDay = new Date(day);
-                    nextDay.setDate(day.getDate()+1);
                     var date = nextDay;
-
                     var m = nextDay.getMonth()+1;
                     var parsedDate = date.getDate() + "." + m + "." + date.getFullYear();
                 } else {
@@ -856,12 +911,17 @@ router.post("/bakery", function(req, res, next) {
                 console.log(req.body.getnumber)
                     if (req.body.getnumber == 1) {
                         Bun.findOne({title: req.body.getname}).exec(function(err, data) {
-                            if (!data) {
+                            var curdate = new Date().getTime()
+                            var expdate = new Date(data.expdate).getTime()
+                            console.log(curdate)
+                            console.log(expdate)
+                            if (!data || curdate >= expdate && new Date(date).setHours(0, 0, 0, 0) == new Date(data.expdate).setHours(0, 0, 0, 0)) {
                                 res.redirect("bakery")
                             } else {
                                 var total = data.price * req.body[req.body.getname];
+                                total = parseFloat(Math.round(total * 100) / 100).toFixed(2);
                                 var productorder = req.body.getname;
-                                var number = 1;
+                                var number = req.body[req.body.getname];
                                 if (req.user){
                 //                  Substract money from user account
                                     Credit.findOne({user: req.user}).sort({"_id": -1}).exec(function(err, data)   {
@@ -1116,10 +1176,16 @@ router.post("/bakery", function(req, res, next) {
                         } else {
                             req.body.getname.forEach(function(broname) {
                                     Bun.findOne({title: broname}, function(err, data) {
-                                       if (!data) {
+                                        var curdate = new Date().getTime()
+                                        var expdate = new Date(data.expdate).getTime()
+                                        console.log(curdate)
+                                        console.log(expdate)
+                                       if (!data || curdate >= expdate && new Date(date).setHours(0, 0, 0, 0) == new Date(data.expdate).setHours(0, 0, 0, 0)) {
                                            Errorloop++
                                            counter++
-                                           if (Errorloop > 0 && counter == req.body.getname.length) {
+                                           console.log("hi")
+                                           console.log(req.body.getname.lenght)
+                                           if (Errorloop > 0 && counter == req.body.getname.lenght) {
                                                 code_error()
                                            }
                                         } else {
@@ -1129,7 +1195,7 @@ router.post("/bakery", function(req, res, next) {
                                             counter++;
                                             productorder.push(broname);
                                             number.push(req.body[broname])
-                                            if (Errorloop > 0 && counter == req.body.getname.length) {
+                                            if (Errorloop > 0 && counter == req.body.getname.lenght) {
                                                 code_error()
                                             } else if (counter == req.body.getname.length){
                                                 if (req.user){
@@ -1143,7 +1209,6 @@ router.post("/bakery", function(req, res, next) {
                                                           credit: parseFloat(Math.round((data.credit - total) * 100) / 100).toFixed(2)
                                                           });
                                                         credit.save(function(err, result) {
-                                                        req.flash("success", 'Die Bestellung wurde erfolgreich abgeschlossen.')
                                                         })
                                                         var user_order = new User_Order({
                                                             user: req.user,
@@ -1191,6 +1256,7 @@ router.post("/bakery", function(req, res, next) {
                                                                 res.send("bad email");
                                                                 console.log(err)
                                                             } else {
+                                                                req.flash("success", 'Die Bestellung wurde erfolgreich abgeschlossen.')
                                                                 res.redirect("code")
                                                             }
                                                         })

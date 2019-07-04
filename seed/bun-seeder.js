@@ -17,36 +17,46 @@ var buns = [,
     title: 'Weltmeister',
     price: 0.67,
     ofprice: "0,67",
-    ingredients: ["Weizenmehl", "Wasser", "Salz"]
+    ingredients: ["Weizenmehl", "Wasser", "Salz"],
+    expdate: "",
+    clicked: false
     }),
     new Bun({
     imagePath: '../images/weltmeister.jpg',
     title: 'Croissant',
     price: 0.82,
     ofprice: "0,82",
-    ingredients: ["Weizenmehl", "Wasser", "Salz"]
+    ingredients: ["Weizenmehl", "Wasser", "Salz"],
+    expdate: "",
+    clicked: false
     }),
     new Bun({
-        imagePath: '../images/weltmeister.jpg',
-        title: 'Normales',
-        price: 0.32,
-        ofprice: "0,32",
-        ingredients: ["Weizenmehl", "Wasser", "Salz"]
-        }),
-        new Bun({
-        imagePath: '../images/weltmeister.jpg',
-        title: 'Weltmeister',
-        price: 0.67,
-        ofprice: "0,67",
-        ingredients: ["Weizenmehl", "Wasser", "Salz"]
-        }),
-        new Bun({
-        imagePath: '../images/weltmeister.jpg',
-        title: 'Normales',
-        price: 0.32,
-        ofprice: "0,32",
-        ingredients: ["Weizenmehl", "Wasser", "Salz"]
-        }),
+    imagePath: '../images/weltmeister.jpg',
+    title: 'Normales',
+    price: 0.32,
+    ofprice: "0,32",
+    ingredients: ["Weizenmehl", "Wasser", "Salz"],
+    expdate: "",
+    clicked: false
+    }),
+    new Bun({
+    imagePath: '../images/weltmeister.jpg',
+    title: 'Weltmeister',
+    price: 0.67,
+    ofprice: "0,67",
+    ingredients: ["Weizenmehl", "Wasser", "Salz"],
+    expdate: "",
+    clicked: false
+    }),
+    new Bun({
+    imagePath: '../images/weltmeister.jpg',
+    title: 'Normales',
+    price: 0.32,
+    ofprice: "0,32",
+    ingredients: ["Weizenmehl", "Wasser", "Salz"],
+    expdate: "",
+    clicked: false
+}),
 ];
 
 for (var i = 1; i < buns.length; i++) {

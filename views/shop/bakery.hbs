@@ -105,6 +105,14 @@
                 <p>Leider müssen wir für normale Bezahlungen auch immer Servicegebühren beanspruchen, wenn Sie sich jedoch ein Konto auf unserer Website erstellen können Sie schneller und ohne jegliche Nebenkosten bestellen.</p>
             </div>
         </div>
+        <div id="selloutpop" class="datepop">
+            <i class="fas fa-times close popclose sellclose" id="popclose5"></i>
+            <div>
+                <h4>Heute Ausverkauft</h4>
+                <br>
+                <p>Es kann evtl. sein, dass einige Brötche für heute ausverkauft sind.<br/><br/>Falls sie dennoch Brötchen bestellen wollen, müssen sie entweder die ausverkauften Brötchen aus ihrem Warenkorb entfernen, oder sie bestellen ihre Brötchen für einen anderen Tag vor, und garantieren sich somit zugriff auf ihre Lieblingsbrötchen.</p>
+            </div>
+        </div>
 </div>
 <div class="credit-popup" id="credit-popup">
         <form class="credit-form" id="credit-checkout" method="post" action="/bakery">
@@ -171,7 +179,7 @@
                             </div>
                         </div>
                     </div> 
-                    <button type="submit" class="btn btn-default btn-primary order-btn" name="checkout" id="order-btn-logged" value="Bestellen">Vorbestellen & Bezahlen</button>
+                    <button type="button" class="btn btn-default btn-primary order-btn" name="checkout" id="order-btn-logged" value="Bestellen">Vorbestellen & Bezahlen</button>
                     <button type="button" id="goBack1" class="goBack btn">Zurück</button>
                 </div>
             </div>
@@ -358,9 +366,14 @@
                                 <div class="tprice">{{this.ofprice}}</div>&nbsp;&#8364;
                                 <div class="realprice" style="display: none">{{this.price}}</div>
                             </div>
+                            {{#if unavailable}}
+                            <div class="sellout">Heute ausverkauft!</div>
+                            {{/if}}
                         </div>
                     </div>
                 </div>
+                {{#if this.unavailable}}
+                {{/if}}
             {{/each}}
             {{/each}}
             </div>

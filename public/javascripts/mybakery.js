@@ -23,3 +23,21 @@ declinedFail.on("click", function(){
     $(this).parent().parent().siblings(".order-container").css({"display": "flex"});
     $(this).parent().parent().css({"display": "none"})
 })
+
+$(".section").click(function(){
+    $(this).siblings(".sec").slideToggle();
+    $(this).children("i").toggleClass("fa-angle-down").toggleClass("fa-angle-left")
+})
+
+$(".product").click(function(){
+    console.log("bhf")
+    $(this).parent().parent().submit()
+})
+
+function changeFunc() {
+    $("#killbuns").submit();
+}
+
+jQuery(document).ready(function() {
+    document.getElementById("timepicker").value = document.getElementById("timereader").value
+})

@@ -16,7 +16,9 @@ var schema = new Schema({
     title: String,
     price: Number,
     ofprice: String,
-    ingredients: Object
+    ingredients: Object,
+    expdate: String,
+    clicked: Boolean
 });
 
 module.exports = mongoose.model('Bun', schema);
