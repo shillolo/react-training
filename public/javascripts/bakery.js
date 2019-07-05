@@ -31,6 +31,11 @@ $("#popclose4").click(function(){
     document.getElementById("infopop").style.display = "none"
 })
 
+$("#popclose5").click(function(){
+    document.getElementById("selloutpop").style.display = "none"
+    document.getElementById("infopop").style.display = "none"
+})
+
 $("#nocost").click(function(){
     document.getElementById("feepop").style.display = "block"
     document.getElementById("infopop").style.display = "flex"
@@ -60,13 +65,52 @@ $("#button1").click(function(){
     document.getElementById("head2").style.color = "#ff9902";
 })
 
+function parseDate(input) {
+var parts = input.match(/(\d+)/g);
+if(parts === null || parts[0] > 31) {
+    return false
+    } else {
+return new Date(parts[2], parts[1]-1, parts[0])
+    }
+}
+
+$("#order-btn-logged").click(function(){
+    var pickedDate = $("#datepicker").val();
+    var orderday = new Date().setHours(0,0,0,0)
+    if(new Date(parseDate(pickedDate)).setHours(0,0,0,0) == orderday && $(".sold").val() != undefined){
+        document.getElementById("box2").style.display = "none";
+        document.getElementById("box1").style.display = "flex";
+        document.getElementById("head2").style.fontWeight = "300";
+        document.getElementById("head2").style.color = "black";
+        document.getElementById("head1").style.fontWeight = "700";
+        document.getElementById("head1").style.color = "#ff9902";
+        ipop.style.display = "flex";
+        sOpop.style.display = "flex";
+    } else {
+        $(this).parent().parent().parent().parent().submit()
+    }
+})
+
 $("#button2").click(function(){
+    var pickedDate = $("#datepicker").val();
+    var orderday = new Date().setHours(0,0,0,0)
+    if(new Date(parseDate(pickedDate)).setHours(0,0,0,0) == orderday && $(".sold").val() != undefined){
+    document.getElementById("box2").style.display = "none";
+    document.getElementById("box1").style.display = "flex";
+    document.getElementById("head2").style.fontWeight = "300";
+    document.getElementById("head2").style.color = "black";
+    document.getElementById("head1").style.fontWeight = "700";
+    document.getElementById("head1").style.color = "#ff9902";
+    ipop.style.display = "flex";
+    sOpop.style.display = "flex";
+    } else {
     document.getElementById("box2").style.display = "none";
     document.getElementById("box3").style.display = "flex";
     document.getElementById("head2").style.fontWeight = "300";
     document.getElementById("head2").style.color = "black";
     document.getElementById("head3").style.fontWeight = "700";
     document.getElementById("head3").style.color = "#ff9902";
+    }
 })
 
 $("#goBack1").click(function(){
@@ -119,13 +163,10 @@ $(document).ready(function(){
 });
 
 function orderIt(){
-    console.log($("#warenkorb").children().length)
         for (var i = 0; i < $("#warenkorb").children().length; i++) {
         var order = document.createElement('div');
         var a = $(".order")[i].children[0].innerHTML;
         var b = $(".input")[i].value;
-        console.log(a);
-        console.log(b)
         order.className = 'zettel';
         order.id = 'zettel_'+i
         document.getElementsByClassName('sorder')[0].appendChild(order);
@@ -145,7 +186,22 @@ function orderIt(){
     }
     $("#getnumber").val($("#sorder").children().length);
     document.getElementById("total-price").innerHTML = parseFloat(Math.round((document.getElementById("number").innerHTML ) * 100) / 100).toFixed(2);
+    if ($("#loginpop").attr("id") == undefined){
+    document.getElementById("unreal-total").innerHTML = parseFloat(Math.round((document.getElementById("number").innerHTML) * 100) / 100).toFixed(2).replace(".", ",");
+    } else {
     document.getElementById("unreal-total").innerHTML = parseFloat(Math.round((document.getElementById("number").innerHTML - (-fee)) * 100) / 100).toFixed(2).replace(".", ",");
+    }
+    if($(".sold").val() != undefined ){
+        console.log($(".sold").val())
+    var currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+    var day = currentDate.getDate();
+    var month = currentDate.getMonth() + 1
+    var year = currentDate.getFullYear()
+    var morgen = day + "." + month + "." + year 
+        $('#datepicker').val(morgen);
+    } else {
+        $('#datepicker').val("Heute");
+    }
     }
 
 $(".product").click(function() {
@@ -161,6 +217,19 @@ $(".product").click(function() {
         order.className = 'order';
         order.id = 'order_'+contentPanelId
         document.getElementsByClassName('warenkorb')[0].appendChild(order);
+        if ($(this).children(".productinfo").children(".sellout").text()){
+            console.log("hes")
+            document.getElementById('order_'+contentPanelId).innerHTML = `
+            <p> ${contentPanelId} </p>  
+            <div class="menuholder" id="menuholder">
+                <i class="fas fa-plus-circle"></i>
+                <input class="input" id="input_${contentPanelId}" type="text" value="1" readonly>
+                <i class="fas fa-minus-circle"></i>
+                <input class="hinput" id="hinput_${contentPanelId}" type="hidden" value="1">
+                <input class="sold" type="hidden" value="sold">
+            </div>
+    `      
+        }else{
         document.getElementById('order_'+contentPanelId).innerHTML = `
             <p> ${contentPanelId} </p>  
             <div class="menuholder" id="menuholder">
@@ -170,6 +239,7 @@ $(".product").click(function() {
                 <input class="hinput" id="hinput_${contentPanelId}" type="hidden" value="1">
             </div>
     `      
+        }
     }
     var t = document.getElementById("number").innerHTML - -price
     var e = parseFloat(Math.round(t * 100) / 100).toFixed(2);
@@ -220,7 +290,11 @@ $(document).on('click', ".fa-plus", function() {
     var breadname = $(this).parent().siblings()[0].value;
     var price = $("#"+breadname).children($(".productinfo")).children($(".iprice")).children(".realprice").text();
     document.getElementById("total-price").innerHTML = parseFloat(Math.round((total -(-price)) * 100) / 100).toFixed(2);
+    if ($("#loginpop").attr("id") == undefined){
+    document.getElementById("unreal-total").innerHTML = parseFloat(Math.round((total -(-price)) * 100) / 100).toFixed(2).replace(".", ",");
+    } else {
     document.getElementById("unreal-total").innerHTML = parseFloat(Math.round((total -(-price) - (-0.46)) * 100) / 100).toFixed(2).replace(".", ",");
+    }
     document.getElementById("number").innerHTML = document.getElementById("total-price").innerHTML;
     document.getElementById("realnumber").innerHTML = document.getElementById("total-price").innerHTML.replace(".", ",");
     $("#input_"+breadname).val( function(i, oldval) {
@@ -245,7 +319,11 @@ $(document).on('click', ".fa-minus", function() {
     var price = $("#"+breadname).children($(".productinfo")).children($(".iprice")).children(".realprice").text();
     var total = document.getElementById("total-price").innerHTML;
     document.getElementById("total-price").innerHTML = parseFloat(Math.round((total - (price)) * 100) / 100).toFixed(2);
+    if ($("#loginpop").attr("id") == undefined){
+    document.getElementById("unreal-total").innerHTML = parseFloat(Math.round(((total - (price))) * 100) / 100).toFixed(2).replace(".", ",");
+    }else{
     document.getElementById("unreal-total").innerHTML = parseFloat(Math.round(((total - (price)) - (- 0.46)) * 100) / 100).toFixed(2).replace(".", ",");
+    }
     var t = document.getElementById("number").innerHTML - (price);
     var e = parseFloat(Math.round(t * 100) / 100).toFixed(2);
     document.getElementById("number").innerHTML = e;
@@ -338,6 +416,8 @@ var tpop = document.getElementById("timepop");
 
 var fpop = document.getElementById("feepop");
 
+var sOpop = document.getElementById("selloutpop");
+
 var smodal = document.getElementById('submitpop');
 
 var sbtn = document.getElementById("orderit");
@@ -367,6 +447,7 @@ window.onclick = function(event) {
         if(epop){
         epop.style.display = "none";
         };
+        sOpop.style.display = "none";
         dpop.style.display = "none";
         tpop.style.display = "none";
     }
@@ -402,7 +483,7 @@ $(".closeing").click(function(){
             dayNamesMin: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
             monthNames: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
              dateFormat: 'dd.mm.yy',
-            minDate: '+1d',
+            minDate: '+0d',
             maxDate: '+2m'
         });
     });
@@ -416,12 +497,6 @@ $(".closeing").click(function(){
 //        }
 
 $(document).ready(function(){
-var currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-var day = currentDate.getDate();
-var month = currentDate.getMonth() + 1
-var year = currentDate.getFullYear()
-var morgen = day + "." + month + "." + year 
-    $('#datepicker').val(morgen);
      smodal.style.display = "none"
  })
 

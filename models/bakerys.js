@@ -14,7 +14,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 var schema = new Schema({
     imagePath: String,
     title: String,
-    buns: Object,
+    buns: Array,
     address: String,
 });
 
