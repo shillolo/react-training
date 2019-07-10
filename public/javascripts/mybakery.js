@@ -41,3 +41,8 @@ function changeFunc() {
 jQuery(document).ready(function() {
     document.getElementById("timepicker").value = document.getElementById("timereader").value
 })
+
+var socket = io.connect('http://localhost:3000');
+socket.on('RefreshPage', function (data) {
+    location.reload();
+});

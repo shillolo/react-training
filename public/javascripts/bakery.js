@@ -131,6 +131,41 @@ $("#goBack2").click(function(){
     document.getElementById("head2").style.color = "#ff9902";
 })
 
+$('body').on('change', '#datepicker', function() {
+        if ($("#datepicker").val() == "Heute"){
+            var dateVal = true
+        } else {
+            var dateVal = $("#datepicker").val().split(".");
+            var dd = dateVal[0];
+            var mm = dateVal[1];
+            var yy = dateVal[2];
+            dateVal = dateVal[1]+"."+dateVal[0]+"."+dateVal[2];
+            dateVal = new Date(dateVal).getTime()
+            if (dateVal == new Date().setHours(0,0,0,0)){
+                dateVal = true
+            } else {
+                dateVal = false
+            }
+        }
+        if (dateVal){
+        var timePickers =$("#timepicker").children().length
+        var thisTime = new Date().getHours()
+        for (i = 0; i < timePickers; i++){
+            var timing = $("#timepicker").children().eq(0).val();
+            timing = timing.split(":");
+            if (thisTime > timing[0]){
+                $("#timepicker").children().eq(0).remove()
+                $("#timepicker").val("--nicht verfügbar--")
+            } else {
+                $("#timepicker").html('<option value="7:00">7:00</option><option value="8:00">8:00</option><option value="9:00">9:00</option><option value="10:00">10:00</option><option value="11:00">11:00</option><option value="12:00">12:00</option><option value="13:00">13:00</option><option value="14:00">14:00</option>')
+            }
+        }
+        var timePickers =$("#timepicker").children().length 
+        } else{
+            $("#timepicker").html('<option value="7:00">7:00</option><option value="8:00">8:00</option><option value="9:00">9:00</option><option value="10:00">10:00</option><option value="11:00">11:00</option><option value="12:00">12:00</option><option value="13:00">13:00</option><option value="14:00">14:00</option>')
+        }
+})
+
 if ($(".loginpop")){
     var fee = 0.46;
 } else {
@@ -201,6 +236,47 @@ function orderIt(){
         $('#datepicker').val(morgen);
     } else {
         $('#datepicker').val("Heute");
+        var timePickers =$("#timepicker").children().length
+        var thisTime = new Date().getHours()
+        for (i = 0; i < timePickers; i++){
+            var timing = $("#timepicker").children().eq(i).val();
+            timing = timing.split(":");
+            if (thisTime > timing[0]){
+                $("#timepicker").children().eq(i).remove()
+            }
+        }
+        if ($("#datepicker").val() == "Heute"){
+            var dateVal = true
+        } else {
+            var dateVal = $("#datepicker").val().split(".");
+            var dd = dateVal[0];
+            var mm = dateVal[1];
+            var yy = dateVal[2];
+            dateVal = dateVal[1]+"."+dateVal[0]+"."+dateVal[2];
+            dateVal = new Date(dateVal).getTime()
+            if (dateVal == new Date().setHours(0,0,0,0)){
+                dateVal = true
+            } else {
+                dateVal = false
+            }
+        }
+        if (dateVal){
+        var timePickers =$("#timepicker").children().length
+        var thisTime = new Date().getHours()
+        for (i = 0; i < timePickers; i++){
+            var timing = $("#timepicker").children().eq(0).val();
+            timing = timing.split(":");
+            if (thisTime > timing[0]){
+                $("#timepicker").children().eq(0).remove()
+                $("#timepicker").val("--nicht verfügbar--")
+            } else {
+                $("#timepicker").html('<option value="7:00">7:00</option><option value="8:00">8:00</option><option value="9:00">9:00</option><option value="10:00">10:00</option><option value="11:00">11:00</option><option value="12:00">12:00</option><option value="13:00">13:00</option><option value="14:00">14:00</option>')
+            }
+        }
+        var timePickers =$("#timepicker").children().length 
+        } else{
+            $("#timepicker").html('<option value="7:00">7:00</option><option value="8:00">8:00</option><option value="9:00">9:00</option><option value="10:00">10:00</option><option value="11:00">11:00</option><option value="12:00">12:00</option><option value="13:00">13:00</option><option value="14:00">14:00</option>')
+        }
     }
     }
 

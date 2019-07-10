@@ -6,14 +6,13 @@ var nodemailer = require("nodemailer");
 var crypto = require("crypto");
 var paypal = require('paypal-rest-sdk');
 var Nexmo = require("nexmo");
-var socketio = require("socket.io");
 var ws = require("nodejs-websocket");
 var EmailTemplate = require("email-templates");
 var Promise = require("bluebird");
 var nodemailer = require("nodemailer");
 var hbs = require('nodemailer-express-handlebars');
+var socket = require('socket.io')
 var smtpTransport = require('nodemailer-smtp-transport');
-
 var Product = require('../models/product');
 var Order = require('../models/order');
 var Credit = require('../models/credit');
@@ -43,7 +42,12 @@ var mailer = nodemailer.createTransport({
     }
 });
 
+var io = socket(server);
+
 router.get("/mybakery", isAuth, function(req, res, next){
+  // Insert a doc, will trigger the change stream handler above
+//   console.log(new Date(), 'Inserting doc');
+//   await Person.create({ name: 'Axl Rose' });
     if (req.session.timepicker){
         var pickedTime = req.session.timepicker
     }else{
@@ -799,8 +803,8 @@ router.post('/kontakt', function(req, res, next) {
 })
 
 router.get('/bakery', isAuth, function(req, res, next) {
-
-    var messages = req.flash('error');
+    console.log(server)
+    var messages = req.flash('error');  
     var successMsg = req.flash('success')[0];
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
@@ -813,7 +817,7 @@ router.get('/bakery', isAuth, function(req, res, next) {
      for (var i = 0; i < docs.length; i+= chunkSize) {
          var then = new Date(docs[i].expdate).getTime()
          var now = new Date().getTime()
-         if(then <= now){
+         if(then <= now && new Date(docs[i].expdate).setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0)){
             docs[i].unavailable = true;
          }
          productChunks.push(docs.slice(i, i + chunkSize));
@@ -1258,6 +1262,15 @@ router.post("/bakery", function(req, res, next) {
                                                                 console.log(err)
                                                             } else {
                                                                 req.flash("success", 'Die Bestellung wurde erfolgreich abgeschlossen.')
+                                                                module.exports = function(io){
+                                                                    console.log(io)
+                                                                    router.get('/', function(req, res, next){
+                                                                        io.emit("message", "your message");
+                                                                        res.send();
+                                                                    })
+                                                                    // edited
+                                                                    return router;
+                                                                }
                                                                 res.redirect("code")
                                                             }
                                                         })

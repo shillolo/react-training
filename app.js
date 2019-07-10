@@ -11,14 +11,31 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var validator = require('express-validator');
 var MongoStore = require('connect-mongo')(session);
-var socket = require("socket.io");
 
 var Bun = require('./models/buns');
 var Credit = require('./models/credit')
+var User_Order = require('./models/user-order');
 var indexRouter = require('./routes/index');
 var userRoutes = require('./routes/user');
 
 var app = express();
+var http = require('http').Server(app);
+
+var server = app.listen(3000);
+var io = require('socket.io').listen(server);
+
+io.on('connection', function(socket){
+  socket.on('UpdateOnDatabase', function(msg){
+    console.log("ye")
+      socket.broadcast.emit('RefreshPage');
+  });
+});
+
+User_Order.watch().
+on('change', function(){
+    console.log("hi")
+}
+);
 
 require('./config/passport');
 
