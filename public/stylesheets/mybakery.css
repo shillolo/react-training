@@ -15,16 +15,20 @@ html, body{
 .closeStore{
     border-radius: 20px;
     padding: 10px;
-    background-color: rgb(173, 2, 2);
+    background-color: rgb(192, 192, 192);
     color: white;
     margin-bottom: 20px;
     cursor: pointer;
     transition: 0.4s;
-    text-align: center
+    text-align: center;
+    border: 2px solid rgb(192, 192, 192)
 }
 
 .closeStore:hover{
-    background-color: #e92b2b;
+    outline: none;
+    -webkit-box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+            box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    border: 2px solid rgba(81, 203, 238, 1);
 }
 
 .itsClosed{
@@ -356,7 +360,6 @@ select {
 
 .cproduct .thetitle{
     color: #d3d3d3;
-    text-decoration: line-through;
 }
 
 .cproduct .iname .fa-redo-alt{
