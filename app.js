@@ -11,10 +11,12 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var validator = require('express-validator');
 var MongoStore = require('connect-mongo')(session);
+var schedule = require('node-schedule');
 
 var Bun = require('./models/buns');
 var Credit = require('./models/credit')
 var User_Order = require('./models/user-order');
+var Order = require('./models/order')
 var indexRouter = require('./routes/index');
 var userRoutes = require('./routes/user');
 
@@ -24,20 +26,79 @@ var http = require('http').Server(app);
 var server = app.listen(3000);
 var io = require('socket.io').listen(server);
 
+
+// update stores (on new order) per websocket
 io.on('connection', function(socket){
-  socket.on('UpdateOnDatabase', function(msg){
-    console.log("ye")
-      socket.broadcast.emit('RefreshPage');
-  });
+  User_Order.watch().
+    on('change', function(){
+      // datenbanken vergleichen per input auf html
+      User_Order.find(function(err, order) {
+        var fullArray = [];
+        var counter = 0;
+        if (err) {
+        } else {
+            for(var i = 0; i < order.length; i++){
+                var thisday = new Date(new Date().setDate(new Date().getDate() + 1)).setHours(0,0,0,0)
+                var newday = new Date(order[i].date).setHours(0,0,0,0);
+                var currentDay = new Date().setHours(0,0,0,0)
+                if(thisday == newday || newday == currentDay){
+                    counter++
+                    var thisOrder = ({
+                        position: counter,
+                        order: order[i]
+                    })
+                    fullArray.push(thisOrder)
+                } 
+            }
+        }
+        Order.find(function(err, norder) {
+            if (err) {
+                console.log("error")
+            } else {
+                for(var i = 0; i < norder.length; i++){
+                    var thisday = new Date(new Date().setDate(new Date().getDate() + 1)).setHours(0,0,0,0)
+                    var newday = new Date(norder[i].date).setHours(0,0,0,0);
+                    var currentDay = new Date().setHours(0,0,0,0)
+                    if(newday == thisday || newday == currentDay){
+                        counter++
+                    var thisOrder = ({
+                        position: counter,
+                        order: norder[i]
+                    })
+                    fullArray.push(thisOrder)
+                    } 
+                }
+            }
+            console.log("ttttt")
+            console.log(fullArray)
+            console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
+            console.log(fullArray.length)
+            // signal gets commited so that the javascript file can catch the signal via websocket
+            io.emit('chatmessage', fullArray.length);
+        });
+      })
+    })
 });
 
-User_Order.watch().
-on('change', function(){
-    console.log("hi")
-}
-);
-
 require('./config/passport');
+
+
+// reset blosed bakerys and soldout buns to open and available
+schedule.scheduleJob('0 0 * * *', function(){
+    Bun.find(function(err, buns) {
+      for (var i = 0; i < buns.length; i++){
+        buns[i].clicked = false
+        if (i == buns.length){
+          buns.save()
+        }
+      }
+    })
+    Bakery.find(function(err, status){
+      status[0].closed = false;
+      status.save()
+    })
+    console.log("didi it")
+});
 
 // view engine setup
 app.engine('.hbs', expressHbs({defaultLayout: 'layout', extname: '.hbs'}))

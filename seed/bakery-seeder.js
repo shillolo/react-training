@@ -51,7 +51,8 @@ var bakerys = [,
         ofprice: "0,32",
         ingredients: ["Weizenmehl", "Wasser", "Salz"]
         }],      
-    address: "Ulru"
+    address: "Ulru",
+    closed: false
     }),
     new Bakery({
     imagePath: '../images/cropped-Bäckermeister-Haferkamp-3-gestaucht.jpg',

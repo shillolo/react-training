@@ -850,6 +850,18 @@ select::-ms-expand {
             align-items: center;
 }
 
+.closedStore{
+    text-align: center
+}
+
+.closedStore p{
+    padding: 10px 20px;
+    background-color: #FF9900;
+    color:white;
+    font-size: 1.3em;
+
+}
+
 .inner-scontainer-box p{
     font-size: 1.5em
 }

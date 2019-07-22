@@ -63,6 +63,58 @@ $("#button1").click(function(){
     document.getElementById("head1").style.color = "black";
     document.getElementById("head2").style.fontWeight = "700";
     document.getElementById("head2").style.color = "#ff9902";
+    if($(".sold").val() != undefined || $("#closedStore").val() == "closed"){
+    var currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+    var day = currentDate.getDate();
+    var month = currentDate.getMonth() + 1
+    var year = currentDate.getFullYear()
+    var morgen = day + "." + month + "." + year 
+    $('#datepicker').val(morgen);
+    $("#timepicker").html('<option value="7:00">7:00</option><option value="8:00">8:00</option><option value="9:00">9:00</option><option value="10:00">10:00</option><option value="11:00">11:00</option><option value="12:00">12:00</option><option value="13:00">13:00</option><option value="14:00">14:00</option>')
+    } else {
+        $('#datepicker').val("Heute");
+        var timePickers = $("#timepicker").children().length
+        var thisTime = new Date().getHours()
+        if ($("#datepicker").val() == "Heute"){
+            var dateVal = true
+        } else {
+            var dateVal = $("#datepicker").val().split(".");
+            var dd = dateVal[0];
+            var mm = dateVal[1];
+            var yy = dateVal[2];
+            dateVal = dateVal[1]+"."+dateVal[0]+"."+dateVal[2];
+            dateVal = new Date(dateVal).getTime()
+            if (dateVal == new Date().setHours(0,0,0,0)){
+                dateVal = true
+            } else {
+                dateVal = false
+            }
+        }
+        if (dateVal){
+            var thisTime = new Date().getHours()
+            var checker = false
+            $("#timepicker").html('<option value="7:00">7:00</option><option value="8:00">8:00</option><option value="9:00">9:00</option><option value="10:00">10:00</option><option value="11:00">11:00</option><option value="12:00">12:00</option><option value="13:00">13:00</option><option value="14:00">14:00</option>')
+            var timePickers = $("#timepicker").children().length
+            for (i = 0; i < timePickers; i++){
+                var timing = $("#timepicker").children().eq(0).val();
+                timing = timing.split(":");
+                if ($(".sold").val() != undefined){
+                        $("#timepicker").html('<option value="Heute ausverkauft">Heute ausverkauft</option>')
+                } else if (thisTime >= timing[0]){    
+                    $("#timepicker").children().eq(0).remove()
+                    $("#timepicker").val($("#timepicker").children().eq(0).val())
+                    checker = true
+                } else if (thisTime < timing[0] && checker && $(".sold").val() == undefined){
+                    console.log("Were")
+                } else {
+                    $("#timepicker").html('<option value="7:00">7:00</option><option value="8:00">8:00</option><option value="9:00">9:00</option><option value="10:00">10:00</option><option value="11:00">11:00</option><option value="12:00">12:00</option><option value="13:00">13:00</option><option value="14:00">14:00</option>')
+                }
+            }
+            console.log($("#timepicker").children().length)
+        } else {
+            $("#timepicker").html('<option value="7:00">7:00</option><option value="8:00">8:00</option><option value="9:00">9:00</option><option value="10:00">10:00</option><option value="11:00">11:00</option><option value="12:00">12:00</option><option value="13:00">13:00</option><option value="14:00">14:00</option>')
+        }
+    }
 })
 
 function parseDate(input) {
@@ -141,30 +193,46 @@ $('body').on('change', '#datepicker', function() {
             var yy = dateVal[2];
             dateVal = dateVal[1]+"."+dateVal[0]+"."+dateVal[2];
             dateVal = new Date(dateVal).getTime()
-            if (dateVal == new Date().setHours(0,0,0,0)){
+            if (dateVal == new Date().setHours(0,0,0,0) && $(".sold").val() == undefined ){
                 dateVal = true
+            } else if (dateVal == new Date().setHours(0,0,0,0) && $(".sold").val() != undefined ){
+                $("#timepicker").html('<option value="Heute ausverkauft">Heute ausverkauft</option>')
             } else {
                 dateVal = false
             }
         }
+        console.log($(".sold").val() + "und " + dateVal)
         if (dateVal){
-        var timePickers =$("#timepicker").children().length
-        var thisTime = new Date().getHours()
-        for (i = 0; i < timePickers; i++){
-            var timing = $("#timepicker").children().eq(0).val();
-            timing = timing.split(":");
-            if (thisTime > timing[0]){
-                $("#timepicker").children().eq(0).remove()
-                $("#timepicker").val("--nicht verfügbar--")
-            } else {
-                $("#timepicker").html('<option value="7:00">7:00</option><option value="8:00">8:00</option><option value="9:00">9:00</option><option value="10:00">10:00</option><option value="11:00">11:00</option><option value="12:00">12:00</option><option value="13:00">13:00</option><option value="14:00">14:00</option>')
+            console.log($(".sold").val())
+            var timePickers = $("#timepicker").children().length
+            var thisTime = new Date().getHours()
+            var checker = false
+            for (i = 0; i < timePickers; i++){
+                var timing = $("#timepicker").children().eq(0).val();
+                timing = timing.split(":");
+                if ($(".sold").val() != undefined){
+                    $("#timepicker").html('<option value="Heute ausverkauft">Heute ausverkauft</option>')
+                } else if (thisTime >= timing[0]){    
+                    $("#timepicker").children().eq(0).remove()
+                    $("#timepicker").val($("#timepicker").children().eq(0).val())
+                    checker = true
+                } else if (thisTime < timing[0] && checker && $(".sold").val() == undefined){
+                } else if  (timePickers == 1){
+                    console.log($(".sold").val())
+                    var currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+                    var day = currentDate.getDate();
+                    var month = currentDate.getMonth() + 1
+                    var year = currentDate.getFullYear()
+                    var morgen = day + "." + month + "." + year 
+                        $('#datepicker').val(morgen);
+                } else {
+                    $("#timepicker").html('<option value="7:00">7:00</option><option value="8:00">8:00</option><option value="9:00">9:00</option><option value="10:00">10:00</option><option value="11:00">11:00</option><option value="12:00">12:00</option><option value="13:00">13:00</option><option value="14:00">14:00</option>')
+                }
             }
-        }
-        var timePickers =$("#timepicker").children().length 
-        } else{
+        } else {
             $("#timepicker").html('<option value="7:00">7:00</option><option value="8:00">8:00</option><option value="9:00">9:00</option><option value="10:00">10:00</option><option value="11:00">11:00</option><option value="12:00">12:00</option><option value="13:00">13:00</option><option value="14:00">14:00</option>')
         }
-})
+    })
 
 if ($(".loginpop")){
     var fee = 0.46;
@@ -198,6 +266,7 @@ $(document).ready(function(){
 });
 
 function orderIt(){
+    // create div for each bun in shopping-cart, with their own id and append them to "sorder" div
         for (var i = 0; i < $("#warenkorb").children().length; i++) {
         var order = document.createElement('div');
         var a = $(".order")[i].children[0].innerHTML;
@@ -219,14 +288,20 @@ function orderIt(){
             </div>  
     `      
     }
+
+    // change the current value of the price div
     $("#getnumber").val($("#sorder").children().length);
+    // not visible
     document.getElementById("total-price").innerHTML = parseFloat(Math.round((document.getElementById("number").innerHTML ) * 100) / 100).toFixed(2);
+    // visible
     if ($("#loginpop").attr("id") == undefined){
     document.getElementById("unreal-total").innerHTML = parseFloat(Math.round((document.getElementById("number").innerHTML) * 100) / 100).toFixed(2).replace(".", ",");
     } else {
     document.getElementById("unreal-total").innerHTML = parseFloat(Math.round((document.getElementById("number").innerHTML - (-fee)) * 100) / 100).toFixed(2).replace(".", ",");
     }
-    if($(".sold").val() != undefined ){
+
+    // check if a bun is soldout or if the store is already closed
+    if($(".sold").val() != undefined || $("#closedStore").val() == "closed"){
         console.log($(".sold").val())
     var currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
     var day = currentDate.getDate();
@@ -234,15 +309,22 @@ function orderIt(){
     var year = currentDate.getFullYear()
     var morgen = day + "." + month + "." + year 
         $('#datepicker').val(morgen);
+        $("#timepicker").html('<option value="7:00">7:00</option><option value="8:00">8:00</option><option value="9:00">9:00</option><option value="10:00">10:00</option><option value="11:00">11:00</option><option value="12:00">12:00</option><option value="13:00">13:00</option><option value="14:00">14:00</option>')
+
     } else {
+        // check what time it is and display the next hour as earliest time
         $('#datepicker').val("Heute");
         var timePickers =$("#timepicker").children().length
         var thisTime = new Date().getHours()
-        for (i = 0; i < timePickers; i++){
-            var timing = $("#timepicker").children().eq(i).val();
+        console.log($("#timepicker").children().eq(0).val())
+        for (i = 0; i < timePickers - 1; i++){
+            var timing = $("#timepicker").children().eq(0).val();
+            console.log(thisTime)
             timing = timing.split(":");
-            if (thisTime > timing[0]){
-                $("#timepicker").children().eq(i).remove()
+            console.log(timing[0])
+            if (thisTime >= timing[0]){
+                $("#timepicker").children().eq(0).remove();
+                $("#timepicker").val($("#timepicker").children().eq(0).val())
             }
         }
         if ($("#datepicker").val() == "Heute"){
@@ -261,24 +343,36 @@ function orderIt(){
             }
         }
         if (dateVal){
-        var timePickers =$("#timepicker").children().length
-        var thisTime = new Date().getHours()
-        for (i = 0; i < timePickers; i++){
-            var timing = $("#timepicker").children().eq(0).val();
-            timing = timing.split(":");
-            if (thisTime > timing[0]){
-                $("#timepicker").children().eq(0).remove()
-                $("#timepicker").val("--nicht verfügbar--")
-            } else {
-                $("#timepicker").html('<option value="7:00">7:00</option><option value="8:00">8:00</option><option value="9:00">9:00</option><option value="10:00">10:00</option><option value="11:00">11:00</option><option value="12:00">12:00</option><option value="13:00">13:00</option><option value="14:00">14:00</option>')
+            var timePickers = $("#timepicker").children().length
+            var thisTime = new Date().getHours()
+            var checker = false
+            for (i = 0; i < timePickers; i++){
+                var timing = $("#timepicker").children().eq(0).val();
+                timing = timing.split(":");
+                if (thisTime >= timing[0]){    
+                    $("#timepicker").children().eq(0).remove()
+                    $("#timepicker").val($("#timepicker").children().eq(0).val())
+                    checker = true
+                } else if ($(".sold").val() != undefined){
+                    $("#timepicker").html('<option value="Heute ausverkauft">Heute ausverkauft</option>')
+                } else if (thisTime < timing[0] && checker && $(".sold").val() == undefined){
+                } else if  (timePickers == 1){
+                    console.log($(".sold").val())
+                    var currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+                    var day = currentDate.getDate();
+                    var month = currentDate.getMonth() + 1
+                    var year = currentDate.getFullYear()
+                    var morgen = day + "." + month + "." + year 
+                        $('#datepicker').val(morgen);
+                } else {
+                    $("#timepicker").html('<option value="7:00">7:00</option><option value="8:00">8:00</option><option value="9:00">9:00</option><option value="10:00">10:00</option><option value="11:00">11:00</option><option value="12:00">12:00</option><option value="13:00">13:00</option><option value="14:00">14:00</option>')
+                }
             }
-        }
-        var timePickers =$("#timepicker").children().length 
-        } else{
+        } else {
             $("#timepicker").html('<option value="7:00">7:00</option><option value="8:00">8:00</option><option value="9:00">9:00</option><option value="10:00">10:00</option><option value="11:00">11:00</option><option value="12:00">12:00</option><option value="13:00">13:00</option><option value="14:00">14:00</option>')
         }
     }
-    }
+}
 
 $(".product").click(function() {
     var contentPanelId = jQuery(this).attr("id");
@@ -554,15 +648,27 @@ $(".closeing").click(function(){
     })
 })
 
- $(document).ready(function(){
+if ($("#closer").val() == "closed"){
+    $(document).ready(function(){
         $("#datepicker").datepicker({
             dayNamesMin: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
             monthNames: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
              dateFormat: 'dd.mm.yy',
+            minDate: '+1d',
+            maxDate: '+2m'
+        });
+    });
+} else {
+    $(document).ready(function(){
+        $("#datepicker").datepicker({
+            dayNamesMin: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+            monthNames: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+            dateFormat: 'dd.mm.yy',
             minDate: '+0d',
             maxDate: '+2m'
         });
     });
+}
 
     var datepicker = new Date();
 

@@ -379,8 +379,7 @@ body{
     border-bottom: 3px solid white;
 }
 
-.loginpop, .registerpop, .submitpop, .mobile-popup, .infopop, .überpop, .credit-popup{
-    @import ("https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css");
+.loginpop, .registerpop, .submitpop, .mobile-popup, .infopop, .überpop, .credit-popup, .closepop{
     position: fixed;
     z-index: 3000;
     display: -webkit-box;

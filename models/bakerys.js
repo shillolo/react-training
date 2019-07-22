@@ -16,6 +16,7 @@ var schema = new Schema({
     title: String,
     buns: Array,
     address: String,
+    closed: Boolean
 });
 
 module.exports = mongoose.model('Bakery', schema);

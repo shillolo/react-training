@@ -1,11 +1,40 @@
 @import url('https://fonts.googleapis.com/css?family=Baloo+Bhai|Crete+Round|Francois+One|Open+Sans|Righteous|Roboto|Ubuntu&display=swap');
+html, body{
+    height: 100%;
+}
+
 .orders{
-    width: 70%;
+    width: 40%;
     max-width: 700px;
     margin: 50px auto;
     min-height: 100%;
     height: auto;
     transition: 0.3s
+}
+
+.closeStore{
+    border-radius: 20px;
+    padding: 10px;
+    background-color: rgb(173, 2, 2);
+    color: white;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: 0.4s;
+    text-align: center
+}
+
+.closeStore:hover{
+    background-color: #e92b2b;
+}
+
+.itsClosed{
+    border-radius: 20px;
+    padding: 10px;
+    background-color: #7e7e7e;
+    color: white;
+    margin-bottom: 20px;
+    transition: 0.4s;
+    text-align: center
 }
 
 .section{
@@ -23,6 +52,10 @@
     text-align: center
 }
 
+.balken{
+    color: white;
+}
+
 .dropbtn {
     background-color: #3498DB;
     color: white;
@@ -35,6 +68,11 @@
   .dropbtn:hover, .dropbtn:focus {
     background-color: #2980B9;
   }
+
+  .edged {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px
+ }
   
   .dropdown {
     position: relative;
@@ -48,21 +86,6 @@
     color: black;
     text-align-last: center;
     margin-bottom: 20px
-}
-
-.e-reader, .p-reader {
-    width: 300px;
-    height: 55px;
-    border: 2px solid #c9c9c9;
-    border-radius: 8px;
-    font-size: 1.2em;
-    padding: 0 15px;
-    margin-top: 1px;
-    width: 30%;
-    max-width: 150px;
-    height: 42px;
-    text-align: center;
-    background-color: white
 }
 
 .killbuns{
@@ -122,7 +145,8 @@ select {
 }
 
 .inner-container-one{
-    width: 50%
+    width: 50%;
+    padding-left: 1%
 }
 
 .data{
@@ -131,8 +155,10 @@ select {
 
 .products, .products2{
     border: 1px solid #c4c4c4;
-    background-color: white;
-    border-radius: 3px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
     height: auto;
     width: 80%;
     position: relative;
@@ -188,7 +214,17 @@ select {
 }
 
 .products .section{
-    border-radius: 0px
+    border-radius: 0px;
+}
+
+.products .section p{
+    margin-left: 10px;
+    font-size: 0.9em
+}
+
+.products .lsection{
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
 }
 
 .orders .section{
@@ -199,10 +235,11 @@ select {
 }
 
 .bunheader{
+    height: auto;
     text-align: center;
     justify-content: center;
-    margin-top: 50px;
-    width: 80%
+    width: 80%;
+    padding: 10px 20px
 }
 
 .bunheader:hover{
@@ -215,7 +252,7 @@ select {
     border-bottom: 1px solid #c4c4c4
 }
 
-.product{
+.product, .cproduct{
     border-bottom: 1px solid #c4c4c4;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -227,12 +264,108 @@ select {
     -webkit-transition: 0.s;
     -o-transition: 0.s;
     transition: 0.s;
-    z-index: 1
+    z-index: 1;
+}
+
+.closer{
+    width: 80%;
+    max-width: 600px;
+    min-height: 200px;
+    height: auto;
+    background-color: white;
+    border: 3px solid #ff9900;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.inner-closer{
+    width: 90%;
+    min-height: 200px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-top: 10px
+}
+
+#forToday{
+    position: relative;
+}
+
+.message{
+        height: 33px;
+        width: 33px;
+        background-color: rgb(173, 2, 2);
+        border-radius: 50%;
+        margin-left: auto;
+        position: absolute;
+        right: 2%
+}
+
+.decider{
+    display: flex;
+    margin: 10px auto;
+    width: 80%;
+    justify-content: space-around;
+    margin-top: 30px
+}
+
+.close{
+    margin-left: auto
+}
+
+.yes{
+    padding: 5px 15px;
+    border-radius: 20px;
+    background-color: #ff9900;
+    cursor: pointer;
+    color: white;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    transition: 0.3s
+}
+
+.yes:hover{
+    background-color: #c07403
+}
+
+.no{
+    cursor: pointer;
+    padding: 10px
+}
+
+.no:hover{
+    text-decoration: underline
+}
+
+.cproduct{
+    background-clip: padding-box;
+    background-color: rgb(236, 236, 236);
+    border-bottom: 1px solid #c4c4c4
+}
+
+.cproduct .thetitle{
+    color: #d3d3d3;
+    text-decoration: line-through;
+}
+
+.cproduct .iname .fa-redo-alt{
+    text-decoration: none !important;
 }
 
 .productholder{
     width: 100%;
-    height: 6em;
+    height: 4em;
     position: relative;
     font-size: 1.1em
 }
@@ -241,15 +374,23 @@ select {
     background-color: #eaeaea
 }
 
+.cproductpic{
+    background-size: cover;
+    height: 4em;
+    width: 140px;
+    -webkit-filter: opacity(.5);
+    filter: opacity(.5);
+}
+
 .productpic{
     background-size: cover;
-    height: 6em;
-    width: 240px
+    height: 4em;
+    width: 140px
 }
 
 .productpic-pop{
     background-size: cover;
-    height: 4em;
+    height: 3em;
     width: 120px
 }
 
@@ -267,42 +408,26 @@ select {
         -ms-flex-align: center;
             align-items: center;
     width: 100%;
-    height: 6em;
+    height: 4em;
+}
+
+.thetitle{
+    width: 50%;
+    text-align: center
+}
+
+.product .iname{
+    width: 100%;
+    margin: 0 auto
 }
 
 .iname{
     font-weight:700;
     font-size: 1.2em;
-}
-
-.iname i{
-    font-size: 3em;
-    color: red
-}
-
-.kasse{
-    height: auto;
-    border: 1px solid #c4c4c4;
-    border-left: 1px solid #c4c4c4;
-    background-color: white;
-    border-top-left-radius: 4%;
-    border-top-right-radius: 4%;
-    display: -webkit-box;
-    display: -ms-flexbox;
+    width: 100%;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    -webkit-box-shadow: 2px 2px 7px #494949;
-    box-shadow: 1px 1px 4px #494949;
-}
-
-.positioner{
-    position: absolute
+    justify-content: space-around;
+    align-items: center
 }
 
 .wrapper{
@@ -388,14 +513,26 @@ select {
     margin-right: 5px
 }
 
-.orders, .availibility{
-    width: 50%
+.orders{
+    width: 50%;
+    max-width: 850px
+}
+
+.bild{
+    height: 400px;
+    max-height: 400px
+}
+
+.bild h1{
+    margin-top: 200px
 }
 
 .availibility{
     display: flex;
     flex-direction: column;
-    align-items: center
+    align-items: center;
+    width: 30%;
+    margin: 50px auto
 }
 
 .inner-container-two{
@@ -482,6 +619,11 @@ select {
     margin-bottom: 20px
 }
 
+#Weizenbroetchen{
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
 .confirm:hover{
     background-color: #005eca
 }
@@ -505,20 +647,23 @@ select {
     border-radius: 30px;
     margin-top: 30px;
     padding: 10px;
-    transition: 0.3s
+    transition: 0.3s;
+    background-color: white
 }
 
 .order p{
-    margin-left: 5px;
-    text-align: center
+    margin-left:  10px;
+    text-align: left;
+    font-size: 1.2em
 }
 
 .order h3{
     font-weight: 600;
-
+    font-size: 1.6em;
     padding-top: 20px;
     padding-bottom: 10px;
-    color: rgb(70, 70, 70);
+    color: black;
+    text-decoration: underline
 }
 
 .f-pass{
@@ -547,6 +692,71 @@ select {
     justify-content: flex-start
 }
 
+.balken2{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    font-weight: 800;
+    cursor: pointer;
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s
+}
+
+.tab{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: 50%;
+    border-bottom: solid 2px #FF9900;
+    padding: 20px ;
+        -webkit-transition: 0.3s;
+        -o-transition: 0.3s;
+        transition: 0.3s;
+        display: none
+}
+
+.tab:hover{
+    background-color: #FF9900;
+    color: white
+}
+
+.tabchange{
+    background-color: #FF9900;
+    color: white
+}
+
+#tab1{
+    border-right: 1px solid #ff9900
+}
+
+#tab3{
+    border-left: 1px solid #ff9900
+}
+
+.lsection{
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px
+}
+
+.cproduct .fa-redo-alt{
+    font-size: 1.1em;
+    color: #FF9900;
+    text-decoration: none;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.fa-redo-alt:hover{
+    font-size: 1.15em;
+    color: rgb(192, 115, 0)
+}
+
 @media only screen and (max-width: 980px) {
     .viereck{
         display: flex;
@@ -567,5 +777,43 @@ select {
 @media only screen and (min-width: 980px) {
     .viereck{
         display: none
+    }
+}
+
+@media only screen and (max-width: 1350px) {
+    .productpic, .cproductpic{
+        display: none
+    }
+}
+
+@media only screen and (max-device-width: 520px) {
+    .products{
+        width: 100%
+    }
+    .bunheader{
+        width: 100%;
+    }
+    .availibility{
+        width: 70%;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        font-size: 1.4em
+    }
+    .data{
+        min-height: 100%
+    }
+    .tab{
+        display: flex;
+        font-size: 1.4em
+    }
+    .balken{
+        box-shadow: 0px 0px 0px black
+    }
+    .orders{
+        width: 70%;
+    }
+    .orders{
+        font-size: 1.4em
     }
 }

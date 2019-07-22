@@ -1,5 +1,20 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 <link rel="stylesheet" href="/stylesheets/mybakery.css" />
+
+<form class="deactivate" action="/deactivate" method="post"></form>
+<div class="closepop">
+   <div class="closer">
+       <i class="fas fa-times close" id="deactivateClose"></i>
+       <div class="inner-closer">
+        <h2>Sind Sie sicher, dass Sie ihre Filiale für heute bei Brotritter schließen wollen?</h2> <p>Nachdem die Filiale bei uns geschlossen wurde kommen für den heutigen Tag keine neuen Bestellungen mehr rein.</p>
+        <div class="decider">
+            <div class="yes">Ja ich bin mir sicher</div>
+            <div class="no">Nein</div>
+        </div>
+       </div>
+    </div>
+</div> 
+
 <div class="bild f-bild">
         <div class="brotritter">
             <div class="maenu" title="Brotritter" OnClick="location.href='/'"></div>
@@ -15,12 +30,17 @@
         <h1 class="f-pass">Aktuelle Bestellungen</h1>
 </div>
         
-<div class="balken"><div class="errors">{{errors}}</div><div class="success">{{success}}</div></div>
+<div class="balken">Bei Fragen: 015234234544</div>
+<div class="balken2">
+        <div class="tab" id="tab1">Bestellübersicht</div>
+        <div class="tab" id="tab3">Verfügbarkeit</div>
+</div>
 
 <div class="data">
     <div class="orders">
-        <div class="section">HEUTIGE BESTELLUNGEN</div>
+        <div class="section" id="forToday">HEUTIGE BESTELLUNGEN<div class="message" id="message">1</div></div>
         {{#if order}}
+        <input type="hidden" id="reloader" value="{{order.length}}">
         {{#each order}}
         <form class="order" action="/mybakery" method="post">
         <div class="deleter">
@@ -61,15 +81,15 @@
                 <div class="code-holder">
                     <h3>Code:</h3>
                     <input type="hidden" name="code" value="{{this.order.code}}"/>
-                    {{this.order.code}}
+                    <p>{{this.order.code}}</p>
                 </div>
-                <div class="code-holder">
+                <div class="time-holder">
                     <h3>Uhrzeit:</h3>
-                    {{this.order.time}}
+                    <p>{{this.order.time}}</p>
                 </div>
             <div class="chip-nr-container">
                 <h3>Regal Nr:</h3>
-                {{this.position}}
+                <p>{{this.position}}</p>
             </div>
             </div>
             <div class="inner-container-two">
@@ -77,6 +97,7 @@
                 <i class="fas fa-check"></i>
                 {{else}}
                 <div class="confirm" id="confirm">Verpackt</div>
+                <div class="sound" style="display: none"></div>
                 <div class="failure" id="failure">Es ist ein Fehler unterlaufen</div>
                 {{/if}}
             </div>
@@ -90,10 +111,12 @@
     </div>
     <div class="availibility">
         <input type="hidden" value="{{timepicker}}" id="timereader">
-        <div class="section bunheader">VERFÜGBARKEIT DER BRÖTCHEN</div>
+        <div class="section bunheader">VERFÜGBARKEIT DER WARE</div>
         <form id="killbuns" class="killbuns" action="/killallbuns" method="post">
-        <h2>Store schließt um:</h2><select id="timepicker" class="timepicker e-reader" name="timepicker" onchange="changeFunc()"><option value="12:00">12:00</option><option value="13:00">13:00</option><option value="14:00">14:00</option><option value="15:00">15:00</option></select>
+        {{#if closed}}<div class="itsClosed">Brotritterstore geschlossen</div>{{else}}<div class="closeStore">Brotritterstore schließen</div>{{/if}}
         </form>
+        {{#if closed}}
+        {{else}}
         <div class="products" id="bakeryProducts">
             <div>
             <a class="section" name="Weizenbroetchen" id="Weizenbroetchen"><p>WEIZENBRÖTCHEN</p><i class="fas fa-angle-down"></i></a>
@@ -101,19 +124,19 @@
             {{# each products}}
             {{# each this }}
             <form action="/killbun" method="post">
+            <input type="hidden" name="status" class="status">
             <input type="hidden" name="breadname" value="{{this.title}}"/>
-                <div class="productholder" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" 
- unselectable="on"
- onselectstart="return false;" 
- onmousedown="return false;">
-                    <div class="product" id="{{this.title}}">
-                        <img src="{{this.imagePath}}" class="productpic" alt="Kein Internet">
-                        <div class="productinfo">
-                            <div class="iname">{{#if this.clicked}}<i class="fas fa-times"></i>
-                {{else}}{{this.title}}{{/if}}</div>
-                        </div>
+            <div class="productholder {{#if this.clicked}}cproductholder{{/if}}" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" 
+unselectable="on"
+onselectstart="return false;" 
+onmousedown="return false;">
+                <div class="{{#if this.clicked}}cproduct{{else}}product{{/if}}" id="{{this.title}}">
+                    <img src="{{this.imagePath}}" class="{{#if this.clicked}}cproductpic{{else}}productpic{{/if}}" alt="Kein Internet">
+                    <div class="productinfo">
+                        <div class="iname"><div class="thetitle">{{this.title}}</div>{{#if this.clicked}}<i class="fas fa-redo-alt redobutton"></i>{{/if}}</div>
                     </div>
                 </div>
+            </div>
             </form>
             {{/each}}
             {{/each}}
@@ -126,11 +149,11 @@
             {{# each this }}
             <form action="/killbun" method="post">
                  <input type="hidden" name="breadname" value="{{this.title}}"/>
-                <div class="productholder" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" 
+                <div class="productholder {{#if this.clicked}}cproductholder{{/if}}" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" 
  unselectable="on"
  onselectstart="return false;" 
  onmousedown="return false;">
-                    <div class="product" id="{{this.title}}">
+                    <div class="{{#if this.clicked}}cproduct{{else}}product{{/if}}" id="{{this.title}}">
                         <img src="{{this.imagePath}}" class="productpic" alt="Kein Internet">
                         <div class="productinfo">
                             <div class="iname">{{this.title}}</div>
@@ -149,11 +172,11 @@
             {{# each this }}
             <form action="/killbun" method="post">
             <input type="hidden" name="breadname" value="{{this.title}}"/>
-                <div class="productholder" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" 
+                <div class="productholder {{#if this.clicked}}cproductholder{{/if}}" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" 
  unselectable="on"
  onselectstart="return false;" 
  onmousedown="return false;">
-                    <div class="product" id="{{this.title}}">
+                    <div class="{{#if this.clicked}}cproduct{{else}}product{{/if}}" id="{{this.title}}">
                         <img src="{{this.imagePath}}" class="productpic" alt="Kein Internet">
                         <div class="productinfo">
                             <div class="iname">{{this.title}}</div>
@@ -172,11 +195,11 @@
             {{# each this }}
             <form action="/killbun" method="post">
                 <input type="hidden" name="breadname" value="{{this.title}}"/>
-                <div class="productholder" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" 
+                <div class="productholder {{#if this.clicked}}cproductholder{{/if}}" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" 
  unselectable="on"
  onselectstart="return false;" 
  onmousedown="return false;">
-                    <div class="product" id="{{this.title}}">
+                    <div class="{{#if this.clicked}}cproduct{{else}}product{{/if}}" id="{{this.title}}">
                         <img src="{{this.imagePath}}" class="productpic" alt="Kein Internet">
                         <div class="productinfo">
                             <div class="iname">{{this.title}}</div>
@@ -189,17 +212,17 @@
             </div>
             </div>
             <div>
-            <a class="section" name="Laugengebaeck" id="Laugengebaeck"><p>LAUGENGEBÄCK</p><i class="fas fa-angle-left"></i></a>
+            <a class="section lsection" name="Laugengebaeck" id="Laugengebaeck"><p>LAUGENGEBÄCK</p><i class="fas fa-angle-left"></i></a>
             <div class="sec">
             {{# each products}}
             {{# each this }}
             <form action="/killbun" method="post">
                 <input type="hidden" name="breadname" value="{{this.title}}"/>
-                <div class="productholder" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" 
+                <div class="productholder {{#if this.clicked}}cproductholder{{/if}}" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" 
  unselectable="on"
  onselectstart="return false;" 
  onmousedown="return false;">
-                    <div class="product" id="{{this.title}}">
+                    <div class="{{#if this.clicked}}cproduct{{else}}product{{/if}}" id="{{this.title}}">
                         <img src="{{this.imagePath}}" class="productpic" alt="Kein Internet">
                         <div class="productinfo">
                             <div class="iname">{{this.title}}</div>
@@ -212,6 +235,7 @@
             </div>
             </div>    
         </div>
+        {{/if}}
     </div>
 </div>
 

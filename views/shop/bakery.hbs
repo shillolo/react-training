@@ -86,7 +86,7 @@
             <div>
                 <h4>Abholzeit angeben</h4>
                 <br>
-                <p>Ihre Brötchen werden ab der gewählten Uhrzeit in der Bäckerei ausliegen. Je früher sie ihre Brötchen abhloen, desto frischer sind diese.</p>
+                <p>Ihre Brötchen werden ab der gewählten Uhrzeit in der Bäckerei ausliegen. Je früher sie ihre Brötchen abholen, desto frischer sind diese.</p>
             </div>
         </div>
         <div id="datepop" class="datepop">
@@ -94,7 +94,7 @@
             <div>
                 <h4>Abholdatum</h4>
                 <br>
-                <p>Bestellungen müssen leider einen Tag im vorraus getätigt werden.</p>
+                <p>Bestellungen die bereits ausverkaufte Brötchen beinhalten, müssen leider einen Tag im vorraus getätigt werden.</p>
             </div>
         </div>
         <div id="feepop" class="datepop">
@@ -136,6 +136,8 @@
     {{#if login}}
         <form action="/bakery" method="post" id="checkout-logged">
         <div class="submitpop submitlogged" id="submitpop">
+            {{!-- create input if store is closed ---> for javascript file to check --}}
+            <input type="hidden" {{#if closed}} value="closed"{{/if}} id="closedStore">
             <div class="scontainer">
                 <i class="fas fa-times close closesub"></i>
                 <div class="sconHead">
@@ -188,6 +190,8 @@
     {{else}}
         <form action="/bakery" method="post" id="checkout-form">
         <div class="submitpop" id="submitpop">
+            {{!-- create input if store is closed ---> for javascript file to check --}}
+            <input type="hidden" {{#if closed}} value="closed"{{/if}} id="closedStore">
             <div class="scontainer" id="scontainer">
                 <i class="fas fa-times close closesub"></i>
                 <div class="inner-scontainer">
@@ -330,9 +334,11 @@
             <div class="nummer2">
                 <img src="../images/HaferkampSmall.png">
             </div>
+            {{#if closed}}<div class="closedStore"><p>Für Heute geschlossen!</p></div>{{/if}}
     </div>
         
     <div class="balken" id="balken">{{messages}}</div>
+    {{#if closed}}<input id="closer" type="hidden" value="closed" />{{/if}}
     <div class="shopping-cart-container" id="shopping-cart-container">
         <div class="shopping-cart" id="shopping-cart">
             <div class="dropdown">

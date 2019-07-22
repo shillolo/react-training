@@ -127,11 +127,29 @@ router.get("/mybakery", isAuth, function(req, res, next){
                     } 
                 }
             }
-            console.log(fullArray)
-            res.render('shop/bakeryPage', { order: fullArray, products: productChunks, timepicker: pickedTime})
+            var closed;
+            Bakery.find(function(err, status){
+                console.log(status[0].closed)
+                if (status[0].closed == true){
+                     closed = true
+                } else {
+                     closed = false 
+                }
+            fullArray = fullArray.reverse()
+            res.render('shop/bakeryPage', { order: fullArray, products: productChunks, timepicker: pickedTime, closed: closed})
+         })
         });
     })
 })})
+
+router.post("/deactivate", function(req, res, next){
+    Bakery.find(function(err, status) {
+        status[0].closed = true;
+        status[0].save(function(){
+            res.redirect("back")
+        })
+    })
+})
 
 router.post("/mybakery", function(req, res, next){
     mailer.use('compile',hbs({
@@ -315,7 +333,17 @@ router.post('/killallbuns', function(req, res, next) {
 
 router.post('/killbun', function(req, res, next) {
     var bunname = req.body.breadname;
+    var state = req.body.status
     var today = new Date();
+    if (state == "redo"){
+    Bun.findOne({title: bunname}).exec(function(err, data) {
+        data.expdate = today;
+        data.clicked = false;
+        data.save(function(){
+            res.redirect("back");
+        })
+    })
+}else{
     Bun.findOne({title: bunname}).exec(function(err, data) {
         data.expdate = today;
         data.clicked = true;
@@ -323,6 +351,7 @@ router.post('/killbun', function(req, res, next) {
             res.redirect("back");
         })
     })
+}
 })
 
 var csrfProtection = csrf();
@@ -802,8 +831,9 @@ router.post('/kontakt', function(req, res, next) {
     })
 })
 
+// (*change later when we have more than one bakery*)
+
 router.get('/bakery', isAuth, function(req, res, next) {
-    console.log(server)
     var messages = req.flash('error');  
     var successMsg = req.flash('success')[0];
     var today = new Date();
@@ -811,25 +841,33 @@ router.get('/bakery', isAuth, function(req, res, next) {
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
     today = mm + '/' + dd + '/' + yyyy;
-    Bun.find(function(err, docs) {
-     var productChunks = [];
-     var chunkSize = 1;
-     for (var i = 0; i < docs.length; i+= chunkSize) {
-         var then = new Date(docs[i].expdate).getTime()
-         var now = new Date().getTime()
-         if(then <= now && new Date(docs[i].expdate).setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0)){
-            docs[i].unavailable = true;
-         }
-         productChunks.push(docs.slice(i, i + chunkSize));
-     }  
-    Credit.findOne({user: req.user}).sort({"_id": -1}).exec(function(err, data)   {
-    if (!data){
-        var credit = parseFloat(Math.round((0) * 100) / 100).toFixed(2)
-    } else {
-        var credit = parseFloat(Math.round((data.credit) * 100) / 100).toFixed(2)
-    }
-    res.render('shop/bakery', {csrfToken: req.csrfToken(), messages: messages, credit: credit, hasErrors: messages.lenght > 0, products: productChunks, successMsg: successMsg, noMessages: !successMsg})
-    })
+    // check if bakery is open
+    Bakery.find(function(err, status) {
+        console.log(status[0].closed)
+        // get all the buns and store them in an array
+        Bun.find(function(err, docs) {
+            var productChunks = [];
+            var chunkSize = 1;
+            for (var i = 0; i < docs.length; i+= chunkSize) {
+                var then = new Date(docs[i].expdate).getTime()
+                var now = new Date().getTime()
+                // if store is open and buns aren't available "Heute ausverkauft"
+                if (status[0].closed == false){
+                    if(then <= now && new Date(docs[i].expdate).setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0)){
+                        docs[i].unavailable = true;
+                    }
+                }
+                productChunks.push(docs.slice(i, i + chunkSize));
+            }
+            Credit.findOne({user: req.user}).sort({"_id": -1}).exec(function(err, data)   {
+            if (!data){
+                var credit = parseFloat(Math.round((0) * 100) / 100).toFixed(2)
+            } else {
+                var credit = parseFloat(Math.round((data.credit) * 100) / 100).toFixed(2)
+            }
+            res.render('shop/bakery', {csrfToken: req.csrfToken(), closed: status[0].closed, messages: messages, credit: credit, hasErrors: messages.lenght > 0, products: productChunks, successMsg: successMsg, noMessages: !successMsg})
+            })
+        })
     })
 })
 
@@ -849,6 +887,16 @@ router.post("/bakery", function(req, res, next) {
     function code_error(){
         res.redirect("bakery")
     };
+
+    var closed
+
+    Bakery.find(function(err, status) {
+        if (status[0].closed == false){
+            closed = false
+        } else {
+            closed = true
+        }
+    })
     
     function charge_error(){
         req.flash("error", "Nicht Genügend Guthaben!");
@@ -865,7 +913,8 @@ router.post("/bakery", function(req, res, next) {
     } else {  
     
         var time= req.body.timepicker
-    
+        var timing = time.split(":");
+        var thisTime = new Date().getHours()
         if(req.body.datepicker != undefined && req.body.datepicker != null && req.body.datepicker && new Date(req.body.datepicker) != null && req.body.datepicker.length > 0) {
 
             var datepicker = req.body.datepicker;
@@ -878,8 +927,11 @@ router.post("/bakery", function(req, res, next) {
               return new Date(parts[2], parts[1]-1, parts[0])
                  }
             }
-
             var orderday = new Date()
+            if (parseDate(datepicker).setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0) && thisTime > timing[0] || closed == true && parseDate(datepicker).setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0)){
+                console.log("here")
+                date_error()
+            } else {
 
             if (new Date(parseDate(datepicker)) !== false && new Date(parseDate(datepicker)).setHours(0,0,0,0) >= orderday.setHours(0,0,0,0) && new Date(parseDate(datepicker)).setHours(0,0,0,0) < orderday.setMonth(orderday.getMonth()+2 ) || datepicker == "Heute") {
 
@@ -920,7 +972,7 @@ router.post("/bakery", function(req, res, next) {
                             var expdate = new Date(data.expdate).getTime()
                             console.log(curdate)
                             console.log(expdate)
-                            if (!data || curdate >= expdate && new Date(date).setHours(0, 0, 0, 0) == new Date(data.expdate).setHours(0, 0, 0, 0)) {
+                            if (!data || curdate >= expdate && new Date().setHours(0, 0, 0, 0) == new Date(data.expdate).setHours(0, 0, 0, 0)) {
                                 res.redirect("bakery")
                             } else {
                                 var total = data.price * req.body[req.body.getname];
@@ -1023,7 +1075,6 @@ router.post("/bakery", function(req, res, next) {
                                                 "description": "Danke für den Besuch bei Brotritter"
                                             }]
                                         };
-
 
                                         paypal.payment.create(create_payment_json, function (error, payment) {
                                             if (error) {
@@ -1453,9 +1504,12 @@ router.post("/bakery", function(req, res, next) {
                         }
                     }
             } else {
+                console.log("num1")
                 date_error()
             }
+        }
         } else {
+            console.log("num2")
             date_error()
         }
     }
