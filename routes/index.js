@@ -154,6 +154,7 @@ router.get("/mybakery", isAuth, function(req, res, next){
                 } else {
                      closed = false 
                 }
+                endArray = endArray.reverse()
             res.render('shop/bakeryPage', { order: endArray, products: productChunks, timepicker: pickedTime, closed: closed})
          })
         });
