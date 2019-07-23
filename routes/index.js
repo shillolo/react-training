@@ -1243,6 +1243,8 @@ router.post("/bakery", function(req, res, next) {
                         var decimal=  /^[-+]?[0-9]+\.[0-9]+$/
                         var bodylegth = req.body.getname.length;
                         for (var i = 0; i < bodylegth; i++){
+                            console.log(decimal);
+                            console.log(req.body[req.body.getname[i]])
                             if (req.body[req.body.getname[i]] < 1 || req.body[req.body.getname[i]].match(decimal) || !req.body[req.body.getname[i]] || isNaN(req.body[req.body.getname[i]])){
                                 error++;
                             }

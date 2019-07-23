@@ -291,7 +291,10 @@ function orderIt(){
         var a = $(".order")[i].children[0].innerHTML;
         var b = $(".input")[i].value;
         order.className = 'zettel';
-        order.id = 'zettel_'+i
+        order.id = 'zettel_'+i;
+        if($('[id='+order.id+']').length == 1){
+
+        } else {
         document.getElementsByClassName('sorder')[0].appendChild(order);
         document.getElementById('zettel_'+i).innerHTML = `
             <div class="mini-container">
@@ -305,7 +308,8 @@ function orderIt(){
                     <i class="fas fa-minus"></i>
                 </div>
             </div>  
-    `      
+    `  
+}
     }
     // change the current value of the price div
     $("#getnumber").val($("#sorder").children().length);
