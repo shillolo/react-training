@@ -13,15 +13,15 @@ html, body{
 }
 
 .closeStore{
-    border-radius: 20px;
+    border-radius: 7px;
     padding: 10px;
-    background-color: rgb(192, 192, 192);
-    color: white;
+    background-color: white;
+    color: rgb(192, 192, 192);
     margin-bottom: 20px;
     cursor: pointer;
     transition: 0.4s;
     text-align: center;
-    border: 2px solid rgb(192, 192, 192)
+    border: 2px solid rgb(192, 192, 192);
 }
 
 .closeStore:hover{
@@ -306,13 +306,16 @@ select {
 }
 
 .message{
-        height: 33px;
-        width: 33px;
+        min-height: 33px;
+        height: auto;
+        min-width: 33px;
+        width: auto;
         background-color: rgb(173, 2, 2);
         border-radius: 50%;
         margin-left: auto;
         position: absolute;
-        right: 2%
+        right: 2%;
+        text-align: center
 }
 
 .decider{

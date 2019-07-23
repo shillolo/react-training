@@ -91,6 +91,7 @@ router.get("/mybakery", isAuth, function(req, res, next){
         return today;   
     }
     var fullArray = [];
+    var numberArray = [];
     var counter = 0;
     User_Order.find(function(err, order) {
         if (err) {
@@ -105,7 +106,9 @@ router.get("/mybakery", isAuth, function(req, res, next){
                         position: counter,
                         order: order[i]
                     })
-                    fullArray.push(thisOrder)
+                    fullArray.push(thisOrder);
+                    console.log(thisOrder.order.today)
+                    numberArray.push(new Date(thisOrder.order.today).getTime())
                 } 
             }
         }
@@ -124,19 +127,34 @@ router.get("/mybakery", isAuth, function(req, res, next){
                         order: norder[i]
                     })
                     fullArray.push(thisOrder)
+                    numberArray.push(new Date(thisOrder.order.today).getTime())
                     } 
                 }
             }
+            // sort array so that the newest orders come out on top
+            var endArray = [];
             var closed;
+            function sortNumber(a, b) {
+                return a - b;
+              }
+            numberArray.sort(sortNumber);
+            var i = 0
+            while (i < numberArray.length){
+                for (var d = 0; d < fullArray.length; d++){
+                    if (numberArray[i] == new Date(fullArray[d].order.today).getTime()){
+                        endArray.push(fullArray[d])
+                        i++
+                    }
+                }
+            }
+            // check if bakery is closed or not
             Bakery.find(function(err, status){
-                console.log(status[0].closed)
                 if (status[0].closed == true){
                      closed = true
                 } else {
                      closed = false 
                 }
-            fullArray = fullArray.reverse()
-            res.render('shop/bakeryPage', { order: fullArray, products: productChunks, timepicker: pickedTime, closed: closed})
+            res.render('shop/bakeryPage', { order: endArray, products: productChunks, timepicker: pickedTime, closed: closed})
          })
         });
     })
@@ -331,27 +349,28 @@ router.post('/killallbuns', function(req, res, next) {
     })
 })
 
+// make ONE bun un-/available
 router.post('/killbun', function(req, res, next) {
     var bunname = req.body.breadname;
     var state = req.body.status
     var today = new Date();
     if (state == "redo"){
     Bun.findOne({title: bunname}).exec(function(err, data) {
-        data.expdate = today;
+        data.expdate = false;
         data.clicked = false;
         data.save(function(){
             res.redirect("back");
         })
     })
-}else{
-    Bun.findOne({title: bunname}).exec(function(err, data) {
-        data.expdate = today;
-        data.clicked = true;
-        data.save(function(){
-            res.redirect("back");
+    }else{
+        Bun.findOne({title: bunname}).exec(function(err, data) {
+            data.expdate = today;
+            data.clicked = true;
+            data.save(function(){
+                res.redirect("back");
+            })
         })
-    })
-}
+    }
 })
 
 var csrfProtection = csrf();
@@ -853,7 +872,7 @@ router.get('/bakery', isAuth, function(req, res, next) {
                 var now = new Date().getTime()
                 // if store is open and buns aren't available "Heute ausverkauft"
                 if (status[0].closed == false){
-                    if(then <= now && new Date(docs[i].expdate).setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0)){
+                    if(docs[i].expdate && then <= now && new Date(docs[i].expdate).setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0) && docs[i].expdate){
                         docs[i].unavailable = true;
                     }
                 }
@@ -928,7 +947,7 @@ router.post("/bakery", function(req, res, next) {
                  }
             }
             var orderday = new Date()
-            if (parseDate(datepicker).setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0) && thisTime > timing[0] || closed == true && parseDate(datepicker).setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0)){
+            if (new Date(parseDate(datepicker)).setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0) && thisTime > timing[0] || closed == true && parseDate(datepicker).setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0)){
                 console.log("here")
                 date_error()
             } else {
@@ -972,7 +991,7 @@ router.post("/bakery", function(req, res, next) {
                             var expdate = new Date(data.expdate).getTime()
                             console.log(curdate)
                             console.log(expdate)
-                            if (!data || curdate >= expdate && new Date().setHours(0, 0, 0, 0) == new Date(data.expdate).setHours(0, 0, 0, 0)) {
+                            if (!data || curdate >= expdate && new Date(date).setHours(0, 0, 0, 0) == new Date(data.expdate).setHours(0, 0, 0, 0)) {
                                 res.redirect("bakery")
                             } else {
                                 var total = data.price * req.body[req.body.getname];
@@ -1003,7 +1022,7 @@ router.post("/bakery", function(req, res, next) {
                                                 date: date,
                                                 time: time,
                                                 parsedDate: parsedDate,
-                                                today: orderday
+                                                today: new Date()
                                             })
                                             user_order.save(function(err, result) {
                                             req.session.code = random;
@@ -1276,7 +1295,7 @@ router.post("/bakery", function(req, res, next) {
                                                             date: date,
                                                             time: time,
                                                             parsedDate: parsedDate,
-                                                            today: orderday
+                                                            today: new Date()
                                                         })
                                                         user_order.save(function(err, result) {
                                                         req.session.code = random;

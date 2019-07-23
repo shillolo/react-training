@@ -24,17 +24,17 @@ window.setInterval(function(){
         }  
     })
     if (counter > 0){
-        var audio = new Audio('../sounds/ding.wav');
+        var audio = new Audio('../sounds/ding.mp3');
         audio.play();
     }
 }, 300000)
 
 // komischer bug manchmal
-// $(document).ready(function(){
-// var audio = new Audio('../sounds/ding.wav');
-// audio.play();
+$(document).ready(function(){
+var audio = new Audio('../sounds/ding.mp3');
+audio.play();
 
-// })
+})
 
 failure.on("click", function(){
     $(this).parent().siblings(".confirmer").val("failure")

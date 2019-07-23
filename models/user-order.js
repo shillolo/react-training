@@ -20,7 +20,7 @@ var schema = new Schema({
     date: String,
     time: String,
     parsedDate: String,
-    today: Date,
+    today: String,
     code: Number,
     packed: Boolean
 });

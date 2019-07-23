@@ -87,10 +87,9 @@ require('./config/passport');
 schedule.scheduleJob('0 0 * * *', function(){
     Bun.find(function(err, buns) {
       for (var i = 0; i < buns.length; i++){
-        buns[i].clicked = false
-        if (i == buns.length){
-          buns.save()
-        }
+        buns[i].clicked = false;
+        buns[i].expdate = false;
+        buns.save()
       }
     })
     Bakery.find(function(err, status){

@@ -63,12 +63,15 @@ $("#button1").click(function(){
     document.getElementById("head1").style.color = "black";
     document.getElementById("head2").style.fontWeight = "700";
     document.getElementById("head2").style.color = "#ff9902";
-    if($(".sold").val() != undefined || $("#closedStore").val() == "closed"){
+    var thisTime = new Date().getHours()
+    var timing = $("#timepicker").children().eq(0).val();
+    timing = timing.split(":");
+    if($(".sold").val() != undefined || $("#closedStore").val() == "closed" ){
     var currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
     var day = currentDate.getDate();
     var month = currentDate.getMonth() + 1
     var year = currentDate.getFullYear()
-    var morgen = day + "." + month + "." + year 
+    var morgen = day + "." + month + "." + year;
     $('#datepicker').val(morgen);
     $("#timepicker").html('<option value="7:00">7:00</option><option value="8:00">8:00</option><option value="9:00">9:00</option><option value="10:00">10:00</option><option value="11:00">11:00</option><option value="12:00">12:00</option><option value="13:00">13:00</option><option value="14:00">14:00</option>')
     } else {
@@ -102,8 +105,16 @@ $("#button1").click(function(){
                         $("#timepicker").html('<option value="Heute ausverkauft">Heute ausverkauft</option>')
                 } else if (thisTime >= timing[0]){    
                     $("#timepicker").children().eq(0).remove()
-                    $("#timepicker").val($("#timepicker").children().eq(0).val())
                     checker = true
+                    if ($("#timepicker").children().length == 0){
+                        var currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+                        var day = currentDate.getDate();
+                        var month = currentDate.getMonth() + 1
+                        var year = currentDate.getFullYear()
+                        var morgen = day + "." + month + "." + year;
+                        $('#datepicker').val(morgen);
+                        $("#timepicker").html('<option value="7:00">7:00</option><option value="8:00">8:00</option><option value="9:00">9:00</option><option value="10:00">10:00</option><option value="11:00">11:00</option><option value="12:00">12:00</option><option value="13:00">13:00</option><option value="14:00">14:00</option>')
+                    }
                 } else if (thisTime < timing[0] && checker && $(".sold").val() == undefined){
                     console.log("Were")
                 } else {
@@ -214,8 +225,16 @@ $('body').on('change', '#datepicker', function() {
                     $("#timepicker").html('<option value="Heute ausverkauft">Heute ausverkauft</option>')
                 } else if (thisTime >= timing[0]){    
                     $("#timepicker").children().eq(0).remove()
-                    $("#timepicker").val($("#timepicker").children().eq(0).val())
                     checker = true
+                    if ($("#timepicker").children().length == 0){
+                        var currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+                        var day = currentDate.getDate();
+                        var month = currentDate.getMonth() + 1
+                        var year = currentDate.getFullYear()
+                        var morgen = day + "." + month + "." + year;
+                        $('#datepicker').val(morgen);
+                        $("#timepicker").html('<option value="7:00">7:00</option><option value="8:00">8:00</option><option value="9:00">9:00</option><option value="10:00">10:00</option><option value="11:00">11:00</option><option value="12:00">12:00</option><option value="13:00">13:00</option><option value="14:00">14:00</option>')
+                    }
                 } else if (thisTime < timing[0] && checker && $(".sold").val() == undefined){
                 } else if  (timePickers == 1){
                     console.log($(".sold").val())
@@ -288,7 +307,6 @@ function orderIt(){
             </div>  
     `      
     }
-
     // change the current value of the price div
     $("#getnumber").val($("#sorder").children().length);
     // not visible
@@ -299,7 +317,6 @@ function orderIt(){
     } else {
     document.getElementById("unreal-total").innerHTML = parseFloat(Math.round((document.getElementById("number").innerHTML - (-fee)) * 100) / 100).toFixed(2).replace(".", ",");
     }
-
     // check if a bun is soldout or if the store is already closed
     if($(".sold").val() != undefined || $("#closedStore").val() == "closed"){
         console.log($(".sold").val())
@@ -350,9 +367,17 @@ function orderIt(){
                 var timing = $("#timepicker").children().eq(0).val();
                 timing = timing.split(":");
                 if (thisTime >= timing[0]){    
-                    $("#timepicker").children().eq(0).remove()
-                    $("#timepicker").val($("#timepicker").children().eq(0).val())
+                    $("#timepicker").children().eq(0).remove() 
                     checker = true
+                    if ($("#timepicker").children().length == 0){
+                        var currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+                        var day = currentDate.getDate();
+                        var month = currentDate.getMonth() + 1
+                        var year = currentDate.getFullYear()
+                        var morgen = day + "." + month + "." + year;
+                        $('#datepicker').val(morgen);
+                        $("#timepicker").html('<option value="7:00">7:00</option><option value="8:00">8:00</option><option value="9:00">9:00</option><option value="10:00">10:00</option><option value="11:00">11:00</option><option value="12:00">12:00</option><option value="13:00">13:00</option><option value="14:00">14:00</option>')
+                    }
                 } else if ($(".sold").val() != undefined){
                     $("#timepicker").html('<option value="Heute ausverkauft">Heute ausverkauft</option>')
                 } else if (thisTime < timing[0] && checker && $(".sold").val() == undefined){
