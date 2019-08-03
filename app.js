@@ -88,7 +88,7 @@ io.on("connection", function(socket) {
 require("./config/passport");
 
 // reset blosed bakerys and soldout buns to open and available
-schedule.scheduleJob("28 0 * * *", function() {
+schedule.scheduleJob("35 0 * * *", function() {
   Bun.find(function(err, buns) {
     for (var i = 0; i < buns.length; i++) {
       buns[i].clicked = false;
@@ -97,7 +97,7 @@ schedule.scheduleJob("28 0 * * *", function() {
     }
   });
   Bakery.find(function(err, status) {
-    status[0].closed = true;
+    status[0].closed = false;
     status[0].save();
   });
   console.log("didi it");
