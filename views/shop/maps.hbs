@@ -1,156 +1,178 @@
-    <link rel="stylesheet" href="/stylesheets/code.css" />
-    <link rel="stylesheet" href="/stylesheets/maps.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" crossorigin="anonymous">
+<link rel="stylesheet" href="/stylesheets/code.css" />
+<link rel="stylesheet" href="/stylesheets/maps.css" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+  integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css"
+  crossorigin="anonymous">
 
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>    
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 {{# if login}}
-    <div class="mobile-popup" id="mobile-popup">
-        <div class="mobile-header">
-            <div class="comp-logo" OnClick="location.href='/'"></div>
-            <h2>{{useracc}} </h2>
-            <i class="fas fa-times close" id="mobile-close"></i>
-        </div>
-        <div class="mobile-content">
-            <div class="mobile-menu">
-                <div class="break-top"></div>
-                <a class="drop drop1" href="/user/aufladen">Guthaben aufladen&nbsp;<i class="fas fa-bolt"></i></a>
-                <a class="drop" href="/user/profile">Profil&nbsp;<i class="fas fa-user-circle"></i></a>
-                <a class="drop" href="/user/logout">Logout&nbsp;<i class="fas fa-sign-out-alt"></i></a>
-            </div>
-            <div class="mobile-credit-break"></div>
-            <div class="mobile-credit"><p>Guthaben: </p>{{credit}}&#8364;</div>
-        </div>
+<div class="mobile-popup" id="mobile-popup">
+  <div class="mobile-header">
+    <div class="comp-logo" OnClick="location.href='/'"></div>
+    <h2>{{useracc}} </h2>
+    <i class="fas fa-times close" id="mobile-close"></i>
+  </div>
+  <div class="mobile-content">
+    <div class="mobile-menu">
+      <div class="break-top"></div>
+      <a class="drop drop1" href="/user/aufladen">Guthaben aufladen&nbsp;<i class="fas fa-bolt"></i></a>
+      <a class="drop" href="/user/profile">Profil&nbsp;<i class="fas fa-user-circle"></i></a>
+      <a class="drop" href="/user/logout">Logout&nbsp;<i class="fas fa-sign-out-alt"></i></a>
     </div>
-    {{else}}
-    <div class="loginpop" id="loginpop">  
-        <div class="containerl">
-        <i class="fas fa-times close"></i>
-        <form class="form-signin" action="/user/signin" method="post">
-          <h1 class="h3 mb-3 font-weight-normal">Login</h1>
-          <input type="email" name="email" id="email" class="form-control" placeholder="Email" required autofocus>
-          <input type="password" name="password" id="password" class="form-control" placeholder="Passwort" required>
-          <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-          <button class="btn btn-default btn-primary  loginbutton" type="submit">Einloggen</button>
-          <a class="forgot" href="/forgot">Passwort vergessen?</a>
-        </form>
-        </div>
+    <div class="mobile-credit-break"></div>
+    <div class="mobile-credit">
+      <p>Guthaben: </p>{{credit}}&#8364;
     </div>
-    <div class="registerpop" id="registerpop">  
-        <div class="containerl">
-        <i class="fas fa-times close"></i>
-        <form class="form-signup" action="/user/signup" method="post">
-          <h1 class="h3 mb-3 font-weight-normal">Registrieren</h1>
-          <input type="email" name="email" id="email" class="form-control" placeholder="Email" required autofocus>
-          <input type="password" name="password" id="password" class="form-control" placeholder="Passwort" required>
-            <input type="password" name="password2" id="password2" class="form-control" placeholder="Passwort bestätigen" required>
-          <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-          <button type="submit" class="btn btn-default btn-primary loginbutton">Los Geht's</button>
-        </form>
+  </div>
+</div>
+{{else}}
+<div class="loginpop" id="loginpop">
+  <div class="containerl">
+    <i class="fas fa-times close"></i>
+    <form class="form-signin" action="/user/signin" method="post">
+      <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+      <input type="email" name="email" id="email" class="form-control" placeholder="Email" required autofocus>
+      <input type="password" name="password" id="password" class="form-control" placeholder="Passwort" required>
+      <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+      <button class="btn btn-default btn-primary  loginbutton" type="submit">Einloggen</button>
+      <a class="forgot" href="/forgot">Passwort vergessen?</a>
+    </form>
+  </div>
+</div>
+<div class="registerpop" id="registerpop">
+  <div class="containerl">
+    <i class="fas fa-times close"></i>
+    <form class="form-signup" action="/user/signup" method="post">
+      <h1 class="h3 mb-3 font-weight-normal">Registrieren</h1>
+      <input type="email" name="email" id="email" class="form-control" placeholder="Email" required autofocus>
+      <input type="password" name="password" id="password" class="form-control" placeholder="Passwort" required>
+      <input type="password" name="password2" id="password2" class="form-control" placeholder="Passwort bestätigen"
+        required>
+      <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+      <button type="submit" class="btn btn-default btn-primary loginbutton">Los Geht's</button>
+    </form>
+  </div>
+</div>
+{{/if}}
+<div class="mapspop" id="mapspop">
+  <div class="mapsbake">
+    <i class="fas fa-times close" id="mapsclose"></i>
+    <form class="innerbake" action="/maps" method="post">
+      <h1>Wir nehmen Ihre Wünsche ernst und versuchen diese umzusetzen.</h1>
+      <div class="inputs">
+        <h3>Bäckereiname:</h3>
+        <input type="text" name="bakename" id="bakename" class="form-control" placeholder="Bäckereiname" required
+          autofocus />
+        <h3>Adresse:</h3>
+        <input type="text" name="address" id="address" class="form-control" placeholder="PLZ, Straße, Nr." required
+          autofocus />
+        <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+        <button class="btn loginbutton" type="submit">Abschicken</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="bild">
+  <div class="brotritter">
+    <div class="maenu" title="Brotritter" OnClick="location.href='/'"></div>
+  </div>
+  <div class="viereck">
+    <div class="comp-logo" OnClick="location.href='/'" title="Brotritter"></div>
+    <div class="konto-container">
+      {{# if login}}
+      <li class="konto">
+        <div class="kholder">
+          <div class="k-container">
+            <div class="konto1" id="credit">{{useracc}} &nbsp;&nbsp;</div><i class="fas fa-angle-up"></i>
+          </div>
+          <div class="k-container">
+            <div class="konto1" id="header"> KONTO &nbsp;</div><i class="fas fa-angle-down"></i>
+          </div>
         </div>
-    </div>
-    {{/if}}
-    <div class="mapspop" id="mapspop">
-        <div class="mapsbake">
-            <i class="fas fa-times close" id="mapsclose"></i>
-            <form class="innerbake" action="/maps" method="post">
-                <h1>Wir nehmen Ihre Wünsche ernst und versuchen diese umzusetzen.</h1>
-                <div class="inputs">
-                    <h3>Bäckereiname:</h3>
-                    <input type="text" name="bakename" id="bakename" class="form-control" placeholder="Bäckereiname" required autofocus/>
-                    <h3>Adresse:</h3>
-                    <input type="text" name="address" id="address" class="form-control" placeholder="PLZ, Straße, Nr." required autofocus/>
-                    <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-                    <button class="btn loginbutton" type="submit">Abschicken</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    <div class="bild">
-            <div class="brotritter">
-                <div class="maenu" title="Brotritter" OnClick="location.href='/'"></div>
-            </div>
-            <div class="viereck">
-                    <div class="comp-logo" OnClick="location.href='/'" title="Brotritter"></div>
-                    <div class="konto-container">
-                        {{# if login}}
-                        <li class="konto">
-                            <div class="kholder">
-                                <div class="k-container"><div class="konto1" id="credit">{{useracc}} &nbsp;&nbsp;</div><i class="fas fa-angle-up"></i></div>
-                                <div class="k-container"><div class="konto1" id="header"> KONTO &nbsp;</div><i class="fas fa-angle-down"></i></div>
-                            </div>
-                            <div class="dholder">
-                            <div class="hrbr"></div>
-                            <a class="drop drop1" href="/user/aufladen">Guthaben aufladen&nbsp;<i class="fas fa-credit-card"></i></a>
-                            
-                            <a class="drop" href="/user/profile">Profil&nbsp;<i class="fas fa-user-circle"></i></a>
-                            
-                            <a class="drop drop3" href="/user/logout">Logout&nbsp;<i class="fas fa-sign-out-alt"></i></a>
-                            <div class="hrbr br1"></div>
-                            <div class="credit"><p>Guthaben: </p>{{credit}}  &#8364; </div>
-                            </div>
-                        </li>
-                        <div class="mobile-konto" id="mobile-konto">
-                            KONTO
-                        </div>
-                        {{else}}
-                        <div class="login" id="login" title="Einloggen">
-                            <a class="konto1"> Login </a>
-                        </div>
-                        <div class="register" id="register" title="Registrieren">
-                            <a class="konto1"> Registrieren </a>
-                        </div>
-                        {{/if}}
-                        <div class="hilfe">
-                            <a class="kontakt" title="Kontakt" href="/kontakt"> FEEDBACK </a>
-                        </div>
-                    </div>
-            </div>
-            <div class="absolute-div">
-            <h2>Bäckereien in Ihrer Umgebung:</h2>
-            <h1>{{location}}</h1>
-            <form class="searchDiv" action="/mapsSearch" method="post">
-                <input id="address" type="text" name="address" class="form-control searcher" placeholder="{{location}}" required/>
-                <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-                <button class="searchButton">Suchen</button>
-        </form>
-        </div>
-    </div>
-    
-    <div class="balken"><div class="errors">{{errors}}</div><div class="success">{{success}}</div></div>
-    
-    <input type="hidden" id="location" value="{{location}}">
-    <div class="googleMap" id="map"></div>
+        <div class="dholder">
+          <div class="hrbr"></div>
+          <a class="drop drop1" href="/user/aufladen">Guthaben aufladen&nbsp;<i class="fas fa-credit-card"></i></a>
 
-<div class="title"><h1>Ist Ihre Bäckerei nicht dabei?</h1></div>
-<button class=" btn loginbutton bakebtn" id="bakebtn" type="button">Nehmen Sie aktiven Einfluss auf die Entwicklung</button>
+          <a class="drop" href="/user/profile">Profil&nbsp;<i class="fas fa-user-circle"></i></a>
 
-<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+          <a class="drop drop3" href="/user/logout">Logout&nbsp;<i class="fas fa-sign-out-alt"></i></a>
+          <div class="hrbr br1"></div>
+          <div class="credit">
+            <p>Guthaben: </p>{{credit}} &#8364;
+          </div>
+        </div>
+      </li>
+      <div class="mobile-konto" id="mobile-konto">
+        KONTO
+      </div>
+      {{else}}
+      <div class="login" id="login" title="Einloggen">
+        <a class="konto1"> Login </a>
+      </div>
+      <div class="register" id="register" title="Registrieren">
+        <a class="konto1"> Registrieren </a>
+      </div>
+      {{/if}}
+      <div class="hilfe">
+        <a class="kontakt" title="Kontakt" href="/kontakt"> FEEDBACK </a>
+      </div>
+    </div>
+  </div>
+  <div class="absolute-div">
+    <h2>Bäckereien in Ihrer Umgebung:</h2>
+    <h1>{{location}}</h1>
+    <form class="searchDiv" action="/mapsSearch" method="post">
+      <input id="address" type="text" name="address" class="form-control searcher" placeholder="{{location}}"
+        required />
+      <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+      <button class="searchButton">Suchen</button>
+    </form>
+  </div>
+</div>
+
+<div class="balken">
+  <div class="errors">{{errors}}</div>
+  <div class="success">{{success}}</div>
+</div>
+
+<input type="hidden" id="location" value="{{location}}">
+<div class="googleMap" id="map"></div>
+
+<div class="title">
+  <h1>Ist Ihre Bäckerei nicht dabei?</h1>
+</div>
+<button class=" btn loginbutton bakebtn" id="bakebtn" type="button">Nehmen Sie aktiven Einfluss auf die
+  Entwicklung</button>
+
+<link rel="stylesheet" type="text/css"
+  href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
 <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
 <script>
-window.addEventListener("load", function(){
-window.cookieconsent.initialise({
-  "palette": {
-    "popup": {
-      "background": "#000000"
-    },
-    "button": {
-      "background": "#ff9900"
-    }
-  }
+  window.addEventListener("load", function () {
+    window.cookieconsent.initialise({
+      "palette": {
+        "popup": {
+          "background": "#000000"
+        },
+        "button": {
+          "background": "#ff9900"
+        }
+      }
   "content": {
-    "message": "Unsere Website verwendet Cookies, um die bestmögliche Nutzung unserer Website zu gewährleisten.",
-    "dismiss": "Alles klar!",
-    "link": "Mehr erfahren",
-    "href": "https://www.brotritter.de/datenschutz"
-  }
-})});
+        "message": "Wir verwenden Cookies, um Ihnen den bestmöglichen Service zu gewährleisten. Wenn Sie die Seite weiter nutzen, stimmen Sie der Cookie-Nutzung zu.",
+        "dismiss": "Ich stimme zu",
+        "link": "Mehr erfahren",
+        "href": "https://www.brotritter.de/datenschutz"
+      }
+    })
+  });
 </script>
 
 <div class="impress">
   <div class="impresscon">
-    <div class="sideopt "OnClick="location.href='/newsletter'">Newsletter bekommen</div>
+    <div class="sideopt " OnClick="location.href='/newsletter'">Newsletter bekommen</div>
     <div class="sideopt hidopt" OnClick="location.href='/newsletter'">Newsletter </div>
     <div><a href="/impressum">Impressum</a>&nbsp;/&nbsp;<a href="/datenschutz">Datenschutz</a></div>
     <div class="sideopt" OnClick="location.href='/mitgliedschaft'">Jetzt Partner werden</div>
@@ -158,4 +180,5 @@ window.cookieconsent.initialise({
   </div>
 </div>
 <script type="text/javascript" src="javascripts/maps.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1dS0RAbz7L1hN9IMDmS2lpAbJtVZvaXc&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1dS0RAbz7L1hN9IMDmS2lpAbJtVZvaXc&callback=initMap" async
+  defer></script>

@@ -4,63 +4,66 @@
 
 
 <div class="maindiv">
-        <div class="brotritter">
-            <div class="maenu" title="Brotritter" OnClick="location.href='/'"></div>
-        </div>
-        <div class="viereck">
-            <div class="comp-logo" OnClick="location.href='/'"></div>
-        </div>
-    
-    <div class="kontaktHead">
-        <h3>Bei Problemen, Fragen, Anregungen oder Feedback <br> kontaktieren Sie uns gerne über dieses Formular.</h3>
-        <h1>Kontaktformular</h1>
-    </div>
+  <div class="brotritter">
+    <div class="maenu" title="Brotritter" OnClick="location.href='/'"></div>
+  </div>
+  <div class="viereck">
+    <div class="comp-logo" OnClick="location.href='/'"></div>
+  </div>
 
-    <div class="kontaktdiv kontaktMain">
-        <form id="kontaktformular" class="kontaktformular" name="kontaktformular" action="/kontakt" method="post">
-            <div class="label-email">
-              <input type="text"  class="form-control" id="absender" placeholder="Email-Adresse:" name="absender" required/>
-            </div>
-            <div class="label-email">
-              <input type="text"  class="form-control" id="absender" placeholder="Name:" name="absender" required/>
-            </div>
-            <div class="label-message">
-              <textarea id="nachricht" placeholder="Nachricht..." class="form-control textarea"
-         name="nachricht" cols="60" rows="40"  required></textarea> 
-            </div>
-            <div class="buttondiv">
-              <input class="btn btn-default btn-primary loginbutton impressbutton" class="input" type="submit" value="Abschicken" />
-            <input type="hidden" name="_csrf"  value="{{ csrfToken }}">
-            </div>
-        </form>
-    </div>
+  <div class="kontaktHead">
+    <h3>Bei Problemen, Fragen, Anregungen oder Feedback <br> kontaktieren Sie uns gerne über dieses Formular.</h3>
+    <h1>Kontaktformular</h1>
+  </div>
+
+  <div class="kontaktdiv kontaktMain">
+    <form id="kontaktformular" class="kontaktformular" name="kontaktformular" action="/kontakt" method="post">
+      <div class="label-email">
+        <input type="text" class="form-control" id="absender" placeholder="Email-Adresse:" name="absender" required />
+      </div>
+      <div class="label-email">
+        <input type="text" class="form-control" id="absender" placeholder="Name:" name="absender" required />
+      </div>
+      <div class="label-message">
+        <textarea id="nachricht" placeholder="Nachricht..." class="form-control textarea" name="nachricht" cols="60"
+          rows="40" required></textarea>
+      </div>
+      <div class="buttondiv">
+        <input class="btn btn-default btn-primary loginbutton impressbutton" class="input" type="submit"
+          value="Abschicken" />
+        <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+      </div>
+    </form>
+  </div>
 </div>
 
-<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+<link rel="stylesheet" type="text/css"
+  href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
 <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
 <script>
-window.addEventListener("load", function(){
-window.cookieconsent.initialise({
-  "palette": {
-    "popup": {
-      "background": "#000000"
-    },
-    "button": {
-      "background": "#ff9900"
-    }
-  }
+  window.addEventListener("load", function () {
+    window.cookieconsent.initialise({
+      "palette": {
+        "popup": {
+          "background": "#000000"
+        },
+        "button": {
+          "background": "#ff9900"
+        }
+      }
   "content": {
-    "message": "Unsere Website verwendet Cookies, um die bestmögliche Nutzung unserer Website zu gewährleisten.",
-    "dismiss": "Alles klar!",
-    "link": "Mehr erfahren",
-    "href": "https://www.brotritter.de/datenschutz"
-  }
-})});
+        "message": "Wir verwenden Cookies, um Ihnen den bestmöglichen Service zu gewährleisten. Wenn Sie die Seite weiter nutzen, stimmen Sie der Cookie-Nutzung zu.",
+        "dismiss": "Ich stimme zu",
+        "link": "Mehr erfahren",
+        "href": "https://www.brotritter.de/datenschutz"
+      }
+    })
+  });
 </script>
 
 <div class="impress">
   <div class="impresscon">
-    <div class="sideopt "OnClick="location.href='/newsletter'">Newsletter bekommen</div>
+    <div class="sideopt " OnClick="location.href='/newsletter'">Newsletter bekommen</div>
     <div class="sideopt hidopt" OnClick="location.href='/newsletter'">Newsletter </div>
     <div><a href="/impressum">Impressum</a>&nbsp;/&nbsp;<a href="/datenschutz">Datenschutz</a></div>
     <div class="sideopt" OnClick="location.href='/mitgliedschaft'">Jetzt Partner werden</div>

@@ -1,130 +1,147 @@
+<link rel="stylesheet" href="/stylesheets/homepage.css" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+    integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
-    <link rel="stylesheet" href="/stylesheets/homepage.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-
-    <div class="whatpop" id="whatpop">
+<div class="whatpop" id="whatpop">
     <div class="chargepop">
         <i class="fas fa-times closeinst"></i>
         <h1>Einfach Brotritterkonto aufladen</h1>
         <div class="instholder">
             <div class="innerInstholder">
                 <div class="insthold">
-                <img src="../images/bakery1.png">
-                <h3>Mit Kundennummer zur Kasse gehen und gewünschten Betrag abgeben um Konto aufzuladen</h3>
+                    <img src="../images/bakery1.png">
+                    <h3>Mit Kundennummer zur Kasse gehen und gewünschten Betrag abgeben um Konto aufzuladen</h3>
                 </div>
             </div>
             <div class="innerInstholder">
                 <div class="insthold">
-                <img src="../images/bakery1.png">
-                <h3>Konto ganz einfach online aufladen</h3>
+                    <img src="../images/bakery1.png">
+                    <h3>Konto ganz einfach online aufladen</h3>
                 </div>
             </div>
         </div>
     </div>
 </div>
-    {{# if login}}
-    <div class="mobile-popup" id="mobile-popup">
-        <div class="mobile-header">
-            <div class="comp-logo" OnClick="location.href='/'"></div>
-            <h2>{{useracc}} </h2>
-            <i class="fas fa-times close" id="mobile-close"></i>
+{{# if login}}
+<div class="mobile-popup" id="mobile-popup">
+    <div class="mobile-header">
+        <div class="comp-logo" OnClick="location.href='/'"></div>
+        <h2>{{useracc}} </h2>
+        <i class="fas fa-times close" id="mobile-close"></i>
+    </div>
+    <div class="mobile-content">
+        <div class="mobile-menu">
+            <div class="break-top"></div>
+            <a class="drop drop1" href="/user/aufladen">Guthaben aufladen&nbsp;<i class="fas fa-bolt"></i></a>
+            <a class="drop" href="/user/profile">Profil&nbsp;<i class="fas fa-user-circle"></i></a>
+            <a class="drop" href="/user/logout">Logout&nbsp;<i class="fas fa-sign-out-alt"></i></a>
         </div>
-        <div class="mobile-content">
-            <div class="mobile-menu">
-                <div class="break-top"></div>
-                <a class="drop drop1" href="/user/aufladen">Guthaben aufladen&nbsp;<i class="fas fa-bolt"></i></a>
-                <a class="drop" href="/user/profile">Profil&nbsp;<i class="fas fa-user-circle"></i></a>
-                <a class="drop" href="/user/logout">Logout&nbsp;<i class="fas fa-sign-out-alt"></i></a>
-            </div>
-            <div class="mobile-credit-break"></div>
-            <div class="mobile-credit"><p>Guthaben: </p>{{credit}}&#8364;</div>
+        <div class="mobile-credit-break"></div>
+        <div class="mobile-credit">
+            <p>Guthaben: </p>{{credit}}&#8364;
         </div>
     </div>
-    {{else}}
-    <div class="loginpop" id="loginpop">  
-        <div class="containerl">
+</div>
+{{else}}
+<div class="loginpop" id="loginpop">
+    <div class="containerl">
         <i class="fas fa-times close"></i>
         <form class="form-signin" action="/user/signin" method="post">
-          <h1 class="h3 mb-3 font-weight-normal">Login</h1>
-          <input type="email" name="email" id="email" class="form-control" placeholder="Email" required autofocus>
-          <input type="password" name="password" id="password" class="form-control" placeholder="Passwort" required>          <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-          <button class="btn btn-default btn-primary  loginbutton" type="submit">Einloggen</button>
-          <a class="forgot" href="/forgot">Passwort vergessen?</a>
+            <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+            <input type="email" name="email" id="email" class="form-control" placeholder="Email" required autofocus>
+            <input type="password" name="password" id="password" class="form-control" placeholder="Passwort" required>
+            <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+            <button class="btn btn-default btn-primary  loginbutton" type="submit">Einloggen</button>
+            <a class="forgot" href="/forgot">Passwort vergessen?</a>
         </form>
-        </div>
     </div>
-    <div class="registerpop" id="registerpop">  
-        <div class="containerl">
+</div>
+<div class="registerpop" id="registerpop">
+    <div class="containerl">
         <i class="fas fa-times close"></i>
         <form class="form-signup" action="/user/signup" method="post">
-          <h1 class="h3 mb-3 font-weight-normal">Registrieren</h1>
-          <input type="email" name="email" id="email" class="form-control control2" placeholder="Email" required autofocus>
-          <input type="password" name="password" id="password" class="form-control" placeholder="Passwort" required>
-          <input type="password" name="password2" id="password2" class="form-control" placeholder="Passwort bestätigen" required>
-          <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-          <button type="submit" class="btn btn-default btn-primary loginbutton">Los Geht's</button>
+            <h1 class="h3 mb-3 font-weight-normal">Registrieren</h1>
+            <input type="email" name="email" id="email" class="form-control control2" placeholder="Email" required
+                autofocus>
+            <input type="password" name="password" id="password" class="form-control" placeholder="Passwort" required>
+            <input type="password" name="password2" id="password2" class="form-control"
+                placeholder="Passwort bestätigen" required>
+            <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+            <button type="submit" class="btn btn-default btn-primary loginbutton">Los Geht's</button>
         </form>
-        </div>
     </div>
-    {{/if}}
-    <div class="bild">
-            <div class="brotheld">
-                <div class="maenu" title="Brotritter" OnClick="location.href='/'"></div>
-            </div>
-            <div class="viereck">
-                    <div class="comp-logo" OnClick="location.href='/'" title="Brotritter"></div>
-                    <div class="konto-container">
-                        {{# if login}}
-                        <li class="konto">
-                            <div class="kholder">
-                                <div class="k-container"><div class="konto1" id="credit">{{useracc}} &nbsp;&nbsp;</div><i class="fas fa-angle-up"></i></div>
-                                <div class="k-container"><div class="konto1" id="header"> KONTO &nbsp;</div><i class="fas fa-angle-down"></i></div>
-                            </div>
-                            <div class="dholder">
-                            <div class="hrbr"></div>
-                            <a class="drop drop1" href="/user/aufladen">Guthaben aufladen&nbsp;<i class="fas fa-credit-card"></i></a>
-                            
-                            <a class="drop" href="/user/profile">Profil&nbsp;<i class="fas fa-user-circle"></i></a>
-                            
-                            <a class="drop drop3" href="/user/logout">Logout&nbsp;<i class="fas fa-sign-out-alt"></i></a>
-                            <div class="hrbr br1"></div>
-                            <div class="credit"><p>Guthaben: </p>{{credit}}  &#8364; </div>
-                            </div>
-                        </li>
-                        <div class="mobile-konto" id="mobile-konto">
-                            KONTO
-                        </div>
-                        {{else}}
-                        <div class="login" id="login" title="Einloggen">
-                            <a class="konto1"> Login </a>
-                        </div>
-                        <div class="register" id="register" title="Registrieren">
-                            <a class="konto1"> Registrieren </a>
-                        </div>
-                        {{/if}}
-                        <div class="hilfe">
-                            <a class="kontakt" title="Kontakt" href="/kontakt"> FEEDBACK </a>
-                        </div>
+</div>
+{{/if}}
+<div class="bild">
+    <div class="brotheld">
+        <div class="maenu" title="Brotritter" OnClick="location.href='/'"></div>
+    </div>
+    <div class="viereck">
+        <div class="comp-logo" OnClick="location.href='/'" title="Brotritter"></div>
+        <div class="konto-container">
+            {{# if login}}
+            <li class="konto">
+                <div class="kholder">
+                    <div class="k-container">
+                        <div class="konto1" id="credit">{{useracc}} &nbsp;&nbsp;</div><i class="fas fa-angle-up"></i>
                     </div>
-            </div>
-        <div class="text-wrapper">
-            <div class="text">Jetzt Brötchen online vorbestellen.</div>
-            <form class="wrap" id="searchform" method="post" action="/">
-                <div class="search">
-                    <input type="text" id="searchTerm" class="searchTerm" name="address" placeholder="Wo wohnst du? (Stadt)" autofocus required>
-                    <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-                    <button type="submit" id="searchButton" class="searchButton" title="Bäckerei finden">
-                        <i class="fa fa-search"></i><p id="b-button"> BÄCKEREI FINDEN </p>
-                    </button>
+                    <div class="k-container">
+                        <div class="konto1" id="header"> KONTO &nbsp;</div><i class="fas fa-angle-down"></i>
+                    </div>
                 </div>
-            </form>
+                <div class="dholder">
+                    <div class="hrbr"></div>
+                    <a class="drop drop1" href="/user/aufladen">Guthaben aufladen&nbsp;<i
+                            class="fas fa-credit-card"></i></a>
+
+                    <a class="drop" href="/user/profile">Profil&nbsp;<i class="fas fa-user-circle"></i></a>
+
+                    <a class="drop drop3" href="/user/logout">Logout&nbsp;<i class="fas fa-sign-out-alt"></i></a>
+                    <div class="hrbr br1"></div>
+                    <div class="credit">
+                        <p>Guthaben: </p>{{credit}} &#8364;
+                    </div>
+                </div>
+            </li>
+            <div class="mobile-konto" id="mobile-konto">
+                KONTO
+            </div>
+            {{else}}
+            <div class="login" id="login" title="Einloggen">
+                <a class="konto1"> Login </a>
+            </div>
+            <div class="register" id="register" title="Registrieren">
+                <a class="konto1"> Registrieren </a>
+            </div>
+            {{/if}}
+            <div class="hilfe">
+                <a class="kontakt" title="Kontakt" href="/kontakt"> FEEDBACK </a>
+            </div>
         </div>
     </div>
-    {{!-- j --}}
-    
-    <div class="balken"><div class="errors">{{messages}}</div><div class="success">{{success}}</div></div>
+    <div class="text-wrapper">
+        <div class="text">Jetzt Brötchen online vorbestellen.</div>
+        <form class="wrap" id="searchform" method="post" action="/">
+            <div class="search">
+                <input type="text" id="searchTerm" class="searchTerm" name="address" placeholder="Wo wohnst du? (Stadt)"
+                    autofocus required>
+                <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+                <button type="submit" id="searchButton" class="searchButton" title="Bäckerei finden">
+                    <i class="fa fa-search"></i>
+                    <p id="b-button"> BÄCKEREI FINDEN </p>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{{!-- j --}}
+
+<div class="balken">
+    <div class="errors">{{messages}}</div>
+    <div class="success">{{success}}</div>
+</div>
 <div class="colorDiv">
     <div class="slideHeader">
         <div contenteditable="true">So funktioniert Brotritter<span class="highEnd">&nbsp;"High End"</span></div>
@@ -141,170 +158,201 @@
     </div>
     <div class="info-con">
 
-     <div class="conslide">
-      <img src="../images/bakery1.png">
-      <h3>Bäckerei und Brötchen auswählen</h3>
-    </div>
+        <div class="conslide">
+            <img src="../images/bakery1.png">
+            <h3>Bäckerei und Brötchen auswählen</h3>
+        </div>
 
-    <div class="conslide">
-      <img src="../images/bakery2.png">
-      <h3>Bezahlen und Code erhalten</h3>
-    </div>
+        <div class="conslide">
+            <img src="../images/bakery2.png">
+            <h3>Bezahlen und Code erhalten</h3>
+        </div>
 
-    <div class="conslide">
-      <img id="bakery3" src="../images/bakery3.png">
-      <h3 id="thirdSlide">Brötchentüte am Brotritterschild in der Bäckerei abholen</h3>
-    </div>
+        <div class="conslide">
+            <img id="bakery3" src="../images/bakery3.png">
+            <h3 id="thirdSlide">Brötchentüte am Brotritterschild in der Bäckerei abholen</h3>
+        </div>
 
     </div>
 
     <div class="slideshow-container">
 
-    <div class="dotSlides" style="text-align:center">
-      <span class="dot dotSlide" onclick="currentSlide(1)"></span> 
-      <span class="dot dotSlide" onclick="currentSlide(2)"></span> 
-      <span class="dot dotSlide" onclick="currentSlide(3)"></span> 
-    </div>
+        <div class="dotSlides" style="text-align:center">
+            <span class="dot dotSlide" onclick="currentSlide(1)"></span>
+            <span class="dot dotSlide" onclick="currentSlide(2)"></span>
+            <span class="dot dotSlide" onclick="currentSlide(3)"></span>
+        </div>
 
-    <div class="mySlides fade">
-      <img src="../images/bakery1.png">
-      <h2 class="textSlider">1. Bäckerei und Brötchen auswählen</h2>
-    </div>
+        <div class="mySlides fade">
+            <img src="../images/bakery1.png">
+            <h2 class="textSlider">1. Bäckerei und Brötchen auswählen</h2>
+        </div>
 
-    <div class="mySlides fade">
-      <img src="../images/bakery2.png">
-      <h2 class="textSlider">2. Mit Brotritterkonto Bezahlen und Code erhalten</h2>
-    </div>
+        <div class="mySlides fade">
+            <img src="../images/bakery2.png">
+            <h2 class="textSlider">2. Mit Brotritterkonto Bezahlen und Code erhalten</h2>
+        </div>
 
-    <div class="mySlides fade">
-      <img id="bakery3Main" src="../images/bakery3.png">
-      <h2 class="textSlider" id="thirdText">3. Brötchentüte am Brotritterschild in der Bäckerei abholen</h2>
-    </div>
+        <div class="mySlides fade">
+            <img id="bakery3Main" src="../images/bakery3.png">
+            <h2 class="textSlider" id="thirdText">3. Brötchentüte am Brotritterschild in der Bäckerei abholen</h2>
+        </div>
 
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
     </div>
-    </div>
+</div>
 
-    <div class="wrapper"data-parallax="scroll" data-image-src="../images/Home-Webseite-2.jpg"><h1 data-aos="fadeInUp" data-aos="zoom-in" data-aos-duration="500"></div>
+<div class="wrapper" data-parallax="scroll" data-image-src="../images/Home-Webseite-2.jpg">
+    <h1 data-aos="fadeInUp" data-aos="zoom-in" data-aos-duration="500">
+</div>
 
 <div class="wrapper2" data-parallax="scroll">
-        <div class="aligner">
-            <div class="align1">
-                <i class="fas fa-check"></i>
-                <h1>Vorteile</h1>
-                <div><b> Immer alle Brötchen bekommen </b><p>Da Sie vorbestellen, werden Sie immer Ihre gewünschten Brötchen bekommen.</p></div>
-                 <div><b> Guthaben aufladbar</b><p> So sparen Sie noch mehr Zeit und können mit 4 Klicks Ihre Vorbestellung aufgeben.</p></div>
+    <div class="aligner">
+        <div class="align1">
+            <i class="fas fa-check"></i>
+            <h1>Vorteile</h1>
+            <div><b> Immer alle Brötchen bekommen </b>
+                <p>Da Sie vorbestellen, werden Sie immer Ihre gewünschten Brötchen bekommen.</p>
             </div>
-            <div class="align2">
-                <i class="fas fa-stamp"></i>
-                <h1>Garantie</h1>
-                 <div><b> Kein Preisaufschlag </b><p>Sie bezahlen genauso viel, wie in der Bäckerei vor Ort.</p></div>
-                <div><b> Sicheres bezahlen </b><p>Wir verschlüsseln Ihre Daten und tun alles um Zahlungssicherheit zu gewährleisten.</p></div>
-                <br/>
-                <br/>
-                <br/>
-            </div>
-            <div class="align3">
-                <i class="fas fa-chart-line"></i>
-                <h1>Nutzen</h1>
-                <div><b> Kein Schlange stehen mehr </b><p> Sie gehen einfach an der Schlange vorbei und geben den Code am Regalsystem ein.</p></div>
-                <div><b> Zeit sparen </b><p>So haben Sie mehr Zeit für sich oder andere schöne Dinge.</p></div>
-                <br/>
-                <br/>
+            <div><b> Guthaben aufladbar</b>
+                <p> So sparen Sie noch mehr Zeit und können mit 4 Klicks Ihre Vorbestellung aufgeben.</p>
             </div>
         </div>
+        <div class="align2">
+            <i class="fas fa-stamp"></i>
+            <h1>Garantie</h1>
+            <div><b> Kein Preisaufschlag </b>
+                <p>Sie bezahlen genauso viel, wie in der Bäckerei vor Ort.</p>
+            </div>
+            <div><b> Sicheres bezahlen </b>
+                <p>Wir verschlüsseln Ihre Daten und tun alles um Zahlungssicherheit zu gewährleisten.</p>
+            </div>
+            <br />
+            <br />
+            <br />
+        </div>
+        <div class="align3">
+            <i class="fas fa-chart-line"></i>
+            <h1>Nutzen</h1>
+            <div><b> Kein Schlange stehen mehr </b>
+                <p> Sie gehen einfach an der Schlange vorbei und geben den Code am Regalsystem ein.</p>
+            </div>
+            <div><b> Zeit sparen </b>
+                <p>So haben Sie mehr Zeit für sich oder andere schöne Dinge.</p>
+            </div>
+            <br />
+            <br />
+        </div>
+    </div>
 </div>
 <div class="alignshow-container">
 
     <div class="dotSlides" style="text-align:center">
-      <span class="dot dotAlign" onclick="currentAligners(1)"></span> 
-      <span class="dot dotAlign" onclick="currentAligners(2)"></span> 
-      <span class="dot dotAlign" onclick="currentAligners(3)"></span> 
+        <span class="dot dotAlign" onclick="currentAligners(1)"></span>
+        <span class="dot dotAlign" onclick="currentAligners(2)"></span>
+        <span class="dot dotAlign" onclick="currentAligners(3)"></span>
     </div>
 
 
-        <div class="align">
-            <div class="align1 alignSlide">
-                <i class="fas fa-check"></i>
-                <h1>Vorteile</h1>
-                <div><b> Immer alle Brötchen bekommen </b><p>Da Sie vorbestellen, werden Sie immer Ihre gewünschten Brötchen bekommen.</p></div>
-                 <div><b> Guthaben aufladbar</b><p> So sparen Sie noch mehr Zeit und können mit 4 Klicks Ihre Vorbestellung aufgeben.</p></div>
+    <div class="align">
+        <div class="align1 alignSlide">
+            <i class="fas fa-check"></i>
+            <h1>Vorteile</h1>
+            <div><b> Immer alle Brötchen bekommen </b>
+                <p>Da Sie vorbestellen, werden Sie immer Ihre gewünschten Brötchen bekommen.</p>
+            </div>
+            <div><b> Guthaben aufladbar</b>
+                <p> So sparen Sie noch mehr Zeit und können mit 4 Klicks Ihre Vorbestellung aufgeben.</p>
             </div>
         </div>
+    </div>
 
-        <div class="align">
-            <div class="align2 alignSlide">
-                <i class="fas fa-stamp"></i>
-                <h1>Garantie</h1>
-                 <div><b> Kein Preisaufschlag </b><p>Sie bezahlen genauso viel, wie in der Bäckerei vor Ort.</p></div>
-                <div><b> Sicheres bezahlen </b><p>Wir verschlüsseln Ihre Daten und tun alles um Zahlungssicherheit zu gewährleisten.</p></div>
+    <div class="align">
+        <div class="align2 alignSlide">
+            <i class="fas fa-stamp"></i>
+            <h1>Garantie</h1>
+            <div><b> Kein Preisaufschlag </b>
+                <p>Sie bezahlen genauso viel, wie in der Bäckerei vor Ort.</p>
+            </div>
+            <div><b> Sicheres bezahlen </b>
+                <p>Wir verschlüsseln Ihre Daten und tun alles um Zahlungssicherheit zu gewährleisten.</p>
             </div>
         </div>
+    </div>
 
-        <div class="align">
-            	<div class="align3 alignSlide">
-                <i class="fas fa-chart-line"></i>
-                <h1>Nutzen</h1>
-                <div><b> Kein Schlange stehen mehr </b><p> Sie gehen einfach an der Schlange vorbei und geben den Code am Regalsystem ein.</p></div>
-                <div><b> Zeit sparen </b><p>So haben Sie mehr Zeit für sich oder andere schöne Dinge.</p></div>
+    <div class="align">
+        <div class="align3 alignSlide">
+            <i class="fas fa-chart-line"></i>
+            <h1>Nutzen</h1>
+            <div><b> Kein Schlange stehen mehr </b>
+                <p> Sie gehen einfach an der Schlange vorbei und geben den Code am Regalsystem ein.</p>
+            </div>
+            <div><b> Zeit sparen </b>
+                <p>So haben Sie mehr Zeit für sich oder andere schöne Dinge.</p>
             </div>
         </div>
+    </div>
 
-        <a class="prev prevalign" onclick="plusAligners(-1)">&#10094;</a>
-        <a class="next nextalign" onclick="plusAligners(1)">&#10095;</a>
+    <a class="prev prevalign" onclick="plusAligners(-1)">&#10094;</a>
+    <a class="next nextalign" onclick="plusAligners(1)">&#10095;</a>
 
-        </div>
+</div>
 <div class="brd"></div>
 <div class="aboutCon">
     <div class="aboutPara">
         <div class="innerPara">
             <div class="blockPara">
                 <h3>Frische Brötchen ganz bequem von Zuhause vorbestellen.</h3>
-                <div>Für alle Langschläfer. Für alle Genießer, die ihre Zeit für Sich oder ihre Lieben nutzen wollen. Für alle Jogger oder Frühsportler, die viel lieber unter der Dusche stehen möchten. Für die Eltern, die ihren Kindern zeigen möchten, auch Brötchen holen kann ein Kinderspiel sein, vor allem, wenn es für die Familie ist.</div>
+                <div>Für alle Langschläfer. Für alle Genießer, die ihre Zeit für Sich oder ihre Lieben nutzen wollen.
+                    Für alle Jogger oder Frühsportler, die viel lieber unter der Dusche stehen möchten. Für die Eltern,
+                    die ihren Kindern zeigen möchten, auch Brötchen holen kann ein Kinderspiel sein, vor allem, wenn es
+                    für die Familie ist.</div>
             </div>
         </div>
         <div class="paraImg">
-            <img src="./images/Kellnerbild.png"> 
+            <img src="./images/Kellnerbild.png">
         </div>
     </div>
 </div>
 
 <div class="impress">
-  <div class="impresscon">
-    <div class="sideopt "OnClick="location.href='/newsletter'">Newsletter bekommen</div>
-    <div class="sideopt hidopt" OnClick="location.href='/newsletter'">Newsletter </div>
-    <div><a href="/impressum">Impressum</a>&nbsp;/&nbsp;<a href="/datenschutz">Datenschutz</a></div>
-    <div class="sideopt" OnClick="location.href='/mitgliedschaft'">Jetzt Partner werden</div>
-    <div class="sideopt hidopt" OnClick="location.href='/mitgliedschaft'">Partnerschaft</div>
-  </div>
+    <div class="impresscon">
+        <div class="sideopt " OnClick="location.href='/newsletter'">Newsletter bekommen</div>
+        <div class="sideopt hidopt" OnClick="location.href='/newsletter'">Newsletter </div>
+        <div><a href="/impressum">Impressum</a>&nbsp;/&nbsp;<a href="/datenschutz">Datenschutz</a></div>
+        <div class="sideopt" OnClick="location.href='/mitgliedschaft'">Jetzt Partner werden</div>
+        <div class="sideopt hidopt" OnClick="location.href='/mitgliedschaft'">Partnerschaft</div>
+    </div>
 </div>
 
-<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+<link rel="stylesheet" type="text/css"
+    href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
 <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
 <script>
-window.addEventListener("load", function(){
-window.cookieconsent.initialise({
-  "palette": {
-    "popup": {
-      "background": "#000000"
-    },
-    "button": {
-      "background": "#ff9900"
-    }
-  }
+    window.addEventListener("load", function () {
+        window.cookieconsent.initialise({
+            "palette": {
+                "popup": {
+                    "background": "#000000"
+                },
+                "button": {
+                    "background": "#ff9900"
+                }
+            }
   "content": {
-    "message": "Unsere Website verwendet Cookies, um die bestmögliche Nutzung unserer Website zu gewährleisten.",
-    "dismiss": "Alles klar!",
-    "link": "Mehr erfahren",
-    "href": "https://www.brotritter.de/datenschutz"
-  }
-})});
+                "message": "Wir verwenden Cookies, um Ihnen den bestmöglichen Service zu gewährleisten. Wenn Sie die Seite weiter nutzen, stimmen Sie der Cookie-Nutzung zu.",
+                "dismiss": "Ich stimme zu",
+                "link": "Mehr erfahren",
+                "href": "https://www.brotritter.de/datenschutz"
+            }
+        })
+    });
 </script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="https://cdn.jsdelivr.net/parallax.js/1.4.2/parallax.min.js"></script>
 <script type="text/javascript" src="javascripts/homepage.js"></script>
 <script>
     AOS.init();
-  </script>
+</script>

@@ -15,91 +15,110 @@ var bakerys = [,
     new Bakery({
     imagePath: '../images/cropped-Bäckermeister-Haferkamp-3-gestaucht.jpg',
     title: 'Bäckermeister Haferkamp',
+    address: "H-H-Meier Alee 33",
+    closed: false,
+    storelink: "http://localhost:3000/bakery",
     buns: [
-      {
-        imagePath: '../images/weltmeister.jpg',
-        title: 'Weltmeister',
-        price: 0.67,
-        ofprice: "0,67",
-        ingredients: ["Weizenmehl", "Wasser", "Salz"]
-      },
         {
-        imagePath: '../images/weltmeister.jpg',
-        title: 'Croissant',
-        price: 0.82,
-        ofprice: "0,82",
-        ingredients: ["Weizenmehl", "Wasser", "Salz"]
+                imagePath: '../images/weltmeister.jpg',
+                title: 'Weltmeister',
+                price: 0.67,
+                ofprice: "0,67",
+                ingredients: ["Weizenmehl", "Wasser", "Salz"],
+                expdate: "",
+                clicked: false
         },
         {
-        imagePath: '../images/weltmeister.jpg',
-        title: 'Normales',
-        price: 0.32,
-        ofprice: "0,32",
-        ingredients: ["Weizenmehl", "Wasser", "Salz"]
+                imagePath: '../images/weltmeister.jpg',
+                title: 'Croissant',
+                price: 0.82,
+                ofprice: "0,82",
+                ingredients: ["Weizenmehl", "Wasser", "Salz"],
+                expdate: "",
+                clicked: false
         },
         {
-        imagePath: '../images/weltmeister.jpg',
-        title: 'Weltmeister',
-        price: 0.67,
-        ofprice: "0,67",
-        ingredients: ["Weizenmehl", "Wasser", "Salz"]
+                imagePath: '../images/weltmeister.jpg',
+                title: 'Normales',
+                price: 0.32,
+                ofprice: "0,32",
+                ingredients: ["Weizenmehl", "Wasser", "Salz"],
+                expdate: "",
+                clicked: false
         },
         {
-        imagePath: '../images/weltmeister.jpg',
-        title: 'Normales',
-        price: 0.32,
-        ofprice: "0,32",
-        ingredients: ["Weizenmehl", "Wasser", "Salz"]
-        }],      
-    address: "Ulru",
-    closed: false
+                imagePath: '../images/weltmeister.jpg',
+                title: 'Weltmeister',
+                price: 0.67,
+                ofprice: "0,67",
+                ingredients: ["Weizenmehl", "Wasser", "Salz"],
+                expdate: "",
+                clicked: false
+        },
+        {
+                imagePath: '../images/weltmeister.jpg',
+                title: 'Normales',
+                price: 0.32,
+                ofprice: "0,32",
+                ingredients: ["Weizenmehl", "Wasser", "Salz"],
+                expdate: "",
+                clicked: false
+        }]
     }),
     new Bakery({
-    imagePath: '../images/cropped-Bäckermeister-Haferkamp-3-gestaucht.jpg',
-    title: 'Bäckermeister Schäfers',
-    buns: [{
-            imagePath: '../images/weltmeister.jpg',
-            title: "Weltmeister",
-            price: 0.32,
-            ofprice: "0,32"
+        coordinates: 
+        imagePath: '../images/cropped-Bäckermeister-Haferkamp-3-gestaucht.jpg',
+        title: 'Bäckermeister Haferkamp',
+        address: "Krogstraße 33",
+        closed: false,
+        storelink: "http://localhost:3000/bakery",
+        buns: [
+            {
+                    imagePath: '../images/weltmeister.jpg',
+                    title: 'Weltmeister',
+                    price: 0.67,
+                    ofprice: "0,67",
+                    ingredients: ["Weizenmehl", "Wasser", "Salz"],
+                    expdate: "",
+                    clicked: false
             },
             {
-            imagePath: '../images/weltmeister.jpg',
-            title: "Normales",
-            price: 0.52,
-            oprice: "0,52"
+                    imagePath: '../images/weltmeister.jpg',
+                    title: 'Croissant',
+                    price: 0.82,
+                    ofprice: "0,82",
+                    ingredients: ["Weizenmehl", "Wasser", "Salz"],
+                    expdate: "",
+                    clicked: false
             },
             {
-            imagePath: '../images/weltmeister.jpg',
-            title: "Croissant",
-            price: 0.82,
-            oprice: "0,82"
-            }],
-    address: "Ulru"
-    }),
-    new Bakery({
-    imagePath: '../images/cropped-Bäckermeister-Haferkamp-3-gestaucht.jpg',
-    title: 'Bäckermeister Otten',
-    buns: [{
-            imagePath: '../images/weltmeister.jpg',
-            title: "Weltmeister",
-            price: 0.32,
-            ofprice: "0,32"
+                    imagePath: '../images/weltmeister.jpg',
+                    title: 'Normales',
+                    price: 0.32,
+                    ofprice: "0,32",
+                    ingredients: ["Weizenmehl", "Wasser", "Salz"],
+                    expdate: "",
+                    clicked: false
             },
             {
-            imagePath: '../images/weltmeister.jpg',
-            title: "Normales",
-            price: 0.52,
-            oprice: "0,52"
+                    imagePath: '../images/weltmeister.jpg',
+                    title: 'Weltmeister',
+                    price: 0.67,
+                    ofprice: "0,67",
+                    ingredients: ["Weizenmehl", "Wasser", "Salz"],
+                    expdate: "",
+                    clicked: false
             },
             {
-            imagePath: '../images/weltmeister.jpg',
-            title: "Croissant",
-            price: 0.82,
-            oprice: "0,82"
-            }],
-    address: "Ulru"
-    }),
+                    imagePath: '../images/weltmeister.jpg',
+                    title: 'Normales',
+                    price: 0.32,
+                    ofprice: "0,32",
+                    ingredients: ["Weizenmehl", "Wasser", "Salz"],
+                    expdate: "",
+                    clicked: false
+            }]
+        }),
 ];
 
 for (var i = 1; i < bakerys.length; i++) {

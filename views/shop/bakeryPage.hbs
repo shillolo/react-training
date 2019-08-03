@@ -1,108 +1,112 @@
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+    integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 <link rel="stylesheet" href="/stylesheets/mybakery.css" />
 
 <form class="deactivate" action="/deactivate" method="post"></form>
 <div class="closepop">
-   <div class="closer">
-       <i class="fas fa-times close" id="deactivateClose"></i>
-       <div class="inner-closer">
-        <h2>Sind Sie sicher, dass Sie ihre Filiale für heute bei Brotritter schließen wollen?</h2> <p>Nachdem die Filiale bei uns geschlossen wurde kommen für den heutigen Tag keine neuen Bestellungen mehr rein.</p>
-        <div class="decider">
-            <div class="yes">Ja ich bin mir sicher</div>
-            <div class="no">Nein</div>
-        </div>
-       </div>
-    </div>
-</div> 
-
-<div class="bild f-bild">
-        <div class="brotritter">
-            <div class="maenu" title="Brotritter" OnClick="location.href='/'"></div>
-        </div>
-        <div class="viereck">
-            <div class="comp-logo" OnClick="location.href='/'"></div>
-            <div class="konto-container">
-                <div class="hilfe">
-                    <a class="kontakt" title="Kontakt"> KONTAKT </a>
-                </div>
+    <div class="closer">
+        <i class="fas fa-times close" id="deactivateClose"></i>
+        <div class="inner-closer">
+            <h2>Sind Sie sicher, dass Sie ihre Filiale für heute bei Brotritter schließen wollen?</h2>
+            <p>Nachdem die Filiale bei uns geschlossen wurde kommen für den heutigen Tag keine neuen Bestellungen mehr
+                rein.</p>
+            <div class="decider">
+                <div class="yes">Ja ich bin mir sicher</div>
+                <div class="no">Nein</div>
             </div>
         </div>
-        <h1 class="f-pass">Aktuelle Bestellungen</h1>
+    </div>
 </div>
-        
+
+<div class="bild f-bild">
+    <div class="brotritter">
+        <div class="maenu" title="Brotritter" OnClick="location.href='/'"></div>
+    </div>
+    <div class="viereck">
+        <div class="comp-logo" OnClick="location.href='/'"></div>
+        <div class="konto-container">
+            <div class="hilfe">
+                <a class="kontakt" title="Kontakt"> KONTAKT </a>
+            </div>
+        </div>
+    </div>
+    <h1 class="f-pass">Aktuelle Bestellungen</h1>
+</div>
+
 <div class="balken">Bei Fragen: 015234234544</div>
 <div class="balken2">
-        <div class="tab" id="tab1">Bestellübersicht</div>
-        <div class="tab" id="tab3">Verfügbarkeit</div>
+    <div class="tab" id="tab1">Bestellübersicht</div>
+    <div class="tab" id="tab3">Verfügbarkeit</div>
 </div>
 
 <div class="data">
     <div class="orders">
-        <div class="section" id="forToday">HEUTIGE BESTELLUNGEN<div class="message" id="message">1</div></div>
+        <div class="section" id="forToday">HEUTIGE BESTELLUNGEN<div class="message" id="message">1</div>
+        </div>
         {{#if order}}
         <input type="hidden" id="reloader" value="{{order.length}}">
         {{#each order}}
         <form class="order" action="/mybakery" method="post">
-        <div class="deleter">
-            <h3>Sind sie sich sicher, dass bei der Bestellung ein Fehler unterlaufen ist?</h3>
-            <div class="delete-holder">
-                <div class="delete">Ja</div>
-                <div class="goback">Kein Fehler!</div>
+            <div class="deleter">
+                <h3>Sind sie sich sicher, dass bei der Bestellung ein Fehler unterlaufen ist?</h3>
+                <div class="delete-holder">
+                    <div class="delete">Ja</div>
+                    <div class="goback">Kein Fehler!</div>
+                </div>
             </div>
-        </div>
-        <input type="hidden" name="userid"  value="{{this.order._id}}">
-        <input type="hidden" name="user"  value="{{this.order.user}}">
-        <input type="hidden" name="userMail"  value="{{this.order.email}}">
-        <input type="hidden" name="requser"  value="{{this.order.requser}}">
-        <div class="order-container">
-            <div class="inner-container-one">
-                <h3 id="h3">Bestellung:</h3>
-                <div class="order-holder">
-                    <div class="buns">
-                    {{#each this.order.cart}}
-                    <div>
-                        <p>
-                        {{this}}
-                        </p>
+            <input type="hidden" name="userid" value="{{this.order._id}}">
+            <input type="hidden" name="user" value="{{this.order.user}}">
+            <input type="hidden" name="userMail" value="{{this.order.email}}">
+            <input type="hidden" name="requser" value="{{this.order.requser}}">
+            <div class="order-container">
+                <div class="inner-container-one">
+                    <h3 id="h3">Bestellung:</h3>
+                    <div class="order-holder">
+                        <div class="buns">
+                            {{#each this.order.cart}}
+                            <div>
+                                <p>
+                                    {{this}}
+                                </p>
+                            </div>
+                            {{/each}}
+                        </div>
+                        <div class="bun-amount">
+                            {{#each this.order.amount}}
+                            <div>
+                                {{!-- s --}}
+                                <p>
+                                    {{this}}
+                                </p>
+                            </div>
+                            {{/each}}
+                        </div>
                     </div>
-                    {{/each}}
+                    <div class="code-holder">
+                        <h3>Code:</h3>
+                        <input type="hidden" name="code" value="{{this.order.code}}" />
+                        <p>{{this.order.code}}</p>
                     </div>
-                    <div class="bun-amount">
-                    {{#each this.order.amount}}
-                    <div>
-                        {{!-- s --}}
-                        <p>
-                        {{this}}
-                        </p>
+                    <div class="time-holder">
+                        <h3>Uhrzeit:</h3>
+                        <p>{{this.order.time}}</p>
                     </div>
-                    {{/each}}
+                    <div class="chip-nr-container">
+                        <h3>Regal Nr:</h3>
+                        <p>{{this.position}}</p>
                     </div>
                 </div>
-                <div class="code-holder">
-                    <h3>Code:</h3>
-                    <input type="hidden" name="code" value="{{this.order.code}}"/>
-                    <p>{{this.order.code}}</p>
+                <div class="inner-container-two">
+                    {{#if this.order.packed}}
+                    <i class="fas fa-check"></i>
+                    {{else}}
+                    <div class="confirm" id="confirm">Verpackt</div>
+                    <div class="sound" style="display: none"></div>
+                    <div class="failure" id="failure">Es ist ein Fehler unterlaufen</div>
+                    {{/if}}
                 </div>
-                <div class="time-holder">
-                    <h3>Uhrzeit:</h3>
-                    <p>{{this.order.time}}</p>
-                </div>
-            <div class="chip-nr-container">
-                <h3>Regal Nr:</h3>
-                <p>{{this.position}}</p>
+                <input name="confirmer" class="confirmer" type="hidden" value="" />
             </div>
-            </div>
-            <div class="inner-container-two">
-                {{#if this.order.packed}}
-                <i class="fas fa-check"></i>
-                {{else}}
-                <div class="confirm" id="confirm">Verpackt</div>
-                <div class="sound" style="display: none"></div>
-                <div class="failure" id="failure">Es ist ein Fehler unterlaufen</div>
-                {{/if}}
-            </div>
-            <input name="confirmer" class="confirmer" type="hidden" value=""/>
-        </div>
         </form>
         {{/each}}
         {{else}}
@@ -113,127 +117,138 @@
         <input type="hidden" value="{{timepicker}}" id="timereader">
         <div class="section bunheader">VERFÜGBARKEIT DER WARE</div>
         <form id="killbuns" class="killbuns" action="/killallbuns" method="post">
-        {{#if closed}}<div class="itsClosed">Brotritterstore geschlossen</div>{{else}}<div class="closeStore">Brotritterstore schließen</div>{{/if}}
+            {{#if closed}}<div class="itsClosed">Brotritterstore geschlossen</div>{{else}}<div class="closeStore">
+                Brotritterstore schließen</div>{{/if}}
         </form>
         {{#if closed}}
         {{else}}
         <div class="products" id="bakeryProducts">
             <div>
-            <a class="section" name="Weizenbroetchen" id="Weizenbroetchen"><p>WEIZENBRÖTCHEN</p><i class="fas fa-angle-down"></i></a>
-            <div class="sec sec1">
-            {{# each products}}
-            {{# each this }}
-            <form action="/killbun" method="post">
-            <input type="hidden" name="status" class="status">
-            <input type="hidden" name="breadname" value="{{this.title}}"/>
-            <div class="productholder {{#if this.clicked}}cproductholder{{/if}}" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" 
-unselectable="on"
-onselectstart="return false;" 
-onmousedown="return false;">
-                <div class="{{#if this.clicked}}cproduct{{else}}product{{/if}}" id="{{this.title}}">
-                    <img src="{{this.imagePath}}" class="{{#if this.clicked}}cproductpic{{else}}productpic{{/if}}" alt="Kein Internet">
-                    <div class="productinfo">
-                        <div class="iname"><div class="thetitle">{{this.title}}</div>{{#if this.clicked}}<i class="fas fa-redo-alt redobutton"></i>{{/if}}</div>
-                    </div>
+                <a class="section" name="Weizenbroetchen" id="Weizenbroetchen">
+                    <p>WEIZENBRÖTCHEN</p><i class="fas fa-angle-down"></i>
+                </a>
+                <div class="sec sec1">
+                    {{# each products}}
+                    {{# each this }}
+                    <form action="/killbun" method="post">
+                        <input type="hidden" name="status" class="status">
+                        <input type="hidden" name="breadname" value="{{this.title}}" />
+                        <div class="productholder {{#if this.clicked}}cproductholder{{/if}}"
+                            style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;"
+                            unselectable="on" onselectstart="return false;" onmousedown="return false;">
+                            <div class="{{#if this.clicked}}cproduct{{else}}product{{/if}}" id="{{this.title}}">
+                                <img src="{{this.imagePath}}"
+                                    class="{{#if this.clicked}}cproductpic{{else}}productpic{{/if}}"
+                                    alt="Kein Internet">
+                                <div class="productinfo">
+                                    <div class="iname">
+                                        <div class="thetitle">{{this.title}}</div>{{#if this.clicked}}<i
+                                            class="fas fa-redo-alt redobutton"></i>{{/if}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    {{/each}}
+                    {{/each}}
                 </div>
-            </div>
-            </form>
-            {{/each}}
-            {{/each}}
-            </div>
             </div>
             <div>
-            <a class="section" name="Roggenbroetchen" id="Roggenbroetchen"><p>ROGGENBRÖTCHEN</p><i class="fas fa-angle-left"></i></a>
-            <div class="sec">
-            {{# each products}}
-            {{# each this }}
-            <form action="/killbun" method="post">
-                 <input type="hidden" name="breadname" value="{{this.title}}"/>
-                <div class="productholder {{#if this.clicked}}cproductholder{{/if}}" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" 
- unselectable="on"
- onselectstart="return false;" 
- onmousedown="return false;">
-                    <div class="{{#if this.clicked}}cproduct{{else}}product{{/if}}" id="{{this.title}}">
-                        <img src="{{this.imagePath}}" class="productpic" alt="Kein Internet">
-                        <div class="productinfo">
-                            <div class="iname">{{this.title}}</div>
+                <a class="section" name="Roggenbroetchen" id="Roggenbroetchen">
+                    <p>ROGGENBRÖTCHEN</p><i class="fas fa-angle-left"></i>
+                </a>
+                <div class="sec">
+                    {{# each products}}
+                    {{# each this }}
+                    <form action="/killbun" method="post">
+                        <input type="hidden" name="breadname" value="{{this.title}}" />
+                        <div class="productholder {{#if this.clicked}}cproductholder{{/if}}"
+                            style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;"
+                            unselectable="on" onselectstart="return false;" onmousedown="return false;">
+                            <div class="{{#if this.clicked}}cproduct{{else}}product{{/if}}" id="{{this.title}}">
+                                <img src="{{this.imagePath}}" class="productpic" alt="Kein Internet">
+                                <div class="productinfo">
+                                    <div class="iname">{{this.title}}</div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </form>
+                    {{/each}}
+                    {{/each}}
                 </div>
-                </form>
-            {{/each}}
-            {{/each}}
-            </div>
             </div>
             <div>
-            <a class="section" name="Mehrkornbroetchen" id="Mehrkornbroetchen"><p>MEHRKORNBRÖTCHEN</p><i class="fas fa-angle-left"></i></a>
-            <div class="sec">
-            {{# each products}}
-            {{# each this }}
-            <form action="/killbun" method="post">
-            <input type="hidden" name="breadname" value="{{this.title}}"/>
-                <div class="productholder {{#if this.clicked}}cproductholder{{/if}}" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" 
- unselectable="on"
- onselectstart="return false;" 
- onmousedown="return false;">
-                    <div class="{{#if this.clicked}}cproduct{{else}}product{{/if}}" id="{{this.title}}">
-                        <img src="{{this.imagePath}}" class="productpic" alt="Kein Internet">
-                        <div class="productinfo">
-                            <div class="iname">{{this.title}}</div>
+                <a class="section" name="Mehrkornbroetchen" id="Mehrkornbroetchen">
+                    <p>MEHRKORNBRÖTCHEN</p><i class="fas fa-angle-left"></i>
+                </a>
+                <div class="sec">
+                    {{# each products}}
+                    {{# each this }}
+                    <form action="/killbun" method="post">
+                        <input type="hidden" name="breadname" value="{{this.title}}" />
+                        <div class="productholder {{#if this.clicked}}cproductholder{{/if}}"
+                            style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;"
+                            unselectable="on" onselectstart="return false;" onmousedown="return false;">
+                            <div class="{{#if this.clicked}}cproduct{{else}}product{{/if}}" id="{{this.title}}">
+                                <img src="{{this.imagePath}}" class="productpic" alt="Kein Internet">
+                                <div class="productinfo">
+                                    <div class="iname">{{this.title}}</div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </form>
+                    {{/each}}
+                    {{/each}}
                 </div>
-                </form>
-            {{/each}}
-            {{/each}}
-            </div>
             </div>
             <div>
-            <a class="section" name="Sueßes" id="Sueßes"><p>SÜßE BRÖTCHEN UND KLEINGEBÄCK</p><i class="fas fa-angle-left"></i></a>
-            <div class="sec">
-            {{# each products}}
-            {{# each this }}
-            <form action="/killbun" method="post">
-                <input type="hidden" name="breadname" value="{{this.title}}"/>
-                <div class="productholder {{#if this.clicked}}cproductholder{{/if}}" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" 
- unselectable="on"
- onselectstart="return false;" 
- onmousedown="return false;">
-                    <div class="{{#if this.clicked}}cproduct{{else}}product{{/if}}" id="{{this.title}}">
-                        <img src="{{this.imagePath}}" class="productpic" alt="Kein Internet">
-                        <div class="productinfo">
-                            <div class="iname">{{this.title}}</div>
+                <a class="section" name="Sueßes" id="Sueßes">
+                    <p>SÜßE BRÖTCHEN UND KLEINGEBÄCK</p><i class="fas fa-angle-left"></i>
+                </a>
+                <div class="sec">
+                    {{# each products}}
+                    {{# each this }}
+                    <form action="/killbun" method="post">
+                        <input type="hidden" name="breadname" value="{{this.title}}" />
+                        <div class="productholder {{#if this.clicked}}cproductholder{{/if}}"
+                            style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;"
+                            unselectable="on" onselectstart="return false;" onmousedown="return false;">
+                            <div class="{{#if this.clicked}}cproduct{{else}}product{{/if}}" id="{{this.title}}">
+                                <img src="{{this.imagePath}}" class="productpic" alt="Kein Internet">
+                                <div class="productinfo">
+                                    <div class="iname">{{this.title}}</div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </form>
+                    {{/each}}
+                    {{/each}}
                 </div>
-                </form>
-            {{/each}}
-            {{/each}}
-            </div>
             </div>
             <div>
-            <a class="section lsection" name="Laugengebaeck" id="Laugengebaeck"><p>LAUGENGEBÄCK</p><i class="fas fa-angle-left"></i></a>
-            <div class="sec">
-            {{# each products}}
-            {{# each this }}
-            <form action="/killbun" method="post">
-                <input type="hidden" name="breadname" value="{{this.title}}"/>
-                <div class="productholder {{#if this.clicked}}cproductholder{{/if}}" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" 
- unselectable="on"
- onselectstart="return false;" 
- onmousedown="return false;">
-                    <div class="{{#if this.clicked}}cproduct{{else}}product{{/if}}" id="{{this.title}}">
-                        <img src="{{this.imagePath}}" class="productpic" alt="Kein Internet">
-                        <div class="productinfo">
-                            <div class="iname">{{this.title}}</div>
+                <a class="section lsection" name="Laugengebaeck" id="Laugengebaeck">
+                    <p>LAUGENGEBÄCK</p><i class="fas fa-angle-left"></i>
+                </a>
+                <div class="sec">
+                    {{# each products}}
+                    {{# each this }}
+                    <form action="/killbun" method="post">
+                        <input type="hidden" name="breadname" value="{{this.title}}" />
+                        <div class="productholder {{#if this.clicked}}cproductholder{{/if}}"
+                            style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;"
+                            unselectable="on" onselectstart="return false;" onmousedown="return false;">
+                            <div class="{{#if this.clicked}}cproduct{{else}}product{{/if}}" id="{{this.title}}">
+                                <img src="{{this.imagePath}}" class="productpic" alt="Kein Internet">
+                                <div class="productinfo">
+                                    <div class="iname">{{this.title}}</div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </form>
+                    {{/each}}
+                    {{/each}}
                 </div>
-            </form>
-            {{/each}}
-            {{/each}}
             </div>
-            </div>    
         </div>
         {{/if}}
     </div>
@@ -241,10 +256,10 @@ onmousedown="return false;">
 
 <div class="impress">
     <div class="impresscon">
-        <div class="sideopt "OnClick="location.href='/newsletter'">Newsletter bekommen</div>
+        <div class="sideopt " OnClick="location.href='/newsletter'">Newsletter bekommen</div>
         <div OnClick="location.href='/impressum'">Impressum</div>
         <div class="sideopt" OnClick="location.href='/mitgliedschaft'">Jetzt Partner werden</div>
     </div>
-</div>      
+</div>
 
 <script type="text/javascript" src="/javascripts/mybakery.js"></script>

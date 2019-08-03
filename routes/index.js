@@ -326,7 +326,7 @@ router.post("/mybakery", function(req, res, next){
                 })
             }
             })
-}
+    }
 })
 
 router.post('/killallbuns', function(req, res, next) {
@@ -965,7 +965,7 @@ router.post("/bakery", function(req, res, next) {
                     var date = new Date(parseDate(datepicker));
                     var parsedDate = datepicker;
                     }  
-                // Mon May 31 2010 00:00:00
+                // create code that isnt in use yet (need to check for date)
                 function randomVar(theCode){
                     User_Order.findOne({code: theCode}).exec(function(err, userorder)   {
                         if (!userorder){

@@ -1,72 +1,81 @@
 <link rel="stylesheet" href="/stylesheets/forgot.css" />
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" crossorigin="anonymous">
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+    integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css"
+    crossorigin="anonymous">
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 
 <div class="resetdiv">
-<div class="bild f-bild">
-    <div class="brotritter">
-        <div class="maenu" title="Brotritter" OnClick="location.href='/'"></div>
-    </div>
-    <div class="viereck">
-        <div class="comp-logo" OnClick="location.href='/'"></div>
-        <div class="konto-container">
-            <div class="hilfe">
-                <a class="kontakt" title="Kontakt" href="/kontakt"> FEEDBACK </a>
-            </div>
+    <div class="bild f-bild">
+        <div class="brotritter">
+            <div class="maenu" title="Brotritter" OnClick="location.href='/'"></div>
         </div>
-    </div>
-    <h1 class="pic1">E-Mail zurücksetzen</h1>
-</div>
-        
-<div class="balken"><div class="errors">{{errors}}</div><div class="success">{{success}}</div></div>
-<div class="row">
-    <div class="col-md-12">
-        <form action="/user/changemail" method="post">
-            <div class="f-container">
-                    <label for="email">Gewünschte E-Mail eingeben</label>
-                <div>
-                    <input type="email" name="email" autofocus id="control" class="form-control" placeholder="Bitte Email eingeben" required />
-                    <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-                    <button type="submit" id="f-btn" class="btn btn-default btn-primary f-btn">E-Mail ändern</button>
+        <div class="viereck">
+            <div class="comp-logo" OnClick="location.href='/'"></div>
+            <div class="konto-container">
+                <div class="hilfe">
+                    <a class="kontakt" title="Kontakt" href="/kontakt"> FEEDBACK </a>
                 </div>
             </div>
-        </form>
+        </div>
+        <h1 class="pic1">E-Mail zurücksetzen</h1>
+    </div>
+
+    <div class="balken">
+        <div class="errors">{{errors}}</div>
+        <div class="success">{{success}}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <form action="/user/changemail" method="post">
+                <div class="f-container">
+                    <label for="email">Gewünschte E-Mail eingeben</label>
+                    <div>
+                        <input type="email" name="email" autofocus id="control" class="form-control"
+                            placeholder="Bitte Email eingeben" required />
+                        <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+                        <button type="submit" id="f-btn" class="btn btn-default btn-primary f-btn">E-Mail
+                            ändern</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-</div>
 
-<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+<link rel="stylesheet" type="text/css"
+    href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
 <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
 <script>
-window.addEventListener("load", function(){
-window.cookieconsent.initialise({
-  "palette": {
-    "popup": {
-      "background": "#000000"
-    },
-    "button": {
-      "background": "#ff9900"
-    }
-  }
+    window.addEventListener("load", function () {
+        window.cookieconsent.initialise({
+            "palette": {
+                "popup": {
+                    "background": "#000000"
+                },
+                "button": {
+                    "background": "#ff9900"
+                }
+            }
   "content": {
-    "message": "Unsere Website verwendet Cookies, um die bestmögliche Nutzung unserer Website zu gewährleisten.",
-    "dismiss": "Alles klar!",
-    "link": "Mehr erfahren",
-    "href": "https://www.brotritter.de/datenschutz"
-  }
-})});
+                "message": "Wir verwenden Cookies, um Ihnen den bestmöglichen Service zu gewährleisten. Wenn Sie die Seite weiter nutzen, stimmen Sie der Cookie-Nutzung zu.",
+                "dismiss": "Ich stimme zu",
+                "link": "Mehr erfahren",
+                "href": "https://www.brotritter.de/datenschutz"
+            }
+        })
+    });
 </script>
 
 <div class="impress">
     <div class="impresscon">
-        <div class="sideopt "OnClick="location.href='/newsletter'">Newsletter bekommen</div>
+        <div class="sideopt " OnClick="location.href='/newsletter'">Newsletter bekommen</div>
         <div><a href="/impressum">Impressum</a>&nbsp;/&nbsp;<a href="/datenschutz">Datenschutz</a></div>
         <div class="sideopt" OnClick="location.href='/mitgliedschaft'">Jetzt Partner werden</div>
     </div>
 </div>
 
-    <script type="text/javascript" src="/javascripts/changemail.js"></script>
+<script type="text/javascript" src="/javascripts/changemail.js"></script>

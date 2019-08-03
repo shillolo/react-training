@@ -1,199 +1,220 @@
 <link rel="stylesheet" href="/stylesheets/kontakt.css" />
 <link rel="stylesheet" href="/stylesheets/forgot.css" />
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+    integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
 {{# if login}}
-    <div class="mobile-popup" id="mobile-popup">
-        <div class="mobile-header">
-            <div class="comp-logo" OnClick="location.href='/'"></div>
-            <h2>{{useracc}} </h2>
-            <i class="fas fa-times close" id="mobile-close"></i>
+<div class="mobile-popup" id="mobile-popup">
+    <div class="mobile-header">
+        <div class="comp-logo" OnClick="location.href='/'"></div>
+        <h2>{{useracc}} </h2>
+        <i class="fas fa-times close" id="mobile-close"></i>
+    </div>
+    <div class="mobile-content">
+        <div class="mobile-menu">
+            <div class="break-top"></div>
+            <a class="drop drop1" href="/user/aufladen">Guthaben aufladen&nbsp;<i class="fas fa-bolt"></i></a>
+            <a class="drop" href="/user/profile">Profil&nbsp;<i class="fas fa-user-circle"></i></a>
+            <a class="drop" href="/user/logout">Logout&nbsp;<i class="fas fa-sign-out-alt"></i></a>
         </div>
-        <div class="mobile-content">
-            <div class="mobile-menu">
-                <div class="break-top"></div>
-                <a class="drop drop1" href="/user/aufladen">Guthaben aufladen&nbsp;<i class="fas fa-bolt"></i></a>
-                <a class="drop" href="/user/profile">Profil&nbsp;<i class="fas fa-user-circle"></i></a>
-                <a class="drop" href="/user/logout">Logout&nbsp;<i class="fas fa-sign-out-alt"></i></a>
-            </div>
-            <div class="mobile-credit-break"></div>
-            <div class="mobile-credit"><p>Guthaben: </p>{{credit}}&#8364;</div>
+        <div class="mobile-credit-break"></div>
+        <div class="mobile-credit">
+            <p>Guthaben: </p>{{credit}}&#8364;
         </div>
     </div>
-    {{else}}
-    <div class="loginpop" id="loginpop">  
-        <div class="containerl">
+</div>
+{{else}}
+<div class="loginpop" id="loginpop">
+    <div class="containerl">
         <i class="fas fa-times close"></i>
         <form class="form-signin" action="/user/signin" method="post">
-          <h1 class="h3 mb-3 font-weight-normal">Login</h1>
-          <input type="email" name="email" id="email" class="form-control" placeholder="Email" required autofocus>
-          <input type="password" name="password" id="password" class="form-control" placeholder="Passwort" required>
-          <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-          <button class="btn btn-default btn-primary  loginbutton" type="submit">Einloggen</button>
-          <a class="forgot" href="/forgot">Passwort vergessen?</a>
+            <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+            <input type="email" name="email" id="email" class="form-control" placeholder="Email" required autofocus>
+            <input type="password" name="password" id="password" class="form-control" placeholder="Passwort" required>
+            <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+            <button class="btn btn-default btn-primary  loginbutton" type="submit">Einloggen</button>
+            <a class="forgot" href="/forgot">Passwort vergessen?</a>
         </form>
-        </div>
     </div>
-    <div class="registerpop" id="registerpop">  
-        <div class="containerl">
+</div>
+<div class="registerpop" id="registerpop">
+    <div class="containerl">
         <i class="fas fa-times close"></i>
         <form class="form-signup" action="/user/signup" method="post">
-          <h1 class="h3 mb-3 font-weight-normal">Registrieren</h1>
-          <input type="email" name="email" id="email" class="form-control" placeholder="Email" required autofocus>
-          <input type="password" name="password" id="password" class="form-control" placeholder="Passwort" required>
-          <input type="password" name="password2" id="password2" class="form-control" placeholder="Passwort bestätigen" required>
-          <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-          <button type="submit" class="btn btn-default btn-primary loginbutton">Los Geht's</button>
+            <h1 class="h3 mb-3 font-weight-normal">Registrieren</h1>
+            <input type="email" name="email" id="email" class="form-control" placeholder="Email" required autofocus>
+            <input type="password" name="password" id="password" class="form-control" placeholder="Passwort" required>
+            <input type="password" name="password2" id="password2" class="form-control"
+                placeholder="Passwort bestätigen" required>
+            <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+            <button type="submit" class="btn btn-default btn-primary loginbutton">Los Geht's</button>
         </form>
-        </div>
     </div>
-    {{/if}}
+</div>
+{{/if}}
 
 <div class="overdiv">
-<div class="bild f-bild">
-    <div class="brotritter">
-        <div class="maenu" title="Brotritter" OnClick="location.href='/'"></div>
-    </div>
-    <div class="viereck">
-        <div class="comp-logo" OnClick="location.href='/'"></div>
-        <div class="konto-container">
-            {{# if login}}
-            <li class="konto">
-                <div class="kholder">
-                    <div class="k-container"><div class="konto1" id="credit">{{useracc}} &nbsp;&nbsp;</div><i class="fas fa-angle-up"></i></div>
-                    <div class="k-container"><div class="konto1" id="header"> KONTO &nbsp;</div><i class="fas fa-angle-down"></i></div>
+    <div class="bild f-bild">
+        <div class="brotritter">
+            <div class="maenu" title="Brotritter" OnClick="location.href='/'"></div>
+        </div>
+        <div class="viereck">
+            <div class="comp-logo" OnClick="location.href='/'"></div>
+            <div class="konto-container">
+                {{# if login}}
+                <li class="konto">
+                    <div class="kholder">
+                        <div class="k-container">
+                            <div class="konto1" id="credit">{{useracc}} &nbsp;&nbsp;</div><i
+                                class="fas fa-angle-up"></i>
+                        </div>
+                        <div class="k-container">
+                            <div class="konto1" id="header"> KONTO &nbsp;</div><i class="fas fa-angle-down"></i>
+                        </div>
+                    </div>
+                    <div class="dholder">
+                        <div class="hrbr"></div>
+                        <a class="drop drop1" href="/user/aufladen">Guthaben aufladen&nbsp;<i
+                                class="fas fa-credit-card"></i></a>
+
+                        <a class="drop" href="/user/profile">Profil&nbsp;<i class="fas fa-user-circle"></i></a>
+
+                        <a class="drop drop3" href="/user/logout">Logout&nbsp;<i class="fas fa-sign-out-alt"></i></a>
+                        <div class="hrbr br1"></div>
+                        <div class="credit">
+                            <p>Guthaben: </p>{{credit}} &#8364;
+                        </div>
+                    </div>
+                </li>
+                <div class="mobile-konto" id="mobile-konto">
+                    KONTO
                 </div>
-                <div class="dholder">
-                <div class="hrbr"></div>
-                <a class="drop drop1" href="/user/aufladen">Guthaben aufladen&nbsp;<i class="fas fa-credit-card"></i></a>
-                
-                <a class="drop" href="/user/profile">Profil&nbsp;<i class="fas fa-user-circle"></i></a>
-                
-                <a class="drop drop3" href="/user/logout">Logout&nbsp;<i class="fas fa-sign-out-alt"></i></a>
-                <div class="hrbr br1"></div>
-                <div class="credit"><p>Guthaben: </p>{{credit}}  &#8364; </div>
+                {{else}}
+                <div class="login" id="login" title="Einloggen">
+                    <a class="konto1"> Login </a>
                 </div>
-            </li>
-            <div class="mobile-konto" id="mobile-konto">
-                KONTO
-            </div>
-            {{else}}
-            <div class="login" id="login" title="Einloggen">
-                <a class="konto1"> Login </a>
-            </div>
-            <div class="register" id="register" title="Registrieren">
-                <a class="konto1"> Registrieren </a>
-            </div>
-            {{/if}}
-            <div class="hilfe">
-                <a class="kontakt" title="Kontakt" href="/kontakt"> FEEDBACK </a>
+                <div class="register" id="register" title="Registrieren">
+                    <a class="konto1"> Registrieren </a>
+                </div>
+                {{/if}}
+                <div class="hilfe">
+                    <a class="kontakt" title="Kontakt" href="/kontakt"> FEEDBACK </a>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="conholder">
+        <div class="conholder">
             <i class="fas fa-info"></i>
             <div class="borderline"></div>
             <h1>Impressum</h1>
-    </div>
-</div>
-
-<div class="balken"><div class="errors">{{messages}}</div><div class="success">{{success}}</div></div>
-
-<div class="impress-container">
-
-    <h2>Angaben gemäß § 5 TMG:</h2>
-    <div class="data">
-        <div>
-            <h3>
-                E-Mail: <a href="mailto:service@brotritter.de">service@brotritter.de</a>
-            </h3>
-        </div>
-        <div>
-            <h3>
-                Telefon: +49 0421 40898206
-            </h3>
-        </div>
-        <div>
-            <h4>Leon Fischer</h4>
-        </div>
-        <div>
-            <h4>Emmastraße 199</h4>
-        </div>
-        <div>
-            <h4>28213 Bremen</h4>
-        </div>
-        <div>
-            <h4>
-                Umsatzsteuer-Identifikationsnummer gem. § 27a UStG: DE 314585126
-            </h4>
-        </div>
-        <div>
-            <h4>
-                Inhaltlich Verantwortlicher gem. § 55 II RStV: Leon Fischer (Anschrift s.o.)(3)
-            </h4>
-        </div>
-        <div class="kontaktheader">
-            <h1>
-                <br>
-                Kontakt
-                <br>
-            </h1>
-            <h4>
-                <br>
-            Für eine schnelle Rückmeldung empfehlen wir dieses Kontaktformular zu verwenden.</h4>
-        </div>
-        <br>
-        <div class="kontaktdiv kontaktSec">
-            <form id="kontaktformular" class="kontaktformular" name="kontaktformular" action="/kontakt" method="post">
-                <div class="label-email">
-                  <input type="text"  class="form-control" id="absender" placeholder="Email-Adresse:" name="absender" required/>
-                </div>
-                <div class="label-email">
-                  <input type="text"  class="form-control" id="absender" placeholder="Name:" name="absender" required/>
-                </div>
-                <div class="label-message">
-                  <textarea id="nachricht" placeholder="Nachricht..." class="form-control"
-             name="nachricht" cols="60" rows="40"  required></textarea> 
-                </div>
-                <div class="buttondiv">
-                  <input class="btn btn-default btn-primary loginbutton impressbutton" class="input" type="submit" value="Abschicken" />
-                <input type="hidden" name="_csrf"  value="{{ csrfToken }}">
-                </div>
-            </form>
         </div>
     </div>
-</div>
-    
 
-<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
-<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
-<script>
-window.addEventListener("load", function(){
-window.cookieconsent.initialise({
-  "palette": {
-    "popup": {
-      "background": "#000000"
-    },
-    "button": {
-      "background": "#ff9900"
-    }
-  }
+    <div class="balken">
+        <div class="errors">{{messages}}</div>
+        <div class="success">{{success}}</div>
+    </div>
+
+    <div class="impress-container">
+
+        <h2>Angaben gemäß § 5 TMG:</h2>
+        <div class="data">
+            <div>
+                <h3>
+                    E-Mail: <a href="mailto:service@brotritter.de">service@brotritter.de</a>
+                </h3>
+            </div>
+            <div>
+                <h3>
+                    Telefon: +49 0421 40898206
+                </h3>
+            </div>
+            <div>
+                <h4>Leon Fischer</h4>
+            </div>
+            <div>
+                <h4>Emmastraße 199</h4>
+            </div>
+            <div>
+                <h4>28213 Bremen</h4>
+            </div>
+            <div>
+                <h4>
+                    Umsatzsteuer-Identifikationsnummer gem. § 27a UStG: DE 314585126
+                </h4>
+            </div>
+            <div>
+                <h4>
+                    Inhaltlich Verantwortlicher gem. § 55 II RStV: Leon Fischer (Anschrift s.o.)(3)
+                </h4>
+            </div>
+            <div class="kontaktheader">
+                <h1>
+                    <br>
+                    Kontakt
+                    <br>
+                </h1>
+                <h4>
+                    <br>
+                    Für eine schnelle Rückmeldung empfehlen wir dieses Kontaktformular zu verwenden.</h4>
+            </div>
+            <br>
+            <div class="kontaktdiv kontaktSec">
+                <form id="kontaktformular" class="kontaktformular" name="kontaktformular" action="/kontakt"
+                    method="post">
+                    <div class="label-email">
+                        <input type="text" class="form-control" id="absender" placeholder="Email-Adresse:"
+                            name="absender" required />
+                    </div>
+                    <div class="label-email">
+                        <input type="text" class="form-control" id="absender" placeholder="Name:" name="absender"
+                            required />
+                    </div>
+                    <div class="label-message">
+                        <textarea id="nachricht" placeholder="Nachricht..." class="form-control" name="nachricht"
+                            cols="60" rows="40" required></textarea>
+                    </div>
+                    <div class="buttondiv">
+                        <input class="btn btn-default btn-primary loginbutton impressbutton" class="input" type="submit"
+                            value="Abschicken" />
+                        <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <link rel="stylesheet" type="text/css"
+        href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+    <script>
+        window.addEventListener("load", function () {
+            window.cookieconsent.initialise({
+                "palette": {
+                    "popup": {
+                        "background": "#000000"
+                    },
+                    "button": {
+                        "background": "#ff9900"
+                    }
+                }
   "content": {
-    "message": "Unsere Website verwendet Cookies, um die bestmögliche Nutzung unserer Website zu gewährleisten.",
-    "dismiss": "Alles klar!",
-    "link": "Mehr erfahren",
-    "href": "https://www.brotritter.de/datenschutz"
-  }
-})});
-</script>
+                    "message": "Wir verwenden Cookies, um Ihnen den bestmöglichen Service zu gewährleisten. Wenn Sie die Seite weiter nutzen, stimmen Sie der Cookie-Nutzung zu.",
+                    "dismiss": "Ich stimme zu",
+                    "link": "Mehr erfahren",
+                    "href": "https://www.brotritter.de/datenschutz"
+                }
+            })
+        });
+    </script>
 
-<div class="impress" style="margin-top: 100px">
-  <div class="impresscon">
-    <div class="sideopt "OnClick="location.href='/newsletter'">Newsletter bekommen</div>
-    <div class="sideopt hidopt" OnClick="location.href='/newsletter'">Newsletter </div>
-    <div><a href="/impressum">Impressum</a>&nbsp;/&nbsp;<a href="/datenschutz">Datenschutz</a></div>
-    <div class="sideopt" OnClick="location.href='/mitgliedschaft'">Jetzt Partner werden</div>
-    <div class="sideopt hidopt" OnClick="location.href='/mitgliedschaft'">Partnerschaft</div>
-  </div>
-</div>
+    <div class="impress" style="margin-top: 100px">
+        <div class="impresscon">
+            <div class="sideopt " OnClick="location.href='/newsletter'">Newsletter bekommen</div>
+            <div class="sideopt hidopt" OnClick="location.href='/newsletter'">Newsletter </div>
+            <div><a href="/impressum">Impressum</a>&nbsp;/&nbsp;<a href="/datenschutz">Datenschutz</a></div>
+            <div class="sideopt" OnClick="location.href='/mitgliedschaft'">Jetzt Partner werden</div>
+            <div class="sideopt hidopt" OnClick="location.href='/mitgliedschaft'">Partnerschaft</div>
+        </div>
     </div>
+</div>

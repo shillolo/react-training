@@ -2,68 +2,74 @@
 
 
 <div class="resetdiv resetdiv1">
-    <div class="bild f-bild" id="f-bild">
-        <div class="brotritter">
-            <div class="maenu" title="Brotritter" OnClick="location.href='/'"></div>
-        </div>
-        <div class="viereck">
-            <div class="comp-logo" OnClick="location.href='/'"></div>
-            <div class="konto-container">
-                <div class="hilfe">
-                    <a class="kontakt" title="Kontakt" href="/kontakt"> FEEDBACK </a>
-                </div>
-            </div>
-        </div>
-        <h1>Passwort zurücksetzen</h1>
+  <div class="bild f-bild" id="f-bild">
+    <div class="brotritter">
+      <div class="maenu" title="Brotritter" OnClick="location.href='/'"></div>
     </div>
-
-    <div class="balken"><div class="errors">{{errors}}</div></div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <form action="/reset/{{token}}" method="post">
-                <div class="res-container">
-                    <div>
-                        <label for="password">Gewünschtes Passwort eingeben</label>
-                        <input type="password" id="in1" name="password" value="" placeholder="Neues Passwort" autofocus class="form-control res-field" required>
-                    </div>
-                    <div>
-                        <label for="password">Passwort bestätigen</label>
-                        <input type="password" id="in2" name="confirm" value="" placeholder="Passwort Bestätigen" class="form-control res-field" required>
-                    </div>
-                    <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-                    <button type="submit" class="btn btn-default btn-primary res-btn">Passwort ändern</button>
-                </div>
-            </form>
+    <div class="viereck">
+      <div class="comp-logo" OnClick="location.href='/'"></div>
+      <div class="konto-container">
+        <div class="hilfe">
+          <a class="kontakt" title="Kontakt" href="/kontakt"> FEEDBACK </a>
         </div>
+      </div>
     </div>
+    <h1>Passwort zurücksetzen</h1>
+  </div>
+
+  <div class="balken">
+    <div class="errors">{{errors}}</div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <form action="/reset/{{token}}" method="post">
+        <div class="res-container">
+          <div>
+            <label for="password">Gewünschtes Passwort eingeben</label>
+            <input type="password" id="in1" name="password" value="" placeholder="Neues Passwort" autofocus
+              class="form-control res-field" required>
+          </div>
+          <div>
+            <label for="password">Passwort bestätigen</label>
+            <input type="password" id="in2" name="confirm" value="" placeholder="Passwort Bestätigen"
+              class="form-control res-field" required>
+          </div>
+          <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+          <button type="submit" class="btn btn-default btn-primary res-btn">Passwort ändern</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
 
-<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+<link rel="stylesheet" type="text/css"
+  href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
 <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
 <script>
-window.addEventListener("load", function(){
-window.cookieconsent.initialise({
-  "palette": {
-    "popup": {
-      "background": "#000000"
-    },
-    "button": {
-      "background": "#ff9900"
-    }
-  }
+  window.addEventListener("load", function () {
+    window.cookieconsent.initialise({
+      "palette": {
+        "popup": {
+          "background": "#000000"
+        },
+        "button": {
+          "background": "#ff9900"
+        }
+      }
   "content": {
-    "message": "Unsere Website verwendet Cookies, um die bestmögliche Nutzung unserer Website zu gewährleisten.",
-    "dismiss": "Alles klar!",
-    "link": "Mehr erfahren",
-    "href": "https://www.brotritter.de/datenschutz"
-  }
-})});
+        "message": "Wir verwenden Cookies, um Ihnen den bestmöglichen Service zu gewährleisten. Wenn Sie die Seite weiter nutzen, stimmen Sie der Cookie-Nutzung zu.",
+        "dismiss": "Ich stimme zu",
+        "link": "Mehr erfahren",
+        "href": "https://www.brotritter.de/datenschutz"
+      }
+    })
+  });
 </script>
 
 <div class="impress">
   <div class="impresscon">
-    <div class="sideopt "OnClick="location.href='/newsletter'">Newsletter bekommen</div>
+    <div class="sideopt " OnClick="location.href='/newsletter'">Newsletter bekommen</div>
     <div class="sideopt hidopt" OnClick="location.href='/newsletter'">Newsletter </div>
     <div><a href="/impressum">Impressum</a>&nbsp;/&nbsp;<a href="/datenschutz">Datenschutz</a></div>
     <div class="sideopt" OnClick="location.href='/mitgliedschaft'">Jetzt Partner werden</div>
