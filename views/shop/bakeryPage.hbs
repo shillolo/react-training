@@ -3,16 +3,29 @@
 <link rel="stylesheet" href="/stylesheets/mybakery.css" />
 
 <form class="deactivate" action="/deactivate" method="post"></form>
-<div class="closepop">
+<div class="closepop" id="closepop1">
     <div class="closer">
-        <i class="fas fa-times close" id="deactivateClose"></i>
+        <i class="fas fa-times close" id="deactivateClose1"></i>
         <div class="inner-closer">
             <h2>Sind Sie sicher, dass Sie ihre Filiale für heute bei Brotritter schließen wollen?</h2>
             <p>Nachdem die Filiale bei uns geschlossen wurde kommen für den heutigen Tag keine neuen Bestellungen mehr
                 rein.</p>
             <div class="decider">
-                <div class="yes">Ja ich bin mir sicher</div>
-                <div class="no">Nein</div>
+                <div class="yes" id="yes">Ja ich bin mir sicher</div>
+                <div class="no" id="yes">Nein</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="closepop" id="closepop2">
+    <div class="closer">
+        <i class="fas fa-times close" id="deactivateClose2"></i>
+        <div class="inner-closer">
+            <h2>Wollen Sie die Bäckerei für Heute wieder öffnen?</h2>
+            <div class="decider">
+                <div class="yes yesOpen">Ja</div>
+                <div class="no noDont">Nein</div>
             </div>
         </div>
     </div>
@@ -48,9 +61,9 @@
         {{#each order}}
         <form class="order" action="/mybakery" method="post">
             <div class="deleter">
-                <h3>Sind sie sich sicher, dass bei der Bestellung ein Fehler unterlaufen ist?</h3>
+                <input type="text" class="form-control" placeholder="Bitte erläutern sie das Problem" />
                 <div class="delete-holder">
-                    <div class="delete">Ja</div>
+                    <div class="delete">Abschicken</div>
                     <div class="goback">Kein Fehler!</div>
                 </div>
             </div>
@@ -60,50 +73,56 @@
             <input type="hidden" name="requser" value="{{this.order.requser}}">
             <div class="order-container">
                 <div class="inner-container-one">
-                    <h3 id="h3">Bestellung:</h3>
-                    <div class="order-holder">
-                        <div class="buns">
-                            {{#each this.order.cart}}
-                            <div>
-                                <p>
-                                    {{this}}
-                                </p>
-                            </div>
-                            {{/each}}
-                        </div>
-                        <div class="bun-amount">
-                            {{#each this.order.amount}}
-                            <div>
-                                {{!-- s --}}
-                                <p>
-                                    {{this}}
-                                </p>
-                            </div>
-                            {{/each}}
-                        </div>
+                    <div class="regal-holder">
+                        <p>Best Nr. {{this.position}}</p>
                     </div>
                     <div class="code-holder">
-                        <h3>Code:</h3>
+                        <i class="fas fa-sitemap"></i>
+                        <p>Fach&nbsp;{{this.position}}</p>
                         <input type="hidden" name="code" value="{{this.order.code}}" />
-                        <p>{{this.order.code}}</p>
                     </div>
                     <div class="time-holder">
-                        <h3>Uhrzeit:</h3>
+                        <i class="far fa-clock"></i>
                         <p>{{this.order.time}}</p>
                     </div>
                     <div class="chip-nr-container">
-                        <h3>Regal Nr:</h3>
-                        <p>{{this.position}}</p>
+                        <i class="fas fa-key"></i>
+                        <p>*{{this.order.code}}#</p>
                     </div>
                 </div>
                 <div class="inner-container-two">
-                    {{#if this.order.packed}}
-                    <i class="fas fa-check"></i>
-                    {{else}}
-                    <div class="confirm" id="confirm">Verpackt</div>
-                    <div class="sound" style="display: none"></div>
-                    <div class="failure" id="failure">Es ist ein Fehler unterlaufen</div>
-                    {{/if}}
+                    <div class="inner-order-container">
+                        <i class="fas fa-shopping-basket"></i>
+                        <div class="order-holder">
+                            <div class="buns">
+                                {{#each this.order.amount}}
+                                <div>
+                                    <p>
+                                        {{this}}
+                                    </p>
+                                </div>
+                                {{/each}}
+                            </div>
+                            <div class="bun-amount">
+                                {{#each this.order.cart}}
+                                <div>
+                                    <p>
+                                        {{this}}
+                                    </p>
+                                </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order-container-two">
+                        {{#if this.order.packed}}
+                        <i class="fas fa-check"></i>
+                        {{else}}
+                        <div class="confirm" id="confirm">Verpackt</div>
+                        <div class="sound" style="display: none"></div>
+                        <div class="failure" id="failure">Problem unterlaufen</div>
+                        {{/if}}
+                    </div>
                 </div>
                 <input name="confirmer" class="confirmer" type="hidden" value="" />
             </div>
@@ -114,6 +133,7 @@
         {{/if}}
     </div>
     <div class="availibility">
+        <form id="reviveBakery" class="reviveBakery" action="/reviveBakery" method="post"></form>
         <input type="hidden" value="{{timepicker}}" id="timereader">
         <div class="section bunheader">VERFÜGBARKEIT DER WARE</div>
         <form id="killbuns" class="killbuns" action="/killallbuns" method="post">

@@ -54,11 +54,19 @@ router.get("/mybakery", isAuth, function(req, res, next){
         var pickedTime = "12:00"
     }
     
+    // Buns that were already clicked get a boolean attatched, so that I can check with handlebars
+    // Also all Buns get put into an Array
     Bun.find(function(err, docs) {
         var productChunks = [];
         var chunkSize = 1;
         for (var i = 0; i < docs.length; i+= chunkSize) {
-            productChunks.push(docs.slice(i, i + chunkSize));
+            if (new Date(docs[i].expdate).setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0)){
+                docs[i].clicked = true
+                productChunks.push(docs.slice(i, i + chunkSize));
+            } else {
+                docs[i].clicked = false
+                productChunks.push(docs.slice(i, i + chunkSize));
+            }
     }  
     function parseDate(input) {
           var parts = input.match(/(\d+)/g);
@@ -142,6 +150,7 @@ router.get("/mybakery", isAuth, function(req, res, next){
             while (i < numberArray.length){
                 for (var d = 0; d < fullArray.length; d++){
                     if (numberArray[i] == new Date(fullArray[d].order.today).getTime()){
+                        
                         endArray.push(fullArray[d])
                         i++
                     }
@@ -149,12 +158,12 @@ router.get("/mybakery", isAuth, function(req, res, next){
             }
             // check if bakery is closed or not
             Bakery.find(function(err, status){
-                if (status[0].closed == true){
+                if (new Date(status[0].expdate).setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0)){
                      closed = true
                 } else {
                      closed = false 
                 }
-                endArray = endArray.reverse()
+                endArray = endArray.reverse()              
             res.render('shop/bakeryPage', { order: endArray, products: productChunks, timepicker: pickedTime, closed: closed})
          })
         });
@@ -163,7 +172,7 @@ router.get("/mybakery", isAuth, function(req, res, next){
 
 router.post("/deactivate", function(req, res, next){
     Bakery.find(function(err, status) {
-        status[0].closed = true;
+        status[0].expdate = new Date();
         status[0].save(function(){
             res.redirect("back")
         })
@@ -329,6 +338,15 @@ router.post("/mybakery", function(req, res, next){
     }
 })
 
+router.post('/reviveBakery', function(req, res, next) {
+    Bakery.find(function(err, status) {
+        status[0].expdate = false;
+        status[0].save();
+        console.log("Adse")
+        res.redirect("back")
+    })
+})
+
 router.post('/killallbuns', function(req, res, next) {
     time = req.body.timepicker;
     req.session.timepicker = req.body.timepicker;
@@ -358,7 +376,6 @@ router.post('/killbun', function(req, res, next) {
     if (state == "redo"){
     Bun.findOne({title: bunname}).exec(function(err, data) {
         data.expdate = false;
-        data.clicked = false;
         data.save(function(){
             res.redirect("back");
         })
@@ -366,7 +383,6 @@ router.post('/killbun', function(req, res, next) {
     }else{
         Bun.findOne({title: bunname}).exec(function(err, data) {
             data.expdate = today;
-            data.clicked = true;
             data.save(function(){
                 res.redirect("back");
             })
@@ -863,16 +879,21 @@ router.get('/bakery', isAuth, function(req, res, next) {
     today = mm + '/' + dd + '/' + yyyy;
     // check if bakery is open
     Bakery.find(function(err, status) {
-        console.log(status[0].closed)
-        // get all the buns and store them in an array
+        var closedStore;
+        if (new Date(status[0].expdate).setHours(0, 0, 0, 0) !== new Date().setHours(0, 0, 0, 0)){
+            closedStore = false
+        } else {
+            closedStore = true
+        }
+        // get all the buns and put them in an array
         Bun.find(function(err, docs) {
             var productChunks = [];
             var chunkSize = 1;
+            // if store is open and buns aren't available "Heute ausverkauft"
             for (var i = 0; i < docs.length; i+= chunkSize) {
                 var then = new Date(docs[i].expdate).getTime()
                 var now = new Date().getTime()
-                // if store is open and buns aren't available "Heute ausverkauft"
-                if (status[0].closed == false){
+                if (new Date(status[0].expdate).setHours(0, 0, 0, 0) !== new Date().setHours(0, 0, 0, 0)){
                     if(docs[i].expdate && then <= now && new Date(docs[i].expdate).setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0) && docs[i].expdate){
                         docs[i].unavailable = true;
                     }
@@ -885,7 +906,7 @@ router.get('/bakery', isAuth, function(req, res, next) {
             } else {
                 var credit = parseFloat(Math.round((data.credit) * 100) / 100).toFixed(2)
             }
-            res.render('shop/bakery', {csrfToken: req.csrfToken(), closed: status[0].closed, messages: messages, credit: credit, hasErrors: messages.lenght > 0, products: productChunks, successMsg: successMsg, noMessages: !successMsg})
+            res.render('shop/bakery', {csrfToken: req.csrfToken(), closed: closedStore, messages: messages, credit: credit, hasErrors: messages.lenght > 0, products: productChunks, successMsg: successMsg, noMessages: !successMsg})
             })
         })
     })
@@ -910,8 +931,9 @@ router.post("/bakery", function(req, res, next) {
 
     var closed
 
+    // check if Bakery is open
     Bakery.find(function(err, status) {
-        if (status[0].closed == false){
+        if (new Date(status[0].expdate).setHours(0, 0, 0, 0) !== new Date().setHours(0, 0, 0, 0)){
             closed = false
         } else {
             closed = true
@@ -1032,36 +1054,36 @@ router.post("/bakery", function(req, res, next) {
                                             req.session.total = total;
                                             req.session.date = date;
                                             req.session.time = time;
-                                                mailer.sendMail({
-                                                    from: 'service@brotritter.de',
-                                                    to: req.user.email,
-                                                    subject: "Bestellung Brotritter",
-                                                    template: 'success',
-                                                    context: {
-                                                        code: req.session.code,
-                                                        date: parsedDate,
-                                                        time: req.session.time,
-                                                        cart: req.session.cart,
-                                                        amount: req.session.amount
-                                                    },
-                                                    attachments: [{
-                                                        filename: "BrotritterBakery1.jpg",
-                                                        path: "./public/images/BrotritterBakery1.jpg",
-                                                        cid: "cross"
-                                                    },
-                                                    {
-                                                        filename: "MyLogo.png",
-                                                        path: "./public/images/MyLogo.png",
-                                                        cid: "logo"
-                                                    }]
-                                                },function (err, response){
-                                                    if(err){
-                                                        res.send("bad email");
-                                                        console.log(err)
-                                                    } else {
+                                                // mailer.sendMail({
+                                                //     from: 'service@brotritter.de',
+                                                //     to: req.user.email,
+                                                //     subject: "Bestellung Brotritter",
+                                                //     template: 'success',
+                                                //     context: {
+                                                //         code: req.session.code,
+                                                //         date: parsedDate,
+                                                //         time: req.session.time,
+                                                //         cart: req.session.cart,
+                                                //         amount: req.session.amount
+                                                //     },
+                                                //     attachments: [{
+                                                //         filename: "BrotritterBakery1.jpg",
+                                                //         path: "./public/images/BrotritterBakery1.jpg",
+                                                //         cid: "cross"
+                                                //     },
+                                                //     {
+                                                //         filename: "MyLogo.png",
+                                                //         path: "./public/images/MyLogo.png",
+                                                //         cid: "logo"
+                                                //     }]
+                                                // },function (err, response){
+                                                //     if(err){
+                                                //         res.send("bad email");
+                                                //         console.log(err)
+                                                //     } else {
                                                         res.redirect("code")
-                                                    }
-                                                })
+                                                    // }
+                                                // })
                                         });
                                         }
                                     });
@@ -1307,33 +1329,33 @@ router.post("/bakery", function(req, res, next) {
                                                         req.session.total = parseFloat(Math.round(total * 100) / 100).toFixed(2);
                                                         req.session.date = date;
                                                         req.session.time = time;
-                                                        mailer.sendMail({
-                                                            from: 'service@brotritter.de',
-                                                            to: req.user.email,
-                                                            subject: "Bestellung Brotritter",
-                                                            template: 'success',
-                                                            context: {
-                                                                code: req.session.code,
-                                                                date: parsedDate,
-                                                                time: req.session.time,
-                                                                cart: req.session.cart,
-                                                                amount: req.session.amount
-                                                            },
-                                                            attachments: [{
-                                                                filename: "BrotritterBakery1.jpg",
-                                                                path: "./public/images/BrotritterBakery1.jpg",
-                                                                cid: "cross"
-                                                            },
-                                                            {
-                                                                filename: "MyLogo.png",
-                                                                path: "./public/images/MyLogo.png",
-                                                                cid: "logo"
-                                                            }],
-                                                        },function (err, response){
-                                                            if(err){
-                                                                res.send("bad email");
-                                                                console.log(err)
-                                                            } else {
+                                                        // mailer.sendMail({
+                                                        //     from: 'service@brotritter.de',
+                                                        //     to: req.user.email,
+                                                        //     subject: "Bestellung Brotritter",
+                                                        //     template: 'success',
+                                                        //     context: {
+                                                        //         code: req.session.code,
+                                                        //         date: parsedDate,
+                                                        //         time: req.session.time,
+                                                        //         cart: req.session.cart,
+                                                        //         amount: req.session.amount
+                                                        //     },
+                                                        //     attachments: [{
+                                                        //         filename: "BrotritterBakery1.jpg",
+                                                        //         path: "./public/images/BrotritterBakery1.jpg",
+                                                        //         cid: "cross"
+                                                        //     },
+                                                        //     {
+                                                        //         filename: "MyLogo.png",
+                                                        //         path: "./public/images/MyLogo.png",
+                                                        //         cid: "logo"
+                                                        //     }],
+                                                        // },function (err, response){
+                                                        //     if(err){
+                                                        //         res.send("bad email");
+                                                        //         console.log(err)
+                                                        //     } else {
                                                                 req.flash("success", 'Die Bestellung wurde erfolgreich abgeschlossen.')
                                                                 module.exports = function(io){
                                                                     console.log(io)
@@ -1345,8 +1367,8 @@ router.post("/bakery", function(req, res, next) {
                                                                     return router;
                                                                 }
                                                                 res.redirect("code")
-                                                            }
-                                                        })
+                                                        //     }
+                                                        // })
                                                     });
                                                       }
                                                     });

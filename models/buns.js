@@ -1,7 +1,10 @@
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
-mongoose.connect('mongodb+srv://brotritter:brotritter@cluster0-odbbr.mongodb.net/shopping', { useNewUrlParser: true });
+mongoose.connect(
+  "mongodb+srv://brotritter:brotritter@cluster0-odbbr.mongodb.net/shopping",
+  { useNewUrlParser: true }
+);
 
 mongoose.Promise = global.Promise;
 
@@ -9,16 +12,15 @@ mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 
 //Bind connection to error event (to get notification of connection errors)
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 var schema = new Schema({
-    imagePath: String,
-    title: String,
-    price: Number,
-    ofprice: String,
-    ingredients: Object,
-    expdate: String,
-    clicked: Boolean
+  imagePath: String,
+  title: String,
+  price: Number,
+  ofprice: String,
+  ingredients: Object,
+  expdate: String
 });
 
-module.exports = mongoose.model('Bun', schema);
+module.exports = mongoose.model("Bun", schema);

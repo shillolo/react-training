@@ -20,7 +20,7 @@ var bakerys = [
     imagePath: "../images/cropped-Bäckermeister-Haferkamp-3-gestaucht.jpg",
     title: "Bäckermeister Haferkamp",
     address: "H-H-Meier Alee 33",
-    closed: false,
+    expdate: false,
     storelink: "http://localhost:3000/bakery",
     buns: [
       {
@@ -75,7 +75,7 @@ var bakerys = [
     imagePath: "../images/cropped-Bäckermeister-Haferkamp-3-gestaucht.jpg",
     title: "Bäckermeister Haferkamp",
     address: "Krogstraße 33",
-    closed: false,
+    expdate: false,
     storelink: "http://localhost:3000/bakery",
     buns: [
       {
