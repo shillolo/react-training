@@ -6,9 +6,11 @@ var declinedFail = $(".goback");
 confirm.on("click", function() {
   $(this)
     .parent()
+    .parent()
     .siblings(".confirmer")
     .val("confirm");
   $(this)
+    .parent()
     .parent()
     .parent()
     .parent()
