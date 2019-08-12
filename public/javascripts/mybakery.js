@@ -43,12 +43,11 @@ window.setInterval(function() {
     }
   });
   if (counter > 0) {
-    var audio = new Audio("../sounds/ding.mp3");
-    audio.play();
+    // var audio = new Audio("../sounds/ding.mp3");
+    // audio.play();
   }
 }, 300000);
 
-// komischer bug manchmal
 $(document).ready(function() {
   var audio = new Audio("../sounds/ding.mp3");
   audio.play();
@@ -56,6 +55,7 @@ $(document).ready(function() {
 
 failure.on("click", function() {
   $(this)
+    .parent()
     .parent()
     .siblings(".confirmer")
     .val("failure");

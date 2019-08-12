@@ -180,16 +180,16 @@ router.post("/deactivate", function(req, res, next){
 })
 
 router.post("/mybakery", function(req, res, next){
-    mailer.use('compile',hbs({
-        viewEngine: {
-            extName: '.hbs',
-            partialsDir: 'views/email',
-            layoutsDir: 'views/email',
-            defaultLayout: 'bakesuggest.hbs',
-          },
-        viewPath: 'views/email',
-        extName: '.hbs'
-    }))
+    // mailer.use('compile',hbs({
+    //     viewEngine: {
+    //         extName: '.hbs',
+    //         partialsDir: 'views/email',
+    //         layoutsDir: 'views/email',
+    //         defaultLayout: 'bakesuggest.hbs',
+    //       },
+    //     viewPath: 'views/email',
+    //     extName: '.hbs'
+    // }))
     console.log(req.body.confirmer)
     if (req.body.confirmer == "failure"){
     var orderId = req.body.userid;
@@ -198,12 +198,12 @@ router.post("/mybakery", function(req, res, next){
             Order.findOne({_id:orderId}).exec(function(err, thisorder){
                 thisorder.remove();
                 thisorder.save(function(err, success){
-                    mailer.sendMail({
-                        from: 'service@brotritter.de',
-                        to: req.body.requser,
-                        subject: "Bestellung",
-                        template: 'membermail'
-                    },function (err, response){
+                    // mailer.sendMail({
+                    //     from: 'service@brotritter.de',
+                    //     to: req.body.requser,
+                    //     subject: "Bestellung",
+                    //     template: 'membermail'
+                    // },function (err, response){
                         if(err){
                             console.log(err)
                             req.flash("success", "Ihre Anfrage wird verarbeitet und wir werden uns in Kürze bei Ihnen melden.");
@@ -214,7 +214,7 @@ router.post("/mybakery", function(req, res, next){
                         }
                     })
                 })
-            })
+            // })
         } else {
         var ourUser = req.body.user;
         order.remove();
@@ -224,12 +224,12 @@ router.post("/mybakery", function(req, res, next){
                 console.log(data)
                 data.credit = data.credit - (-order.total);
                 data.save(function(wrong, go){
-                    mailer.sendMail({
-                        from: 'service@brotritter.de',
-                        to: req.body.userMail,
-                        subject: "Bestellung",
-                        template: 'membermail'
-                    },function (err, response){
+                    // mailer.sendMail({
+                    //     from: 'service@brotritter.de',
+                    //     to: req.body.userMail,
+                    //     subject: "Bestellung",
+                    //     template: 'membermail'
+                    // },function (err, response){
                         if(err){
                             console.log(err)
                             req.flash("success", "Ihre Anfrage wird verarbeitet und wir werden uns in Kürze bei Ihnen melden.");
@@ -245,23 +245,22 @@ router.post("/mybakery", function(req, res, next){
                     req.session.total = false;
                     req.session.date = false;
                     req.session.time = false;
-                    res.redirect("back")
                 })
             })
-        })
+        // })
     }
     })
 } else if (req.body.confirmer == "confirm"){
-    mailer.use('compile',hbs({
-        viewEngine: {
-            extName: '.hbs',
-            partialsDir: 'views/email',
-            layoutsDir: 'views/email',
-            defaultLayout: 'bakesuggest.hbs',
-          },
-        viewPath: 'views/email',
-        extName: '.hbs'
-    }))
+    // mailer.use('compile',hbs({
+    //     viewEngine: {
+    //         extName: '.hbs',
+    //         partialsDir: 'views/email',
+    //         layoutsDir: 'views/email',
+    //         defaultLayout: 'bakesuggest.hbs',
+    //       },
+    //     viewPath: 'views/email',
+    //     extName: '.hbs'
+    // }))
     console.log("ee")
     var orderId = req.body.userid;
     User_Order.findOne({_id: orderId}).exec(function(err, order)   {
@@ -270,25 +269,25 @@ router.post("/mybakery", function(req, res, next){
             Order.findOne({_id:orderId}).exec(function(err, thisorder){
                 thisorder.packed = true;
                 thisorder.save(function(err, success){
-                    mailer.sendMail({
-                        from: 'service@brotritter.de',
-                        to: req.body.requser,
-                        subject: "Bestellung",
-                        template: 'bakesuggest',
-                        context: {
-                            code: req.body.code
-                        },
-                        attachments: [{
-                            filename: "BrotritterBakery1.jpg",
-                            path: "./public/images/BrotritterBakery1.jpg",
-                            cid: "cross"
-                        },
-                        {
-                            filename: "MyLogo.png",
-                            path: "./public/images/MyLogo.png",
-                            cid: "logo"
-                        }]
-                    },function (err, response){
+                    // mailer.sendMail({
+                    //     from: 'service@brotritter.de',
+                    //     to: req.body.requser,
+                    //     subject: "Bestellung",
+                    //     template: 'bakesuggest',
+                    //     context: {
+                    //         code: req.body.code
+                    //     },
+                    //     attachments: [{
+                    //         filename: "BrotritterBakery1.jpg",
+                    //         path: "./public/images/BrotritterBakery1.jpg",
+                    //         cid: "cross"
+                    //     },
+                    //     {
+                    //         filename: "MyLogo.png",
+                    //         path: "./public/images/MyLogo.png",
+                    //         cid: "logo"
+                    //     }]
+                    // },function (err, response){
                         if(err){
                             console.log(err)
                             res.redirect("back");
@@ -299,30 +298,30 @@ router.post("/mybakery", function(req, res, next){
                         }
                     })
                 })
-            })
+            // })
         } else {
         var ourUser = req.body.user;
         order.packed = true;
         order.save(function(err, done){
-                    mailer.sendMail({
-                        from: 'service@brotritter.de',
-                        to: req.body.userMail,
-                        subject: "Bestellung",
-                        template: 'bakesuggest',
-                        context: {
-                            code: req.body.code
-                        },
-                        attachments: [{
-                            filename: "BrotritterBakery1.jpg",
-                            path: "./public/images/BrotritterBakery1.JPG",
-                            cid: "cross"
-                        },
-                        {
-                            filename: "MyLogo.png",
-                            path: "./public/images/MyLogo.png",
-                            cid: "logo"
-                        }]
-                    },function (err, response){
+                    // mailer.sendMail({
+                    //     from: 'service@brotritter.de',
+                    //     to: req.body.userMail,
+                    //     subject: "Bestellung",
+                    //     template: 'bakesuggest',
+                    //     context: {
+                    //         code: req.body.code
+                    //     },
+                    //     attachments: [{
+                    //         filename: "BrotritterBakery1.jpg",
+                    //         path: "./public/images/BrotritterBakery1.JPG",
+                    //         cid: "cross"
+                    //     },
+                    //     {
+                    //         filename: "MyLogo.png",
+                    //         path: "./public/images/MyLogo.png",
+                    //         cid: "logo"
+                    //     }]
+                    // },function (err, response){
                         if(err){
                             console.log(err)
                             res.redirect("back");
@@ -332,7 +331,7 @@ router.post("/mybakery", function(req, res, next){
                             req.flash("success", "Bestellung wurde verpackt!");
                         }
                     })
-                })
+                // })
             }
             })
     }
@@ -745,9 +744,10 @@ router.get('/getcodes', function(req, res, next){
       if (err) {
       } else {
           for(var i = 0; i < order.length; i++){
-              var thisday = new Date(new Date().setDate(new Date().getDate() + 1)).setHours(0,0,0,0)
+              var nextday = new Date(new Date().setDate(new Date().getDate() + 1)).setHours(0,0,0,0)
               var newday = new Date(order[i].date).setHours(0,0,0,0)
-              if(thisday == newday){
+              var thisday = new Date().setHours(0, 0, 0, 0)
+              if(nextday == newday || newday == thisday){
                   counter++
                   var thisOrder = ({
                       position: counter,
@@ -763,9 +763,10 @@ router.get('/getcodes', function(req, res, next){
               console.log("error")
           } else {
               for(var i = 0; i < norder.length; i++){
-                  var thisday = new Date(new Date().setDate(new Date().getDate() + 1)).setHours(0,0,0,0)
+                  var nextday = new Date(new Date().setDate(new Date().getDate() + 1)).setHours(0,0,0,0)
                   var newday = new Date(norder[i].date).setHours(0,0,0,0)
-                  if(newday == thisday){
+                  var thisday = new Date().setHours(0, 0, 0, 0)
+                  if(newday == nextday || newday == thisday){
                       counter++
                   var thisOrder = ({
                       position: counter,
