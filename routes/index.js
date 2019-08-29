@@ -31,11 +31,11 @@ var Sofort = new (require('node-sofort'))({
 });
 
 var mailer = nodemailer.createTransport({
-    host: 'smtp.fastmail.com',
+    host: 'smtp.brotritter.de',
     port: 465,
     auth: {
         user: 'service@brotritter.de',
-        pass: 'b4zs6mcmgjxhu9le'
+        pass: 'Keynoff22.'
     },
     tls:{
         rejectUnauthorized:false
@@ -1330,33 +1330,33 @@ router.post("/bakery", function(req, res, next) {
                                                         req.session.total = parseFloat(Math.round(total * 100) / 100).toFixed(2);
                                                         req.session.date = date;
                                                         req.session.time = time;
-                                                        // mailer.sendMail({
-                                                        //     from: 'service@brotritter.de',
-                                                        //     to: req.user.email,
-                                                        //     subject: "Bestellung Brotritter",
-                                                        //     template: 'success',
-                                                        //     context: {
-                                                        //         code: req.session.code,
-                                                        //         date: parsedDate,
-                                                        //         time: req.session.time,
-                                                        //         cart: req.session.cart,
-                                                        //         amount: req.session.amount
-                                                        //     },
-                                                        //     attachments: [{
-                                                        //         filename: "BrotritterBakery1.jpg",
-                                                        //         path: "./public/images/BrotritterBakery1.jpg",
-                                                        //         cid: "cross"
-                                                        //     },
-                                                        //     {
-                                                        //         filename: "MyLogo.png",
-                                                        //         path: "./public/images/MyLogo.png",
-                                                        //         cid: "logo"
-                                                        //     }],
-                                                        // },function (err, response){
-                                                        //     if(err){
-                                                        //         res.send("bad email");
-                                                        //         console.log(err)
-                                                        //     } else {
+                                                        mailer.sendMail({
+                                                            from: 'service@brotritter.de',
+                                                            to: req.user.email,
+                                                            subject: "Bestellung Brotritter",
+                                                            template: 'success',
+                                                            context: {
+                                                                code: req.session.code,
+                                                                date: parsedDate,
+                                                                time: req.session.time,
+                                                                cart: req.session.cart,
+                                                                amount: req.session.amount
+                                                            },
+                                                            attachments: [{
+                                                                filename: "BrotritterBakery1.jpg",
+                                                                path: "./public/images/BrotritterBakery1.jpg",
+                                                                cid: "cross"
+                                                            },
+                                                            {
+                                                                filename: "MyLogo.png",
+                                                                path: "./public/images/MyLogo.png",
+                                                                cid: "logo"
+                                                            }],
+                                                        },function (err, response){
+                                                            if(err){
+                                                                res.send("bad email");
+                                                                console.log(err)
+                                                            } else {
                                                                 req.flash("success", 'Die Bestellung wurde erfolgreich abgeschlossen.')
                                                                 module.exports = function(io){
                                                                     console.log(io)
@@ -1368,8 +1368,8 @@ router.post("/bakery", function(req, res, next) {
                                                                     return router;
                                                                 }
                                                                 res.redirect("code")
-                                                        //     }
-                                                        // })
+                                                            }
+                                                        })
                                                     });
                                                       }
                                                     });
