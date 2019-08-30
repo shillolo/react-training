@@ -1023,6 +1023,7 @@ router.post("/bakery", function(req, res, next) {
                                 var productorder = req.body.getname;
                                 var number = req.body[req.body.getname];
                                 if (req.user){
+                                    // ee
                 //                  Substract money from user account
                                     Credit.findOne({user: req.user}).sort({"_id": -1}).exec(function(err, data)   {
                                           if (!data || data.credit < total) {
