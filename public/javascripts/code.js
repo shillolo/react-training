@@ -1,55 +1,49 @@
 jQuery(document).ready(function() {
-    $("#tab2").addClass("tabchange");
-    $("#code-holder").addClass("tab2");
-})
+  $("#tab1").addClass("tabchange");
+  $("#order-holder").addClass("tab13");
+});
 
 jQuery(document).ready(function() {
-    setTimeout(function() {
-        document.getElementById('code-container').style.display = "block"
-    },1500);
-})
+  setTimeout(function() {
+    document.getElementById("code-container").style.display = "block";
+  }, 1500);
+});
 
-$("#tab1").click(function(){
-    $(this).addClass("tabchange");
-    $("#tab2").removeClass("tabchange");
-    $("#tab3").removeClass("tabchange");
-    $("#order-holder").addClass("tab13");
-    $("#code-holder").removeClass("tab2");
-    $("#receive-time-holder").removeClass("tab13");
-})
+$("#tab1").click(function() {
+  $(this).addClass("tabchange");
+  $("#tab2").removeClass("tabchange");
+  $("#tab3").removeClass("tabchange");
+  $("#order-holder").addClass("tab13");
+  $("#code-holder").removeClass("tab2");
+  $("#receive-time-holder").removeClass("tab13");
+});
 
-$("#tab2").click(function(){
-    $(this).addClass("tabchange");
-    $("#tab1").removeClass("tabchange");
-    $("#tab3").removeClass("tabchange");
-    $("#code-holder").addClass("tab2");
-    $("#order-holder").removeClass("tab13");
-    $("#receive-time-holder").removeClass("tab13");
-})
+$("#tab3").click(function() {
+  $(this).addClass("tabchange");
+  $("#tab1").removeClass("tabchange");
+  $("#tab2").removeClass("tabchange");
+  $("#receive-time-holder").addClass("tab13");
+  $("#code-holder").removeClass("tab2");
+  $("#order-holder").removeClass("tab13");
+});
 
-$("#tab3").click(function(){
-    $(this).addClass("tabchange");
-    $("#tab1").removeClass("tabchange");
-    $("#tab2").removeClass("tabchange");
-    $("#receive-time-holder").addClass("tab13");
-    $("#code-holder").removeClass("tab2");
-    $("#order-holder").removeClass("tab13");
-})
+$("#what").click(function() {
+  document.getElementById("whatpop").style.display = "flex";
+});
 
-$("#what").click(function(){
-    document.getElementById("whatpop").style.display = "flex"
-})
+$(".closeinst").click(function() {
+  $(this)
+    .parent()
+    .parent()
+    .css({
+      display: "none"
+    });
+});
 
-$(".closeinst").click(function(){
-    $(this).parent().parent().css({
-        display: "none"
-    })
-})
-
-var smodal = document.getElementById("whatpop")
+var smodal = document.getElementById("whatpop");
 
 window.onclick = function(event) {
-    if (event.target == smodal) {
-        smodal.style.display = "none";
-    }
-}
+  if (event.target == smodal) {
+    smodal.style.display = "none";
+  }
+};

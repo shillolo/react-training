@@ -74,9 +74,18 @@ select::-ms-expand {
 }
 
 .nummer2{
-    width: 300px;
-    height: 300px;
-    margin: 0 auto;
+    width: auto;
+    height: 400px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center
+}
+
+.nummer2 h1{
+    margin-top: 20px
 }
 
 .service{
@@ -87,10 +96,9 @@ select::-ms-expand {
 }
 
 .nummer2 img{
-    width: 100%;
-    height: auto;
+    width: 400px;
+    height: 100px;
     background-size: cover;
-
 }
 
 .content{

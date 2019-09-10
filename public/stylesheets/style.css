@@ -1,546 +1,557 @@
-@import url('https://fonts.googleapis.com/css?family=Baloo+Bhai|Crete+Round|Francois+One|Open+Sans|Righteous|Roboto|Ubuntu&display=swap');
-*{
-    margin: 0;
-    font-family: 'Open Sans', sans-serif;
-    line-height: 1.5em;
+@import url("https://fonts.googleapis.com/css?family=Baloo+Bhai|Crete+Round|Francois+One|Open+Sans|Righteous|Roboto|Ubuntu&display=swap");
+* {
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.5em;
 }
 
-
-body{
+body {
   background-color: #f7f7f8;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
-.viereck{
-    height: auto;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-        -ms-flex-direction: row;
-            -webkit-box-orient: horizontal;
-            -webkit-box-direction: normal;
-                flex-direction: row;
-    float: right;
-    z-index: 99
+.viereck {
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  float: right;
+  z-index: 99;
 }
 
-.viereck .konto-container{
-    height: auto;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-        -ms-flex-direction: row;
-            -webkit-box-orient: horizontal;
-            -webkit-box-direction: normal;
-                flex-direction: row;
-    float: right;
-    z-index: 99
+.viereck .konto-container {
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  float: right;
+  z-index: 99;
 }
 
-.conholder{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    margin-top: 150px
+.conholder {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  margin-top: 150px;
 }
 
-.conholder h1{
-    color: white;
-    margin-bottom: 10px
+.conholder h1 {
+  color: white;
+  margin-bottom: 10px;
 }
 
-.conholder i{
-    font-size: 6em;
-    color: #ff9900;
-    margin-bottom: 10px
+.conholder i {
+  font-size: 6em;
+  color: #ff9900;
+  margin-bottom: 10px;
 }
 
-.borderline{
-    width: 80%;
-    margin:  0 auto;
-    height: 3px;
-    background-color: white
+.borderline {
+  width: 80%;
+  margin: 0 auto;
+  height: 3px;
+  background-color: white;
 }
 
-.kontakt{
-    text-decoration: none
+.kontakt {
+  text-decoration: none;
 }
 
-.mobile-header{
-    height: 80px;
-    width: 100%;
-    background-color: #ff9900;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+.mobile-header {
+  height: 80px;
+  width: 100%;
+  background-color: #ff9900;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
-.mobile-header i{
-    font-size: 2em;
-    margin-bottom: 30px;
-    margin-right: 10px
+.mobile-header i {
+  font-size: 2em;
+  margin-bottom: 30px;
+  margin-right: 10px;
 }
 
-.mobile-header h2{
-    text-decoration: underline
+.mobile-header h2 {
+  text-decoration: underline;
 }
 
-.mobile-menu{
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+.mobile-menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
-.mobile-menu a{
-    text-decoration: none;
-    color: black;
-    font-size: 1.5em
+.mobile-menu a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.5em;
 }
 
-.mobile-menu a:hover{
-    color: #ff9900
+.mobile-menu a:hover {
+  color: #ff9900;
 }
 
-.mobile-popup{
-    display: none;
-    overflow-y: hidden
+.mobile-popup {
+  display: none;
+  overflow-y: hidden;
 }
 
-.mobile-popup .drop{
-    width: 70%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between
+.mobile-popup .drop {
+  width: 70%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
-.break-top{
-    margin-top: 70px
+.break-top {
+  margin-top: 70px;
 }
 
-.mobile-break{
-    background-color: black;
-    height: 2px;
-    width: 80%;
-    margin:30px;
-    margin-top: 43px
+.mobile-break {
+  background-color: black;
+  height: 2px;
+  width: 80%;
+  margin: 30px;
+  margin-top: 43px;
 }
 
-.mobile-credit-break{
-    background-color: black;
-    height: 4px;
-    width: 80%;
-    margin:30px auto;
-    margin-top: 43px;
+.mobile-credit-break {
+  background-color: black;
+  height: 4px;
+  width: 80%;
+  margin: 30px auto;
+  margin-top: 43px;
 }
 
-.mobile-credit{
-    font-size: 2em;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    width: 70%;
-    margin: 0 auto
+.mobile-credit {
+  font-size: 2em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 70%;
+  margin: 0 auto;
 }
 
-.konto{
-    color: white;
-    
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: 700;
-    font-size: 0.8em;
-    
-    float: right;
-    
-    margin: 20px 16px;
-    cursor: default;
+.konto {
+  color: white;
+
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  font-size: 0.8em;
+
+  float: right;
+
+  margin: 20px 16px;
+  cursor: default;
 }
 
-.mobile-konto{
-    color: white;
-    
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: 700;
-    font-size: 0.8em;
-    
-    float: right;
-    
-    margin: 20px 16px;
-    cursor: default;
+.mobile-konto {
+  color: white;
+
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  font-size: 0.8em;
+
+  float: right;
+
+  margin: 20px 16px;
+  cursor: default;
 }
 
-.hilfe a{
-    color: white;
-    
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: 700;
-    font-size: 0.8em;
-    
-    float: right;
-    
-    margin: 20px 16px;
-    cursor: default;
-    text-shadow: 1px 1px 1px black ;
+.hilfe a {
+  color: white;
+
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  font-size: 0.8em;
+
+  float: right;
+
+  margin: 20px 16px;
+  cursor: default;
+  text-shadow: 1px 1px 1px black;
 }
 
-.bild{
-    width: 100%;
-    height: 300px;
-    background-image: url(../images/BrotritterMain.JPG);
-    background-size: cover;
-    z-index: 1;
-    border-bottom: 3px solid #FF9900
+.bild {
+  width: 100%;
+  height: 300px;
+  background-image: url(../images/BrotritterMain.JPG);
+  background-size: cover;
+  z-index: 1;
 }
 
-.container{
-    width: 100%;
-    position: absolute;
+.container {
+  width: 100%;
+  position: absolute;
 }
 
-.firma{
-    position: absolute;
-    width: 100px;
-    height: 125px;
-    background-image:url("../images/Brotritter%20Wappen.png");
-    background-size: cover;
-    cursor: pointer;
-    z-index: 3;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    margin: 10px
+.firma {
+  position: absolute;
+  width: 100px;
+  height: 125px;
+  background-image: url("../images/Brotritter%20Wappen.png");
+  background-size: cover;
+  cursor: pointer;
+  z-index: 3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 10px;
 }
 
-.imbild{
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-sizing: content-box;
-            box-sizing: content-box
+.imbild {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
 }
 
-.imbild p{
-    color: white;
-    
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: 700;
-    font-size: 0.8em;
-    
-    margin: 20px 20px;
-    height: 15px;
-    cursor: default;
-    text-shadow: 1px 1px 9px black ;
+.imbild p {
+  color: white;
+
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  font-size: 0.8em;
+
+  margin: 20px 20px;
+  height: 15px;
+  cursor: default;
+  text-shadow: 1px 1px 9px black;
 }
 
-.imbild p:hover{
-    color: white;
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: 700;
-    font-size: 0.8em;
-    
-    margin: 20px 20px;
-    height: 15px;
-    cursor: default;
-    text-shadow: 1px 1px 0px black ;
+.imbild p:hover {
+  color: white;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  font-size: 0.8em;
+
+  margin: 20px 20px;
+  height: 15px;
+  cursor: default;
+  text-shadow: 1px 1px 0px black;
 }
 
-#kontakt{
-    border: white solid 1px;
-    border-radius: 7px;
-    
-    padding: 10px 17px;
-    cursor: pointer
+#kontakt {
+  border: white solid 1px;
+  border-radius: 7px;
+
+  padding: 10px 17px;
+  cursor: pointer;
 }
 
-#kontakt:hover{
-    color: black;
-    background-color: white;
+#kontakt:hover {
+  color: black;
+  background-color: white;
 }
-#konto{
-    margin-top: 31px;
-     z-index: 33
-}
-
-#konto:hover{
-    border-bottom: white 1px solid;
+#konto {
+  margin-top: 31px;
+  z-index: 33;
 }
 
-.nummer2{
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    color: white;
-    font-family: 'Ubuntu', sans-serif;
-    font-size: 1.5em;
-    text-shadow: 1px 1px 1px black;
-    padding-top:  70px;
+#konto:hover {
+  border-bottom: white 1px solid;
 }
 
-.nummer3 p{
-    color: white;
-    font-size: 0.8em
+.nummer2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  color: white;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 1.5em;
+  text-shadow: 1px 1px 1px black;
 }
 
-.container2{
-    width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center
+.nummer3 p {
+  color: white;
+  font-size: 0.8em;
 }
 
-.imcontainer{
-    width:250px;
-    height: 40px;
-    background-color: rgba( 12, 212, 98, 0.97 );
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-            font-family: 'Ubuntu', sans-serif;
-    font-size: 0.8em;
-    cursor: default
+.container2 {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
-.imcontainer p:hover{
-    color: white
+.imcontainer {
+  width: 250px;
+  height: 40px;
+  background-color: rgba(12, 212, 98, 0.97);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 0.8em;
+  cursor: default;
 }
 
-.anzeige{
-    cursor: pointer
+.imcontainer p:hover {
+  color: white;
 }
 
-.anzeige:hover{
-    background-color:#f2f2f2
-        
-}.aanzeige{
-    cursor: pointer
+.anzeige {
+  cursor: pointer;
 }
 
-.aanzeige:hover{
-    background-color:#f2f2f2
+.anzeige:hover {
+  background-color: #f2f2f2;
 }
-.aaanzeige{
-    cursor: pointer
-}
-
-.aaanzeige:hover{
-    background-color:#f2f2f2
+.aanzeige {
+  cursor: pointer;
 }
 
-#nummer1:hover{
-    border-bottom: 3px solid white;
+.aanzeige:hover {
+  background-color: #f2f2f2;
+}
+.aaanzeige {
+  cursor: pointer;
 }
 
-#nummer2:hover{
-    border-bottom: 3px solid white;
+.aaanzeige:hover {
+  background-color: #f2f2f2;
 }
 
-#nummer3:hover{
-    border-bottom: 3px solid white;
+#nummer1:hover {
+  border-bottom: 3px solid white;
 }
 
-.loginpop, .registerpop, .submitpop, .mobile-popup, .infopop, .überpop, .credit-popup, .closepop{
-    position: fixed;
-    z-index: 3000;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.4);
-    display: none;
+#nummer2:hover {
+  border-bottom: 3px solid white;
 }
 
-.infopop{
-    display: block
+#nummer3:hover {
+  border-bottom: 3px solid white;
 }
 
-.mobile-popup{
-    background-color: white;
-    display: block;
-    z-index: 10000;
-    color: black
+.loginpop,
+.registerpop,
+.submitpop,
+.mobile-popup,
+.infopop,
+.überpop,
+.credit-popup,
+.closepop {
+  position: fixed;
+  z-index: 3000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
 }
 
-.loginpop button{
-    margin-top: 5em
+.infopop {
+  display: block;
 }
 
-
-.containerl{
-    position:relative;
-    -webkit-box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
-    animation-name: animatetop;
-    animation-duration: 0.4s;
-    width: 90%;
-    max-width: 500px;
-    background-color: white;
-    height: 560px;
-    border: 4px solid #FF9900;
-    border-radius: 15px;
+.mobile-popup {
+  background-color: white;
+  display: block;
+  z-index: 10000;
+  color: black;
 }
 
-.form-signin, .form-signup{
-    margin-top: 45px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -ms-flex-line-pack: center;
-        align-content: center;
+.loginpop button {
+  margin-top: 5em;
+}
+
+.containerl {
+  position: relative;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  width: 90%;
+  max-width: 500px;
+  background-color: white;
+  height: 560px;
+  border: 4px solid #ff9900;
+  border-radius: 15px;
+}
+
+.form-signin,
+.form-signup {
+  margin-top: 45px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
 }
 
 .form-signin h1,
-.form-signup h1{
-    width: auto;
-    display: block;
-    margin: 20px auto;
+.form-signup h1 {
+  width: auto;
+  display: block;
+  margin: 20px auto;
 }
 
-.form-signup h1{
-    margin: 20px auto 0px auto
+.form-signup h1 {
+  margin: 20px auto 0px auto;
 }
 
-.form-control{
-    @i "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css";
-    width: 70%;
-    max-width: 300px;
-    height: 45px;
-    margin: 40px auto 0px auto;
-    border: 2px solid #c9c9c9;
-    border-radius: 5px;
-    font-size: 1.05em;
-    padding: 0 15px
+.form-control {
+  max-width: 300px;
+  height: 45px;
+  margin: 40px auto 0px auto;
+  border: 2px solid #c9c9c9;
+  border-radius: 5px;
+  font-size: 1.05em;
+  padding: 0 15px;
 }
 
 .e-reader:focus,
-.form-control:focus{
-    outline: none;
-    -webkit-box-shadow: 0 0 5px rgba(81, 203, 238, 1);
-            box-shadow: 0 0 5px rgba(81, 203, 238, 1);
-    border: 2px solid rgba(81, 203, 238, 1);
+.form-control:focus {
+  outline: none;
+  -webkit-box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  border: 2px solid rgba(81, 203, 238, 1);
 }
 
-.loginbutton, .registerbutton{
-    margin: 0 auto;
-    margin-top: 90px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    width: 50%;
-    min-height: 60px;
-    height: auto;
-    border-radius: 6px;
-    font-size: 1.1em;
-    text-decoration: none;
-    background: #0072f4;
-    color: #ffffff;
-    font-family: sans-serif;
-    cursor: pointer;
-    -webkit-transition: background 250ms ease-in-out, 
-                -webkit-transform 150ms ease;
-    transition: background 250ms ease-in-out, 
-                -webkit-transform 150ms ease;
-    -o-transition: background 250ms ease-in-out, 
-                transform 150ms ease;
-    transition: background 250ms ease-in-out, 
-                transform 150ms ease;
-    transition: background 250ms ease-in-out, 
-                transform 150ms ease, 
-                -webkit-transform 150ms ease;
-    -webkit-appearance: none;
-    -moz-appearance: none;
+.loginbutton,
+.registerbutton {
+  margin: 0 auto;
+  margin-top: 90px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 50%;
+  min-height: 60px;
+  height: auto;
+  border-radius: 6px;
+  font-size: 1.1em;
+  text-decoration: none;
+  background: #0072f4;
+  color: #ffffff;
+  font-family: sans-serif;
+  cursor: pointer;
+  -webkit-transition: background 250ms ease-in-out, -webkit-transform 150ms ease;
+  transition: background 250ms ease-in-out, -webkit-transform 150ms ease;
+  -o-transition: background 250ms ease-in-out, transform 150ms ease;
+  transition: background 250ms ease-in-out, transform 150ms ease;
+  transition: background 250ms ease-in-out, transform 150ms ease,
+    -webkit-transform 150ms ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 .loginbutton:hover,
 .loginbutton:focus,
 .registerbutton:hover,
-.registerbutton:focus{
-    background: #0053ba;
+.registerbutton:focus {
+  background: #0053ba;
 }
 
-.close{
-    font-size: 1.2em;
-    cursor: pointer;
-    height: 7px;
-    float: right;
-    padding: 7px
+.close {
+  font-size: 1.2em;
+  cursor: pointer;
+  height: 7px;
+  float: right;
+  padding: 7px;
 }
 
 @-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
 }
 
 @keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
 }
 
-.mobile-container{
-    margin: auto 0
+.mobile-container {
+  margin: auto 0;
 }
 
 .btn {
@@ -553,12 +564,12 @@ body{
   white-space: nowrap;
   vertical-align: middle;
   -ms-touch-action: manipulation;
-      touch-action: manipulation;
+  touch-action: manipulation;
   cursor: pointer;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   background-image: none;
   border: 1px solid transparent;
   border-radius: 4px;
@@ -582,8 +593,8 @@ body{
 .btn.active {
   background-image: none;
   outline: 0;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
-          box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
 .btn.disabled,
 .btn[disabled],
@@ -591,8 +602,8 @@ fieldset[disabled] .btn {
   cursor: not-allowed;
   filter: alpha(opacity=65);
   -webkit-box-shadow: none;
-          box-shadow: none;
-  opacity: .65;
+  box-shadow: none;
+  opacity: 0.65;
 }
 a.btn.disabled,
 fieldset[disabled] a.btn {
@@ -657,975 +668,981 @@ fieldset[disabled] .btn-default.active {
   border-color: #ccc;
 }
 
-.drop{
-    font-weight: 400;
-    cursor: pointer;
-    padding: 10px 0px;
-    border-bottom: solid 2px black
+.drop {
+  font-weight: 400;
+  cursor: pointer;
+  padding: 10px 0px;
+  border-bottom: solid 2px black;
 }
 
-.drop3{
-    border-bottom: solid 0px black
+.drop3 {
+  border-bottom: solid 0px black;
 }
 
 .konto:hover .konto1,
 .konto:hover .konto2,
-.konto:hover .kholder i{
-    color: black
+.konto:hover .kholder i {
+  color: black;
 }
 
-.drop1{
-    margin-top: 1px;
+.drop1 {
+  margin-top: 1px;
 }
 
-.break{
-    margin-top: 13px;
-    width: 100px;
-    height: 3px;
-    background-color: black;
-    color: black;
-    display: none
+.break {
+  margin-top: 13px;
+  width: 100px;
+  height: 3px;
+  background-color: black;
+  color: black;
+  display: none;
 }
 
-
-.dholder{
-    display: none;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    color: black;
+.dholder {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  color: black;
 }
 
-.konto:hover .dholder{
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex
+.konto:hover .dholder {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
-.dholder a{
-    color: black;
-        -webkit-transition: all 0s;
-    -o-transition: all 0s;
-    transition: all 0s;
-    font-weight: 300;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between
+.dholder a {
+  color: black;
+  -webkit-transition: all 0s;
+  -o-transition: all 0s;
+  transition: all 0s;
+  font-weight: 300;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
-.hrbr{
-    margin: 10px auto;
-    margin-top: 10px;
-    height: 3px;
-    background-color: black;
-    width: 100%
+.hrbr {
+  margin: 10px auto;
+  margin-top: 10px;
+  height: 3px;
+  background-color: black;
+  width: 100%;
 }
 
-.icon .hrbr{
-    margin: 10px auto;
-    height: px;
-    background-color: white;
-    width: 80%
+.icon .hrbr {
+  margin: 10px auto;
+  height: px;
+  background-color: white;
+  width: 80%;
 }
 
-.dholder a:hover{
-    color: #ff9900;
+.dholder a:hover {
+  color: #ff9900;
 }
 
-.kholder{
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+.kholder {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
-.k-container:nth-child(1){
-    display: none;
-    font-size: 1.2em;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center
+.k-container:nth-child(1) {
+  display: none;
+  font-size: 1.2em;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
-.k-container{
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    align-items: center
+.k-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
 }
 
-.break{
-    margin-top: 13px;
-    width: 100%;
-    height: 1px;
-    background-color: black
+.break {
+  margin-top: 13px;
+  width: 100%;
+  height: 1px;
+  background-color: black;
 }
 
-.dholder{
-    display: none;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    color: black
+.dholder {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  color: black;
 }
 
-.credit{
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    padding-bottom: 3px
+.credit {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding-bottom: 3px;
 }
 
-.credit p{
-    color: black;
-    text-shadow: 0px;
-    padding: 0px;
-    font-weight: 700
+.credit p {
+  color: black;
+  text-shadow: 0px;
+  padding: 0px;
+  font-weight: 700;
 }
 
 .konto:hover .dholder,
 .konto:hover .k-container:nth-child(1) {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
-.konto:hover .kholder{
-    padding-top: 5px
+.konto:hover .kholder {
+  padding-top: 5px;
 }
 
-.konto:hover .k-container:nth-child(2){
-    display: none
+.konto:hover .k-container:nth-child(2) {
+  display: none;
 }
 
-.dholder a{
-    color: black;
-        -webkit-transition: all 0s;
+.dholder a {
+  color: black;
+  -webkit-transition: all 0s;
+  -o-transition: all 0s;
+  transition: all 0s;
+  font-weight: 300;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.dholder a:hover {
+  color: #ff9900;
+}
+
+.kholder i {
+  color: white;
+}
+
+.konto,
+.mobile-konto,
+.login,
+.register {
+  list-style: none;
+  text-decoration: none;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  font-size: 0.8em;
+
+  margin: 20px 16px;
+  cursor: pointer;
+  border: white solid 1px;
+  border-radius: 7px;
+
+  padding: 10px 17px;
+  -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -webkit-transition: all 0.5;
+  -o-transition: all 0.5;
+  transition: all 0.5;
+
+  display: -webkit-box;
+
+  display: -ms-flexbox;
+
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.mobile-konto {
+  background-color: transparent;
+  color: white;
+  -webkit-transition: all 0s;
+  -o-transition: all 0s;
+  -webkit-transition: all 0;
+  -o-transition: all 0;
+  transition: all 0;
+  margin: 20px 10px;
+}
+
+.mobile-konto:hover {
+  background-color: white;
+  color: black;
+}
+
+.register a {
+  color: white;
+}
+
+.login a,
+.register:hover a {
+  color: black;
+}
+
+.konto1 {
+  cursor: pointer;
+  color: white;
+  -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -webkit-transition: all 0.5;
+  -o-transition: all 0.5;
+  transition: all 0.5;
+}
+
+.konto:hover,
+.login,
+.register:hover {
+  color: black;
+  background-color: white;
+}
+
+.konto a,
+.register a,
+.login:hover a,
+.login:hover {
+  background-color: transparent;
+  text-decoration: none;
+  color: white;
+}
+
+.konto a {
+  color: black;
+}
+
+.login,
+.register {
+  cursor: pointer;
+}
+
+#maps {
+  height: 1000px;
+  width: 1000px;
+}
+
+.balken {
+  height: auto;
+  min-height: 30px;
+  width: 100%;
+  background-color: #333333;
+  -webkit-box-shadow: 1px 1px 5px black;
+  box-shadow: 1px 1px 5px black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #ff9900;
+  -webkit-transition: 0.23s;
+  -o-transition: 0.23s;
+  transition: 0.23s;
+  color: #ff9900;
+  text-align: center;
+}
+
+.col-md-3 {
+  border: solid 1px;
+}
+
+.row {
+  width: 100%;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+}
+
+.loginpop form,
+.registerpop form {
+  text-align: center;
+}
+
+.nav-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.badge {
+  background-color: #911b1b;
+  height: 20px;
+  border-radius: 100px;
+  color: white;
+}
+
+.hidden {
+  display: none;
+}
+
+.y-overflow {
+  overflow-y: hidden;
+}
+
+hr {
+  color: #333;
+  background-color: #333;
+  height: 2px;
+}
+
+.forgot {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin-top: 2em;
+  text-decoration: none;
+  color: black;
+  text-decoration: underline;
+}
+
+.forgot:hover {
+  color: #ff9900;
+}
+
+.maenu {
+  background-image: url(../images/HaferkampPic.png);
+  background-size: cover;
+  height: 80px;
+  width: 340px;
+
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.brotritter {
+  position: absolute;
+  margin: 0px auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.hilfe a {
+  cursor: pointer;
+}
+
+.hilfe a:hover {
+  text-decoration: underline;
+}
+
+.f-pass {
+  color: white;
+
+  font-family: "Ubuntu", sans-serif;
+  font-size: 3em;
+  font-weight: 500;
+  text-shadow: 1px 1px 1px black;
+  text-align: center;
+  width: 100%;
+  font-weight: 400;
+  font-size: 3.8em;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin-top: 280px;
+}
+
+.f-container,
+.f-container .form-control {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin: 0px auto;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.f-container .form-control {
+  margin: 0px;
+}
+
+.f-container div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 10px;
+  padding-top: 30px;
+}
+
+.f-container label {
+  font-weight: 900;
+}
+
+.f-btn {
+  padding: 13px 17px;
+  margin-left: 20px;
+}
+
+.res-btn {
+  height: auto;
+  margin-left: 20px;
+  width: 300px;
+  margin: 0 auto;
+  margin-top: 20px;
+  font-weight: 500;
+  font-size: 1.1em;
+}
+
+.f-bild {
+  height: 500px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+label {
+  margin: 0;
+}
+
+.success {
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.u-name {
+  font-weight: 900;
+}
+
+.res-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  margin-top: 75px;
+}
+
+.res-container label {
+  font-weight: 900;
+}
+
+.res-container div {
+  margin-bottom: 35px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.res-field {
+  margin-top: 10px;
+}
+
+.mobile-popup {
+  display: none;
+}
+
+.registerpop .loginbutton {
+  margin-top: 50px;
+}
+
+.delete-button {
+  width: 120px;
+  min-height: 40px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  text-decoration: none;
+  background-color: #0069ed;
+  color: white;
+  font-family: sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  transition: 250ms ease-in-out, transform 150ms ease;
+  font-weight: 500;
+  border-radius: 5px;
+}
+
+.delete-button:hover,
+.delete-button:focus {
+  background-color: #0053ba;
+}
+
+.delete-button:focus {
+  outline: 1px solid #fff;
+  outline-offset: -4px;
+}
+
+.impress {
+  width: 100%;
+  height: auto;
+  min-height: 50px;
+  height: auto;
+  background-color: #262626;
+  -webkit-box-shadow: 1px 1px 5px black;
+  box-shadow: 3px 3px 8px 2px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 5px 0px;
+  margin-top: 100px;
+}
+
+.impress a {
+  text-decoration: none;
+  color: white;
+}
+
+.impress a:hover {
+  text-decoration: underline;
+}
+
+.impresscon {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.impresscon div {
+  cursor: pointer;
+}
+
+.impresscon .sideopt {
+  padding: 5px 20px;
+  border: 1px white solid;
+  border-radius: 20px;
+  transition: 0.3s;
+  font-size: 0.9em;
+  margin: 0px 10px;
+}
+
+.impresscon .sideopt:hover {
+  background-color: white;
+  color: #262626;
+  text-decoration: none;
+}
+
+.hidopt {
+  display: none;
+}
+
+@media only screen and (max-width: 980px) {
+  #mobile-popup .drop {
+    padding: 40px;
+  }
+  .sideopt {
+    display: none;
+  }
+  .hidopt {
+    display: block;
+  }
+  .mobile-konto {
+    display: block;
+  }
+  .konto {
+    display: none;
+  }
+  .viereck {
+    width: 100%;
+    background-color: #743801;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-around;
+    -webkit-transition: all 0s;
     -o-transition: all 0s;
     transition: all 0s;
-    font-weight: 300;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between
-}
-
-.dholder a:hover{
-    color: #ff9900;
-}
-
-
-.kholder i{
-    color: white
-}
-
-
-.konto, .mobile-konto, .login, .register{
-    list-style: none;
-    text-decoration: none;
-    -webkit-text-decoration-line: none;
-            text-decoration-line: none;
-    
-            font-family: 'Ubuntu', sans-serif;
-    font-weight: 700;
-    font-size: 0.8em;
-    
-    margin: 20px 16px;
-    cursor: pointer;
-    border: white solid 1px;
-    border-radius: 7px;
-    
-    padding: 10px 17px;
-    -webkit-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    -webkit-transition: all 0.5;
-    -o-transition: all 0.5;
-    transition: all 0.5;
-    
-    display: -webkit-box;
-    
-    display: -ms-flexbox;
-    
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-}
-
-.mobile-konto{
-    background-color: transparent;
-    color: white;
+    padding: 20px 0px;
+  }
+  .konto1 {
     -webkit-transition: all 0s;
     -o-transition: all 0s;
     -webkit-transition: all 0;
     -o-transition: all 0;
     transition: all 0;
-    margin: 20px 10px
-}
-
-.mobile-konto:hover{
-    background-color: white;
-    color: black
-}
-
-.register a{
-    color: white
-}
-
-.login a, .register:hover a{
-    color: black
-}
-
-.konto1{
-    cursor: pointer;
-    color: white;
-    -webkit-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    -webkit-transition: all 0.5;
-    -o-transition: all 0.5;
-    transition: all 0.5;
-}
-
-.konto:hover, .login, .register:hover{
-    color: black;
-    background-color:  white;
-}
-
-.konto a, .register a, .login:hover a, .login:hover{
-    background-color: transparent;
-    text-decoration: none;
-    color: white;
-}
-
-.konto a{
-    color: black
-}
-
-.login, .register{
-    cursor: pointer
-}
-
-#maps{
-    height: 1000px;
-    width: 1000px
-}
-
-.balken{
-    height: auto;
-    min-height: 30px;
-    width: 100%;
-    background-color: #333333;
-    -webkit-box-shadow: 1px 1px 5px black;
-            box-shadow: 1px 1px 5px black;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    color: #FF9900;
-    -webkit-transition: 0.23s;
-    -o-transition: 0.23s;
-    transition: 0.23s;
-    color: #FF9900;
-    text-align: center
-}
-
-.col-md-3{
-    border: solid 1px
-}
-
-.row{
-    width: 100%;
-    -ms-flex-pack: distribute;
-        justify-content: space-around
-}
-
-.loginpop form,
-.registerpop form{
-    text-align: center
-}
-
-.nav-item{
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-}
-
-.badge{
-    background-color: #911b1b;
-    height: 20px;
-    border-radius: 100px;
-    color: white
-}
-
-.hidden{
-    display: none
-}
-
-.y-overflow{
-    overflow-y: hidden
-}
-
-hr {
-    color: #333;
-    background-color: #333;
-    height: 2px
-}
-
-.forgot{
-    width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    margin-top: 2em;
-    text-decoration: none;
-    color: black;
-    text-decoration: underline
-}
-
-.forgot:hover{
-    color: #FF9900
-}
-
-.maenu{
-         background-image: url(../images/MyLogo.png);  
+  }
+  .bäck {
+    display: none;
+  }
+  .textbox {
+    width: 80%;
+  }
+  .more {
+    width: 90%;
+  }
+  .comp-logo {
+    width: 288px;
+    height: 65px;
+    background-image: url("../images/HaferkampPic.png");
     background-size: cover;
-    height: 108px;
-    width: 290px; 
-    color: #FF9900;
-    background-color: #4c0200;
-    border-left: 3px solid #FF9900;
-    border-bottom: 3px solid #FF9900;
-    border-right:3px solid #FF9900;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-
     cursor: pointer;
+    z-index: 3;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-}
-
-.brotritter{
-    position: absolute;
-    margin: 0px auto;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center
-}
-
-.hilfe a{
-    cursor: pointer
-}
-
-.hilfe a:hover{
-    text-decoration: underline
-}
-
-.f-pass{
-    color: white;
-    
-    font-family: 'Ubuntu', sans-serif;
-    font-size: 3em;
-    font-weight:500;
-    text-shadow: 1px 1px 1px black ;
-    text-align: center;
-    width: 100%;
-    font-weight: 400;
-    font-size: 3.8em;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin-top: 280px;
-}
-
-.f-container,
-.f-container .form-control{
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    margin: 0px auto;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    margin-top: 100px
-}
-
-.f-container .form-control{
-    margin: 0px
-}
-
-.f-container div{
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    padding: 10px;
-    padding-top: 30px
-}
-
-.f-container label{
-    font-weight: 900
-}
-
-.f-btn{
-    padding: 13px 17px;
-    margin-left: 20px;
-}
-
-.res-btn{
-    height: auto;
-    margin-left: 20px;
-    width: 300px;
-    margin: 0 auto;
-    margin-top: 20px;
-    font-weight: 500;
-    font-size: 1.1em
-}
-
-.f-bild{
-    height: 500px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center
-}
-
-label{
-    margin: 0
-}
-
-.success{
-    color: white;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-}
-
-.u-name{
-    font-weight: 900
-}
-
-.res-container{
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -ms-flex-line-pack: center;
-        align-content: center;
-    margin-top: 75px
-}
-
-.res-container label{
-    font-weight: 900
-}
-
-.res-container div{
-    margin-bottom: 35px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center
-}
-
-.res-field{
-    margin-top: 10px
-}
-
-.mobile-popup{
-    display: none
-}
-
-.registerpop .loginbutton{
-    margin-top: 50px
-}
-
-.delete-button{
-    width: 120px;
-    min-height: 40px;
-    height: auto;
-    display: flex;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
-    border: none;
-    text-decoration: none;
-    background-color: #0069ed;
-    color: white;
-    font-family: sans-serif;
-    font-size: 1rem;
-    cursor: pointer;
-    text-align: center;
-    transition: 250ms ease-in-out, 
-                transform 150ms ease;
-    font-weight: 500;
-    border-radius: 5px
-}
-
-.delete-button:hover,
-.delete-button:focus {
-    background-color: #0053ba;
-}
-
-.delete-button:focus {
-    outline: 1px solid #fff;
-    outline-offset: -4px;
-}
-
-.impress{
-    width: 100%;
-    height: auto;
-    min-height: 50px;
-    height: auto;
-    background-color: #262626;
-    -webkit-box-shadow: 1px 1px 5px black;
-            box-shadow: 3px 3px 8px 2px black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    padding: 5px 0px;
-    margin-top: 100px
-}
-
-.impress a{
-    text-decoration: none;
-    color: white
-}
-
-.impress a:hover{
-    text-decoration: underline
-}
-
-.impresscon{
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.impresscon div{
-    cursor: pointer;
-}
-
-.impresscon .sideopt{
-    padding: 5px 20px;
-    border: 1px white solid;
-    border-radius: 20px;
-    transition: 0.3s;
-    font-size: 0.9em;
-    margin: 0px 10px
-}
-
-.impresscon .sideopt:hover{
-    background-color: white;
-    color: #262626;
-    text-decoration: none
-}
-
-.hidopt{
-    display: none
-}
-
-@media only screen and (max-width: 980px) {
-    #mobile-popup .drop{
-        padding: 40px;
-    }
-    .sideopt{
-        display: none
-    }
-    .hidopt{
-        display: block
-    }
-    .mobile-konto{
-        display: block
-    }
-    .konto{
-        display: none
-    }
-    .viereck{
-        width: 100%;
-        background-color: #5b0000;
-        -webkit-box-pack: justify;
-            -ms-flex-pack: justify;
-                justify-content: space-around;
-        -webkit-transition: all 0s;
-        -o-transition: all 0s;
-        transition: all 0s;
-    }
-    .brotheld, .brotritter, .maenu, .firma{
-        display: none
-    }
-    .konto1{
-        -webkit-transition: all 0s;
-        -o-transition: all 0s;
-        -webkit-transition: all 0;
-        -o-transition: all 0;
-        transition: all 0;
-    }
-    .bäck{
-        display: none
-    }
-    .textbox{
-        width: 80%
-    }
-    .more{
-        width: 90%
-    }
-    .comp-logo{
-        width: 60px;
-        height: 75px;
-        background-image:url("../images/Brotritter%20Wappen.png");
-        background-size: cover;
-        cursor: pointer;
-        z-index: 3;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-pack: center;
-            -ms-flex-pack: center;
-                justify-content: center;
-        -webkit-box-align: center;
-            -ms-flex-align: center;
-                align-items: center;
-        margin-left: 10px;
-    }
-    .konto-container{
-        margin-right: 7%;
-    }
+    margin-left: 10px;
+  }
+  .konto-container {
+    margin-right: 7%;
+  }
 }
 
 @media only screen and (max-width: 520px) {
-    .konto, .login, .register{
-        margin: 20px 5px;
-        -webkit-transition: all 0s;
-        -o-transition: all 0s;
-        -webkit-transition: all 0;
-        -o-transition: all 0;
-        transition: all 0;
-    }
-    .konto-container{
-        margin-right: 0%;
-    }
-}
-    
-    @media only screen and (min-width: 980px) {
-        .konto{
-            display: flex
-        }
-    }
-
-@media only screen and (max-device-width: 960px) {
-    .konto, .login, .register, .mobile-konto, .hilfe{
-        font-size: 1.3em;
-        text-align: center;
-    }
-    .hilfe{
-        padding-bottom: 10px
-    }
-    .balken{
-         height: auto;
-         min-height: 50px;
-         font-size: 1.6
-    }
-    .comp-logo{
-        height: 88px;
-        width: 71px
-    }
-    .bild{
-        border-bottom: 5px solid #ff9900
-    }
-    .mobile-popup{
-        font-size: 1.3em
-    }
-    .mobile-header{
-        height: auto;
-    }
-    .impress{
-        font-size: 1.3em;
-        height: 60px
-    }
+  .konto,
+  .login,
+  .register {
+    margin: 20px 5px;
+    -webkit-transition: all 0s;
+    -o-transition: all 0s;
+    -webkit-transition: all 0;
+    -o-transition: all 0;
+    transition: all 0;
+  }
+  .konto-container {
+    margin-right: 0%;
+  }
 }
 
+@media only screen and (min-width: 980px) {
+  .konto {
+    display: flex;
+  }
+}
 
 @media only screen and (max-device-width: 960px) {
-    .containerl{
-        height: 600px;
-        max-height: 95%;
-        border: 5px solid #ff9900
-    }
+  .konto,
+  .login,
+  .register,
+  .mobile-konto,
+  .hilfe {
+    font-size: 1.3em;
+    text-align: center;
+  }
+  .hilfe {
+    padding-bottom: 10px;
+  }
+  .balken {
+    height: auto;
+    min-height: 50px;
+    font-size: 1.6;
+  }
+  .comp-logo {
+    height: 188px;
+    width: 200px;
+  }
+  .bild {
+    border-bottom: 5px solid #ff9900;
+  }
+  .mobile-popup {
+    font-size: 1.3em;
+  }
+  .mobile-header {
+    height: auto;
+  }
+  .impress {
+    font-size: 1.3em;
+    height: 60px;
+  }
+}
 
-    .form-signin, .form-signup{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        height: 80%;
-        width: 100%;
-        font-size: 1.3em;
-        margin: auto
-    }
-    .form-signin,.form-signin .form-control, .form-signin .loginbutton, .form-signup ,.form-signup .form-control, .form-signup .loginbutton{
-        margin-top: 0px
-    }
+@media only screen and (max-device-width: 960px) {
+  .containerl {
+    height: 600px;
+    max-height: 95%;
+    border: 5px solid #ff9900;
+  }
+
+  .form-signin,
+  .form-signup {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 80%;
+    width: 100%;
+    font-size: 1.3em;
+    margin: auto;
+  }
+  .form-signin,
+  .form-signin .form-control,
+  .form-signin .loginbutton,
+  .form-signup,
+  .form-signup .form-control,
+  .form-signup .loginbutton {
+    margin-top: 0px;
+  }
 }
 
 @media only screen and (max-device-width: 720px) {
-.containerl{
-        -webkit-animation-name: none;
-        -webkit-animation-duration: 0s;
-        animation-name: none;
-        background-color: rgba( 255, 255, 255, 0.931 )
-    }
-    .forgot{
-        margin-top: 0px
-    }
+  .containerl {
+    -webkit-animation-name: none;
+    -webkit-animation-duration: 0s;
+    animation-name: none;
+    background-color: rgba(255, 255, 255, 0.931);
+  }
+  .forgot {
+    margin-top: 0px;
+  }
 }
 
 @media only screen and (max-device-width: 480px) {
-    .forgot{
-        margin-top: 10px
-    }
-    .viereck{
+  .forgot {
+    margin-top: 10px;
+  }
+  .viereck {
     width: 100%;
-    background-color: #5b0000;
+    background-color: #4e2600;
     -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
     -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
     -webkit-transition: all 0s;
     -o-transition: all 0s;
     transition: all 0s;
-    }
-    .brotheld, .brotritter, .maenu, .firma{
-        display: none;
-    }
-    .konto1{
-        -webkit-transition: all 0s;
-        -o-transition: all 0s;
-        -webkit-transition: all 0;
-        -o-transition: all 0;
-        transition: all 0;
-        font-size: 2.5em;
-        font-weight: 500;
-    }
-    .bäck{
-        display: none
-    }
-    .textbox{
-        width: 80%
-    }
-    .more{
-        width: 90%
-    }
-    .comp-logo{
-        width: 112px;
-        height: 140px;
-        background-image:url("../images/Brotritter%20Wappen.png");
-        background-size: cover;
-        cursor: pointer;
-        z-index: 3;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-pack: center;
-            -ms-flex-pack: center;
-                justify-content: center;
-        -webkit-box-align: center;
-            -ms-flex-align: center;
-                align-items: center;
-        margin-left: 10px;
-    }
-    .konto-container{
-        margin-right: 7%;
-    }
-    .mobile-konto{
-        display: block
-    }
-    .konto{
-        display: none
-    }
-    .konto, .login, .register, .mobile-konto{
-        font-size: 1em;
-        margin: 20px 5px;
-        -webkit-transition: all 0s;
-        -o-transition: all 0s;
-        -webkit-transition: all 0;
-        -o-transition: all 0;
-        transition: all 0;
-        border-radius: 20px;
-    
-        padding: 17px 25px;
-        border: solid 2px white
-    }
-    .mobile-konto{
-        font-size: 1.8em
-    }
-    .hilfe{
-        font-size: 2.2em;
-        margin: auto;
-        padding-bottom: 0px
-    }
-    .konto-container{
-        margin-right: 0%;
-    }
-    .containerl{
-        width: 90%;
-        max-width: 700px;
-        height: 900px;
-        max-height: 95%;
-        border: solid 8px #ff9900;
-        font-size: 2em;
-        border-radius: 20px;
-        -webkit-box-align: center;
-            -ms-flex-align: center;
-                align-items: center;
-        -webkit-box-pack: center;
-            -ms-flex-pack: center;
-                justify-content: center;
-        -webkit-animation-name: none;
-        -webkit-animation-duration: 0s;
-        animation-name: none;
-        background-color: rgba( 255, 255, 255, 0.931 )
-    }
-    .balken{
-         height: auto;
-         min-height: 80px;
-         font-size: 1.5em
-    }
-    .form-control{
-        width: 70%;
-        max-width: 80%;
-        height: 90px;
-        border-radius: 10px;
-        margin-top: 20px
-    }
-    .loginbutton{
-        height: 100px;
-    }
-    .registerpop .loginbutton{
-        margin-top: 70px
-    }
-    .form-signup,
-    .form-signin{
-        height: 800px;
-        max-height: 100%
-    }
-    .form-signin h1,
-    .form-signup h1{
-        margin-top: 50px;
-    }
-    .form-signup h1{
-        margin-bottom: 5%
-    }
-    .control2{
-        margin-top: 100px
-    }
-    .loginpop button{
-        margin-top: 500px
-    }
-    .kontakt{
-        padding-top: 0px
-    }
-    .mobile-popup{
-        font-size: 2em
-    }
-    .mobile-header{
-        height: auto;
-        width: 100%;
-        background-color: #ff9900;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-pack: justify;
-            -ms-flex-pack: justify;
-                justify-content: space-between;
-        -webkit-box-align: center;
-            -ms-flex-align: center;
-                align-items: center;
-    }
-    .break-top{
-        margin-top: 200px
-    }
-    .mobile-break{
-        margin-top: 83px
-    }
-    .mobile-credit-break{
-        margin-top: 83px;
-    }
-    .bild{
-        border-bottom: 10px solid #ff9900;
-        background-image: url(../images/BrotritterMobil.JPG)
-    }
-    .impress{
-        font-size: 1.8em;
-        height: 100px
-    }
+  }
+  .konto1 {
+    -webkit-transition: all 0s;
+    -o-transition: all 0s;
+    -webkit-transition: all 0;
+    -o-transition: all 0;
+    transition: all 0;
+    font-size: 2.5em;
+    font-weight: 500;
+  }
+  .bäck {
+    display: none;
+  }
+  .textbox {
+    width: 80%;
+  }
+  .more {
+    width: 90%;
+  }
+  .comp-logo {
+    width: 250px;
+    height: 240px;
+    background-image: url("../images/Brotritter%20Wappen.png");
+    background-size: cover;
+    cursor: pointer;
+    z-index: 3;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+  .konto-container {
+    margin-right: 7%;
+  }
+  .mobile-konto {
+    display: block;
+  }
+  .konto {
+    display: none;
+  }
+  .konto,
+  .login,
+  .register,
+  .mobile-konto {
+    font-size: 1em;
+    margin: 20px 5px;
+    -webkit-transition: all 0s;
+    -o-transition: all 0s;
+    -webkit-transition: all 0;
+    -o-transition: all 0;
+    transition: all 0;
+    border-radius: 20px;
+
+    padding: 17px 25px;
+    border: solid 2px white;
+  }
+  .mobile-konto {
+    font-size: 1.8em;
+  }
+  .hilfe {
+    font-size: 2.2em;
+    margin: auto;
+    padding-bottom: 0px;
+  }
+  .konto-container {
+    margin-right: 0%;
+  }
+  .containerl {
+    width: 90%;
+    max-width: 700px;
+    height: 900px;
+    max-height: 95%;
+    border: solid 8px #ff9900;
+    font-size: 2em;
+    border-radius: 20px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-animation-name: none;
+    -webkit-animation-duration: 0s;
+    animation-name: none;
+    background-color: rgba(255, 255, 255, 0.931);
+  }
+  .balken {
+    height: auto;
+    min-height: 80px;
+    font-size: 1.5em;
+  }
+  .form-control {
+    width: 70%;
+    max-width: 80%;
+    height: 90px;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+  .loginbutton {
+    height: 100px;
+  }
+  .registerpop .loginbutton {
+    margin-top: 70px;
+  }
+  .form-signup,
+  .form-signin {
+    height: 800px;
+    max-height: 100%;
+  }
+  .form-signin h1,
+  .form-signup h1 {
+    margin-top: 50px;
+  }
+  .form-signup h1 {
+    margin-bottom: 5%;
+  }
+  .control2 {
+    margin-top: 100px;
+  }
+  .loginpop button {
+    margin-top: 500px;
+  }
+  .kontakt {
+    padding-top: 0px;
+  }
+  .mobile-popup {
+    font-size: 2em;
+  }
+  .mobile-header {
+    height: auto;
+    width: 100%;
+    background-color: #ff9900;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+  .break-top {
+    margin-top: 200px;
+  }
+  .mobile-break {
+    margin-top: 83px;
+  }
+  .mobile-credit-break {
+    margin-top: 83px;
+  }
+  .bild {
+    border-bottom: 10px solid #ff9900;
+    background-image: url(../images/BrotritterMobil.JPG);
+  }
+  .impress {
+    font-size: 1.8em;
+    height: 100px;
+  }
 }
 
-    
 @media only screen and (max-device-width: 960px) {
-    .konto{
-        display: none
-    }
-    .mobile-konto{
-        display: block
-    }
-        .viereck{
+  .konto {
+    display: none;
+  }
+  .mobile-konto {
+    display: block;
+  }
+  .viereck {
     background-color: #5b0000;
-    }
+  }
 }
