@@ -951,6 +951,10 @@ fieldset[disabled] .btn-default.active {
     border: solid 1px
 }
 
+.loginpop h2, .registerpop h2{
+    font-size: 2em
+}
+
 .row{
     width: 100%;
     -ms-flex-pack: distribute;
@@ -1627,5 +1631,8 @@ label{
     }
         .viereck{
     background-color: #5b0000;
+    }
+    .registerpop h2, .loginpop h2{
+        font-size: 1.5em
     }
 }

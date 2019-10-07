@@ -528,7 +528,7 @@ body{
     padding: 5px
 }
 
-.aligner h1, .align h1{
+.aligner h2, .align h2{
     padding: 60px 0 20px;
     margin: 8px 0 16px;
     color: #0a3847;
@@ -1612,7 +1612,7 @@ font-family: 'Ubuntu', sans-serif;
          border: solid 3px white;
          border-radius: 5px
      }
-     .align1 h1, .align2 h1, .align3 h1{
+     .align1 h2, .align2 h2, .align3 h2{
          font-size: 2.5em
      }
      .align1 p, .align2 p, .align3 p,

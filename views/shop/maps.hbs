@@ -32,7 +32,7 @@
   <div class="containerl">
     <i class="fas fa-times close"></i>
     <form class="form-signin" action="/user/signin" method="post">
-      <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+      <h2 class="h3 mb-3 font-weight-normal">Login</h2>
       <input type="email" name="email" id="email" class="form-control" placeholder="Email" required autofocus>
       <input type="password" name="password" id="password" class="form-control" placeholder="Passwort" required>
       <input type="hidden" name="_csrf" value="{{ csrfToken }}">
@@ -45,7 +45,7 @@
   <div class="containerl">
     <i class="fas fa-times close"></i>
     <form class="form-signup" action="/user/signup" method="post">
-      <h1 class="h3 mb-3 font-weight-normal">Registrieren</h1>
+      <h2 class="h3 mb-3 font-weight-normal">Registrieren</h2>
       <input type="email" name="email" id="email" class="form-control" placeholder="Email" required autofocus>
       <input type="password" name="password" id="password" class="form-control" placeholder="Passwort" required>
       <input type="password" name="password2" id="password2" class="form-control" placeholder="Passwort bestätigen"
@@ -60,7 +60,7 @@
   <div class="mapsbake">
     <i class="fas fa-times close" id="mapsclose"></i>
     <form class="innerbake" action="/maps" method="post">
-      <h1>Wir nehmen Ihre Wünsche ernst und versuchen diese umzusetzen.</h1>
+      <h2>Wir nehmen Ihre Wünsche ernst und versuchen diese umzusetzen.</h2>
       <div class="inputs">
         <h3>Bäckereiname:</h3>
         <input type="text" name="bakename" id="bakename" class="form-control" placeholder="Bäckereiname" required
@@ -121,8 +121,8 @@
     </div>
   </div>
   <div class="absolute-div">
-    <h2>Bäckereien in Ihrer Umgebung:</h2>
-    <h1>{{location}}</h1>
+    <h1>Bäckereien in Ihrer Umgebung:</h1>
+    <h2>{{location}}</h2>
     <form class="searchDiv" action="/mapsSearch" method="post">
       <input id="address" type="text" name="address" class="form-control searcher" placeholder="{{location}}"
         required />
@@ -141,7 +141,7 @@
 <div class="googleMap" id="map"></div>
 
 <div class="title">
-  <h1>Ist Ihre Bäckerei nicht dabei?</h1>
+  <h2>Ist Ihre Bäckerei nicht dabei?</h2>
 </div>
 <button class=" btn loginbutton bakebtn" id="bakebtn" type="button">Nehmen Sie aktiven Einfluss auf die
   Entwicklung</button>

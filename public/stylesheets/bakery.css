@@ -1518,6 +1518,10 @@ question-con{
     transition: 0.00s
 }
 
+.submitpop h2{
+    font-size: 2em
+}
+
 .closesub{
     position: absolute;
     margin-left: 96%;
@@ -1582,7 +1586,8 @@ question-con{
 
 #header-price{
     padding-bottom: 30px;
-    font-weight: 300
+    font-weight: 300;
+    font-size: 2em
 }
 
 .credit-popup{
@@ -1947,13 +1952,13 @@ question-con{
     .ingredient-header img{
         display: none;
     }
-    .ingredient-header h1{
+    .ingredient-header h2{
         text-decoration: underline
     }
     .ingredients{
         margin-top: 50px
     }
-    .submitpop h1{
+    .submitpop h2{
         font-size: 1.2em
     }
     .snumber{
@@ -2117,7 +2122,7 @@ question-con{
     .submitpop h4{
         margin-bottom: -18px
     }
-    .submitpop h1{
+    .submitpop h2{
         width: 90%
     }
     .submitpop .e-reader{

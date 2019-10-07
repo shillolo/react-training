@@ -1,29 +1,10 @@
+<meta name="description" content="Beschreibung des Seiteninhalts">
 <link rel="stylesheet" href="/stylesheets/homepage.css" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
     integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
-<div class="whatpop" id="whatpop">
-    <div class="chargepop">
-        <i class="fas fa-times closeinst"></i>
-        <h1>Einfach Brotritterkonto aufladen</h1>
-        <div class="instholder">
-            <div class="innerInstholder">
-                <div class="insthold">
-                    <img src="../images/bakery1.png">
-                    <h3>Mit Kundennummer zur Kasse gehen und gewünschten Betrag abgeben um Konto aufzuladen</h3>
-                </div>
-            </div>
-            <div class="innerInstholder">
-                <div class="insthold">
-                    <img src="../images/bakery1.png">
-                    <h3>Konto ganz einfach online aufladen</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 {{# if login}}
 <div class="mobile-popup" id="mobile-popup">
     <div class="mobile-header">
@@ -49,7 +30,7 @@
     <div class="containerl">
         <i class="fas fa-times close"></i>
         <form class="form-signin" action="/user/signin" method="post">
-            <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+            <h2 class="h3 mb-3 font-weight-normal">Login</h2>
             <input type="email" name="email" id="email" class="form-control" placeholder="Email" required autofocus>
             <input type="password" name="password" id="password" class="form-control" placeholder="Passwort" required>
             <input type="hidden" name="_csrf" value="{{ csrfToken }}">
@@ -62,7 +43,7 @@
     <div class="containerl">
         <i class="fas fa-times close"></i>
         <form class="form-signup" action="/user/signup" method="post">
-            <h1 class="h3 mb-3 font-weight-normal">Registrieren</h1>
+            <h2 class="h3 mb-3 font-weight-normal">Registrieren</h2>
             <input type="email" name="email" id="email" class="form-control control2" placeholder="Email" required
                 autofocus>
             <input type="password" name="password" id="password" class="form-control" placeholder="Passwort" required>
@@ -109,15 +90,15 @@
                 KONTO
             </div>
             {{else}}
-            <div class="login" id="login" title="Einloggen">
+            <div class="login" id="login" title="In Konto Einloggen">
                 <a class="konto1"> Login </a>
             </div>
-            <div class="register" id="register" title="Registrieren">
+            <div class="register" id="register" title="Jetzt Registrieren">
                 <a class="konto1"> Registrieren </a>
             </div>
             {{/if}}
             <div class="hilfe">
-                <a class="kontakt" title="Kontakt" href="/kontakt"> FEEDBACK </a>
+                <a class="kontakt" title="Feddback zu Brotritter geben" href="/kontakt"> FEEDBACK </a>
             </div>
         </div>
     </div>
@@ -128,7 +109,7 @@
                 <input type="text" id="searchTerm" class="searchTerm" name="address" placeholder="Wo wohnst du? (Stadt)"
                     autofocus required>
                 <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-                <button type="submit" id="searchButton" class="searchButton" title="Bäckerei finden">
+                <button type="submit" id="searchButton" class="searchButton" title="Bäckerei bei Google Maps finden">
                     <i class="fa fa-search"></i>
                     <p id="b-button"> BÄCKEREI FINDEN </p>
                 </button>
@@ -198,8 +179,8 @@
             <h2 class="textSlider" id="thirdText">3. Brötchentüte am Brotritterschild in der Bäckerei abholen</h2>
         </div>
 
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        <a title="Weiter zum nächsten Slide" class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a title="Zurück zum letzten Slide" class="next" onclick="plusSlides(1)">&#10095;</a>
 
     </div>
 </div>
@@ -212,7 +193,7 @@
     <div class="aligner">
         <div class="align1">
             <i class="fas fa-check"></i>
-            <h1>Vorteile</h1>
+            <h2>Vorteile</h2>
             <div><b> Immer alle Brötchen bekommen </b>
                 <p>Da Sie vorbestellen, werden Sie immer Ihre gewünschten Brötchen bekommen.</p>
             </div>
@@ -222,7 +203,7 @@
         </div>
         <div class="align2">
             <i class="fas fa-stamp"></i>
-            <h1>Garantie</h1>
+            <h2>Garantie</h2>
             <div><b> Kein Preisaufschlag </b>
                 <p>Sie bezahlen genauso viel, wie in der Bäckerei vor Ort.</p>
             </div>
@@ -235,7 +216,7 @@
         </div>
         <div class="align3">
             <i class="fas fa-chart-line"></i>
-            <h1>Nutzen</h1>
+            <h2>Nutzen</h2>
             <div><b> Kein Schlange stehen mehr </b>
                 <p> Sie gehen einfach an der Schlange vorbei und geben den Code am Regalsystem ein.</p>
             </div>
@@ -259,7 +240,7 @@
     <div class="align">
         <div class="align1 alignSlide">
             <i class="fas fa-check"></i>
-            <h1>Vorteile</h1>
+            <h2>Vorteile</h2>
             <div><b> Immer alle Brötchen bekommen </b>
                 <p>Da Sie vorbestellen, werden Sie immer Ihre gewünschten Brötchen bekommen.</p>
             </div>
@@ -272,7 +253,7 @@
     <div class="align">
         <div class="align2 alignSlide">
             <i class="fas fa-stamp"></i>
-            <h1>Garantie</h1>
+            <h2>Garantie</h2>
             <div><b> Kein Preisaufschlag </b>
                 <p>Sie bezahlen genauso viel, wie in der Bäckerei vor Ort.</p>
             </div>
@@ -285,7 +266,7 @@
     <div class="align">
         <div class="align3 alignSlide">
             <i class="fas fa-chart-line"></i>
-            <h1>Nutzen</h1>
+            <h2>Nutzen</h2>
             <div><b> Kein Schlange stehen mehr </b>
                 <p> Sie gehen einfach an der Schlange vorbei und geben den Code am Regalsystem ein.</p>
             </div>
@@ -321,7 +302,8 @@
     <div class="impresscon">
         <div class="sideopt " OnClick="location.href='/newsletter'">Newsletter bekommen</div>
         <div class="sideopt hidopt" OnClick="location.href='/newsletter'">Newsletter </div>
-        <div><a href="/impressum">Impressum</a>&nbsp;/&nbsp;<a href="/datenschutz">Datenschutz</a></div>
+        <div><a title="Zum Inpressum" href="/impressum">Impressum</a>&nbsp;/&nbsp;<a title="Zur Datenschutzerklärung"
+                href="/datenschutz">Datenschutz</a></div>
         <div class="sideopt" OnClick="location.href='/mitgliedschaft'">Jetzt Partner werden</div>
         <div class="sideopt hidopt" OnClick="location.href='/mitgliedschaft'">Partnerschaft</div>
     </div>

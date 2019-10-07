@@ -10,7 +10,7 @@
             <i class="fas fa-times close closeing"></i>
             <div class="ingredient-content">
                 <div class="ingredient-header">
-                    <h1>{{this.title}}:</h1>
+                    <h2>{{this.title}}:</h2>
                     <img src="{{this.imagePath}}" class="productpic-pop" alt="Brötchenbild"/>
                 </div>
                 <div class="ingredients"> 
@@ -46,7 +46,7 @@
         <div class="containerl">
         <i class="fas fa-times close closelog" id="closelog"></i>
         <form class="form-signin" action="/user/signin" method="post">
-          <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+          <h2 class="h3 mb-3 font-weight-normal">Login</h2>
           <input type="email" name="email" class="form-control" placeholder="Email" required autofocus>
           <input type="password" name="password" class="form-control" placeholder="Passwort" required>
           <input type="hidden" name="_csrf" value="{{ csrfToken }}">
@@ -59,7 +59,7 @@
         <div class="containerl">
         <i class="fas fa-times close closereg" id="closereg"></i>
         <form class="form-signup" action="/user/signup" method="post">
-          <h1 class="h3 mb-3 font-weight-normal">Registrieren</h1>
+          <h2 class="h3 mb-3 font-weight-normal">Registrieren</h2>
           <input type="email" name="email" class="form-control" placeholder="Email" required autofocus/>
           <input type="password" name="password" class="form-control" placeholder="Passwort" required/>
           <input type="password" name="password2" id="password2" class="form-control" placeholder="Passwort bestätigen" required>
@@ -118,7 +118,7 @@
         <form class="credit-form" id="credit-checkout" method="post" action="/bakery">
             <i class="fas fa-times close" id="credit-close"></i>
             <div class="credentials credit-creds" id="credentials">
-                <h1 id="header-price"></h1>
+                <h2 id="header-price"></h2>
                 <input type="text" id="card-name" class="form-control" placeholder="Karteninhaber">
                 <input type="text" id="card-number" placeholder="Kartennummer" class="form-control">
                 <div class="expires">
@@ -145,7 +145,7 @@
                     <div class="head2 loggedhead" id="head2">2. Eckdaten</div>
                 </div>
                 <div class="scontainer-box box1" id="box1">
-                    <h1 class="sheader" id="sheader">Bestellung bestätigen</h1>
+                    <h2 class="sheader" id="sheader">Bestellung bestätigen</h2>
                     <div class="sorder-container">
                         <div class="sorder" name="sorder" id="sorder"></div>
                         <hr>
@@ -163,7 +163,7 @@
                     <button type="button" id="button1" class="loginbutton btn continuebtn">Bestätigen</button>
                 </div>
                 <div class="scontainer-box box2" id="box2">
-                    <h1 class="sheader" id="sheader">Bitte Abholdatum angeben</h1>
+                    <h2 class="sheader" id="sheader">Bitte Abholdatum angeben</h2>
                     <div class="buyers-info-logged">
                         <div class="date-container date-container-logged">
                             <h4>Abholdatum:</h4>
@@ -201,7 +201,7 @@
                     <div class="head3" id="head3">3. Bezahlen</div>
                 </div>
                 <div class="scontainer-box box1" id="box1">
-                    <h1 class="sheader" id="sheader">Bestellung bestätigen</h1>
+                    <h2 class="sheader" id="sheader">Bestellung bestätigen</h2>
                     <div class="sorder-container">
                         <div class="sorder" name="sorder" id="sorder"></div>
                         <hr>
@@ -221,7 +221,7 @@
                     <button type="button" id="button1" class="loginbutton btn continuebtn">Bestätigen</button>
                 </div>
                 <div class="scontainer-box box2" id="box2">
-                    <h1 class="sheader" id="sheader">Bitte Email und Abholdatum angeben</h1>
+                    <h2 class="sheader" id="sheader">Bitte Email und Abholdatum angeben</h2>
                     <div class="buyers-info">
                         <div class="email-container">
                             <h4>Email:</h4>
@@ -249,7 +249,7 @@
                     <button type="button" id="goBack1" class="goBack btn">Zurück</button>
                 </div>
                 <div class="scontainer-box box3" id="box3">
-                    <h1 class="sheader" id="sheader">Zahlungsart wählen</h1>
+                    <h2 class="sheader" id="sheader">Zahlungsart wählen</h2>
                     <div class="payways" id="method">
                        <div class="p-method method-one" id="paypal-method">
                                     <div class="paypal">
