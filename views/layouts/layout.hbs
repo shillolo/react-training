@@ -51,6 +51,34 @@
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
   {{{body}}}
+  <script>
+    (function () {
+      if (!localStorage.getItem('cookieconsent')) {
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            var data = JSON.parse(request.responseText);
+            var eu_country_codes = ['AL', 'AD', 'AM', 'AT', 'BY', 'BE', 'BA', 'BG', 'CH', 'CY', 'CZ', 'DE', 'DK', 'EE', 'ES', 'FO', 'FI', 'FR', 'GB', 'GE', 'GI', 'GR', 'HU', 'HR', 'IE', 'IS', 'IT', 'LT', 'LU', 'LV', 'MC', 'MK', 'MT', 'NO', 'NL', 'PO', 'PT', 'RO', 'RU', 'SE', 'SI', 'SK', 'SM', 'TR', 'UA', 'VA'];
+            if (eu_country_codes.indexOf(data.countryCode) != -1) {
+              document.body.innerHTML += '\
+					<div class="cookieconsent" style="position:fixed;padding:20px;left:0;bottom:0;background-color:#000;color:#FFF;text-align:center;width:100%;z-index:99999;">\
+						Diese Seite benutzt Cookies. Mit dem benutzen der Seite, erklärst du dich mit der Nutzung von Cookies einverstanden. \
+						<a href="#" style="color:#CCCCCC;">Ich verstehe</a>\
+					</div>\
+					';
+              document.querySelector('.cookieconsent a').onclick = function (e) {
+                e.preventDefault();
+                document.querySelector('.cookieconsent').style.display = 'none';
+                localStorage.setItem('cookieconsent', true);
+              };
+            }
+          }
+        };
+        request.open('GET', 'http://ip-api.com/json', true);
+        request.send();
+      }
+    })();
+  </script>
   <script type="text/javascript" src="/javascripts/layout.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
     integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
