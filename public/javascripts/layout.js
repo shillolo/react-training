@@ -72,15 +72,11 @@ lspan.onclick = function() {
 cookies();
 
 function cookies() {
-  document.body.innerHTML +=
-    '\
-                <div class="cookieconsent" style="position:fixed;padding:20px;left:0;bottom:0;background-color:#000;color:#FFF;text-align:center;width:100%;z-index:99999;">\
-                    Diese Seite benutzt Cookies. Mit dem benutzen der Seite, erklärst du dich mit der Nutzung von Cookies einverstanden. \
-                    <a href="#" style="color:#CCCCCC;">Ich verstehe</a>\
-                </div>\
-                ';
+  $("body").append(
+    "<div class='cookieconsent' style='position:fixed;padding:20px;left:0;bottom:0;background-color:#000;color:#FFF;text-align:center;width:100%;z-index:1;'>Diese Seite benutzt Cookies. Mit dem benutzen der Seite, erklärst du dich mit der Nutzung von Cookies einverstanden.<a href='#' style='color:#CCCCCC;'>Ich verstehe</a></div>"
+  );
   document.querySelector(".cookieconsent a").onclick = function(e) {
     e.preventDefault();
-    document.querySelector(".cookieconsent").style.display = "none";
+    $(".cookieconsent").remove();
   };
 }
